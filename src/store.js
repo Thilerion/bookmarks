@@ -8,7 +8,7 @@ export default new Vuex.Store({
 		bookmarks: [
 			{ title: "Reddit", description: "Reddit - social media website", url: "https://www.reddit.com", tags: [0], id: 0 },
 			{ title: "nu.nl", description: "nu.nl", url: "https://www.nu.nl", tags: [3], id: 1 },
-			{ title: "YouTube", description: "YouTube", url: "https://www.youtube.com", tags: [0, 1], id: 2 },
+			{ title: "YouTube", description: "", url: "https://www.youtube.com", tags: [0, 1], id: 2 },
 			{ title: "Agenda", description: "Google Calendar", url: "https://www.google.com/calendar", tags: [0], id: 3 },
 			{ title: "Plex", description: "Plex", url: "https://app.plex.tv/web/app", tags: [0, 1], id: 4 },
 			{ title: "Blackboard", description: "Blackboard", url: "http://blackboard.leidenuniv.nl/webapps/portal/frameset.jsp", tags: [3], id: 5 }
@@ -44,7 +44,8 @@ export default new Vuex.Store({
 					return true;
 				} else return false;
 			});
-		}
+		},
+		searchString: state => state.currentSearch
 	},
 	mutations: {
 		changeCurrentSearch: (state, searchString) => state.currentSearch = searchString,

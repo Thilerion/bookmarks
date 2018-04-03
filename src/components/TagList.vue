@@ -3,7 +3,7 @@
 	<ul class="tags-list">
 		<li class="tag-item" v-for="tag in tags" :key="tag.name">
 			<span class="tag-color" :style="tagStyle(tag)" @click="changeTagStatus(tag.id)"></span>
-			<span class="tag-name">{{tag.name}}</span>
+			<span class="tag-name" :class="{disabled: tag.active === false}">{{tag.name}}</span>
 			<button class="tag-edit">
 				<svg class="more-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 					<path d="M0 0h24v24H0z" fill="none"/>
@@ -33,6 +33,9 @@ export default {
 		},
 		changeTagStatus(tagId) {
 			this.$store.commit('changeTagStatus', tagId);
+		},
+		tagItemStyle(tag) {
+
 		}
 	}
 }
@@ -63,6 +66,11 @@ export default {
 
 .tag-name {
 	grid-column: 3;
+	transition: opacity .2s ease;
+}
+
+.tag-name.disabled {
+	opacity: 0.7;
 }
 
 .tag-edit {
