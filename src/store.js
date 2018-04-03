@@ -11,7 +11,7 @@ export default new Vuex.Store({
 			{ title: "YouTube", description: "", url: "https://www.youtube.com", tags: [0, 1], id: 2 },
 			{ title: "Agenda", description: "Google Calendar", url: "https://www.google.com/calendar", tags: [0], id: 3 },
 			{ title: "Plex", description: "Plex", url: "https://app.plex.tv/web/app", tags: [0, 1], id: 4 },
-			{ title: "Blackboard", description: "Blackboard", url: "http://blackboard.leidenuniv.nl/webapps/portal/frameset.jsp", tags: [3], id: 5 }
+			{ title: "Blackboard", description: "Blackboard", url: "http://blackboard.leidenuniv.nl/webapps/portal/frameset.jsp", tags: [2], id: 5 }
 		],
 		tags: [
 			{name: "General", colour: "#AC80A0", id: 0, active: true},

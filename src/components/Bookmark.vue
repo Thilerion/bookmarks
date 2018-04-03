@@ -1,10 +1,10 @@
 <template>
 <div class="bookmark-block">
 	<div class="bookmark-item">
-		<a class="bookmark-link" :href="url" v-html="highlightedTitle"></a>
-		<p class="description bookmark-subtext" v-html="highlightedDescription"></p>
-		<p class="bookmark-url bookmark-subtext">{{url}}</p>
-		<div class="tags">
+		<a class="bookmark-link col-1" :href="url" v-html="highlightedTitle"></a>
+		<p class="description bookmark-subtext col-1" v-if="highlightedDescription !== ''" v-html="highlightedDescription"></p>
+		<p class="bookmark-url bookmark-subtext col-1">{{url}}</p>
+		<div class="tags col-2">
 			<span class="tag" v-for="tag in bookmarkTags" :key="tag.id" :style="tagStyle(tag)">{{tag.name}}</span>
 		</div>
 	</div>
@@ -79,17 +79,27 @@ export default {
 <style scoped>
 .bookmark-item {
 	position: relative;
-	display: flex;
 	height: 100%;
-	flex-direction: column;
-	justify-content: flex-start;
-	padding: 0 1em 0.5em 1em;
+	padding: 0.5em 1em;
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-auto-rows: auto;
+	grid-row-gap: 0.25em;
+}
+
+.col-1 {
+	grid-column: 1;
+}
+
+.col-2 {
+	grid-column: 2;
 }
 
 .bookmark-link {
 	color: currentColor;
 	text-decoration: none;
-	padding: 0.5em 0;
+	padding: 0;
+	align-self: center;
 }
 
 .bookmark-link:hover {
@@ -105,6 +115,10 @@ export default {
 	cursor: default;
 }
 
+.bookmark-subtext:first-of-type {
+	grid-row: 2;
+}
+
 .bookmark-url {
 	font-style: italic;
 	padding: 0;
@@ -112,9 +126,9 @@ export default {
 }
 
 .tags {
-	position: absolute;
-	right: 1em;
-	top: 1.5em;
+	grid-row: 1 / span 3;
+	text-align: end;
+	align-self:center;
 }
 
 .tag {
