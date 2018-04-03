@@ -22,8 +22,10 @@
    </div>
 
    <div class="col col-right">
-	   <BmSearch/>
-	   <BmBookmarks/>
+		<BmSearch/>
+		<div class="main">
+			<BmBookmarks/>
+		</div>	   
    </div>
 </div>
 </template>
@@ -64,7 +66,7 @@ body {
 #app {
 	min-height: 100vh;
 	display: grid;
-	grid-template-columns: minmax(20em, 25%) minmax(auto, 75%);
+	grid-template-columns: 25em auto;
 }
 
 .col {
@@ -82,6 +84,11 @@ body {
 
 .col-right {
 	background: #eee;
+}
+
+.main {
+	max-width: 1200px;
+	margin: auto;
 }
 
 h1 {
