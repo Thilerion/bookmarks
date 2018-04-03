@@ -19,7 +19,8 @@ export default new Vuex.Store({
 			{name: "Studeren", colour: "#3685B5", id: 2, active: true},
 			{name: "Nieuws", colour: "#0471A6", id: 3, active: true},
 		],
-		currentSearch: ""
+		currentSearch: "",
+		modalAddBookmark: false
 	},
 	getters: {
 		bookmarks: state => state.bookmarks,
@@ -56,7 +57,8 @@ export default new Vuex.Store({
 			}, {})
 			console.log(red);
 			return red;
-		}
+		},
+		modalAddBookmark: state => state.modalAddBookmark
 	},
 	mutations: {
 		changeCurrentSearch: (state, searchString) => state.currentSearch = searchString,
@@ -65,11 +67,17 @@ export default new Vuex.Store({
 				return tag.id === tagId;
 			});
 			tagToChange.active = !tagToChange.active;
-		}
+		},
+		toggleModalAddBookmark: state => state.modalAddBookmark = !state.modalAddBookmark,
+		pushNewBookmark: (state, bm) => state.bookmarks.push(bm)
 	},
 	actions: {
 		editSearchFilter({ commit }, searchString) {
 			commit('changeCurrentSearch', searchString);
+		},
+		saveNewBookmark({ state, commit }, bm) {
+			bm.id = state.bookmarks[state.bookmarks.length - 1].id + 1;
+			commit('pushNewBookmark', bm);
 		}
 	}
 });

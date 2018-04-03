@@ -1,5 +1,5 @@
 <template>
-<div id="app">
+<div id="app">	
 	<div class="col col-left">
 		<header>
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -9,6 +9,7 @@
 			</svg>
 			<h1 class="header-font">Bookmarks</h1>
 	  	</header>
+		<BmSubHeader class="sub-header"/>
 		<BmSidebar class="sidebar">
 			<BmTagList slot="tag-list"/>
 		</BmSidebar>
@@ -20,6 +21,9 @@
 			<BmBookmarks/>
 		</div>	   
 	</div>
+
+	<BmAddBookmark v-if="modalAddBookmark"/>
+	
 </div>
 </template>
 
@@ -28,13 +32,22 @@ import Search from '@/components/Search';
 import Bookmarks from '@/components/Bookmarks';
 import Sidebar from '@/components/Sidebar';
 import TagList from '@/components/TagList';
+import SubHeader from '@/components/SubHeader';
+import AddBookmark from '@/components/AddBookmark';
 
 export default {
 	components: {
 		BmSearch: Search,
 		BmBookmarks: Bookmarks,
 		BmSidebar: Sidebar,
-		BmTagList: TagList
+		BmTagList: TagList,
+		BmSubHeader: SubHeader,
+		BmAddBookmark: AddBookmark
+	},
+	computed: {
+		modalAddBookmark() {
+			return this.$store.getters.modalAddBookmark;
+		}
 	}
 }
 </script>
@@ -78,6 +91,7 @@ body {
 	position: sticky;
 	top: 0;
 	height: 100vh;
+	z-index: 999;
 }
 
 .col-right {
@@ -87,6 +101,14 @@ body {
 .main {
 	max-width: 1200px;
 	margin: auto;
+}
+
+.main > div {
+	margin: 0.5em 1em;
+}
+
+.main > div:first-of-type {
+	margin-top: 0;
 }
 
 h1, h2, h3, h4 {
@@ -117,6 +139,11 @@ header {
 	padding: 2em 0;
 }
 
+.sub-header {
+	background: #444;
+	color: white;
+}
+
 .sidebar {
 	padding: 1em 0.5em 1em 1.5em;
 }
@@ -128,5 +155,6 @@ button {
 	cursor: pointer;
 	margin: 0;
 	padding: 0;
+	color: currentColor;
 }
 </style>
