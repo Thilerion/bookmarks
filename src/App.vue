@@ -10,14 +10,7 @@
 		   <h1 class="header-font">Bookmarks</h1>
 	   </header>
 	   <div class="sidebar">
-		   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit quidem saepe consequuntur earum?</p>
-		   <p>Debitis, ipsa asperiores. Quaerat, quidem sit modi totam error laboriosam odit iste repudiandae.</p>
-		   <p>Pariatur, voluptatibus incidunt! Illo quidem esse dolore, est blanditiis ipsa repellendus error. Alias.</p>
-		   <p>Ex, voluptatibus illum itaque, qui officiis laudantium consequuntur veritatis suscipit perferendis, modi maiores!</p>
-		   <p>Quidem, sunt a voluptas, quos itaque fugit incidunt cumque odio minima eius consequuntur.</p>
-		   <p>Ipsam vero architecto eum a autem necessitatibus labore quidem quibusdam? Dolores, a odit.</p>
-		   <p>Reprehenderit sunt, id et reiciendis a similique sapiente consequuntur accusamus ipsa aliquid accusantium?</p>
-		   <p>Aliquam quibusdam, voluptate, nihil modi quo beatae incidunt architecto illum dolorem totam sit!</p>
+		   <BmSidebar/>
 	   </div>
    </div>
 
@@ -33,10 +26,13 @@
 <script>
 import Search from '@/components/Search';
 import Bookmarks from '@/components/Bookmarks';
+import Sidebar from '@/components/Sidebar';
+
 export default {
 	components: {
 		BmSearch: Search,
-		BmBookmarks: Bookmarks
+		BmBookmarks: Bookmarks,
+		BmSidebar: Sidebar
 	}
 }
 </script>
@@ -91,11 +87,14 @@ body {
 	margin: auto;
 }
 
-h1 {
+h1, h2, h3, h4 {
 	margin: 0;
 	font-weight: 300;
-	font-size: 2.25em;
+}
+
+h1 {
 	letter-spacing: 1px;
+	font-size: 2.25em;
 	text-transform: capitalize;
 	display: inline-block;
 	padding-left: .5em;
@@ -117,6 +116,6 @@ header {
 }
 
 .sidebar {
-	padding: 0 1.5em;
+	padding: 1em 1.5em;
 }
 </style>
