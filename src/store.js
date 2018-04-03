@@ -14,10 +14,10 @@ export default new Vuex.Store({
 			{ title: "Blackboard", description: "Blackboard", url: "http://blackboard.leidenuniv.nl/webapps/portal/frameset.jsp", tags: [3], id: 5 }
 		],
 		tags: [
-			{name: "General", colour: "#AC80A0", id: 0},
-			{name: "Video", colour: "#89AAE6", id: 1},
-			{name: "Studeren", colour: "#3685B5", id: 2},
-			{name: "Nieuws", colour: "#0471A6", id: 3},
+			{name: "General", colour: "#AC80A0", id: 0, active: true},
+			{name: "Video", colour: "#89AAE6", id: 1, active: false},
+			{name: "Studeren", colour: "#3685B5", id: 2, active: true},
+			{name: "Nieuws", colour: "#0471A6", id: 3, active: true},
 		],
 		currentSearch: ""
 	},
@@ -29,17 +29,31 @@ export default new Vuex.Store({
 				return tagItem.id === tagId;
 			});
 		},
-		searchBookmarks: state => {
+		activeTagIds: state => {
+			let actives = state.tags.filter((tag) => tag.active === true);
+			return actives.map((val) => val.id);
+		},
+		searchBookmarks: (state, getters) => {
 			return state.bookmarks.filter((bookmark) => {
 				let filterKey = state.currentSearch.toLowerCase();
 				if (bookmark.title.toLowerCase().includes(filterKey) || bookmark.description.toLowerCase().includes(filterKey)) {
+					let bookmarkTagActive = bookmark.tags.some((tag) => {
+						return getters.activeTagIds.includes(tag);
+					});
+					if (bookmarkTagActive === false) return false;
 					return true;
 				} else return false;
 			});
 		}
 	},
 	mutations: {
-		changeCurrentSearch: (state, searchString) => state.currentSearch = searchString
+		changeCurrentSearch: (state, searchString) => state.currentSearch = searchString,
+		changeTagStatus: (state, tagId) => {
+			let tagToChange = state.tags.find((tag) => {
+				return tag.id === tagId;
+			});
+			tagToChange.active = !tagToChange.active;
+		}
 	},
 	actions: {
 		editSearchFilter({ commit }, searchString) {

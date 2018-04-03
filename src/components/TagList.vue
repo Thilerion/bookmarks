@@ -2,7 +2,7 @@
 <div>
 	<ul class="tags-list">
 		<li class="tag-item" v-for="tag in tags" :key="tag.name">
-			<span class="tag-color" :style="{backgroundColor: tag.colour}"></span>
+			<span class="tag-color" :style="tagStyle(tag)" @click="changeTagStatus(tag.id)"></span>
 			<span class="tag-name">{{tag.name}}</span>
 			<button class="tag-edit">
 				<svg class="more-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -20,6 +20,19 @@ export default {
 	computed: {
 		tags() {
 			return this.$store.getters.tags;
+		}
+	},
+	methods: {
+		tagStyle(tag) {
+			let style = {};
+			if (tag.active) {
+				style.backgroundColor = tag.colour;
+			}
+			style.borderColor = tag.colour;
+			return style;
+		},
+		changeTagStatus(tagId) {
+			this.$store.commit('changeTagStatus', tagId);
 		}
 	}
 }
@@ -45,6 +58,7 @@ export default {
 	width: 1em;
 	border-radius: 50%;
 	grid-column: 1;
+	border: 2px solid;
 }
 
 .tag-name {
