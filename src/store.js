@@ -8,7 +8,7 @@ export default new Vuex.Store({
 		bookmarks: [
 			{ title: "Reddit", description: "Reddit - social media website", url: "https://www.reddit.com", tags: [0], id: 0 },
 			{ title: "nu.nl", description: "nu.nl", url: "https://www.nu.nl", tags: [3], id: 1 },
-			{ title: "YouTube", description: "", url: "https://www.youtube.com", tags: [0, 1], id: 2 },
+			{ title: "YouTube", description: "", url: "https://www.youtube.com", tags: [1], id: 2 },
 			{ title: "Agenda", description: "Google Calendar", url: "https://www.google.com/calendar", tags: [0], id: 3 },
 			{ title: "Plex", description: "Plex", url: "https://app.plex.tv/web/app", tags: [0, 1], id: 4 },
 			{ title: "Blackboard", description: "Blackboard", url: "http://blackboard.leidenuniv.nl/webapps/portal/frameset.jsp", tags: [2], id: 5 }
@@ -45,7 +45,18 @@ export default new Vuex.Store({
 				} else return false;
 			});
 		},
-		searchString: state => state.currentSearch
+		searchString: state => state.currentSearch,
+		tagAmount: state => {
+			let red = state.bookmarks.reduce((acc, val) => {
+				val.tags.forEach((tagId) => {
+					if (!acc[tagId]) acc[tagId] = 1;
+					else acc[tagId] += 1;
+				});
+				return acc;
+			}, {})
+			console.log(red);
+			return red;
+		}
 	},
 	mutations: {
 		changeCurrentSearch: (state, searchString) => state.currentSearch = searchString,

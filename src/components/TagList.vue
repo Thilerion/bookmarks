@@ -3,7 +3,10 @@
 	<ul class="tags-list">
 		<li class="tag-item" v-for="tag in tags" :key="tag.name">
 			<span class="tag-color" :style="tagStyle(tag)" @click="changeTagStatus(tag.id)"></span>
-			<span class="tag-name" :class="{disabled: tag.active === false}">{{tag.name}}</span>
+			<div class="tag-name">
+				<span class="tag-title" :class="{disabled: tag.active === false}">{{tag.name}}</span>
+				<span class="tag-amount"> {{tagAmount[tag.id]}}</span>
+			</div>
 			<button class="tag-edit">
 				<svg class="more-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 					<path d="M0 0h24v24H0z" fill="none"/>
@@ -20,6 +23,9 @@ export default {
 	computed: {
 		tags() {
 			return this.$store.getters.tags;
+		},
+		tagAmount() {
+			return this.$store.getters.tagAmount;
 		}
 	},
 	methods: {
@@ -33,9 +39,6 @@ export default {
 		},
 		changeTagStatus(tagId) {
 			this.$store.commit('changeTagStatus', tagId);
-		},
-		tagItemStyle(tag) {
-
 		}
 	}
 }
@@ -62,15 +65,25 @@ export default {
 	border-radius: 50%;
 	grid-column: 1;
 	border: 2px solid;
+	cursor: pointer;
 }
 
 .tag-name {
 	grid-column: 3;
+}
+
+.tag-amount {
+	font-size: 0.75em;
+	padding-left: 0.5em;
+	opacity: 0.5;
+}
+
+.tag-title {
 	transition: opacity .2s ease;
 }
 
-.tag-name.disabled {
-	opacity: 0.7;
+.tag-title.disabled {
+	opacity: 0.5;
 }
 
 .tag-edit {
