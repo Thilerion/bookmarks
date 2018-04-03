@@ -31,17 +31,19 @@ export default new Vuex.Store({
 		},
 		searchBookmarks: state => {
 			return state.bookmarks.filter((bookmark) => {
-				let filterKey = state.currentSearch;
-				if (bookmark.title.includes(filterKey) || bookmark.description.includes(filterKey)) {
+				let filterKey = state.currentSearch.toLowerCase();
+				if (bookmark.title.toLowerCase().includes(filterKey) || bookmark.description.toLowerCase().includes(filterKey)) {
 					return true;
 				} else return false;
 			});
 		}
 	},
 	mutations: {
-
+		changeCurrentSearch: (state, searchString) => state.currentSearch = searchString
 	},
 	actions: {
-
+		editSearchFilter({ commit }, searchString) {
+			commit('changeCurrentSearch', searchString);
+		}
 	}
 });
