@@ -23,15 +23,18 @@
 
    <div class="col col-right">
 	   <BmSearch/>
+	   <BmBookmarks/>
    </div>
 </div>
 </template>
 
 <script>
 import Search from '@/components/Search';
+import Bookmarks from '@/components/Bookmarks';
 export default {
 	components: {
-		BmSearch: Search
+		BmSearch: Search,
+		BmBookmarks: Bookmarks
 	}
 }
 </script>
@@ -72,6 +75,9 @@ body {
 .col-left {
 	background: #fafafa;
 	border-right: 1px solid #ddd;
+	position: sticky;
+	top: 0;
+	height: 100vh;
 }
 
 .col-right {
