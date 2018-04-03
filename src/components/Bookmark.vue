@@ -1,5 +1,6 @@
 <template>
 <div class="bookmark-item">
+	<img :src="faviconSource" width="32" height="32">
 	<a class="bookmark-link" :href="url">{{title}}</a>
 	<p class="bookmark-url">{{url}}</p>
 	<div class="tags">
@@ -17,6 +18,10 @@ export default {
 		},
 		url() {
 			return this.bookmark.url;
+		},
+		faviconSource() {
+			let domain = new URL(this.url).origin;
+			return `${domain}/favicon.ico`;
 		},
 		bookmarkTags() {
 			let tagArray = [];
