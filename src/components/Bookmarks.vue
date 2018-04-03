@@ -1,6 +1,6 @@
 <template>
 <div class="bookmarks">
-	<BmBookmark class="bookmark-container" v-for="bookmark in bookmarksList" :key="bookmark.id" :bookmark="bookmark"/>
+	<BmBookmark class="bookmark-container" v-for="bookmark in searchFilteredBookmarks" :key="bookmark.id" :bookmark="bookmark"/>
 </div>
 </template>
 
@@ -13,6 +13,9 @@ export default {
 	computed: {
 		bookmarksList() {
 			return this.$store.getters.bookmarks;
+		},
+		searchFilteredBookmarks() {
+			return this.$store.getters.searchBookmarks;
 		}
 	}
 }

@@ -18,7 +18,8 @@ export default new Vuex.Store({
 			{name: "Video", colour: "#89AAE6", id: 1},
 			{name: "Studeren", colour: "#3685B5", id: 2},
 			{name: "Nieuws", colour: "#0471A6", id: 3},
-		]
+		],
+		currentSearch: ""
 	},
 	getters: {
 		bookmarks: state => state.bookmarks,
@@ -26,6 +27,14 @@ export default new Vuex.Store({
 		tagProperties: state => tagId => {
 			return state.tags.find((tagItem) => {
 				return tagItem.id === tagId;
+			});
+		},
+		searchBookmarks: state => {
+			return state.bookmarks.filter((bookmark) => {
+				let filterKey = state.currentSearch;
+				if (bookmark.title.includes(filterKey) || bookmark.description.includes(filterKey)) {
+					return true;
+				} else return false;
 			});
 		}
 	},
