@@ -91,14 +91,18 @@ export default {
 			this.selectedTag = "";
 		},
 		saveBookmark() {
-			let bm = {
-				title: this.title,
-				description: this.description,
-				url: this.url,
-				tags: this.tags
-			}
-			this.$store.dispatch('saveNewBookmark', bm);
-			this.toggleModalAddBookmark();
+			if (this.urlValid && this.titleValid && this.descriptionValid) {
+				let bm = {
+					title: this.title,
+					description: this.description,
+					url: this.url,
+					tags: this.tags
+				}
+				this.$store.dispatch('saveNewBookmark', bm);
+				this.toggleModalAddBookmark();
+			} else {
+				this.inputFailedMinOnce = true;
+			}			
 		}
 	}
 }
@@ -142,19 +146,20 @@ export default {
 .modal-top {
 	display: flex;
 	border-radius: 5px 5px 0 0;
-	padding: 0.5em;
+	padding: 0.5em 1em;
 	background: #444;
 	color: white;
 }
 
 .modal-main {
-	padding: 0.5em;
+	padding: 1em;
 	display: grid;
 	grid-auto-flow: row;
 }
 
 .modal-main input {
 	margin-bottom: 1em;
+	transition: all .5s ease;
 }
 
 .modal-main input, .modal-main select {
@@ -167,11 +172,12 @@ export default {
 
 .modal-main input.invalid:focus {
 	border: 1px solid rgb(192, 121, 121);
-	background: rgba(220, 180, 180, 0.123);
+	background: rgba(219, 162, 162, 0.562);
 }
 
 .modal-main input.invalid {
 	border: 1px solid rgb(192, 121, 121);
+	background: rgba(220, 180, 180, 0.123);
 }
 
 .modal-main input:focus {

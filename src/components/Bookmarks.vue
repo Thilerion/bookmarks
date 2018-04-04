@@ -33,7 +33,7 @@ export default {
 .bookmark-container {
 	margin: 0;	
 	overflow: hidden;
-	max-height: 5.25em;
+	max-height: 6.25em;
 }
 
 .bookmark-container:hover {
