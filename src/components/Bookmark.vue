@@ -1,11 +1,19 @@
 <template>
 <div class="bookmark-block">
 	<div class="bookmark-item" @click="showEditComponent = !showEditComponent">
-		<a class="bookmark-link col-1" :href="url" v-html="highlightedTitle"></a>
+		<!--<a class="bookmark-link col-1" :href="url" v-html="highlightedTitle"></a>
 		<p class="description bookmark-subtext col-1" v-if="highlightedDescription !== ''" v-html="highlightedDescription"></p>
 		<p class="bookmark-url bookmark-subtext col-1">{{url}}</p>
 		<div class="tags col-2">
 			<span class="tag" v-for="tag in bookmarkTags" :key="tag.id" :style="tagStyle(tag)">{{tag.name}}</span>
+		</div>-->
+		<div class="bookmark-info">
+			<a class="bookmark-link col-1" :href="url" v-html="highlightedTitle"></a>
+			<p class="description bookmark-subtext col-1" v-if="highlightedDescription !== ''" v-html="highlightedDescription"></p>
+			<p class="bookmark-url bookmark-subtext col-1">{{url}}</p>
+		</div>
+		<div class="tags">
+			<BmTagDisplay v-for="tag in bookmarkTags" :key="tag.id" :tagId="tag.id" :canClose="editMode" />
 		</div>
 	</div>
 	<transition name="slide-edit">
@@ -17,15 +25,18 @@
 
 <script>
 import BookmarkEdit from '@/components/BookmarkEdit';
+import TagDisplay from '@/components/TagDisplay';
 
 export default {
 	components: {
-		BmBookmarkEdit: BookmarkEdit
+		BmBookmarkEdit: BookmarkEdit,
+		BmTagDisplay: TagDisplay
 	},
 	props: ["bookmark", "editing"],
 	data() {
 		return {
-			showEditComponent: false
+			showEditComponent: false,
+			editMode: false
 		}
 	},
 	computed: {
@@ -95,26 +106,14 @@ export default {
 	height: 100%;
 	max-width: 100%;
 	padding: 0.5em 1em;
-	display: grid;
-	grid-template-columns: auto auto;
-	grid-auto-rows: auto;
-	grid-row-gap: 0.25em;
-}
-
-.col-1 {
-	grid-column: 1;
-}
-
-.col-2 {
-	grid-column: 2;
+	display: flex;
+	align-items: center;
 }
 
 .bookmark-link {
 	color: currentColor;
 	text-decoration: none;
 	padding: 0;
-	align-self: center;
-	justify-self: left;
 }
 
 .bookmark-link:hover {
@@ -130,33 +129,37 @@ export default {
 	cursor: default;
 }
 
-.bookmark-subtext:first-of-type {
-	grid-row: 2;
-}
-
 .bookmark-url {
 	font-style: italic;
 	padding: 0;
 	margin: 0;
 }
 
+.bookmark-info {
+	flex: 1 0 75%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-width: 0;
+}
+
+.bookmark-info > p, .bookmark-info > a {
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .tags {
-	grid-row: 1 / span 3;
-	text-align: end;
-	align-self:center;
+	text-align: right;
+	flex: 1 1 25%;
 }
 
-.tag {
-	padding: 0.4em 0.65em;
-	font-size: 0.8em;
-	border: 2px solid transparent;
-	border-radius: 6px;
-	color: #f6f6f6;
-	font-weight: bold;
+.tags > div {
+	margin: 0.25em auto;
 }
 
-.tag:not(:last-child) {
-	margin-right: 1em;
+.tags > div:not(:first-of-type) {
+	margin-left: 1em;
 }
 
 .bookmark-edit {
