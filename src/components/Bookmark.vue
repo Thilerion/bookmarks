@@ -1,6 +1,6 @@
 <template>
 <div class="bookmark-block">
-	<div class="bookmark-item" @click="showEditComponent = !showEditComponent">
+	<div class="bookmark-item" @click="toggleThisEditComponent">
 		<!--<a class="bookmark-link col-1" :href="url" v-html="highlightedTitle"></a>
 		<p class="description bookmark-subtext col-1" v-if="highlightedDescription !== ''" v-html="highlightedDescription"></p>
 		<p class="bookmark-url bookmark-subtext col-1">{{url}}</p>
@@ -35,7 +35,6 @@ export default {
 	props: ["bookmark", "editing"],
 	data() {
 		return {
-			showEditComponent: false,
 			editMode: false,
 			tagsCanBeInactive: true
 		}
@@ -72,6 +71,9 @@ export default {
 			let str = this.description;
 			let filter = this.searchString;
 			return this.highlightWithString(str, filter);
+		},
+		showEditComponent() {
+			return (this.bookmark.id === this.$store.getters.currentEditComponent);
 		}
 	},
 	methods: {
@@ -84,6 +86,10 @@ export default {
 					return `<span class="highlight">${matchedText}</span>`;
 				});
 			}
+		},
+		toggleThisEditComponent() {
+			if (this.showEditComponent === true) this.$store.commit('setcurrentEditComponent', null);
+			else this.$store.commit('setcurrentEditComponent', this.bookmark.id);
 		}
 	}
 }
@@ -134,6 +140,7 @@ export default {
 }
 
 .bookmark-info > p, .bookmark-info > a {
+	padding-right: 0.25em;
 	white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -156,7 +163,11 @@ export default {
 	max-height: 3em;
 }
 
-.slide-edit-enter-active, .slide-edit-leave-active {
+.slide-edit-leave-active {
+	transition: all .1s linear;
+}
+
+.slide-edit-enter-active {
 	transition: all .3s ease;
 }
 
