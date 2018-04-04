@@ -69,7 +69,13 @@ export default new Vuex.Store({
 			tagToChange.active = !tagToChange.active;
 		},
 		toggleModalAddBookmark: state => state.modalAddBookmark = !state.modalAddBookmark,
-		pushNewBookmark: (state, bm) => state.bookmarks.push(bm)
+		pushNewBookmark: (state, bm) => state.bookmarks.push(bm),
+		deleteBookmark: (state, id) => {
+			let index = state.bookmarks.findIndex((bm) => {
+				return bm.id === id;
+			});
+			state.bookmarks.splice(index, 1);
+		}
 	},
 	actions: {
 		editSearchFilter({ commit }, searchString) {

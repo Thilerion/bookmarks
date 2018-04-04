@@ -1,6 +1,6 @@
 <template>
 <div class="bookmark-block">
-	<div class="bookmark-item">
+	<div class="bookmark-item" @click="showEditComponent = !showEditComponent">
 		<a class="bookmark-link col-1" :href="url" v-html="highlightedTitle"></a>
 		<p class="description bookmark-subtext col-1" v-if="highlightedDescription !== ''" v-html="highlightedDescription"></p>
 		<p class="bookmark-url bookmark-subtext col-1">{{url}}</p>
@@ -8,13 +8,26 @@
 			<span class="tag" v-for="tag in bookmarkTags" :key="tag.id" :style="tagStyle(tag)">{{tag.name}}</span>
 		</div>
 	</div>
+	<transition name="slide-edit">
+		<BmBookmarkEdit class="bookmark-edit" :bookmark="bookmark" v-show="showEditComponent"/>
+	</transition>
 </div>
 
 </template>
 
 <script>
+import BookmarkEdit from '@/components/BookmarkEdit';
+
 export default {
+	components: {
+		BmBookmarkEdit: BookmarkEdit
+	},
 	props: ["bookmark"],
+	data() {
+		return {
+			showEditComponent: false
+		}
+	},
 	computed: {
 		title() {
 			return this.bookmark.title;
@@ -142,6 +155,18 @@ export default {
 
 .tag:not(:last-child) {
 	margin-right: 1em;
+}
+
+.bookmark-edit {
+	max-height: 3em;
+}
+
+.slide-edit-enter-active, .slide-edit-leave-active {
+	transition: all .3s ease;
+}
+
+.slide-edit-enter, .slide-edit-leave-to {
+	max-height: 0;
 }
 </style>
 
