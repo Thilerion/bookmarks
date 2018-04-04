@@ -13,7 +13,7 @@
 			<p class="bookmark-url bookmark-subtext col-1">{{url}}</p>
 		</div>
 		<div class="tags">
-			<BmTagDisplay v-for="tag in bookmarkTags" :key="tag.id" :tagId="tag.id" :canClose="editMode" />
+			<BmTagDisplay v-for="tag in bookmarkTags" :key="tag.id" :tagId="tag.id" :canClose="editMode" :canBeInactive="tagsCanBeInactive" />
 		</div>
 	</div>
 	<transition name="slide-edit">
@@ -36,7 +36,8 @@ export default {
 	data() {
 		return {
 			showEditComponent: false,
-			editMode: false
+			editMode: false,
+			tagsCanBeInactive: true
 		}
 	},
 	computed: {
@@ -74,18 +75,6 @@ export default {
 		}
 	},
 	methods: {
-		tagStyle(tag) {
-			if (this.activeTagIds.includes(tag.id)) {
-				return {
-					backgroundColor: tag.colour
-				}
-			} else {
-				return {
-					color: tag.colour,
-					border: `2px solid ${tag.colour}`
-				}
-			}
-		},
 		highlightWithString(str, filter) {
 			if (filter === "" || filter == null) return str;
 			else {

@@ -7,7 +7,7 @@
 
 <script>
 export default {
-	props: ["tagId", "canClose"],
+	props: ["tagId", "canClose", "canBeInactive"],
 	computed: {
 		tagProperties() {
 			return this.$store.getters.tagProperties(this.tagId);
@@ -19,8 +19,15 @@ export default {
 			return this.tagProperties.active;
 		},
 		tagStyle() {
-			return {
-				backgroundColor: this.tagProperties.colour
+			if (this.canBeInactive === true && this.tagActive === false) {
+				return {
+					color: this.tagProperties.colour,
+					border: `2px solid ${this.tagProperties.colour}`
+				}
+			} else {
+				return {
+					backgroundColor: this.tagProperties.colour
+				}
 			}
 		}
 	}

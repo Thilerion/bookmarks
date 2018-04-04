@@ -6,18 +6,22 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 	state: {
 		bookmarks: [
-			{ title: "Reddit", description: "Reddit - social media website", url: "https://www.reddit.com", tags: [0], id: 0 },
-			{ title: "nu.nl", description: "nu.nl", url: "https://www.nu.nl", tags: [3], id: 1 },
-			{ title: "YouTube", description: "", url: "https://www.youtube.com", tags: [1], id: 2 },
+			{ title: "Reddit", description: "Reddit - social media website", url: "https://www.reddit.com", tags: [0, 1, 3], id: 0 },
+			{ title: "nu.nl", description: "", url: "https://www.nu.nl", tags: [3], id: 1 },
 			{ title: "Agenda", description: "Google Calendar", url: "https://www.google.com/calendar", tags: [0], id: 3 },
-			{ title: "Plex", description: "Plex", url: "https://app.plex.tv/web/app", tags: [0, 1], id: 4 },
-			{ title: "Blackboard", description: "Blackboard", url: "http://blackboard.leidenuniv.nl/webapps/portal/frameset.jsp", tags: [2], id: 5 }
+			{ title: "Learn Vue 2: Basic Data Binding", description: "", url: "https://laracasts.com/series/learn-vue-2-step-by-step/episodes/1", tags: [0, 1, 4], id: 8 },
+			{ title: "Plex", description: "", url: "https://app.plex.tv/web/app", tags: [0, 1], id: 4 },
+			{ title: "YouTube", description: "", url: "https://www.youtube.com", tags: [1], id: 2 },
+			{ title: "Vigenère cipher - Wikipedia", description: "", url: "https://en.m.wikipedia.org/wiki/Vigenère_cipher", tags: [0, 4], id: 7 },
+			{ title: "Whatsapp", description: "Whatsapp Web", url: "https://web.whatsapp.com", tags: [0], id: 6 },
+			{ title: "Blackboard", description: "", url: "http://blackboard.leidenuniv.nl/webapps/portal/frameset.jsp", tags: [2], id: 5 }
 		],
 		tags: [
 			{name: "General", colour: "#AC80A0", id: 0, active: true},
-			{name: "Video", colour: "#89AAE6", id: 1, active: false},
+			{name: "Video", colour: "#89AAE6", id: 1, active: true},
 			{name: "Studeren", colour: "#3685B5", id: 2, active: true},
-			{name: "Nieuws", colour: "#0471A6", id: 3, active: true},
+			{ name: "Nieuws", colour: "#0471A6", id: 3, active: true },
+			{name: "Programmeren", colour: "#065A82", id: 4, active: true}
 		],
 		currentSearch: "",
 		modalAddBookmark: false,
