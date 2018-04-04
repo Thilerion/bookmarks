@@ -2,7 +2,7 @@
 <div class="bookmark-edit">
 	<div class="bookmark-edit-buttons">
 		<button @click="deleteBookmark">Delete</button>
-		<button>Edit</button>
+		<button @click="startBookmarkEditing">Edit</button>
 	</div>	
 </div>
 </template>
@@ -13,6 +13,9 @@ export default {
 	methods: {
 		deleteBookmark() {
 			this.$store.commit('deleteBookmark', this.bookmark.id);
+		},
+		startBookmarkEditing() {
+			this.$store.commit('startBookmarkEditing', this.bookmark.id);
 		}
 	}
 }
@@ -24,6 +27,7 @@ export default {
 	background: #444;
 	color: white;
 	font-size: 0.75em;
+	box-shadow: inset 0 7px 9px -7px rgba(0,0,0,0.7);
 }
 
 .bookmark-edit-buttons {

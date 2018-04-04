@@ -20,7 +20,8 @@ export default new Vuex.Store({
 			{name: "Nieuws", colour: "#0471A6", id: 3, active: true},
 		],
 		currentSearch: "",
-		modalAddBookmark: false
+		modalAddBookmark: false,
+		currentlyEditingBookmark: null
 	},
 	getters: {
 		bookmarks: state => state.bookmarks,
@@ -58,7 +59,8 @@ export default new Vuex.Store({
 			console.log(red);
 			return red;
 		},
-		modalAddBookmark: state => state.modalAddBookmark
+		modalAddBookmark: state => state.modalAddBookmark,
+		currentlyEditingBookmark: state => state.currentlyEditingBookmark
 	},
 	mutations: {
 		changeCurrentSearch: (state, searchString) => state.currentSearch = searchString,
@@ -75,7 +77,8 @@ export default new Vuex.Store({
 				return bm.id === id;
 			});
 			state.bookmarks.splice(index, 1);
-		}
+		},
+		startBookmarkEditing: (state, id) => state.currentlyEditingBookmark = id
 	},
 	actions: {
 		editSearchFilter({ commit }, searchString) {

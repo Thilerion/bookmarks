@@ -22,7 +22,7 @@ export default {
 	components: {
 		BmBookmarkEdit: BookmarkEdit
 	},
-	props: ["bookmark"],
+	props: ["bookmark", "editing"],
 	data() {
 		return {
 			showEditComponent: false
@@ -93,6 +93,7 @@ export default {
 .bookmark-item {
 	position: relative;
 	height: 100%;
+	max-width: 100%;
 	padding: 0.5em 1em;
 	display: grid;
 	grid-template-columns: auto auto;
@@ -113,6 +114,7 @@ export default {
 	text-decoration: none;
 	padding: 0;
 	align-self: center;
+	justify-self: left;
 }
 
 .bookmark-link:hover {
