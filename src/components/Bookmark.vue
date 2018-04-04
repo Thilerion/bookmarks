@@ -164,7 +164,7 @@ export default {
 }
 
 .slide-edit-leave-active {
-	transition: all .1s linear;
+	transition: all .2s linear;
 }
 
 .slide-edit-enter-active {

@@ -36,7 +36,7 @@ export default {
 .bookmark-container {
 	margin: 0;	
 	overflow: hidden;
-	max-height: 10.25em;
+	max-height: 9em;
 }
 
 .bookmark-container:hover {
@@ -47,7 +47,11 @@ export default {
 	border-bottom: 1px solid #ddd;
 }
 
-.bookmark-list-enter-active, .bookmark-list-leave-active {
+.bookmark-list-enter-active {
+	transition: all .5s ease;
+}
+
+.bookmark-list-leave-active {
 	transition: all .4s ease;
 }
 
