@@ -36,7 +36,7 @@
 				:key="tag.id"
 				:tagId="tag.id"
 				:canClose="editMode"
-				:canBeInactive="tagsCanBeInactive"
+				:canBeInactive="!editMode"
 			/>
 		</div>
 
@@ -85,13 +85,15 @@ export default {
 	props: ["bookmark", "editing"],
 	data() {
 		return {
-			editMode: false,
 			tagsCanBeInactive: true,
 			hovering: false,
 			showBookmarkOptions: false
 		}
 	},
 	computed: {
+		editMode() {
+			return this.editing;
+		},
 		title() {
 			return this.bookmark.title;
 		},

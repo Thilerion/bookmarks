@@ -19,16 +19,16 @@ export default {
 			return this.tagProperties.active;
 		},
 		tagStyle() {
+			let styleObj = {};
 			if (this.canBeInactive === true && this.tagActive === false) {
-				return {
-					color: this.tagProperties.colour,
-					border: `2px solid ${this.tagProperties.colour}`
-				}
+				styleObj.color = this.tagProperties.colour;
+				styleObj.border = `2px solid ${this.tagProperties.colour}`;
 			} else {
-				return {
-					backgroundColor: this.tagProperties.colour
-				}
+				styleObj.backgroundColor = this.tagProperties.colour;
 			}
+			if (this.canClose === true) styleObj.cursor = "pointer";
+			else styleObj.cursor = "default";
+			return styleObj;
 		}
 	}
 }
