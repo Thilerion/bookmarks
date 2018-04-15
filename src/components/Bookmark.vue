@@ -1,6 +1,6 @@
 <template>
 <div class="bookmark-block">
-	<div class="bookmark-item" @click="toggleThisEditComponent">
+	<div class="bookmark-item">
 		<div class="bookmark-info">
 			<a class="bookmark-link col-1" :href="url" v-html="highlightedTitle"></a>
 			<p class="description bookmark-subtext col-1" v-if="highlightedDescription !== ''" v-html="highlightedDescription"></p>

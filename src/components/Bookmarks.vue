@@ -29,14 +29,13 @@ export default {
 <style scoped>
 .bookmarks {
 	margin: 0.5em 1em;
-	background: #fefefe;
-	border-radius: 5px;
 }
 
 .bookmark-container {
 	margin: 0;	
 	overflow: hidden;
 	max-height: 9em;
+	background: #fefefe;
 }
 
 .bookmark-container:hover {
@@ -45,6 +44,14 @@ export default {
 
 .bookmark-container:not(:last-of-type) {
 	border-bottom: 1px solid #ddd;
+}
+
+.bookmark-container:first-of-type {
+	border-radius: 5px 5px 0 0;
+}
+
+.bookmark-container:last-of-type {
+	border-radius: 0 0 5px 5px;
 }
 
 .bookmark-list-enter-active {
