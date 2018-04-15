@@ -1,7 +1,7 @@
 <template>
 <div class="bookmarks">
 	<transition-group name="bookmark-list">
-		<BmBookmark class="bookmark-container" v-for="bookmark in searchFilteredSortedBookmarks" :key="bookmark.id" :bookmark="bookmark" :editing="bookmark.id === currentlyEditingBookmark"/>
+		<BmBookmark class="bookmark-container" v-for="bookmark in searchFilteredSortedBookmarks" :key="bookmark.id" :bookmark="bookmark" :editing="bookmark.id === currentlyEditingBookmark" :class="{'greater-height-when-editing': bookmark.id === currentlyEditingBookmark}" />
 	</transition-group>
 </div>
 </template>
@@ -33,12 +33,17 @@ export default {
 .bookmarks {
 	margin: 0.5em 1em;
 	padding: 0 1em;
+	position: relative;
 }
 
 .bookmark-container {
 	margin: 0;
 	background: #fefefe;
-	max-height: 9em;
+	height: 5em;
+}
+
+.greater-height-when-editing {
+	height: 10em;
 }
 
 .bookmark-container:hover {
@@ -59,19 +64,21 @@ export default {
 
 .bookmark-list-enter-active {
 	transition: all .5s ease;
+	overflow: hidden;
 }
 
 .bookmark-list-leave-active {
 	transition: all .4s ease;
+	overflow: hidden;
 }
 
 .bookmark-list-enter, .bookmark-list-leave-to {
-	max-height: 0;
+	height: 0;
 	opacity: 0;
 }
 
 .bookmark-list-move {
-	transition: transform 0.5s ease;
+	/*transition: transform 0.5s ease;*/
 	/*animation: move-list .5s;*/
 }
 

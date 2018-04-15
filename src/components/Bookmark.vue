@@ -165,6 +165,7 @@ export default {
 .bookmark-block {
 	border: 1px solid transparent;
 	max-width: 100%;
+	position: relative;
 }
 
 .bookmark-block.editing {
@@ -214,7 +215,6 @@ export default {
 	justify-content: space-between;
 	align-items: flex-start;
 	overflow: hidden;
-	
 }
 
 .bookmark-info > p, .bookmark-info > a, .bookmark-info > span {
