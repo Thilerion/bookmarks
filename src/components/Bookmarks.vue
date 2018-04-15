@@ -72,7 +72,7 @@ export default {
 
 .bookmark-list-move {
 	transition: transform 0.5s ease;
-	animation: move-list .5s;
+	/*animation: move-list .5s;*/
 }
 
 @keyframes move-list {
