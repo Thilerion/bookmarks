@@ -129,7 +129,7 @@ export default {
 }
 
 .bookmark-info {
-	flex: 1 0 75%;
+	flex: 3 1 auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -146,7 +146,7 @@ export default {
 
 .tags {
 	text-align: right;
-	flex: 1 1 25%;
+	flex: 1 3 20em;
 }
 
 .tags > div {
@@ -159,6 +159,7 @@ export default {
 
 .bookmark-options {
 	flex: 0 0 1.5em;
+	min-width: 1.5em;
 	padding-left: 0.25em;
 	opacity: 0;
 }

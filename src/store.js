@@ -101,7 +101,7 @@ export default new Vuex.Store({
 		modalAddBookmark: false,
 		sortModes: ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)", "Custom"],
 		currentSortMode: 4,
-		showBookmarkListDebugMode: true
+		showBookmarkListDebugMode: false
 	},
 	getters: {
 		showBookmarkListDebugMode: state => state.showBookmarkListDebugMode,

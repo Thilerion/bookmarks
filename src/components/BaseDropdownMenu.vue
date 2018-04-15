@@ -1,6 +1,6 @@
 <template>
   <transition name="fold-menu">
-  <div class="dropdown-menu">
+  <div class="dropdown-menu" :style="propStyle">
 	  <div class="dropdown-menu-contents">
 		  <slot/>
 	  </div>
@@ -10,7 +10,24 @@
 
 <script>
 export default {
-	
+	props: {
+		origin: {
+			type: [String, Number],
+			default: "top left"
+		},
+		align: {
+			type: String,
+			default: "left"
+		}
+	},
+	computed: {
+		propStyle() {
+			return {
+				'transform-origin': this.origin,
+				'text-align': this.align
+			}
+		}
+	}
 }
 </script>
 
@@ -22,13 +39,12 @@ export default {
 	border-radius: 3px;
 	position: absolute;
 	z-index: 500;
-	transform-origin: top left;
 }
 
 .dropdown-menu button {
 	display: inline-block;
 	width: 100%;
-	text-align: left;
+	text-align: inherit;
 }
 
 .fold-menu-enter-active, .fold-menu-leave-active {
