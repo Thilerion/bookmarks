@@ -1,7 +1,7 @@
 <template>
 <div class="bookmarks">
 	<transition-group name="bookmark-list">
-		<BmBookmark class="bookmark-container" v-for="bookmark in searchFilteredSortedBookmarks" :key="bookmark.id" :bookmark="bookmark" :editing="bookmark.id === currentlyEditingBookmark" :class="{'greater-height-when-editing': bookmark.id === currentlyEditingBookmark}" />
+		<BmBookmark class="bookmark-container" v-for="bookmark in searchFilteredSortedBookmarks" :key="bookmark.title" :bookmark="bookmark" :editing="bookmark.id === currentlyEditingBookmark" :class="{'greater-height-when-editing': bookmark.id === currentlyEditingBookmark}" />
 	</transition-group>
 </div>
 </template>

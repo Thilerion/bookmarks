@@ -98,6 +98,9 @@ export default {
 			this.hideOptions();
 			this.stopEditingBookmark();
 		}
+	},
+	beforeDestroy() {
+		this.stopEditingBookmark();
 	}
 }
 </script>
@@ -173,8 +176,8 @@ export default {
 	opacity: 0.6;
 }
 
-.bookmark-item-components-enter-active {
-	transition: all .45s ease;
+.bookmark-item-components-enter-active, .bookmark-item-components-leave-active {
+	transition: all .25s ease;
 }
 
 .bookmark-item-components-enter, .bookmark-item-components-leave-to {

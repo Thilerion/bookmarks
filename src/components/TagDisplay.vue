@@ -7,7 +7,17 @@
 
 <script>
 export default {
-	props: ["tagId", "canClose", "canBeInactive"],
+	props: {
+		tagId: {
+			type: Number
+		},
+		canClose: {
+			type: Boolean
+		},
+		canBeInactive: {
+			type: Boolean
+		}
+	},
 	computed: {
 		tagProperties() {
 			return this.$store.getters.tagProperties(this.tagId);
