@@ -1,22 +1,63 @@
 <template>
-<div class="bookmark-block" @mouseenter="hovering = true" @mouseleave="hovering = false">
+<div class="bookmark-block"
+	@mouseenter="hovering = true"
+	@mouseleave="hovering = false"
+>
 	<div class="bookmark-item">
+
 		<div class="bookmark-info">
-			<a class="bookmark-link col-1" :href="url" v-html="highlightedTitle"></a>
-			<p class="description bookmark-subtext col-1" v-if="highlightedDescription !== ''" v-html="highlightedDescription"></p>
-			<p class="bookmark-url bookmark-subtext col-1">{{url}}</p>
-			<span class="debugContent" v-if="showBookmarkListDebugMode">{{bookmarkDebugInfo}}</span>
+			<a class="bookmark-link col-1"
+				:href="url"
+				v-html="highlightedTitle"
+			></a>
+			<p class="description bookmark-subtext col-1"
+				v-if="highlightedDescription !== ''"
+				v-html="highlightedDescription"
+			></p>
+			<p class="bookmark-url bookmark-subtext col-1">
+				{{url}}
+			</p>
+			<span class="debugContent"
+				v-if="showBookmarkListDebugMode"
+			>
+				{{bookmarkDebugInfo}}
+			</span>
 		</div>
+
 		<div class="tags">
-			<BmTagDisplay v-for="tag in bookmarkTags" :key="tag.id" :tagId="tag.id" :canClose="editMode" :canBeInactive="tagsCanBeInactive" />
+			<BmTagDisplay
+				v-for="tag in bookmarkTags"
+				:key="tag.id"
+				:tagId="tag.id"
+				:canClose="editMode"
+				:canBeInactive="tagsCanBeInactive"
+			/>
 		</div>
-		<div class="bookmark-options" :class="{'active-options': hovering}">
-			<button class="bookmark-options-button">
-				<svg class="bookmark-options-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+
+		<div class="bookmark-options"
+			v-click-outside="hideOptions"
+		>
+			<button class="bookmark-options-button"
+				:class="{'active-options': showOptionsButton}"
+				@click="showBookmarkOptions = !showBookmarkOptions"
+			>
+				<svg class="bookmark-options-icon"
+					viewBox="0 0 24 24"
+					xmlns="http://www.w3.org/2000/svg"
+				>
 					<path d="M0 0h24v24H0z" fill="none"/>
 					<path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
 				</svg>
 			</button>
+
+			<BmBaseDropdownMenu
+				v-if="showBookmarkOptions"
+				class="bookmark-options-list"
+			>
+				<BmBaseDropdownMenuItem>
+					<button @click="deleteBookmark">Delete</button>
+				</BmBaseDropdownMenuItem>
+			</BmBaseDropdownMenu>
 		</div>
 	</div>
 </div>
@@ -35,7 +76,8 @@ export default {
 		return {
 			editMode: false,
 			tagsCanBeInactive: true,
-			hovering: false
+			hovering: false,
+			showBookmarkOptions: false
 		}
 	},
 	computed: {
@@ -76,6 +118,10 @@ export default {
 		},
 		bookmarkDebugInfo() {
 			return `id: ${this.bookmark.id}, date: ${new Date(this.bookmark.added).toLocaleString()}, listOrder: ${this.bookmark.customIndex}`;
+		},
+		showOptionsButton() {
+			if (this.showBookmarkOptions === true) return true;
+			else return this.hovering;
 		}
 	},
 	methods: {
@@ -88,12 +134,27 @@ export default {
 					return `<span class="highlight">${matchedText}</span>`;
 				});
 			}
+		},
+		hideOptions() {
+			this.showBookmarkOptions = false;
+		},
+		deleteBookmark() {
+			this.$store.commit('deleteBookmark', this.bookmark.id);
 		}
 	}
 }
 </script>
 
 <style scoped>
+.bookmark-block {
+	border: 1px solid transparent;
+}
+
+.bookmark-block.editing {
+	border: 1px solid rgb(41, 124, 207);
+	background: rgb(212, 228, 245);
+}
+
 .bookmark-item {
 	position: relative;
 	height: 100%;
@@ -161,17 +222,22 @@ export default {
 	flex: 0 0 1.5em;
 	min-width: 1.5em;
 	padding-left: 0.25em;
-	opacity: 0;
 }
 
 .bookmark-options-button {
 	margin: auto;
+	opacity: 0;
 }
 
 .bookmark-options-icon {
 	fill: currentColor;
 	width: 1.5em;
 	height: 1.5em;
+}
+
+.bookmark-options-list {
+	position: fixed;
+	z-index: 9000;
 }
 
 .active-options {

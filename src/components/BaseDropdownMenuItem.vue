@@ -14,8 +14,4 @@ export default {
 .dropdown-menu-item > button {
 	padding: 1em 0.5em;
 }
-
-.dropdown-menu-item:first-of-type {
-	
-}
 </style>
