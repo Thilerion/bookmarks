@@ -7,6 +7,9 @@ import BaseDropdownMenuItem from '@/components/BaseDropdownMenuItem';
 Vue.component('BmBaseDropdownMenu', BaseDropdownMenu)
 Vue.component('BmBaseDropdownMenuItem', BaseDropdownMenuItem)
 
+import vClickOutside from 'v-click-outside'
+Vue.use(vClickOutside)
+
 Vue.config.productionTip = false
 
 new Vue({

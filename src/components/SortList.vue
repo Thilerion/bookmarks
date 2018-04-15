@@ -1,5 +1,5 @@
 <template>
-<div class="sort-wrapper">
+<div class="sort-wrapper" v-click-outside="hideMenu">
 	<div class="sort-items">
 		<button class="sort-button" @click="showMenu = !showMenu">
 			<svg class="sort-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -36,6 +36,9 @@ export default {
 		setSortMode(newSortIndex) {
 			this.showMenu = false;
 			this.$store.commit('setSortMode', newSortIndex);			
+		},
+		hideMenu() {
+			this.showMenu = false;
 		}
 	}
 }
