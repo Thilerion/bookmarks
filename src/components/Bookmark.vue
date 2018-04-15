@@ -1,12 +1,6 @@
 <template>
 <div class="bookmark-block">
 	<div class="bookmark-item" @click="toggleThisEditComponent">
-		<!--<a class="bookmark-link col-1" :href="url" v-html="highlightedTitle"></a>
-		<p class="description bookmark-subtext col-1" v-if="highlightedDescription !== ''" v-html="highlightedDescription"></p>
-		<p class="bookmark-url bookmark-subtext col-1">{{url}}</p>
-		<div class="tags col-2">
-			<span class="tag" v-for="tag in bookmarkTags" :key="tag.id" :style="tagStyle(tag)">{{tag.name}}</span>
-		</div>-->
 		<div class="bookmark-info">
 			<a class="bookmark-link col-1" :href="url" v-html="highlightedTitle"></a>
 			<p class="description bookmark-subtext col-1" v-if="highlightedDescription !== ''" v-html="highlightedDescription"></p>
