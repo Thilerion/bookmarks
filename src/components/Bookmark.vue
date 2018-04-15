@@ -202,7 +202,6 @@ export default {
 }
 
 .bookmark-info > p, .bookmark-info > a, .bookmark-info > span {
-	width: 100%;
 	padding-right: 0.25em;
 	min-width: 0;
 	white-space: nowrap;

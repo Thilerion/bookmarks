@@ -9,7 +9,7 @@
 			<span class="sort-string">{{currentSortModeString}}</span>
 		</button>
 		<BmBaseDropdownMenu v-if="showMenu">
-			<BmBaseDropdownMenuItem v-for="(mode, index) in sortModes" :key="index">
+			<BmBaseDropdownMenuItem v-for="(mode, index) in sortModes" :key="index" v-show="currentSortModeString !== mode">
 				<button @click="setSortMode(index)">{{mode}}</button>
 			</BmBaseDropdownMenuItem>
 		</BmBaseDropdownMenu>
