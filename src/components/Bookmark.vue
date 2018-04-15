@@ -1,5 +1,5 @@
 <template>
-<div class="bookmark-block">
+<div class="bookmark-block" @mouseenter="hovering = true" @mouseleave="hovering = false">
 	<div class="bookmark-item">
 		<div class="bookmark-info">
 			<a class="bookmark-link col-1" :href="url" v-html="highlightedTitle"></a>
@@ -8,6 +8,14 @@
 		</div>
 		<div class="tags">
 			<BmTagDisplay v-for="tag in bookmarkTags" :key="tag.id" :tagId="tag.id" :canClose="editMode" :canBeInactive="tagsCanBeInactive" />
+		</div>
+		<div class="bookmark-options" :class="{'active-options': hovering}">
+			<button class="bookmark-options-button">
+				<svg class="bookmark-options-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					<path d="M0 0h24v24H0z" fill="none"/>
+					<path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+				</svg>
+			</button>
 		</div>
 	</div>
 </div>
@@ -25,7 +33,8 @@ export default {
 	data() {
 		return {
 			editMode: false,
-			tagsCanBeInactive: true
+			tagsCanBeInactive: true,
+			hovering: false
 		}
 	},
 	computed: {
@@ -82,7 +91,7 @@ export default {
 	position: relative;
 	height: 100%;
 	max-width: 100%;
-	padding: 0.5em 1em;
+	padding: 0.5em 0.5em 0.5em 1em;
 	display: flex;
 	align-items: center;
 }
@@ -140,6 +149,32 @@ export default {
 .tags > div:not(:first-of-type) {
 	margin-left: 1em;
 }
+
+.bookmark-options {
+	flex: 0 0 1.5em;
+	padding-left: 0.25em;
+	opacity: 0;
+}
+
+.bookmark-options-button {
+	margin: auto;
+}
+
+.bookmark-options-icon {
+	fill: currentColor;
+	width: 1.5em;
+	height: 1.5em;
+}
+
+.active-options {
+	opacity: 0.3;
+	transition: opacity .1s ease;
+}
+
+.active-options:hover {
+	opacity: 0.6;
+}
+
 </style>
 
 <style>
