@@ -29,6 +29,7 @@ export default {
 <style scoped>
 .bookmarks {
 	margin: 0.5em 1em;
+	padding: 0 1em;
 }
 
 .bookmark-container {
