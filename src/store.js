@@ -183,7 +183,14 @@ export default new Vuex.Store({
 			state.bookmarks.splice(index, 1);
 		},
 		setSortMode: (state, newSortIndex) => state.currentSortMode = newSortIndex,
-		currentlyEditingBookmark: (state, id) => state.currentlyEditingBookmark = id
+		currentlyEditingBookmark: (state, id) => state.currentlyEditingBookmark = id,
+		editBookmark: (state, bookmark) => {
+			const id = bookmark.id;
+			const idIndex = state.bookmarks.findIndex(bm => bm.id === id);
+			console.log(id);
+			console.log(state.bookmarks[idIndex]);
+			state.bookmarks[idIndex] = Object.assign(state.bookmarks[idIndex], bookmark.edits);
+		}
 	},
 	actions: {
 		editSearchFilter({ commit }, searchString) {

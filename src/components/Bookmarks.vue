@@ -37,14 +37,14 @@ export default {
 }
 
 .bookmark-container {
+	transition: max-height .2s ease;
 	margin: 0;
 	background: #fefefe;
-	height: 5em;
-	transition: height .2s ease;
+	max-height: 8em;
 }
 
 .greater-height-when-editing {
-	height: 10em;
+	max-height: 15em;
 }
 
 .bookmark-container:hover {
@@ -74,12 +74,12 @@ export default {
 }
 
 .bookmark-list-enter, .bookmark-list-leave-to {
-	height: 0;
+	max-height: 0;
 	opacity: 0;
 }
 
 .bookmark-list-move {
-	/*transition: transform 0.5s ease;*/
+	transition: transform 0.5s ease;
 	/*animation: move-list .5s;*/
 }
 

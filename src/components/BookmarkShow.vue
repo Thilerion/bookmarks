@@ -99,7 +99,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .bookmark-show {
 	display: inline-flex;
 	align-items: center;

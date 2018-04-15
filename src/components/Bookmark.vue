@@ -6,13 +6,15 @@
 >
 	<div class="bookmark-item">
 		
-		<BmBookmarkShow class="bookmark-main" :bookmark="bookmark" v-if="!editMode" />
-		<BmBookmarkEdit class="bookmark-main" v-else />
+		<transition name="bookmark-item-components" mode="out-in">
+			<BmBookmarkShow class="bookmark-main" :bookmark="bookmark" v-if="!editMode" />
+			<BmBookmarkEdit ref="editComponentChild" class="bookmark-main" :bookmark="bookmark" v-else />
+		</transition>
 
 		<div class="bookmark-options"
 			v-click-outside="hideOptions"
 		>
-			<button class="bookmark-options-button"
+			<button v-if="!editing" class="bookmark-options-button"
 				:class="{'active-options': showOptionsButton}"
 				@click="showBookmarkOptions = !showBookmarkOptions"
 			>
@@ -24,6 +26,11 @@
 					<path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
 				</svg>
 			</button>
+
+			<div class="editing-buttons" v-else>
+				<button class="bookmark-options-button active-options bookmark-options-save-button" @click="saveEdits">save</button>
+				<button class="bookmark-options-button active-options bookmark-options-close-button" @click="stopEditingBookmark">cancel</button>
+			</div>
 
 			<BmBaseDropdownMenu
 				v-if="showBookmarkOptions"
@@ -81,6 +88,15 @@ export default {
 		editBookmark() {
 			this.hideOptions();
 			this.$store.commit('currentlyEditingBookmark', this.bookmark.id);
+		},
+		stopEditingBookmark() {
+			this.hideOptions();
+			this.$store.commit('currentlyEditingBookmark', null);
+		},
+		saveEdits() {
+			this.$refs.editComponentChild.saveEditedBookmark();
+			this.hideOptions();
+			this.stopEditingBookmark();
 		}
 	}
 }
@@ -113,9 +129,6 @@ export default {
 }
 
 .bookmark-options {
-	flex: 0 0 auto;
-	min-width: 1.5em;
-	width: 1.5em;
 	padding-left: 0.25em;
 }
 
@@ -130,6 +143,23 @@ export default {
 	height: 1.5em;
 }
 
+.editing-buttons {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-options-save-button {
+	margin-bottom: 0.25em;
+}
+
+.bookmark-options-close-button, .bookmark-options-save-button {
+	font-size: 1em;
+	display: block;
+	width: 100%;
+	padding: 0.25em 0.1em;
+}
+
 .bookmark-options-list {
 	z-index: 9000;
 }
@@ -141,6 +171,14 @@ export default {
 
 .active-options:hover {
 	opacity: 0.6;
+}
+
+.bookmark-item-components-enter-active {
+	transition: all .45s ease;
+}
+
+.bookmark-item-components-enter, .bookmark-item-components-leave-to {
+	opacity: 0;
 }
 
 </style>
