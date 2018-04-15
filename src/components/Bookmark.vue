@@ -14,13 +14,10 @@
 				v-if="highlightedDescription !== ''"
 				v-html="highlightedDescription"
 			></p>
-			<p class="bookmark-url bookmark-subtext col-1">
-				{{url}}
-			</p>
+			<p class="bookmark-url bookmark-subtext col-1">{{url | trim}}</p>
 			<span class="debugContent"
 				v-if="showBookmarkListDebugMode"
-			>
-				{{bookmarkDebugInfo}}
+				>{{bookmarkDebugInfo | trim}}
 			</span>
 		</div>
 

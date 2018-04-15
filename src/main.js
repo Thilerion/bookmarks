@@ -10,6 +10,10 @@ Vue.component('BmBaseDropdownMenuItem', BaseDropdownMenuItem)
 import vClickOutside from 'v-click-outside'
 Vue.use(vClickOutside)
 
+Vue.filter('trim', function (str) {
+	return str.trim();
+})
+
 Vue.config.productionTip = false
 
 new Vue({
