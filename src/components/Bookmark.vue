@@ -5,6 +5,7 @@
 			<a class="bookmark-link col-1" :href="url" v-html="highlightedTitle"></a>
 			<p class="description bookmark-subtext col-1" v-if="highlightedDescription !== ''" v-html="highlightedDescription"></p>
 			<p class="bookmark-url bookmark-subtext col-1">{{url}}</p>
+			<span class="debugContent" v-if="showBookmarkListDebugMode">{{bookmarkDebugInfo}}</span>
 		</div>
 		<div class="tags">
 			<BmTagDisplay v-for="tag in bookmarkTags" :key="tag.id" :tagId="tag.id" :canClose="editMode" :canBeInactive="tagsCanBeInactive" />
@@ -69,6 +70,12 @@ export default {
 			let str = this.description;
 			let filter = this.searchString;
 			return this.highlightWithString(str, filter);
+		},
+		showBookmarkListDebugMode() {
+			return this.$store.getters.showBookmarkListDebugMode;
+		},
+		bookmarkDebugInfo() {
+			return `id: ${this.bookmark.id}, date: ${new Date(this.bookmark.added).toLocaleString()}, listOrder: ${this.bookmark.customIndex}`;
 		}
 	},
 	methods: {

@@ -2,8 +2,13 @@
 <div id="app">	
 	<div class="col col-left">
 		<header>
-			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 54 54" xml:space="preserve" class="bookmark-logo">
+			<svg version="1.1"
+				xmlns="http://www.w3.org/2000/svg"
+				xmlns:xlink="http://www.w3.org/1999/xlink"
+				x="0px" y="0px"
+				viewBox="0 0 54 54" xml:space="preserve"
+				class="bookmark-logo"
+			>
 				<path style="fill:rgba(200,50,50,1);" d="M8.589,0C5.779,0,3.5,2.279,3.5,5.089V54l18-12l18,12V6c0-3.3,2.7-6,6-6H8.589z"/>
 				<path style="fill:rgba(200,50,50,0.6);" d="M45.41,0.005C42.151,0.054,39.5,2.73,39.5,6v17h11V5.135C50.5,2.315,48.225,0.03,45.41,0.005z"/>
 			</svg>
@@ -18,6 +23,7 @@
 	<div class="col col-right">
 		<BmSearch/>
 		<div class="main">
+			<BmSortList/>
 			<BmBookmarks/>
 		</div>	   
 	</div>
@@ -34,6 +40,7 @@ import Sidebar from '@/components/Sidebar';
 import TagList from '@/components/TagList';
 import SubHeader from '@/components/SubHeader';
 import AddBookmark from '@/components/AddBookmark';
+import SortList from '@/components/SortList';
 
 export default {
 	components: {
@@ -42,7 +49,8 @@ export default {
 		BmSidebar: Sidebar,
 		BmTagList: TagList,
 		BmSubHeader: SubHeader,
-		BmAddBookmark: AddBookmark
+		BmAddBookmark: AddBookmark,
+		BmSortList: SortList
 	},
 	computed: {
 		modalAddBookmark() {
