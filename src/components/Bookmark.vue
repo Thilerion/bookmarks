@@ -53,9 +53,11 @@
 			<BmBaseDropdownMenu
 				v-if="showBookmarkOptions"
 				class="bookmark-options-list"
+				position="right"
+				origin="top right"
 			>
 				<BmBaseDropdownMenuItem>
-					<button @click="deleteBookmark">Delete</button>
+					<button @click="deleteBookmark">Delete bookmark</button>
 				</BmBaseDropdownMenuItem>
 			</BmBaseDropdownMenu>
 		</div>
@@ -139,6 +141,7 @@ export default {
 			this.showBookmarkOptions = false;
 		},
 		deleteBookmark() {
+			this.hideOptions();
 			this.$store.commit('deleteBookmark', this.bookmark.id);
 		}
 	}
@@ -222,6 +225,7 @@ export default {
 	flex: 0 0 1.5em;
 	min-width: 1.5em;
 	padding-left: 0.25em;
+	position: relative;
 }
 
 .bookmark-options-button {
@@ -236,7 +240,6 @@ export default {
 }
 
 .bookmark-options-list {
-	position: fixed;
 	z-index: 9000;
 }
 

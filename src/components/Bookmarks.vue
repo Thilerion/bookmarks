@@ -37,7 +37,6 @@ export default {
 
 .bookmark-container {
 	margin: 0;	
-	overflow: hidden;
 	max-height: 9em;
 	background: #fefefe;
 }

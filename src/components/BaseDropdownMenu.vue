@@ -13,19 +13,25 @@ export default {
 	props: {
 		origin: {
 			type: [String, Number],
-			default: "top left"
+			default: "left top"
 		},
 		align: {
+			type: String,
+			default: "left"
+		},
+		position: {
 			type: String,
 			default: "left"
 		}
 	},
 	computed: {
 		propStyle() {
-			return {
+			let styleObj = {
 				'transform-origin': this.origin,
 				'text-align': this.align
-			}
+			};
+			styleObj[this.position] = "0px";
+			return styleObj;
 		}
 	}
 }
@@ -39,6 +45,7 @@ export default {
 	border-radius: 3px;
 	position: absolute;
 	z-index: 500;
+	white-space: nowrap;
 }
 
 .dropdown-menu button {

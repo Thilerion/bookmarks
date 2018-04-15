@@ -51,6 +51,7 @@ export default {
 
 .sort-items {
 	padding-left: 0.25em;
+	position: relative;
 }
 
 .sort-button {
