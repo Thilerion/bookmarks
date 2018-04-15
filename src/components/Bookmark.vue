@@ -10,20 +10,15 @@
 			<BmTagDisplay v-for="tag in bookmarkTags" :key="tag.id" :tagId="tag.id" :canClose="editMode" :canBeInactive="tagsCanBeInactive" />
 		</div>
 	</div>
-	<transition name="slide-edit">
-		<BmBookmarkEdit class="bookmark-edit" :bookmark="bookmark" v-show="showEditComponent"/>
-	</transition>
 </div>
 
 </template>
 
 <script>
-import BookmarkEdit from '@/components/BookmarkEdit';
 import TagDisplay from '@/components/TagDisplay';
 
 export default {
 	components: {
-		BmBookmarkEdit: BookmarkEdit,
 		BmTagDisplay: TagDisplay
 	},
 	props: ["bookmark", "editing"],
@@ -65,9 +60,6 @@ export default {
 			let str = this.description;
 			let filter = this.searchString;
 			return this.highlightWithString(str, filter);
-		},
-		showEditComponent() {
-			return (this.bookmark.id === this.$store.getters.currentEditComponent);
 		}
 	},
 	methods: {
@@ -80,10 +72,6 @@ export default {
 					return `<span class="highlight">${matchedText}</span>`;
 				});
 			}
-		},
-		toggleThisEditComponent() {
-			if (this.showEditComponent === true) this.$store.commit('setcurrentEditComponent', null);
-			else this.$store.commit('setcurrentEditComponent', this.bookmark.id);
 		}
 	}
 }
@@ -151,22 +139,6 @@ export default {
 
 .tags > div:not(:first-of-type) {
 	margin-left: 1em;
-}
-
-.bookmark-edit {
-	max-height: 3em;
-}
-
-.slide-edit-leave-active {
-	transition: all .2s linear;
-}
-
-.slide-edit-enter-active {
-	transition: all .3s ease;
-}
-
-.slide-edit-enter, .slide-edit-leave-to {
-	max-height: 0;
 }
 </style>
 

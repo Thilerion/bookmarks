@@ -64,9 +64,7 @@ export default new Vuex.Store({
 			console.log(red);
 			return red;
 		},
-		modalAddBookmark: state => state.modalAddBookmark,
-		currentEditComponent: state => state.currentEditComponent,
-		currentlyEditingBookmark: state => state.currentlyEditingBookmark
+		modalAddBookmark: state => state.modalAddBookmark
 	},
 	mutations: {
 		changeCurrentSearch: (state, searchString) => state.currentSearch = searchString,
@@ -83,9 +81,7 @@ export default new Vuex.Store({
 				return bm.id === id;
 			});
 			state.bookmarks.splice(index, 1);
-		},
-		startBookmarkEditing: (state, id) => state.currentlyEditingBookmark = id,
-		setcurrentEditComponent: (state, id) => state.currentEditComponent = id
+		}
 	},
 	actions: {
 		editSearchFilter({ commit }, searchString) {
