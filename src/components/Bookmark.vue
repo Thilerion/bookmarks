@@ -6,15 +6,18 @@
 	<div class="bookmark-item">
 
 		<div class="bookmark-info">
-			<a class="bookmark-link col-1"
+			<a class="bookmark-link"
 				:href="url"
 				v-html="highlightedTitle"
 			></a>
-			<p class="description bookmark-subtext col-1"
+
+			<p class="bookmark-subtext"
 				v-if="highlightedDescription !== ''"
 				v-html="highlightedDescription"
 			></p>
-			<p class="bookmark-url bookmark-subtext col-1">{{url | trim}}</p>
+
+			<p class="bookmark-url bookmark-subtext">{{url | trim}}</p>
+
 			<span class="debugContent"
 				v-if="showBookmarkListDebugMode"
 				>{{bookmarkDebugInfo | trim}}
