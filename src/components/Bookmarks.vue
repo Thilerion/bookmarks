@@ -36,9 +36,9 @@ export default {
 }
 
 .bookmark-container {
-	margin: 0;	
-	max-height: 9em;
+	margin: 0;
 	background: #fefefe;
+	max-height: 9em;
 }
 
 .bookmark-container:hover {
@@ -68,5 +68,22 @@ export default {
 .bookmark-list-enter, .bookmark-list-leave-to {
 	max-height: 0;
 	opacity: 0;
+}
+
+.bookmark-list-move {
+	transition: transform 0.5s ease;
+	animation: move-list .5s;
+}
+
+@keyframes move-list {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.2;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 </style>

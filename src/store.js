@@ -101,7 +101,8 @@ export default new Vuex.Store({
 		modalAddBookmark: false,
 		sortModes: ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)", "Custom"],
 		currentSortMode: 4,
-		showBookmarkListDebugMode: false
+		showBookmarkListDebugMode: false,
+		currentlyEditingBookmark: null
 	},
 	getters: {
 		showBookmarkListDebugMode: state => state.showBookmarkListDebugMode,
@@ -158,12 +159,12 @@ export default new Vuex.Store({
 				});
 				return acc;
 			}, {})
-			console.log(red);
 			return red;
 		},
 		modalAddBookmark: state => state.modalAddBookmark,
 		currentSortModeString: state => state.sortModes[state.currentSortMode],
-		sortModes: state => state.sortModes
+		sortModes: state => state.sortModes,
+		currentlyEditingBookmark: state => state.currentlyEditingBookmark
 	},
 	mutations: {
 		changeCurrentSearch: (state, searchString) => state.currentSearch = searchString,
@@ -181,7 +182,8 @@ export default new Vuex.Store({
 			});
 			state.bookmarks.splice(index, 1);
 		},
-		setSortMode: (state, newSortIndex) => state.currentSortMode = newSortIndex
+		setSortMode: (state, newSortIndex) => state.currentSortMode = newSortIndex,
+		currentlyEditingBookmark: (state, id) => state.currentlyEditingBookmark = id
 	},
 	actions: {
 		editSearchFilter({ commit }, searchString) {

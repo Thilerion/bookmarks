@@ -2,10 +2,16 @@
 <div class="bookmark-block"
 	@mouseenter="hovering = true"
 	@mouseleave="hovering = false"
+	:ref="bookmark.id"
 >
 	<div class="bookmark-item">
-
-		<div class="bookmark-info">
+		<div class="bookmark-info-edit" v-if="editing === true">
+			<p>Hoi</p>
+			<p>Hoi</p>
+			<p>Hoi</p>
+			<p>Hoi</p>
+		</div>
+		<div v-else class="bookmark-info">
 			<a class="bookmark-link"
 				:href="url"
 				v-html="highlightedTitle"
@@ -57,7 +63,10 @@
 				origin="top right"
 			>
 				<BmBaseDropdownMenuItem>
-					<button @click="deleteBookmark">Delete bookmark</button>
+					<button @click="deleteBookmark">Delete bookmark</button>				
+				</BmBaseDropdownMenuItem>
+				<BmBaseDropdownMenuItem>
+					<button @click="editBookmark">Edit bookmark</button>
 				</BmBaseDropdownMenuItem>
 			</BmBaseDropdownMenu>
 		</div>
@@ -143,6 +152,10 @@ export default {
 		deleteBookmark() {
 			this.hideOptions();
 			this.$store.commit('deleteBookmark', this.bookmark.id);
+		},
+		editBookmark() {
+			this.hideOptions();
+			this.$store.commit('currentlyEditingBookmark', this.bookmark.id);
 		}
 	}
 }
