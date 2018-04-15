@@ -40,6 +40,7 @@ export default {
 	margin: 0;
 	background: #fefefe;
 	height: 5em;
+	transition: height .2s ease;
 }
 
 .greater-height-when-editing {

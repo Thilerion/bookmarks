@@ -5,40 +5,9 @@
 	:ref="bookmark.id"
 >
 	<div class="bookmark-item">
-		<div class="bookmark-info-edit" v-if="editing === true">
-			<p>Hoi</p>
-			<p>Hoi</p>
-			<p>Hoi</p>
-			<p>Hoi</p>
-		</div>
-		<div v-else class="bookmark-info">
-			<a class="bookmark-link"
-				:href="url"
-				v-html="highlightedTitle"
-			></a>
-
-			<p class="bookmark-subtext"
-				v-if="highlightedDescription !== ''"
-				v-html="highlightedDescription"
-			></p>
-
-			<p class="bookmark-url bookmark-subtext">{{url | trim}}</p>
-
-			<span class="debugContent"
-				v-if="showBookmarkListDebugMode"
-				>{{bookmarkDebugInfo | trim}}
-			</span>
-		</div>
-
-		<div class="tags">
-			<BmTagDisplay
-				v-for="tag in bookmarkTags"
-				:key="tag.id"
-				:tagId="tag.id"
-				:canClose="editMode"
-				:canBeInactive="!editMode"
-			/>
-		</div>
+		
+		<BmBookmarkShow class="bookmark-main" :bookmark="bookmark" v-if="!editMode" />
+		<BmBookmarkEdit class="bookmark-main" v-else />
 
 		<div class="bookmark-options"
 			v-click-outside="hideOptions"
@@ -76,11 +45,13 @@
 </template>
 
 <script>
-import TagDisplay from '@/components/TagDisplay';
+import BookmarkShow from '@/components/BookmarkShow';
+import BookmarkEdit from '@/components/BookmarkEdit';
 
 export default {
 	components: {
-		BmTagDisplay: TagDisplay
+		BmBookmarkShow: BookmarkShow,
+		BmBookmarkEdit: BookmarkEdit
 	},
 	props: ["bookmark", "editing"],
 	data() {
@@ -94,60 +65,12 @@ export default {
 		editMode() {
 			return this.editing;
 		},
-		title() {
-			return this.bookmark.title;
-		},
-		url() {
-			return this.bookmark.url;
-		},
-		description() {
-			return this.bookmark.description;
-		},
-		bookmarkTags() {
-			let tagArray = [];
-			this.bookmark.tags.forEach((val) => {
-				tagArray.push(this.$store.getters.tagProperties(val))
-			});
-			return tagArray;
-		},
-		activeTagIds() {
-			return this.$store.getters.activeTagIds;
-		},
-		searchString() {
-			return this.$store.getters.searchString;
-		},
-		highlightedTitle() {
-			let str = this.title;
-			let filter = this.searchString;			
-			return this.highlightWithString(str, filter);						
-		},
-		highlightedDescription() {
-			let str = this.description;
-			let filter = this.searchString;
-			return this.highlightWithString(str, filter);
-		},
-		showBookmarkListDebugMode() {
-			return this.$store.getters.showBookmarkListDebugMode;
-		},
-		bookmarkDebugInfo() {
-			return `id: ${this.bookmark.id}, date: ${new Date(this.bookmark.added).toLocaleString()}, listOrder: ${this.bookmark.customIndex}`;
-		},
 		showOptionsButton() {
 			if (this.showBookmarkOptions === true) return true;
 			else return this.hovering;
 		}
 	},
 	methods: {
-		highlightWithString(str, filter) {
-			if (filter === "" || filter == null) return str;
-			else {
-				let re = new RegExp(filter, "ig");
-				console.log(re);
-				return str.replace(re, (matchedText) => {
-					return `<span class="highlight">${matchedText}</span>`;
-				});
-			}
-		},
 		hideOptions() {
 			this.showBookmarkOptions = false;
 		},
@@ -185,65 +108,15 @@ export default {
 	min-width: 0;
 }
 
-.bookmark-link {
-	color: currentColor;
-	text-decoration: none;
-	padding: 0;
-}
-
-.bookmark-link:hover {
-	text-decoration: underline;
-}
-
-.bookmark-subtext {
-	margin: 0;
-	line-height: 1.6;
-	font-size: 0.8em;
-	opacity: 0.8;
-	letter-spacing: 0.01em;
-	cursor: default;
-}
-
-.bookmark-url {
-	font-style: italic;
-	padding: 0;
-	margin: 0;
-}
-
-.bookmark-info {
-	flex: 3 1 auto;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: flex-start;
-	overflow: hidden;
-}
-
-.bookmark-info > p, .bookmark-info > a, .bookmark-info > span {
-	padding-right: 0.25em;
-	min-width: 0;
-	white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-.tags {
-	text-align: right;
-	flex: 1 3 25%;
-}
-
-.tags > div {
-	margin: 0.25em auto;
-}
-
-.tags > div:not(:first-of-type) {
-	margin-left: 1em;
+.bookmark-main {
+	flex: 1 1 auto;
 }
 
 .bookmark-options {
-	flex: 0 0 1.5em;
+	flex: 0 0 auto;
 	min-width: 1.5em;
+	width: 1.5em;
 	padding-left: 0.25em;
-	position: relative;
 }
 
 .bookmark-options-button {
