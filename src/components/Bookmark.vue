@@ -148,6 +148,7 @@ export default {
 <style scoped>
 .bookmark-block {
 	border: 1px solid transparent;
+	max-width: 100%;
 }
 
 .bookmark-block.editing {
@@ -162,6 +163,7 @@ export default {
 	padding: 0.5em 0.5em 0.5em 1em;
 	display: flex;
 	align-items: center;
+	min-width: 0;
 }
 
 .bookmark-link {
@@ -195,19 +197,21 @@ export default {
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: flex-start;
-	min-width: 0;
+	overflow: hidden;
+	
 }
 
-.bookmark-info > p, .bookmark-info > a {
+.bookmark-info > p, .bookmark-info > a, .bookmark-info > span {
+	width: 100%;
 	padding-right: 0.25em;
+	min-width: 0;
 	white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .tags {
 	text-align: right;
-	flex: 1 3 20em;
+	flex: 1 3 25%;
 }
 
 .tags > div {
