@@ -15,9 +15,7 @@
 			<h1 class="header-font">Bookmarks</h1>
 	  	</header>
 		<BmSubHeader class="sub-header"/>
-		<BmSidebar class="sidebar">
-			<BmTagList slot="tag-list"/>
-		</BmSidebar>
+		<BmSidebar class="sidebar"/>
    </div>
 
 	<div class="col col-right">
@@ -37,7 +35,6 @@
 import Search from '@/components/Search';
 import Bookmarks from '@/components/Bookmarks';
 import Sidebar from '@/components/Sidebar';
-import TagList from '@/components/TagList';
 import SubHeader from '@/components/SubHeader';
 import AddBookmark from '@/components/AddBookmark';
 import SortList from '@/components/SortList';
@@ -47,7 +44,6 @@ export default {
 		BmSearch: Search,
 		BmBookmarks: Bookmarks,
 		BmSidebar: Sidebar,
-		BmTagList: TagList,
 		BmSubHeader: SubHeader,
 		BmAddBookmark: AddBookmark,
 		BmSortList: SortList

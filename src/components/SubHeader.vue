@@ -2,9 +2,7 @@
 <div>
 	<div class="sub-header-item">
 		<button class="add-button" @click="toggleModalAddBookmark">
-			<svg class="add-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    			<path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-			</svg>
+			<BmSvgIcon icon="plus"/>
 			<span class="add-button-text header-font">Add bookmark</span>
 		</button>
 	</div>
@@ -12,7 +10,11 @@
 </template>
 
 <script>
+import SvgIcon from '@/components/SvgIcon';
 export default {
+	components: {
+		BmSvgIcon: SvgIcon
+	},
 	methods: {
 		toggleModalAddBookmark() {
 			this.$store.commit('toggleModalAddBookmark');
@@ -40,10 +42,8 @@ export default {
 	margin-left: 1em;
 }
 
-.add-icon {
+.sub-header-item .add-icon {
 	width: 1.35em;
 	height: 1.35em;
-	fill: currentColor;
-	position: relative;
 }
 </style>

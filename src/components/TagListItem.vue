@@ -150,7 +150,13 @@ export default {
 .tag-edit {
 	grid-column: 5;
 	position: relative;
+	display: inline;
 	text-align: right;
+}
+
+.tag-edit > button {
+	height: 1.5em;
+	width: 1.5em;
 }
 
 .more-icon {
