@@ -1,10 +1,13 @@
 <template>
 <li v-click-outside="closeColourPicker">
 	<span class="tag-color" :style="tagStyle(tag)" @contextmenu.prevent="enableColourPicker" @click="changeTagStatus(tag.id)"></span>
-	<div class="tag-name" @contextmenu.prevent="showDropdown = true" @click="changeTagStatus(tag.id)">
+
+	<div v-if="!showEditName" class="tag-name" @contextmenu.prevent="showDropdown = true" @click="clickChangeTagStatus(tag.id)" @dblclick="doubleClickEnableEditName">
 		<span class="tag-title" :class="{disabled: tag.active === false}">{{tag.name}}</span>
 		<span class="tag-amount"> {{tagAmount}}</span>
 	</div>
+
+	<BmTagListItemEditName class="tag-name" v-else :tagId="tag.id" :tagName="tag.name" @closeTagNameInput="closeEditName" />
 
 	<div class="tag-edit" v-click-outside="hideDropdown">
 		<button @click="showDropdown = !showDropdown">
@@ -19,7 +22,7 @@
 			origin="top right"
 			position="right">
 			<BmBaseDropdownMenuItem>
-				<button>Change name</button>
+				<button @click="enableEditName">Change name</button>
 			</BmBaseDropdownMenuItem>
 			<BmBaseDropdownMenuItem>
 				<button @click="enableColourPicker">Change colour</button>
@@ -44,16 +47,21 @@
 
 <script>
 import TagListItemColour from '@/components/TagListItemColour';
+import TagListItemEditName from '@/components/TagListItemEditName';
 
 export default {
 	props: ['tag', 'tagAmount'],
 	components: {
-		BmTagListItemColour: TagListItemColour
+		BmTagListItemColour: TagListItemColour,
+		BmTagListItemEditName: TagListItemEditName
 	},
 	data() {
 		return {
 			showDropdown: false,
-			showColourPicker: false
+			showColourPicker: false,
+			showEditName: false,
+			clickTimer: null,
+			preventSingleClick: false
 		}
 	},
 	methods: {
@@ -65,18 +73,42 @@ export default {
 			style.borderColor = tag.colour;
 			return style;
 		},
+		clickChangeTagStatus(tagId) {
+			this.clickTimer = setTimeout(() => {
+				if (this.preventSingleClick) return;
+				this.$store.commit('changeTagStatus', tagId);
+				this.preventSingleClick = false;
+			}, 150);
+		},
+		doubleClickEnableEditName() {
+			clearTimeout(this.clickTimer);
+			this.preventSingleClick = true;
+			this.enableEditName();
+			setTimeout(() => {
+				this.preventSingleClick = false;
+			}, 100);
+		},
 		changeTagStatus(tagId) {
-			this.$store.commit('changeTagStatus', tagId);
+			this.$store.commit('changeTagStatus', tagId);			
 		},
 		hideDropdown() {
 			this.showDropdown = false;
 		},
 		enableColourPicker() {
 			this.showDropdown = false;
+			this.showEditName = false;
 			this.showColourPicker = true;
 		},
 		closeColourPicker() {
 			this.showColourPicker = false;
+		},
+		enableEditName() {
+			this.showEditName = true;
+			this.showDropdown = false;
+			this.showColourPicker = false;
+		},
+		closeEditName() {
+			this.showEditName = false;
 		}
 	}
 }
@@ -102,10 +134,12 @@ export default {
 	font-size: 0.75em;
 	padding-left: 0.5em;
 	opacity: 0.5;
+	user-select: none;
 }
 
 .tag-title {
 	transition: opacity .2s ease;
+	user-select: none;
 }
 
 .tag-title.disabled {

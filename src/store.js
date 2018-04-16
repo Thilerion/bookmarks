@@ -196,6 +196,12 @@ export default new Vuex.Store({
 			const colour = payload.colour;
 			const idIndex = state.tags.findIndex(t => t.id === id);
 			state.tags[idIndex].colour = colour;
+		},
+		editTagName: (state, payload) => {
+			const id = payload.id;
+			const newName = payload.name;
+			const idIndex = state.tags.findIndex(t => t.id === id);
+			state.tags[idIndex].name = newName;
 		}
 	},
 	actions: {
