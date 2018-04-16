@@ -37,7 +37,7 @@ export default {
 
 <style>
 .swatches-display {
-	width: 80%;
+	max-width: 80%;
 	margin: auto;
 }
 </style>

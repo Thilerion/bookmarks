@@ -33,9 +33,11 @@
 
 	</div>
 
+	<transition name="colour-picker">
 	<BmTagListItemColour v-if="showColourPicker" class="tag-colour-picker" @closeColour="closeColourPicker" :tagId="tag.id" :tagColor="tag.colour">
 		<!--<button @click="closeColourPicker" slot="close-button">Close</button>-->
 	</BmTagListItemColour>
+	</transition>
 
 </li>
 </template>
@@ -128,5 +130,15 @@ export default {
 	grid-column: 1 / span 6;
 	background: #f2f2f2;
 	box-shadow: inset 0 2px 4px -2px rgba(0,0,0,0.4);
+	max-height: 35em;
+	overflow: hidden;
+}
+
+.colour-picker-enter-active, .colour-picker-leave-active {
+	transition: all .3s ease;
+}
+
+.colour-picker-enter, .colour-picker-leave-to {
+	max-height: 0;
 }
 </style>
