@@ -38,6 +38,9 @@
 				position="right"
 				origin="top right"
 			>
+				<BmBaseDropdownMenuItem border-bottom>
+					<button @click="goToLink">Go to website</button>		
+				</BmBaseDropdownMenuItem>
 				<BmBaseDropdownMenuItem>
 					<button @click="deleteBookmark">Delete bookmark</button>				
 				</BmBaseDropdownMenuItem>
@@ -97,6 +100,11 @@ export default {
 			this.$refs.editComponentChild.saveEditedBookmark();
 			this.hideOptions();
 			this.stopEditingBookmark();
+		},
+		goToLink() {
+			const url = this.bookmark.url;
+			window.open(url);
+			this.hideOptions();
 		}
 	},
 	beforeDestroy() {
