@@ -47,7 +47,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .swatches-display {
 	max-width: 80%;
 	margin: auto;

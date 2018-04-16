@@ -2,7 +2,7 @@
 <div>
 	<div class="tag-header">
 		<h2>Tags</h2>
-		<button class="tag-add-button">
+		<button class="tag-add-button" @click="toggleAddTag">
 			<BmSvgIcon icon="plus"/>
 		</button>
 		<button class="tag-show-button" @click="toggleTagList">
@@ -16,7 +16,7 @@
 		</transition>
 	</div>
 		
-	
+	<BmTagAdd v-if="showAddTag" />
 </div>
 </template>
 
@@ -34,6 +34,7 @@ export default {
 	data() {
 		return {
 			showTagList: true,
+			showAddTag: false
 		}
 	},
 	computed: {
@@ -52,6 +53,9 @@ export default {
 		toggleTagList() {
 			if (this.showTagList === true) this.collapseTagList();
 			else this.expandTagList();
+		},
+		toggleAddTag() {
+			this.showAddTag = true;
 		}
 	}
 }
