@@ -10,11 +10,11 @@
 		</button>
 	</div>
 	
-		<div class="tag-list-wrapper">
-			<transition name="collapse-tag-list">
+	<div class="tag-list-wrapper">
+		<transition name="collapse-tag-list">
 			<BmTagList class="tag-list" v-if="showTagList" ref="tagList" />
-			</transition>
-		</div>
+		</transition>
+	</div>
 		
 	
 </div>
@@ -23,11 +23,13 @@
 <script>
 import TagList from '@/components/TagList';
 import SvgIcon from '@/components/SvgIcon';
+import TagAdd from '@/components/TagAdd';
 
 export default {
 	components: {
 		BmTagList: TagList,
-		BmSvgIcon: SvgIcon
+		BmSvgIcon: SvgIcon,
+		BmTagAdd: TagAdd
 	},
 	data() {
 		return {

@@ -1,6 +1,6 @@
 <template>
 <div>
-	<Swatches class="swatches-display" v-model="colour" inline swatch-size="32" :colors='colors' background-color="transparent" @input="colourPicked" @close="colourPicked" show-fallback />
+	<Swatches class="swatches-display" v-model="colour" inline swatch-size="24" :colors='colors' background-color="transparent" @input="colourPicked" @close="colourPicked" show-fallback :wrapper-style="swatchWrapperStyle" :swatch-style="swatchStyle" />
 	<slot name="close-button"/>
 </div>
 </template>
@@ -19,7 +19,19 @@ export default {
 	data() {
 		return {
 			colour: this.tagColor,
-			colors: concatColourArray
+			colors: concatColourArray,
+			swatchWrapperStyle: {
+				display: 'grid',
+				'grid-template-columns': 'repeat(10, 1fr)',
+				'grid-auto-rows': '1fr',
+				'justify-items': 'center',
+				'grid-gap': '6px',
+				'margin': '0 0 0.5em 0'
+			},
+			swatchStyle: {
+				display: 'inline-block',
+				'margin': 0
+			}
 		}
 	},
 	methods: {
