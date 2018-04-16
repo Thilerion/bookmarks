@@ -14,5 +14,7 @@ export default {
 <style scoped>
 h2 {
 	font-size: 1.2em;
+	padding-left: 3em;
+	padding-right: 1.5em;
 }
 </style>

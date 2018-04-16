@@ -22,7 +22,7 @@
 				<button>Change name</button>
 			</BmBaseDropdownMenuItem>
 			<BmBaseDropdownMenuItem>
-				<button>Change colour</button>
+				<button @click="enableColourPicker">Change colour</button>
 			</BmBaseDropdownMenuItem>
 			<BmBaseDropdownMenuItem>
 				<button>Delete tag</button>
@@ -33,15 +33,25 @@
 
 	</div>
 
+	<BmTagListItemColour v-if="showColourPicker" class="tag-colour-picker" @closeColour="closeColourPicker" :tagId="tag.id" :tagColor="tag.colour">
+		<!--<button @click="closeColourPicker" slot="close-button">Close</button>-->
+	</BmTagListItemColour>
+
 </li>
 </template>
 
 <script>
+import TagListItemColour from '@/components/TagListItemColour';
+
 export default {
 	props: ['tag', 'tagAmount'],
+	components: {
+		BmTagListItemColour: TagListItemColour
+	},
 	data() {
 		return {
-			showDropdown: false
+			showDropdown: false,
+			showColourPicker: true
 		}
 	},
 	methods: {
@@ -58,6 +68,13 @@ export default {
 		},
 		hideDropdown() {
 			this.showDropdown = false;
+		},
+		enableColourPicker() {
+			this.showDropdown = false;
+			this.showColourPicker = true;
+		},
+		closeColourPicker() {
+			this.showColourPicker = false;
 		}
 	}
 }
@@ -69,13 +86,13 @@ export default {
 	height: 1em;
 	width: 1em;
 	border-radius: 50%;
-	grid-column: 1;
+	grid-column: 2;
 	border: 2px solid;
 	cursor: pointer;
 }
 
 .tag-name {
-	grid-column: 3;
+	grid-column: 4;
 }
 
 .tag-amount {
@@ -93,7 +110,7 @@ export default {
 }
 
 .tag-edit {
-	grid-column: 4;
+	grid-column: 5;
 	position: relative;
 	text-align: right;
 }
@@ -102,5 +119,12 @@ export default {
 	height: 1.5em;
 	width: 1.5em;
 	fill: currentColor;
+}
+
+.tag-colour-picker {
+	grid-row: 3;
+	grid-column: 1 / span 6;
+	background: #f2f2f2;
+	box-shadow: inset 0 2px 4px -2px rgba(0,0,0,0.4);
 }
 </style>

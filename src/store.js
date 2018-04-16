@@ -190,6 +190,12 @@ export default new Vuex.Store({
 			console.log(id);
 			console.log(state.bookmarks[idIndex]);
 			state.bookmarks[idIndex] = Object.assign(state.bookmarks[idIndex], bookmark.edits);
+		},
+		editTagColour: (state, payload) => {
+			const id = payload.id;
+			const colour = payload.colour;
+			const idIndex = state.tags.findIndex(t => t.id === id);
+			state.tags[idIndex].colour = colour;
 		}
 	},
 	actions: {
