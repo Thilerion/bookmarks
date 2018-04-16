@@ -9,6 +9,8 @@
 import Swatches from 'vue-swatches';
 import "vue-swatches/dist/vue-swatches.min.css"
 
+import {colourArrays, colourArraysReduced, concatColourArray} from '@/helpers/colours'
+
 export default {
 	components: {
 		Swatches: Swatches
@@ -17,7 +19,7 @@ export default {
 	data() {
 		return {
 			colour: this.tagColor,
-			colors: 'material-dark'
+			colors: concatColourArray
 		}
 	},
 	methods: {

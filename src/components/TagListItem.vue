@@ -1,7 +1,7 @@
 <template>
-<li>
-	<span class="tag-color" :style="tagStyle(tag)" @click="changeTagStatus(tag.id)"></span>
-	<div class="tag-name">
+<li v-click-outside="closeColourPicker">
+	<span class="tag-color" :style="tagStyle(tag)" @contextmenu.prevent="enableColourPicker" @click="changeTagStatus(tag.id)"></span>
+	<div class="tag-name" @contextmenu.prevent="showDropdown = true" @click="changeTagStatus(tag.id)">
 		<span class="tag-title" :class="{disabled: tag.active === false}">{{tag.name}}</span>
 		<span class="tag-amount"> {{tagAmount}}</span>
 	</div>
@@ -51,7 +51,7 @@ export default {
 	data() {
 		return {
 			showDropdown: false,
-			showColourPicker: true
+			showColourPicker: false
 		}
 	},
 	methods: {
@@ -93,6 +93,7 @@ export default {
 
 .tag-name {
 	grid-column: 4;
+	cursor: pointer;
 }
 
 .tag-amount {
@@ -107,6 +108,7 @@ export default {
 
 .tag-title.disabled {
 	opacity: 0.5;
+	text-decoration: line-through rgba(0,0,0,0.4);
 }
 
 .tag-edit {
