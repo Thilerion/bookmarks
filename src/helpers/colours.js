@@ -32,6 +32,12 @@ colours.single.push(["#9e0142", "#d53e4f", "#f46d43", "#fdae61", "#abdda4", "#66
 
 colours.single.push(["#335c67", "#fff3b0", "#e09f3e", "#9e2a2b", "#540b0e"]);
 
+colours.single.push(['#9e0142', '#a74152', '#ad6663', '#b18774', '#b2a785', '#afc898', '#acd8a4', '#aec7a4', '#afb7a3', '#afa7a2', '#ae96a1', '#ad86a0', '#9d7c9c', '#877597', '#706f92', '#57688d', '#3a6187', '#065a82']);
+
+colours.single.push(["#110141", "#710162", "#a12a5e", "#ed0345", "#ef6a32", "#aad962", "#03c383", "#017351", "#01545a", "#26294a"]);
+
+colours.single.push(['#110141', '#38044d', '#5a025a', '#770762', '#891860', '#9b265f', '#b42658', '#d11c4f', '#ed0345', '#ee3e3f', '#ef5a38', '#ea7b37', '#d5a749', '#b7cd5c', '#91d46b', '#65cb78', '#03c383', '#02a470', '#02865d', '#036f52', '#066356', '#035859', '#154956', '#213950', '#26294a']);
+
 function getColourArray(singleOrMultiple = "single", n) {
 	if (singleOrMultiple === "multiple") return colours.multipleArrays[n];
 	else return colours.single[n];
@@ -41,3 +47,17 @@ const singleAmount = colours.single.length;
 const multipleAmount = colours.multipleArrays.length;
 
 export { getColourArray, singleAmount, multipleAmount };
+
+/*
+Base colors
+	"#335C67" deep space sparkle (blueish)
+	"#E09F3E" tiger's eye (orangeish)
+	"#9E2A2B" red-brown (vaal rood)
+	"#540B0E" dark scarlet (dark blood red)
+	"#494331" taupe (grey brownish)
+	"#6C7D47" palm leaf (darkish green)
+	"#7C9885" mummy's tomb (green tealish)
+	"#5F0F40" tyrian purple
+	"#321325" dark purple
+	"#14213D" yankees blue
+*/

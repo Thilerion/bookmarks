@@ -2,7 +2,7 @@ import { getColourArray, singleAmount, multipleAmount } from '@/helpers/colours.
 
 const colourStore = {
 	state: {
-		colourPalette: getColourArray("single", 2),
+		colourPalette: getColourArray("single", 5),
 		paletteType: "single",
 		palettesSingle: singleAmount,
 		palettesMultiple: multipleAmount
