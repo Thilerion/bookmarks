@@ -1,11 +1,16 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
+import colourStore from './modules/colours.js'
+
 import { sortNewestFirst, sortOldestFirst, sortAlphaDescending, sortAlphaAscending, sortCustom } from '@/helpers/sort-functions'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+	modules: {
+		colourStore
+	},
 	state: {
 		bookmarks: [
 			{

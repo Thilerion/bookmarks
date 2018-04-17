@@ -2,14 +2,13 @@
 <div>
 	<Swatches class="swatches-display" v-model="colour" inline swatch-size="24" :colors='colors' background-color="transparent" @input="colourPicked" @close="colourPicked" show-fallback :wrapper-style="swatchWrapperStyle" :swatch-style="swatchStyle" />
 	<slot name="close-button"/>
+	
 </div>
 </template>
 
 <script>
 import Swatches from 'vue-swatches';
 import "vue-swatches/dist/vue-swatches.min.css"
-
-import {colourArrays, colourArraysReduced, concatColourArray} from '@/helpers/colours'
 
 export default {
 	components: {
@@ -19,7 +18,7 @@ export default {
 	data() {
 		return {
 			colour: this.tagColor,
-			colors: concatColourArray,
+			colors: this.$store.getters.colourPalette,
 			swatchWrapperStyle: {
 				display: 'grid',
 				'grid-template-columns': 'repeat(10, 1fr)',

@@ -17,9 +17,11 @@
 
 <script>
 import Modal from '@/components/Modal';
-import {colourArrays, colourArraysReduced, concatColourArray} from '@/helpers/colours'
 import Swatches from 'vue-swatches';
 import "vue-swatches/dist/vue-swatches.min.css"
+
+import {getColourArray} from '@/helpers/colours'
+const colourArray = getColourArray("single", 1);
 
 export default {
 	components: {
@@ -29,8 +31,8 @@ export default {
 	data() {
 		return {
 			tagName: "",
-			tagColour: concatColourArray[0],
-			colors: concatColourArray,
+			tagColour: this.$store.getters.randomColour,
+			colors: this.$store.getters.colourPalette,
 			swatchWrapperStyle: {
 				display: 'grid',
 				'grid-template-columns': 'repeat(10, 1fr)',
