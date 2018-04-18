@@ -103,6 +103,7 @@ export default new Vuex.Store({
 			{name: "Programmeren", colour: "#afcd9c", id: 4, active: true},
 			{name: "Sociaal", colour: "#f8b056", id: 5, active: true}
 		],
+		untaggedTag: {name: "Untagged", colour: "#666", id: -1, active: false},
 		currentSearch: "",
 		modalAddBookmark: false,
 		modalAddTag: false,
@@ -124,6 +125,7 @@ export default new Vuex.Store({
 			else return items.sort(sortCustom);
 		},
 		tags: state => state.tags,
+		untaggedTag: state => state.untaggedTag,
 		tagProperties: state => tagId => {
 			return state.tags.find((tagItem) => {
 				return tagItem.id === tagId;
@@ -165,8 +167,9 @@ export default new Vuex.Store({
 					let bookmarkTagActive = bookmark.tags.some((tag) => {
 						return getters.activeTagIds.includes(tag);
 					});
-					if (bookmarkTagActive === false) return false;
-					else return true;
+					if (bookmarkTagActive === true) return true;
+					else if (bookmark.tags.length < 1 && getters.untaggedTag.active === true) return true;
+					else return false;
 				} else return false;
 			});
 		},
@@ -183,6 +186,11 @@ export default new Vuex.Store({
 			});
 			return tagAmounts;
 		},
+		untaggedBookmarks: state => {
+			return state.bookmarks.filter((bm) => {
+				return bm.tags.length < 1;
+			});
+		},
 		modalAddBookmark: state => state.modalAddBookmark,
 		modalAddTag: state => state.modalAddTag,
 		currentSortModeString: state => state.sortModes[state.currentSortMode],
@@ -197,6 +205,7 @@ export default new Vuex.Store({
 			});
 			tagToChange.active = !tagToChange.active;
 		},
+		changeUntaggedTagStatus: state => state.untaggedTag.active = !state.untaggedTag.active,
 		toggleModalAddBookmark: state => state.modalAddBookmark = !state.modalAddBookmark,
 		toggleModalAddTag: state => state.modalAddTag = !state.modalAddTag,
 		pushNewBookmark: (state, bm) => state.bookmarks.push(bm),

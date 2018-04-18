@@ -27,6 +27,7 @@
 			:canClose="editMode"
 			:canBeInactive="!editMode"
 		/>
+		<span v-if="untaggedActive && bookmarkTags.length < 1" class="untagged-tag-display" :style="{'background-color': untaggedTag.colour}">Untagged</span>
 	</div>
 </div>
 </template>
@@ -63,6 +64,12 @@ export default {
 		},
 		activeTagIds() {
 			return this.$store.getters.activeTagIds;
+		},
+		untaggedTag() {
+			return this.$store.getters.untaggedTag;
+		},
+		untaggedActive() {
+			return this.untaggedTag.active;
 		},
 		searchString() {
 			return this.$store.getters.searchString;
@@ -157,5 +164,17 @@ export default {
 
 .bookmark-list-tags > div:not(:first-of-type) {
 	margin-left: 1em;
+}
+
+.untagged-tag-display {
+	font-style: italic;
+	letter-spacing: 1px;
+	font-size: 0.8em;
+	text-transform: lowercase;
+	padding: 0.4rem 0.65rem;
+	color: rgba(255,255,255,0.9);
+	border-radius: 6px;
+	opacity: 0.5;
+	font-weight: normal;
 }
 </style>

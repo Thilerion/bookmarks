@@ -1,5 +1,6 @@
 <template>
 	<ul class="tags-list">
+		<BmTagListItem class="tag-item" v-if="untaggedBookmarksAmount > 0" :tag="untaggedTag" :tagAmount="untaggedBookmarksAmount" untagged />
 		<BmTagListItem class="tag-item" v-for="tag in tags" :key="tag.name" :tag="tag" :tagAmount="tagAmount[tag.id]" />
 	</ul>
 </template>
@@ -17,6 +18,12 @@ export default {
 		},
 		tagAmount() {
 			return this.$store.getters.tagAmount;
+		},
+		untaggedBookmarksAmount() {
+			return this.$store.getters.untaggedBookmarks.length;
+		},
+		untaggedTag() {
+			return this.$store.getters.untaggedTag;
 		}
 	}
 }

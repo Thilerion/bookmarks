@@ -1,5 +1,5 @@
 <template>
-<li v-click-outside="closeColourPicker" :class="{empty: emptyTag}">
+<li v-click-outside="closeColourPicker" :class="{empty: emptyTag, untagged: untagged}">
 	<span class="tag-color" :style="tagStyle(tag)" @contextmenu.prevent="enableColourPicker" @click="changeTagStatus(tag.id)"></span>
 
 	<div v-if="!showEditName" class="tag-name" @contextmenu.prevent="showDropdown = true" @click="clickChangeTagStatus(tag.id)" @dblclick="doubleClickEnableEditName">
@@ -50,7 +50,18 @@ import TagListItemColour from '@/components/TagListItemColour';
 import TagListItemEditName from '@/components/TagListItemEditName';
 
 export default {
-	props: ['tag', 'tagAmount'],
+	props: {
+		tag: {
+			type: Object
+		},
+		tagAmount: {
+			type: Number
+		},
+		untagged: {
+			type: Boolean,
+			default: false
+		}
+	},
 	components: {
 		BmTagListItemColour: TagListItemColour,
 		BmTagListItemEditName: TagListItemEditName
@@ -79,13 +90,18 @@ export default {
 			return style;
 		},
 		clickChangeTagStatus(tagId) {
-			this.clickTimer = setTimeout(() => {
-				if (this.preventSingleClick) return;
-				this.$store.commit('changeTagStatus', tagId);
-				this.preventSingleClick = false;
-			}, 150);
+			if (this.untagged) {
+				this.$store.commit('changeUntaggedTagStatus');
+			} else {
+				this.clickTimer = setTimeout(() => {
+					if (this.preventSingleClick) return;
+					this.$store.commit('changeTagStatus', tagId);
+					this.preventSingleClick = false;
+				}, 150);
+			}			
 		},
 		doubleClickEnableEditName() {
+			if (this.untagged) return;
 			clearTimeout(this.clickTimer);
 			this.preventSingleClick = true;
 			this.enableEditName();
@@ -94,12 +110,17 @@ export default {
 			}, 400);
 		},
 		changeTagStatus(tagId) {
-			this.$store.commit('changeTagStatus', tagId);			
+			if (this.untagged) {
+				this.$store.commit('changeUntaggedTagStatus');
+			} else {
+				this.$store.commit('changeTagStatus', tagId);	
+			}		
 		},
 		hideDropdown() {
 			this.showDropdown = false;
 		},
 		enableColourPicker() {
+			if (this.untagged) return;
 			this.showDropdown = false;
 			this.showEditName = false;
 			this.showColourPicker = true;
@@ -108,6 +129,7 @@ export default {
 			this.showColourPicker = false;
 		},
 		enableEditName() {
+			if (this.untagged) return;
 			this.showEditName = true;
 			this.showDropdown = false;
 			this.showColourPicker = false;
@@ -116,6 +138,7 @@ export default {
 			this.showEditName = false;
 		},
 		deleteTag() {
+			if (this.untagged) return;
 			this.$store.commit("deleteTag", this.tag.id);	
 		}
 	}
