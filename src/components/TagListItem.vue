@@ -3,7 +3,7 @@
 	<span class="tag-color" :style="tagStyle(tag)" @contextmenu.prevent="enableColourPicker" @click="changeTagStatus(tag.id)"></span>
 
 	<div v-if="!showEditName" class="tag-name" @contextmenu.prevent="showDropdown = true" @click="clickChangeTagStatus(tag.id)" @dblclick="doubleClickEnableEditName">
-		<span class="tag-title" :class="{disabled: tag.active === false}">{{tag.name}}</span>
+		<span class="tag-title" :class="{disabled: tag.active === false, empty: emptyTag}">{{tag.name}}</span>
 		<span class="tag-amount"> {{tagAmount}}</span>
 	</div>
 
@@ -62,6 +62,11 @@ export default {
 			showEditName: false,
 			clickTimer: null,
 			preventSingleClick: false
+		}
+	},
+	computed: {
+		emptyTag() {
+			return this.tagAmount == 0;
 		}
 	},
 	methods: {
@@ -143,6 +148,16 @@ export default {
 }
 
 .tag-title.disabled {
+	opacity: 0.5;
+	text-decoration: line-through rgba(0,0,0,0.4);
+}
+
+.tag-title.empty {
+	opacity: 0.8;
+	font-style: italic;
+}
+
+.tag-title.empty.disabled {
 	opacity: 0.5;
 	text-decoration: line-through rgba(0,0,0,0.4);
 }
