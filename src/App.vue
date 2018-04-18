@@ -149,7 +149,6 @@ header {
 }
 
 .sidebar {
-	padding-top: 1em;
 	padding-bottom: 1em;
 }
 

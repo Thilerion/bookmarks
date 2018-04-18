@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="sidebar">
 	<div class="tag-header">
 		<h2>Tags</h2>
 		<button class="tag-add-button" @click="toggleAddTag">
@@ -10,11 +10,9 @@
 		</button>
 	</div>
 	
-	<div class="tag-list-wrapper">
 		<transition name="collapse-tag-list">
-			<BmTagList class="tag-list" v-if="showTagList" ref="tagList" />
+			<BmTagList class="tags-list" v-if="showTagList" ref="tagList" />
 		</transition>
-	</div>
 		
 	<BmTagAdd @closeAddTag="closeAddTag" v-if="showAddTag" />
 </div>
@@ -72,6 +70,8 @@ h2 {
 }
 
 .tag-header {
+	padding: 1em 0;
+	background: linear-gradient(to bottom, rgb(250, 250, 250) 80%,rgba(250,250,250,0) 100%);
 	display: grid;
 	grid-auto-flow: column;
 	grid-template-columns: 3.5em min-content min-content auto 2em 1.5em;
@@ -101,22 +101,22 @@ h2 {
 	height: 1.5em;
 }
 
-.tag-list-wrapper {
-	overflow: hidden;
-	z-index: 1;
+.collapse-tag-list-enter-active {
+	transition: transform .3s ease, opacity .3s ease;
 }
 
-.tag-list {
-	overflow: hidden;
-}
-
-.collapse-tag-list-enter-active, .collapse-tag-list-leave-active {
-	transition: all .2s ease-in-out;
-	z-index: -100;
-}
-
-.collapse-tag-list-enter, .collapse-tag-list-leave-to {
-	transform: translateY(-75%);
+.collapse-tag-list-enter {
+	transform: translateY(calc(-75%));
 	opacity: 0;
 }
+
+.collapse-tag-list-leave-active {
+	transition: transform .3s ease, opacity .2s ease .15s;
+}
+
+.collapse-tag-list-leave-to {
+	transform: translateY(calc(-100%));
+	opacity: 0;
+}
+
 </style>

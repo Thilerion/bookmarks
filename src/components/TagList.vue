@@ -1,9 +1,7 @@
 <template>
-<div>
 	<ul class="tags-list">
 		<BmTagListItem class="tag-item" v-for="tag in tags" :key="tag.name" :tag="tag" :tagAmount="tagAmount[tag.id]" />
 	</ul>
-</div>
 </template>
 
 <script>
@@ -29,6 +27,8 @@ export default {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+	z-index: -1;
+	position: relative;
 }
 
 .tag-item {
@@ -37,5 +37,13 @@ export default {
 	grid-template-columns: 1em 1em 1.5em auto 2em 1.5em;
 	grid-auto-rows: minmax(1em, auto);
 	align-items: center;
+}
+
+.tag-item:first-of-type {
+	margin-top: 0;
+}
+
+.tag-item:last-of-type {
+	margin-bottom: 0;
 }
 </style>
