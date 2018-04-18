@@ -18,7 +18,7 @@
 	</div>	
 	<div class="chosen-tags">
 		<div v-for="tagId in tags" :key="tagId" @click="removeTag(tagId)" class="tag-display-div">
-			<SpTagDisplay :tagId="tagId" canClose="true" />
+			<SpTagDisplay :tagId="tagId" canClose />
 		</div>
 		
 	</div>			

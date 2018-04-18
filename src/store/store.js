@@ -115,6 +115,12 @@ export default new Vuex.Store({
 	getters: {
 		showBookmarkListDebugMode: state => state.showBookmarkListDebugMode,
 		bookmarks: state => state.bookmarks,
+		allBookmarkIds: state => {
+			return state.bookmarks.reduce((acc, bm) => {
+				acc.push(bm.id);
+				return acc;
+			}, []).sort();
+		},
 		sortedBookmarks: state => {
 			const items = [...state.bookmarks];
 			const mode = state.currentSortMode;
@@ -268,8 +274,11 @@ export default new Vuex.Store({
 		editSearchFilter({ commit }, searchString) {
 			commit('changeCurrentSearch', searchString);
 		},
-		saveNewBookmark({ state, commit }, bm) {
-			bm.id = state.bookmarks[state.bookmarks.length - 1].id + 1;
+		saveNewBookmark({ commit, getters }, bm) {
+			const lastBmId = Math.max(...getters.allBookmarkIds);
+			bm.id = lastBmId + 1;
+			bm.customIndex = bm.id;
+			bm.added = Date.now() * 1;
 			commit('pushNewBookmark', bm);
 		}
 	}
