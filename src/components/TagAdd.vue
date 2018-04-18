@@ -4,7 +4,7 @@
 
 		<div class="tag-input-group">
 			<label for="tag-name">Tag name</label>
-			<input type="text" id="tag-name" v-model="tagName">
+			<input type="text" id="tag-name" v-model.trim="tagName" maxlength="50">
 		</div>
 
 		<div class="tag-input-group">
@@ -13,7 +13,9 @@
 		</div>
 
 		<button @click="saveNewTag" class="action-button-base">Save tag</button>
-
+		<div class="error-msg" v-if="submitTried && errorMessages.length > 0">
+			<span v-for="errorMsg in errorMessages" :key="errorMsg">{{errorMsg}} </span>
+		</div>
 	</SpModal>
 </template>
 
@@ -45,12 +47,27 @@ export default {
 			swatchStyle: {
 				display: 'inline-block',
 				'margin': 0
-			}
+			},
+			allTagNames: this.$store.getters.allTagNames,
+			submitTried: false,
+			errorMessages: []
 		}
 	},
 	computed: {
 		fallbackInputClass() {
 			return 'fallback-input';
+		},
+		validNameLengthMin() {
+			return (this.tagName.length > 0);
+		},
+		validNameLengthMax() {
+			return (this.tagName.length <= 50);
+		},
+		validNameUnique() {
+			return !this.allTagNames.includes(this.tagName);
+		},
+		error() {
+			return (!this.validNameLengthMin || !this.validNameLengthMax || !this.validNameUnique);
 		}
 	},
 	methods: {
@@ -58,7 +75,11 @@ export default {
 			this.$store.commit('toggleModalAddTag');
 		},
 		saveNewTag() {
-			if (this.doesTagNameExit()) return;
+			if (this.error) {
+				this.submitTried = true;
+				this.generateErrorMessages();
+				return;
+			}
 			const payload = {
 				id: this.$store.getters.nextTagId,
 				name: this.tagName,
@@ -67,8 +88,11 @@ export default {
 			this.$store.commit('addNewTag', payload);
 			this.toggleModalAddTag();
 		},
-		doesTagNameExit() {
-			return this.$store.getters.allTagNames.includes(this.tagName);
+		generateErrorMessages() {
+			this.errorMessages = [];
+			if (!this.validNameLengthMin) this.errorMessages.push("Tag name is required.");
+			if (!this.validNameLengthMax) this.errorMessages.push("Tag name is too long.");
+			if (!this.validNameUnique) this.errorMessages.push("Tag name already exists.");
 		}
 	}
 }
@@ -95,5 +119,17 @@ export default {
 
 .tag-input-group:not(:last-child) {
 	margin-bottom: 1em;
+}
+
+.error-msg {
+	border: 1px solid #e60f04;
+	border-radius: 5px;
+	font-size: 0.8em;
+	width: 80%;
+	margin: auto;
+	text-align: center;
+	color: #e60f04;
+	margin-top: 0.75rem;
+	padding: 0.25rem;
 }
 </style>

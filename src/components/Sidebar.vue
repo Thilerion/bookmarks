@@ -96,20 +96,20 @@ h2 {
 }
 
 .collapse-tag-list-enter-active {
-	transition: transform .3s ease, opacity .3s ease;
+	transition: all .3s ease;
 }
 
 .collapse-tag-list-enter {
-	transform: translateY(calc(-75%));
+	transform: translateY(-20em);
 	opacity: 0;
 }
 
 .collapse-tag-list-leave-active {
-	transition: transform .3s ease, opacity .2s ease .15s;
+	transition: all .3s ease;
 }
 
 .collapse-tag-list-leave-to {
-	transform: translateY(calc(-100%));
+	transform: translateY(-20em);
 	opacity: 0;
 }
 

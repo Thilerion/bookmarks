@@ -182,6 +182,5 @@ button {
 	display: inline-block;
 	margin: auto;
 	border-radius: 8px;
-	margin-top: 1em;
 }
 </style>

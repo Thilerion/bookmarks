@@ -60,6 +60,8 @@ colours.multipleArrays.push([['#385125','#2e4d35','#204a43','#20414a','#25364f',
 colours.single.push(['#d64541', '#d77741', '#d6a241', '#d4cf41', '#aed641', '#80d641', '#55d643', '#45d665', '#42d691', '#45d5bf', '#46bdd6', '#428fd6', '#4762d6', '#5541d6', '#8241d6', '#b041d6', '#d641ce', '#d741a0', '#d74172', '#d64143']);
 colours.single.push(['#df6b6d', '#e08c6c', '#dfac6b', '#e0ce6b', '#cede6b', '#addf6b', '#8edf6b', '#6ddf6e', '#6ddf8f', '#6cdfaf', '#6cdfd1', '#6dcade', '#6baadf', '#6d89df', '#726ddf', '#936cdf', '#b36bdf', '#d46bdf', '#df6bc7', '#df6ba7']);
 colours.single.push(['#ec644b', '#e96f69', '#e57a86', '#d9819d', '#be7fa5', '#a17dad', '#938eba', '#8eaccc', '#83cbdd', '#79ccd4', '#6ec9c7', '#71c7b7', '#afcd9c', '#ded480', '#f6d36b', '#f8ca62', '#fac15a', '#f8b056', '#f59c53', '#f28750']);
+colours.single.push(['#ec644b', '#dd7173', '#c97d9b', '#b498b5', '#98b4cd', '#8ac2cb', '#8cc6b8', '#a6c99f', '#d7c97d', '#f8c25f', '#f6a557', '#f28750']);
+
 
 function getColourArray(singleOrMultiple = "single", n) {
 	if (singleOrMultiple === "multiple") return colours.multipleArrays[n];
