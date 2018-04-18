@@ -91,7 +91,7 @@ export default {
 			this.enableEditName();
 			setTimeout(() => {
 				this.preventSingleClick = false;
-			}, 100);
+			}, 400);
 		},
 		changeTagStatus(tagId) {
 			this.$store.commit('changeTagStatus', tagId);			
