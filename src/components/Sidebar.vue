@@ -16,7 +16,7 @@
 		</transition>
 	</div>
 		
-	<BmTagAdd v-if="showAddTag" />
+	<BmTagAdd @closeAddTag="closeAddTag" v-if="showAddTag" />
 </div>
 </template>
 
@@ -56,6 +56,9 @@ export default {
 		},
 		toggleAddTag() {
 			this.showAddTag = true;
+		},
+		closeAddTag() {
+			this.showAddTag = false;
 		}
 	}
 }

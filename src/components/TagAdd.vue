@@ -1,5 +1,5 @@
 <template>
-<SpModal>
+<SpModal @closeModal="closeAddTag">
 	<template slot="header">Add tag</template>
 
 	<div class="tag-input-group">
@@ -21,7 +21,6 @@ import Swatches from 'vue-swatches';
 import "vue-swatches/dist/vue-swatches.min.css"
 
 import {getColourArray} from '@/helpers/colours'
-const colourArray = getColourArray("single", 1);
 
 export default {
 	components: {
@@ -50,6 +49,11 @@ export default {
 	computed: {
 		fallbackInputClass() {
 			return 'fallback-input';
+		}
+	},
+	methods: {
+		closeAddTag() {
+			this.$emit('closeAddTag');
 		}
 	}
 }
