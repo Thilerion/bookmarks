@@ -1,9 +1,9 @@
 <template>
-<li v-click-outside="closeColourPicker">
+<li v-click-outside="closeColourPicker" :class="{empty: emptyTag}">
 	<span class="tag-color" :style="tagStyle(tag)" @contextmenu.prevent="enableColourPicker" @click="changeTagStatus(tag.id)"></span>
 
 	<div v-if="!showEditName" class="tag-name" @contextmenu.prevent="showDropdown = true" @click="clickChangeTagStatus(tag.id)" @dblclick="doubleClickEnableEditName">
-		<span class="tag-title" :class="{disabled: tag.active === false, empty: emptyTag}">{{tag.name}}</span>
+		<span class="tag-title" :class="{disabled: tag.active === false}">{{tag.name}}</span>
 		<span class="tag-amount"> {{tagAmount}}</span>
 	</div>
 
@@ -130,6 +130,10 @@ export default {
 	cursor: pointer;
 }
 
+.empty .tag-color {
+	opacity: 0.5;
+}
+
 .tag-name {
 	grid-column: 4;
 	cursor: pointer;
@@ -152,14 +156,8 @@ export default {
 	text-decoration: line-through rgba(0,0,0,0.4);
 }
 
-.tag-title.empty {
-	opacity: 0.8;
-	font-style: italic;
-}
-
-.tag-title.empty.disabled {
+.empty .tag-title:not(.disabled) {
 	opacity: 0.5;
-	text-decoration: line-through rgba(0,0,0,0.4);
 }
 
 .tag-edit {

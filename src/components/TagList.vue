@@ -34,7 +34,7 @@ export default {
 .tag-item {
 	margin: 1.5em 0;
 	display: grid;
-	grid-template-columns: 0.5em 1em 2em auto 2em 1.5em;
+	grid-template-columns: 1em 1em 1.5em auto 2em 1.5em;
 	grid-auto-rows: minmax(1em, auto);
 	align-items: center;
 }
