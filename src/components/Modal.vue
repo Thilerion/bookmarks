@@ -1,19 +1,21 @@
 <template>
 <transition name="modal-fade">
 	<div class="modal-wrapper">
-		<div class="modal-overlay" appear></div>
+		<div class="modal-overlay" appear>
+			<div class="modal" v-click-outside="emitCloseModal">
 
-		<div class="modal" v-click-outside="emitCloseModal">
+				<div class="modal-top">
+					<h2 class="modal-title header-font"><slot name="header"/></h2>
+					<button class="modal-close" @click="emitCloseModal">X</button>
+				</div>
 
-			<div class="modal-top">
-				<h2 class="modal-title header-font"><slot name="header"/></h2>
-				<button class="modal-close" @click="emitCloseModal">X</button>
-			</div>
-
-			<div class="modal-main">
-				<slot/>
+				<div class="modal-main">
+					<slot/>
+				</div>
 			</div>
 		</div>
+
+		
 	</div>
 </transition>
 </template>
@@ -36,19 +38,19 @@ export default {
 	height: 100vh;
 	left: 0;
 	top: 0;
-	display: flex;
 	transition: all .3s ease;
 }
 
 .modal-overlay {
-	position: fixed;
-	z-index: -1;
+	position: absolute;
 	width: 100vw;
 	height: 100vh;
 	background: rgba(0,0,0,0.4);
+	display: flex;
 }
 
 .modal {
+	position: relative;
 	width: 500px;
 	min-height: 200px;
 	margin: auto;

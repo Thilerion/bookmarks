@@ -2,7 +2,7 @@
 <div class="sidebar">
 	<div class="tag-header">
 		<h2>Tags</h2>
-		<button class="tag-add-button" @click="toggleAddTag">
+		<button class="tag-add-button" @click="toggleAddTagModal">
 			<BmSvgIcon icon="plus"/>
 		</button>
 		<button class="tag-show-button" @click="toggleTagList">
@@ -10,29 +10,24 @@
 		</button>
 	</div>
 	
-		<transition name="collapse-tag-list">
-			<BmTagList class="tags-list" v-if="showTagList" ref="tagList" />
-		</transition>
-		
-	<BmTagAdd @closeAddTag="closeAddTag" v-if="showAddTag" />
+	<transition name="collapse-tag-list">
+		<BmTagList class="tags-list" v-if="showTagList" ref="tagList" />
+	</transition>
 </div>
 </template>
 
 <script>
 import TagList from '@/components/TagList';
 import SvgIcon from '@/components/SvgIcon';
-import TagAdd from '@/components/TagAdd';
 
 export default {
 	components: {
 		BmTagList: TagList,
 		BmSvgIcon: SvgIcon,
-		BmTagAdd: TagAdd
 	},
 	data() {
 		return {
-			showTagList: true,
-			showAddTag: false
+			showTagList: true
 		}
 	},
 	computed: {
@@ -52,11 +47,8 @@ export default {
 			if (this.showTagList === true) this.collapseTagList();
 			else this.expandTagList();
 		},
-		toggleAddTag() {
-			this.showAddTag = true;
-		},
-		closeAddTag() {
-			this.showAddTag = false;
+		toggleAddTagModal() {
+			this.$store.commit('toggleModalAddTag');
 		}
 	}
 }

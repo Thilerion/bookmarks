@@ -105,6 +105,7 @@ export default new Vuex.Store({
 		],
 		currentSearch: "",
 		modalAddBookmark: false,
+		modalAddTag: false,
 		sortModes: ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)", "Custom"],
 		currentSortMode: 4,
 		showBookmarkListDebugMode: false,
@@ -139,6 +140,12 @@ export default new Vuex.Store({
 			}, []);
 		},
 		nextTagId: (state, getters) => Math.max(...getters.allTagIds) + 1,
+		allTagNames: state => {
+			return state.tags.reduce((acc, t) => {
+				acc.push(t.name);
+				return acc;
+			}, []);
+		},
 		searchBookmarks: (state, getters) => {
 			return state.bookmarks.filter((bookmark) => {
 				let filterKey = state.currentSearch.toLowerCase();
@@ -177,6 +184,7 @@ export default new Vuex.Store({
 			return tagAmounts;
 		},
 		modalAddBookmark: state => state.modalAddBookmark,
+		modalAddTag: state => state.modalAddTag,
 		currentSortModeString: state => state.sortModes[state.currentSortMode],
 		sortModes: state => state.sortModes,
 		currentlyEditingBookmark: state => state.currentlyEditingBookmark
@@ -190,6 +198,7 @@ export default new Vuex.Store({
 			tagToChange.active = !tagToChange.active;
 		},
 		toggleModalAddBookmark: state => state.modalAddBookmark = !state.modalAddBookmark,
+		toggleModalAddTag: state => state.modalAddTag = !state.modalAddTag,
 		pushNewBookmark: (state, bm) => state.bookmarks.push(bm),
 		deleteBookmark: (state, id) => {
 			let index = state.bookmarks.findIndex((bm) => {

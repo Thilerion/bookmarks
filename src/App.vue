@@ -27,6 +27,7 @@
 	</div>
 
 	<BmAddBookmark v-if="modalAddBookmark"/>
+	<BmTagAdd v-else-if="modalAddTag"/>
 	
 </div>
 </template>
@@ -37,6 +38,7 @@ import Bookmarks from '@/components/Bookmarks';
 import Sidebar from '@/components/Sidebar';
 import SubHeader from '@/components/SubHeader';
 import AddBookmark from '@/components/AddBookmark';
+import TagAdd from '@/components/TagAdd';
 import SortList from '@/components/SortList';
 
 export default {
@@ -46,11 +48,15 @@ export default {
 		BmSidebar: Sidebar,
 		BmSubHeader: SubHeader,
 		BmAddBookmark: AddBookmark,
-		BmSortList: SortList
+		BmSortList: SortList,
+		BmTagAdd: TagAdd
 	},
 	computed: {
 		modalAddBookmark() {
 			return this.$store.getters.modalAddBookmark;
+		},
+		modalAddTag() {
+			return this.$store.getters.modalAddTag;
 		}
 	}
 }
