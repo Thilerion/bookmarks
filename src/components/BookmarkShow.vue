@@ -14,6 +14,8 @@
 
 		<p class="bookmark-url bookmark-subtext">{{url | trim}}</p>
 
+		<p class="bookmark-date bookmark-subtext">{{dateAddedString}}</p>
+
 		<span class="debugContent"
 			v-if="showBookmarkListDebugMode"
 			>{{bookmarkDebugInfo | trim}}
@@ -43,7 +45,8 @@ export default {
 	props: ['bookmark'],
 	data() {
 		return {
-			editMode: false
+			editMode: false,
+			dateAdded: new Date(this.bookmark.added)
 		}
 	},
 	computed: {
@@ -55,6 +58,11 @@ export default {
 		},
 		description() {
 			return this.bookmark.description;
+		},
+		dateAddedString() {
+			if (this.dateAdded) {
+				return this.dateAdded.toLocaleString();
+			}
 		},
 		bookmarkTags() {
 			let tagArray = [];
