@@ -96,11 +96,12 @@ export default new Vuex.Store({
 			}
 		],
 		tags: [
-			{name: "General", colour: "#AC80A0", id: 0, active: true},
-			{name: "Video", colour: "#89AAE6", id: 1, active: true},
-			{name: "Studeren", colour: "#3685B5", id: 2, active: true},
-			{name: "Nieuws", colour: "#0471A6", id: 3, active: true },
-			{name: "Programmeren", colour: "#065A82", id: 4, active: true}
+			{name: "Algemeen", colour: "#e96f69", id: 0, active: true},
+			{name: "Video", colour: "#be7fa5", id: 1, active: false},
+			{name: "Studeren", colour: "#938eba", id: 2, active: true},
+			{name: "Nieuws", colour: "#79ccd4", id: 3, active: true },
+			{name: "Programmeren", colour: "#afcd9c", id: 4, active: true},
+			{name: "Sociaal", colour: "#f8b056", id: 5, active: true}
 		],
 		currentSearch: "",
 		modalAddBookmark: false,
@@ -163,15 +164,17 @@ export default new Vuex.Store({
 			});
 		},
 		searchString: state => state.currentSearch,
-		tagAmount: state => {
-			let red = state.bookmarks.reduce((acc, val) => {
-				val.tags.forEach((tagId) => {
-					if (!acc[tagId]) acc[tagId] = 1;
-					else acc[tagId] += 1;
+		tagAmount: (state, getters) => {
+			const tagAmounts = {};
+			getters.allTagIds.forEach((tId) => {
+				tagAmounts[tId] = 0;
+			});
+			state.bookmarks.forEach((bm) => {
+				bm.tags.forEach((bmTId) => {
+					tagAmounts[bmTId] += 1;
 				});
-				return acc;
-			}, {})
-			return red;
+			});
+			return tagAmounts;
 		},
 		modalAddBookmark: state => state.modalAddBookmark,
 		currentSortModeString: state => state.sortModes[state.currentSortMode],
