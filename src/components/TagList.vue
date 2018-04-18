@@ -41,7 +41,8 @@ export default {
 	margin: 1.5em 0;
 	display: grid;
 	grid-template-columns: 1em 1em 1.5em auto 2em 1.5em;
-	grid-auto-rows: minmax(1em, auto);
+	/*grid-auto-rows: minmax(1em, auto);*/
+	grid-auto-rows: auto;
 	align-items: center;
 }
 

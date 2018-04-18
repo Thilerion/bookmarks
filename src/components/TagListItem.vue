@@ -227,11 +227,16 @@ export default {
 	overflow: hidden;
 }
 
-.tag-bottom-slide-enter-active, .tag-bottom-slide-leave-active {
-	transition: all .3s ease;
+.tag-bottom-slide-enter-active {
+	transition: max-height .3s ease-in .1s, opacity .15s ease-in .1s;
+}
+
+.tag-bottom-slide-leave-active {
+	transition: max-height .3s ease, opacity .2s ease .1s;
 }
 
 .tag-bottom-slide-enter, .tag-bottom-slide-leave-to {
 	max-height: 0;
+	opacity: 0.5;
 }
 </style>
