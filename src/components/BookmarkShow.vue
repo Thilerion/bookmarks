@@ -3,6 +3,7 @@
 	<div class="bookmark-info">
 		<a class="bookmark-link"
 			:href="url"
+			target="_blank"
 			v-html="highlightedTitle"
 		></a>
 
