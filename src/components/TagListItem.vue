@@ -7,7 +7,7 @@
 		<span class="tag-amount"> {{tagAmount}}</span>
 	</div>
 
-	<BmTagListItemEditName class="tag-name" v-else :tagId="tag.id" :tagName="tag.name" @closeTagNameInput="closeEditName" />
+	<BmTagListItemEditName class="tag-name" v-if="showEditName" :tagId="tag.id" :tagName="tag.name" @closeTagNameInput="closeEditName" />
 
 	<div class="tag-edit" v-click-outside="hideDropdown">
 		<button @click="showDropdown = !showDropdown">
@@ -137,6 +137,9 @@ export default {
 .tag-name {
 	grid-column: 4;
 	cursor: pointer;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .tag-amount {
