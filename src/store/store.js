@@ -166,7 +166,7 @@ export default new Vuex.Store({
 						return getters.activeTagIds.includes(tag);
 					});
 					if (bookmarkTagActive === false) return false;
-					return true;
+					else return true;
 				} else return false;
 			});
 		},
@@ -235,6 +235,17 @@ export default new Vuex.Store({
 				active: true
 			};
 			state.tags.push(newTag);
+		},
+		deleteTag: (state, tagId) => {
+			state.bookmarks.forEach((bm) => {
+				const tagIndex = bm.tags.indexOf(tagId);
+				if (tagIndex > -1) {
+					bm.tags.splice(tagIndex, 1);
+				}
+			});
+
+			const index = state.tags.findIndex(tag => tag.id === tagId);
+			state.tags.splice(index, 1);
 		}
 	},
 	actions: {

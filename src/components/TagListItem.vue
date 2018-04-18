@@ -28,7 +28,7 @@
 				<button @click="enableColourPicker">Change colour</button>
 			</BmBaseDropdownMenuItem>
 			<BmBaseDropdownMenuItem>
-				<button>Delete tag</button>
+				<button @click="deleteTag">Delete tag</button>
 			</BmBaseDropdownMenuItem>
 			
 			
@@ -114,6 +114,9 @@ export default {
 		},
 		closeEditName() {
 			this.showEditName = false;
+		},
+		deleteTag() {
+			this.$store.commit("deleteTag", this.tag.id);	
 		}
 	}
 }
