@@ -12,6 +12,8 @@
 		<Swatches id="tag-colour" class="swatches-display" v-model="tagColour" inline swatch-size="24" :colors='colors' background-color="transparent" :wrapper-style="swatchWrapperStyle" :swatch-style="swatchStyle" />
 	</div>
 
+	<button @click="saveNewTag" class="action-button-base">Save tag</button>
+
 </SpModal>
 </template>
 
@@ -31,6 +33,7 @@ export default {
 		return {
 			tagName: "",
 			tagColour: this.$store.getters.randomColour,
+			nextTagId: this.$store.getters.nextTagId,
 			colors: this.$store.getters.colourPalette,
 			swatchWrapperStyle: {
 				display: 'grid',
@@ -54,6 +57,15 @@ export default {
 	methods: {
 		closeAddTag() {
 			this.$emit('closeAddTag');
+		},
+		saveNewTag() {
+			const payload = {
+				id: this.nextTagId,
+				name: this.tagName,
+				colour: this.tagColour
+			}
+			this.$store.commit('addNewTag', payload);
+			this.closeAddTag();
 		}
 	}
 }

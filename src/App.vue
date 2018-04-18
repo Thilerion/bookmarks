@@ -162,4 +162,14 @@ button {
 	padding: 0;
 	color: currentColor;
 }
+
+.action-button-base {
+	padding: 1em;
+	color: #333;
+	border: 1px solid #333;
+	display: inline-block;
+	margin: auto;
+	border-radius: 8px;
+	margin-top: 1em;
+}
 </style>

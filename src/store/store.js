@@ -131,6 +131,13 @@ export default new Vuex.Store({
 			let actives = state.tags.filter((tag) => tag.active === true);
 			return actives.map((val) => val.id);
 		},
+		allTagIds: state => {
+			return state.tags.reduce((acc, val) => {
+				acc.push(val.id);
+				return acc;
+			}, []);
+		},
+		nextTagId: (state, getters) => Math.max(...getters.allTagIds) + 1,
 		searchBookmarks: (state, getters) => {
 			return state.bookmarks.filter((bookmark) => {
 				let filterKey = state.currentSearch.toLowerCase();
@@ -207,6 +214,15 @@ export default new Vuex.Store({
 			const newName = payload.name;
 			const idIndex = state.tags.findIndex(t => t.id === id);
 			state.tags[idIndex].name = newName;
+		},
+		addNewTag: (state, {id, name, colour}) => {
+			const newTag = {
+				id,
+				name,
+				colour,
+				active: true
+			};
+			state.tags.push(newTag);
 		}
 	},
 	actions: {

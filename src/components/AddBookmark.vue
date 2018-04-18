@@ -22,7 +22,7 @@
 		</div>
 		
 	</div>			
-	<button class="save-bookmark-button" @click="saveBookmark">Add bookmark</button>
+	<button class="action-button-base" @click="saveBookmark">Add bookmark</button>
 </SpModal>
 			
 </template>
@@ -163,15 +163,5 @@ export default {
 .chosen-tags > div {
 	display: inline-block;
 	margin: 0.5em;
-}
-
-.save-bookmark-button {
-	padding: 1em;
-	color: #333;
-	border: 1px solid #333;
-	display: inline-block;
-	margin: auto;
-	border-radius: 8px;
-	margin-top: 1em;
 }
 </style>
