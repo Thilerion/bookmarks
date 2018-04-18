@@ -255,6 +255,13 @@ export default new Vuex.Store({
 
 			const index = state.tags.findIndex(tag => tag.id === tagId);
 			state.tags.splice(index, 1);
+		},
+		addTagToAllUntagged: (state, tagId) => {
+			state.bookmarks.forEach((bm) => {
+				if (bm.tags.length < 1) {
+					bm.tags.push(tagId);
+				}
+			})
 		}
 	},
 	actions: {

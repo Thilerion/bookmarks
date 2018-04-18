@@ -1,6 +1,6 @@
 <template>
-<li v-click-outside="closeColourPicker" :class="{empty: emptyTag, untagged: untagged}">
-	<span class="tag-color" :style="tagStyle(tag)" @contextmenu.prevent="enableColourPicker" @click="changeTagStatus(tag.id)"></span>
+<li v-click-outside="closeBottomSlide" :class="{empty: emptyTag, untagged: untagged}">
+	<span class="tag-color" :style="tagStyle(tag)" @contextmenu.prevent="enableBottomSlide" @click="changeTagStatus(tag.id)"></span>
 
 	<div v-if="!showEditName" class="tag-name" @contextmenu.prevent="showDropdown = true" @click="clickChangeTagStatus(tag.id)" @dblclick="doubleClickEnableEditName">
 		<span class="tag-title" :class="{disabled: tag.active === false}">{{tag.name}}</span>
@@ -18,28 +18,38 @@
 		</button>
 
 		<BmBaseDropdownMenu
-			v-if="showDropdown"
+			v-if="showDropdown && !untagged"
 			origin="top right"
 			position="right">
 			<BmBaseDropdownMenuItem>
 				<button @click="enableEditName">Change name</button>
 			</BmBaseDropdownMenuItem>
 			<BmBaseDropdownMenuItem>
-				<button @click="enableColourPicker">Change colour</button>
+				<button @click="enableBottomSlide">Change colour</button>
 			</BmBaseDropdownMenuItem>
 			<BmBaseDropdownMenuItem>
 				<button @click="deleteTag">Delete tag</button>
+			</BmBaseDropdownMenuItem>			
+		</BmBaseDropdownMenu>
+
+		<BmBaseDropdownMenu
+			v-if="showDropdown && untagged"
+			origin="top right"
+			position="right">
+			<BmBaseDropdownMenuItem>
+				<button @click="enableBottomSlide">Add tag to all</button>
 			</BmBaseDropdownMenuItem>
-			
-			
 		</BmBaseDropdownMenu>
 
 	</div>
 
-	<transition name="colour-picker">
-	<BmTagListItemColour v-if="showColourPicker" class="tag-colour-picker" @closeColour="closeColourPicker" :tagId="tag.id" :tagColor="tag.colour">
-		<!--<button @click="closeColourPicker" slot="close-button">Close</button>-->
-	</BmTagListItemColour>
+	<transition name="tag-bottom-slide">
+		<BmTagListItemColour v-if="showBottomSlide && !untagged" class="tag-list-bottom-slide" @closeColour="closeBottomSlide" :tagId="tag.id" :tagColor="tag.colour">
+			<!--<button @click="closeColourPicker" slot="close-button">Close</button>-->
+		</BmTagListItemColour>
+		<BmTagListAddTagToUntagged v-else-if="showBottomSlide && untagged" class="tag-list-bottom-slide" @closeAddTagToUntagged="closeBottomSlide">
+
+		</BmTagListAddTagToUntagged>
 	</transition>
 
 </li>
@@ -48,6 +58,7 @@
 <script>
 import TagListItemColour from '@/components/TagListItemColour';
 import TagListItemEditName from '@/components/TagListItemEditName';
+import TagListAddTagToUntagged from '@/components/TagListAddTagToUntagged';
 
 export default {
 	props: {
@@ -64,12 +75,13 @@ export default {
 	},
 	components: {
 		BmTagListItemColour: TagListItemColour,
-		BmTagListItemEditName: TagListItemEditName
+		BmTagListItemEditName: TagListItemEditName,
+		BmTagListAddTagToUntagged: TagListAddTagToUntagged
 	},
 	data() {
 		return {
 			showDropdown: false,
-			showColourPicker: false,
+			showBottomSlide: false,
 			showEditName: false,
 			clickTimer: null,
 			preventSingleClick: false
@@ -119,20 +131,19 @@ export default {
 		hideDropdown() {
 			this.showDropdown = false;
 		},
-		enableColourPicker() {
-			if (this.untagged) return;
+		enableBottomSlide() {
 			this.showDropdown = false;
 			this.showEditName = false;
-			this.showColourPicker = true;
+			this.showBottomSlide = true;
 		},
-		closeColourPicker() {
-			this.showColourPicker = false;
+		closeBottomSlide() {
+			this.showBottomSlide = false;
 		},
 		enableEditName() {
 			if (this.untagged) return;
 			this.showEditName = true;
 			this.showDropdown = false;
-			this.showColourPicker = false;
+			this.showBottomSlide = false;
 		},
 		closeEditName() {
 			this.showEditName = false;
@@ -207,7 +218,7 @@ export default {
 	fill: currentColor;
 }
 
-.tag-colour-picker {
+.tag-list-bottom-slide {
 	grid-row: 3;
 	grid-column: 1 / span 6;
 	background: #f2f2f2;
@@ -216,11 +227,11 @@ export default {
 	overflow: hidden;
 }
 
-.colour-picker-enter-active, .colour-picker-leave-active {
+.tag-bottom-slide-enter-active, .tag-bottom-slide-leave-active {
 	transition: all .3s ease;
 }
 
-.colour-picker-enter, .colour-picker-leave-to {
+.tag-bottom-slide-enter, .tag-bottom-slide-leave-to {
 	max-height: 0;
 }
 </style>
