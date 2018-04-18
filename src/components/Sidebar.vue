@@ -76,6 +76,8 @@ h2 {
 	grid-auto-flow: column;
 	grid-template-columns: 3.5em min-content min-content auto 2em 1.5em;
 	align-items: center;
+	position: relative;
+	z-index: 2;
 }
 
 .tag-show-button {

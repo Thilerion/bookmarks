@@ -95,7 +95,8 @@ body {
 	position: sticky;
 	top: 0;
 	height: 100vh;
-	z-index: 999;
+	overflow-y: auto;
+	/*z-index: 999;*/
 }
 
 .col-right {
@@ -148,8 +149,14 @@ header {
 	color: white;
 }
 
+header, .sub-header {
+	position: relative;
+	z-index: 10;
+}
+
 .sidebar {
 	padding-bottom: 1em;
+	position: relative;
 }
 
 button {

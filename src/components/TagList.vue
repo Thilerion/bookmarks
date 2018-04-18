@@ -27,8 +27,7 @@ export default {
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	z-index: -1;
-	position: relative;
+	position: relative;	
 }
 
 .tag-item {
