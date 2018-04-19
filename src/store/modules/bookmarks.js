@@ -1,6 +1,9 @@
-import { sortNewestFirst, sortOldestFirst, sortAlphaDescending, sortAlphaAscending, sortCustom } from '@/helpers/sort-functions'
+import bookmarkSearch from './bookmarks-search';
 
 let bookmarkStore = {
+	modules: {
+		bookmarkSearch
+	},
 
 	state: {
 		bookmarks: [
@@ -86,9 +89,6 @@ let bookmarkStore = {
 				customIndex: 5
 			}
 		],
-		currentSearch: "",
-		sortModes: ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)", "Custom"],
-		currentSortMode: 4,
 		currentlyEditingBookmark: null
 	},
 
@@ -100,54 +100,15 @@ let bookmarkStore = {
 				return acc;
 			}, []).sort();
 		},
-		sortedBookmarks: state => {
-			const items = [...state.bookmarks];
-			const mode = state.currentSortMode;
-			if (mode === 0) return items.sort(sortNewestFirst);
-			else if (mode === 1) return items.sort(sortOldestFirst);
-			else if (mode === 2) return items.sort(sortAlphaDescending);
-			else if (mode === 3) return items.sort(sortAlphaAscending);
-			else return items.sort(sortCustom);
-		},
-		searchBookmarks: (state, getters) => {
-			return state.bookmarks.filter((bookmark) => {
-				let filterKey = state.currentSearch.toLowerCase();
-				if (bookmark.title.toLowerCase().includes(filterKey) || bookmark.description.toLowerCase().includes(filterKey)) {
-					let bookmarkTagActive = bookmark.tags.some((tag) => {
-						return getters.activeTagIds.includes(tag);
-					});
-					if (bookmarkTagActive === false) return false;
-					return true;
-				} else return false;
-			});
-		},
-		searchSortedBookmarks: (state, getters) => {
-			return getters.sortedBookmarks.filter((bookmark) => {
-				let filterKey = state.currentSearch.toLowerCase();
-				if (bookmark.title.toLowerCase().includes(filterKey) || bookmark.description.toLowerCase().includes(filterKey)) {
-					let bookmarkTagActive = bookmark.tags.some((tag) => {
-						return getters.activeTagIds.includes(tag);
-					});
-					if (bookmarkTagActive === true) return true;
-					else if (bookmark.tags.length < 1 && getters.untaggedTag.active === true) return true;
-					else return false;
-				} else return false;
-			});
-		},
 		untaggedBookmarks: (state, getters) => {
 			return getters.bookmarks.filter((bm) => {
 				return bm.tags.length < 1;
 			});
 		},
-		searchString: state => state.currentSearch,
-		currentSortModeString: state => state.sortModes[state.currentSortMode],
-		sortModes: state => state.sortModes,
 		currentlyEditingBookmark: state => state.currentlyEditingBookmark
 	},
 
 	mutations: {
-		changeCurrentSearch: (state, searchString) => state.currentSearch = searchString,
-		setSortMode: (state, newSortIndex) => state.currentSortMode = newSortIndex,
 		currentlyEditingBookmark: (state, id) => state.currentlyEditingBookmark = id,
 		pushNewBookmark: (state, bm) => state.bookmarks.push(bm),
 		deleteBookmark: (state, id) => {
@@ -187,9 +148,6 @@ let bookmarkStore = {
 			bm.customIndex = bm.id;
 			bm.added = Date.now() * 1;
 			commit('pushNewBookmark', bm);
-		},
-		editSearchFilter({ commit }, searchString) {
-			commit('changeCurrentSearch', searchString);
 		}
 	}
 }
