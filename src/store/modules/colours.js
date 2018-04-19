@@ -1,6 +1,6 @@
 import { getColourArray, singleAmount, multipleAmount } from '@/helpers/colours.js';
 
-const colourStore = {
+let colourStore = {
 	state: {
 		colourPalette: getColourArray("single", 20),
 		paletteType: "single",

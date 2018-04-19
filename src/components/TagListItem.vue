@@ -150,7 +150,7 @@ export default {
 		},
 		deleteTag() {
 			if (this.untagged) return;
-			this.$store.commit("deleteTag", this.tag.id);	
+			this.$store.dispatch("deleteTag", this.tag.id);	
 		}
 	}
 }
