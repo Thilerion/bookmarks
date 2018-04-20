@@ -15,11 +15,7 @@
 		<p class="bookmark-url bookmark-subtext">{{url | trim}}</p>
 
 		<p class="bookmark-date bookmark-subtext">{{dateAddedString}}</p>
-
-		<span class="debugContent"
-			v-if="showBookmarkListDebugMode"
-			>{{bookmarkDebugInfo | trim}}
-		</span>
+		
 	</div>
 
 	<div class="bookmark-list-tags">
@@ -92,12 +88,6 @@ export default {
 			let str = this.description;
 			let filter = this.searchString;
 			return this.highlightWithString(str, filter);
-		},
-		showBookmarkListDebugMode() {
-			return this.$store.getters.showBookmarkListDebugMode;
-		},
-		bookmarkDebugInfo() {
-			return `id: ${this.bookmark.id}, date: ${new Date(this.bookmark.added).toLocaleString()}, listOrder: ${this.bookmark.customIndex}`;
 		}
 	},
 	methods: {

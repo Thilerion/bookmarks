@@ -19,11 +19,7 @@
    </div>
 
 	<div class="col col-right">
-		<BmSearch/>
-		<div class="main">
-			<BmSortList/>
-			<BmBookmarks/>
-		</div>	   
+		<BmMainContent/>	   
 	</div>
 
 	<component :is="activeModal"/>
@@ -32,22 +28,18 @@
 </template>
 
 <script>
-import Search from '@/components/Search';
-import Bookmarks from '@/components/bookmarks/Bookmarks';
 import Sidebar from '@/components/layout/Sidebar';
 import SubHeader from '@/components/layout/SubHeader';
 import BookmarkAdd from '@/components/modals/BookmarkAdd';
 import TagAdd from '@/components/modals/TagAdd';
-import SortList from '@/components/SortList';
+import MainContent from '@/components/layout/MainContent';
 
 export default {
 	components: {
-		BmSearch: Search,
-		BmBookmarks: Bookmarks,
 		BmSidebar: Sidebar,
 		BmSubHeader: SubHeader,
+		BmMainContent: MainContent,
 		BmBookmarkAdd: BookmarkAdd,
-		BmSortList: SortList,
 		BmTagAdd: TagAdd
 	},
 	computed: {
@@ -113,18 +105,6 @@ body {
 	background: #eee;
 }
 
-.main {
-	max-width: 1200px;
-	margin: auto;
-}
-
-.main > div {
-	margin: 0.5em 1em;
-}
-
-.main > div:first-of-type {
-	margin-top: 0;
-}
 
 h1, h2, h3, h4 {
 	margin: 0;

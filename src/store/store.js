@@ -13,13 +13,15 @@ export default new Vuex.Store({
 		colourModule,
 		tagModule
 	},
+
 	state: {
 		modalOptions: ['BmBookmarkAdd', 'BmTagAdd'],
 		activeModal: null,
-		showBookmarkListDebugMode: false
+		bookmarkListViews: [{ name: "Compact", icon: "view-compact" }, { name: "Normal", icon: "view-list" }, { name: 'Grid', icon: "view-grid" }],
+		currentBookmarkListView: 1
 	},
+
 	getters: {
-		showBookmarkListDebugMode: state => state.showBookmarkListDebugMode,
 		tagAmount: (state, getters) => {
 			const tagAmounts = {};
 			for (let tId of getters.allTagIds) {
@@ -36,13 +38,23 @@ export default new Vuex.Store({
 		activeModal: state => {
 			if (state.activeModal == null) return null;
 			else return state.modalOptions[state.activeModal];
-		}
+		},
+		bookmarkListViews: state => state.bookmarkListViews,
+		currentBookmarkListView: state => state.bookmarkListViews[state.currentBookmarkListView]
 	},
+
 	mutations: {
 		enableModal: (state, modalId) => state.activeModal = modalId,
-		disableModal: state => state.activeModal = null
+		disableModal: state => state.activeModal = null,
+		setViewMode: (state, modeId) => {
+			if (-1 < modeId < state.bookmarkListViews.length) {
+				state.currentBookmarkListView = modeId;
+			}
+		}
 	},
+
 	actions: {
 		
 	}
+	
 });

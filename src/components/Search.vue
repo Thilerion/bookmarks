@@ -27,7 +27,6 @@ export default {
 
 <style scoped>
 .search-bookmarks {
-	padding: 1em 2em;
 	position: relative;
 }
 
@@ -57,8 +56,8 @@ export default {
 	color: #777;
 	cursor: pointer;
 	position: absolute;
-	right: 2.75em;
-	top: 2em;
+	right: calc(12px);
+	top: calc(50% - 12px);
 }
 
 .search-icon {

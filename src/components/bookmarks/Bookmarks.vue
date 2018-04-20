@@ -1,7 +1,14 @@
 <template>
 <div class="bookmarks">
 	<transition-group name="bookmark-list">
-		<BmBookmark class="bookmark-container" v-for="bookmark in searchFilteredSortedBookmarks" :key="bookmark.title" :bookmark="bookmark" :editing="bookmark.id === currentlyEditingBookmark" :class="{'greater-height-when-editing': bookmark.id === currentlyEditingBookmark}" />
+		<BmBookmark
+			class="bookmark-container"
+			:class="{'greater-height-when-editing': bookmark.id === currentlyEditingBookmark}"
+			v-for="bookmark in searchFilteredSortedBookmarks"
+			:key="bookmark.title"
+			:bookmark="bookmark"
+			:editing="bookmark.id === currentlyEditingBookmark"
+		/>
 	</transition-group>
 </div>
 </template>
@@ -31,8 +38,6 @@ export default {
 
 <style scoped>
 .bookmarks {
-	margin: 0.5em 1em;
-	padding: 0 1em;
 	position: relative;
 }
 

@@ -1,20 +1,21 @@
 <template>
-<div class="sort-wrapper" v-click-outside="hideMenu">
-	<div class="sort-items">
-		<button class="sort-button" @click="showMenu = !showMenu">
-			<svg class="sort-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-				<path d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/>
-				<path d="M0 0h24v24H0z" fill="none"/>
-			</svg>
-			<span class="sort-string">{{currentSortModeString}}</span>
-		</button>
-		<BmDropdownMenu v-if="showMenu">
-			<BmDropdownMenuItem v-for="(mode, index) in sortModes" :key="index" v-show="currentSortModeString !== mode">
-				<button @click="setSortMode(index)">{{mode}}</button>
-			</BmDropdownMenuItem>
-		</BmDropdownMenu>
-	</div>
-</div>
+<span class="sort-items" v-click-outside="hideMenu">
+	<button class="sort-button" @click="showMenu = !showMenu">
+		<svg class="sort-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<path d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/>
+			<path d="M0 0h24v24H0z" fill="none"/>
+		</svg>
+		<span class="sort-string">{{currentSortModeString}}</span>
+	</button>
+	<BmDropdownMenu v-if="showMenu">
+		<BmDropdownMenuItem
+		v-for="(mode, index) in sortModes"
+		:key="mode"
+		:selected="currentSortModeString === mode">
+			<button @click="setSortMode(index)">{{mode}}</button>
+		</BmDropdownMenuItem>
+	</BmDropdownMenu>
+</span>
 </template>
 
 <script>
@@ -34,7 +35,7 @@ export default {
 	},
 	methods: {
 		setSortMode(newSortIndex) {
-			this.showMenu = false;
+			this.hideMenu();
 			this.$store.commit('setSortMode', newSortIndex);			
 		},
 		hideMenu() {
@@ -45,17 +46,15 @@ export default {
 </script>
 
 <style scoped>
-.sort-wrapper {
-	padding: 0.5em 1em;
-}
-
 .sort-items {
-	padding-left: 0.25em;
+	display: inline-block;
 	position: relative;
 }
 
 .sort-button {
 	display: inline-flex;
+	padding-top: 0.25em;
+	padding-bottom: 0.25em;
 	align-items: center;
 	justify-content: space-between;
 	opacity: 0.5;
