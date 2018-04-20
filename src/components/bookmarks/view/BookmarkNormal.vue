@@ -14,14 +14,19 @@
 			v-html="$options.filters.filterHighlight(description, searchString)">
 		</p>
 
-		<p class="bm-sub bm-url">{{url | filterLinkDomain}}</p>
+		<p class="bm-sub bm-url" :title="url">{{url | filterLinkDomain}}</p>
 
 		<p class="bm-sub bm-date">{{dateAddedString}}</p>
 
 	</div>
 
 	<div class="col-tags">
-
+		<BmTagDisplay
+			v-for="tag in bookmark.tags"
+			:key="tag"
+			:tagId="tag"
+			canBeInactive
+		/>
 	</div>
 
 	<div class="col-options">
@@ -29,12 +34,18 @@
 			<slot class="options-icon" name="options"/>
 		</button>	
 	</div>	
+
 		
 </div>
 </template>
 
 <script>
+import TagDisplay from '../../shared/TagDisplay';
+
 export default {
+	components: {
+		BmTagDisplay: TagDisplay
+	},
 	props: {
 		bookmark: {
 			type: Object,

@@ -32,6 +32,7 @@ export default {
 <style>
 .main {
 	max-width: 1200px;
+	min-height: 100vh;
 	margin: auto;
 	padding: 1em 2em;
 }

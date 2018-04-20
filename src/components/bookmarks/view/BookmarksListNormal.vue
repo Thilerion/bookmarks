@@ -1,6 +1,6 @@
 <template>
 	<transition-group
-		name="bookmark-lists"
+		name="bookmarks-list"
 		class="bm-wrapper list normal"
 		tag="div">
 		<BmBookmarkNormal

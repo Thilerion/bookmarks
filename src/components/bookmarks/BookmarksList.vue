@@ -117,14 +117,15 @@ span.highlight {
 
 .bm-item-normal {
 	display: flex;
+	position: relative;
+	padding-left: 0.5em;
 }
 
 .bm-item-normal .col-text {
-	background: rgb(255, 240, 240);
 	min-width: 5em;
 	display: flex;
 	flex-direction: column;
-	padding: 0.5em 0.25em 0.5em 0.5em;
+	padding: 0.5em;
 }
 
 .bm-item-normal .bm-sub {
@@ -150,13 +151,36 @@ span.highlight {
 }
 
 .bm-item-normal .col-tags {
-	flex: 1 1 auto;
+	flex: 1 3 10%;
+	padding: 0.1em 0.25em;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-wrap: wrap;
+	align-content: space-around;
+	overflow: hidden;
+}
+
+.bm-item-normal .col-tags > div {
+	margin: 0.25em;
 }
 
 .bm-item-normal .col-options {
 	flex: 0 0 1.5em;
+	display: inline-flex;
+	align-items:center;
+	justify-content: center;
+	transition: opacity .1s linear;
+	opacity: 0;
 }
 
+.bm-item-normal:hover .col-options {
+	opacity: 0.5;
+}
+
+.bm-item-normal:hover .col-options:hover {
+	opacity: 0.9;
+}
 
 /*
  * = Grid view items =
@@ -193,9 +217,10 @@ span.highlight {
 	opacity: 0;	
 }
 
-.bookmark-lists-move {
-	animation: move-list-fade .6s;
+.bookmarks-list-move {
 	transition: transform .6s ease;
+	/* For some reason these two don't work together:
+	animation: move-list-fade .6s;*/
 }
 
 @keyframes move-list-fade {
@@ -209,6 +234,9 @@ span.highlight {
 		opacity: 0.5;
 	}
 	80% {
+		opacity: 1;
+	}
+	100% {
 		opacity: 1;
 	}
 }

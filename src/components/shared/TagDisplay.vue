@@ -10,7 +10,8 @@
 export default {
 	props: {
 		tagId: {
-			type: Number
+			type: Number,
+			required: true
 		},
 		canClose: {
 			type: Boolean

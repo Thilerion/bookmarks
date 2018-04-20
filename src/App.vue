@@ -106,6 +106,7 @@ body {
 .col-right {
 	background: #eee;
 	flex: 1 1 75%;
+	overflow: hidden;
 }
 
 
