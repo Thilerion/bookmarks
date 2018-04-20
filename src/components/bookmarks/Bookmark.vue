@@ -184,7 +184,11 @@ export default {
 	opacity: 0.6;
 }
 
-.bookmark-item-components-enter-active, .bookmark-item-components-leave-active {
+.bookmark-item-components-enter-active {
+	transition: all .25s ease-in .1s;
+}
+
+.bookmark-item-components-leave-active {
 	transition: all .25s ease;
 }
 
