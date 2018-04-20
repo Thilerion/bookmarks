@@ -60,8 +60,8 @@ export default {
 	justify-content: center;
 	padding-top: 1em;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, 14em);
-	grid-gap: 1em;
+	grid-template-columns: repeat(auto-fill, 16em);
+	grid-gap: 1.5em;
 }
 
 /*
@@ -236,8 +236,15 @@ span.highlight {
 */
 
 .grid .bm-item {
-	width: 14em;
-	height: 14em;
+	width: 16em;
+	height: 16em;
+	box-shadow: 1px 1px 5px -2px rgba(0,0,0,0.4);
+	display: flex;
+	flex-direction: column;
+}
+
+.bm-item-grid > a {
+	flex: 0 0 8em;
 }
 
 .bm-item-grid .top {
@@ -257,10 +264,10 @@ span.highlight {
 }
 
 .bm-item-grid .bot {
-	padding: 0.4em 0.5em;
+	flex: 1 1 auto;
+	padding: 0.4em 0.75em 0.4em 0.5em;
 	display: flex;
 	flex-direction: column;
-	height: 6em;
 }
 
 .bm-item-grid p {
@@ -288,10 +295,27 @@ span.highlight {
 
 .bm-item-grid .bm-tags {
 	margin-top: auto;
+	overflow: hidden;
+	display: inline-flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-left: -0.25em;
+	margin-bottom: -0.25em;
+	flex-wrap: wrap;
+	padding-top: 0.25em;
 }
 
-.bm-item-grid .bm-tags .tag:not(:first-of-type) {
+.bm-item-grid .bm-tags .tag {
+	display: inline-block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 	margin-left: 0.5em;
+	margin-bottom: 0.25em;
+}
+
+.bm-item-grid .bm-tags .tag:last-child {
+	margin-right: 0.50em;
 }
 
 .bm-item-grid > a:first-child {
@@ -323,7 +347,7 @@ span.highlight {
 }
 
 .bookmarks-list-move {
-	transition: transform .6s ease;
+	transition: all .6s ease;
 	/* For some reason these two don't work together:
 	animation: move-list-fade .6s;*/
 }

@@ -38,7 +38,7 @@ let bookmarkStore = {
 				title: "Learn Vue 2: Basic Data Binding",
 				description: "",
 				url: "https://laracasts.com/series/learn-vue-2-step-by-step/episodes/1",
-				tags: [0, 1, 4],
+				tags: [0, 1, 4, 2],
 				id: 8,
 				added: 1522190367705,
 				customIndex: 8
