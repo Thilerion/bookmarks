@@ -57,9 +57,11 @@ export default {
 */
 
 .bm-wrapper.grid {
-	display: flex;
-	flex-wrap: wrap;
 	justify-content: center;
+	padding-top: 1em;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 14em);
+	grid-gap: 1em;
 }
 
 /*
@@ -234,12 +236,68 @@ span.highlight {
 */
 
 .grid .bm-item {
-	margin: 0 1em;
-	width: 175px;
-	height: 175px;
-	margin-bottom: 2em;
+	width: 14em;
+	height: 14em;
 }
 
+.bm-item-grid .top {
+	height: 8em;
+	background: darkblue;
+	display: flex;
+	position: relative;
+	user-select: none;
+	cursor: pointer;
+}
+
+.bm-item-grid .top-bg {
+	position: absolute;
+	left: 0; right: 0;
+	top: 0; bottom: 0;
+	filter: brightness(95%);
+}
+
+.bm-item-grid .bot {
+	padding: 0.4em 0.5em;
+	display: flex;
+	flex-direction: column;
+	height: 6em;
+}
+
+.bm-item-grid p {
+	margin: 0;
+	padding: 0;
+}
+
+.bm-item-grid .host {
+	margin: auto;	
+	color: rgba(250,250,250);
+	text-shadow: 1px 1px .5px rgba(0,0,0,0.6);
+	z-index: 2;
+}
+
+.bm-item-grid .bm-description {
+	font-size: 0.8em;
+	margin-top: 0.25em;
+}
+
+.bm-item-grid .col-options {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.bm-item-grid .bm-tags {
+	margin-top: auto;
+}
+
+.bm-item-grid .bm-tags .tag:not(:first-of-type) {
+	margin-left: 0.5em;
+}
+
+.bm-item-grid > a:first-child {
+	text-decoration: none;
+	outline: none;
+}
 
 /*
 ** === BookmarksList[VIEW_MODE] > Bookmark Transition CSS ===

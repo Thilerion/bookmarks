@@ -26,10 +26,7 @@
 			@goToUrl="goToUrl"
 			@deleteBookmark="deleteBookmark"
 			@editBookmark="editBookmark"/>
-	</div>
-		
-	
-		
+	</div>		
 </div>
 </template>
 

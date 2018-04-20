@@ -5,7 +5,7 @@
 		:class="{active: showDropdown}"
 		@click="toggleBookmarkOptions"
 		>
-		<BmSvgIcon icon="options-hor"/>
+		<BmSvgIcon :icon="optionsIcon"/>
 	</button>
 
 	<BmDropdownMenu
@@ -40,9 +40,20 @@ export default {
 		BmDropDownMenu: DropDownMenu,
 		BmDropDownMenuItem: DropDownMenuItem
 	},
+	props: {
+		verticalIcon: {
+			type: Boolean
+		}
+	},
 	data() {
 		return {
 			showDropdown: false			
+		}
+	},
+	computed: {
+		optionsIcon() {
+			if (this.verticalIcon) return 'options-vert';
+			else return 'options-hor';
 		}
 	},
 	methods: {

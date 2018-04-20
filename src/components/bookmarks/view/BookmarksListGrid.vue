@@ -7,22 +7,16 @@
 			v-for="bm in bookmarks"
 			:key="bm.title"
 			:bookmark="bm"
-			class="bm-item">
-
-			<BmSvgIcon icon="options-vert" slot="options"/>
-
-		</BmBookmarkGrid>
+			class="bm-item"/>
 	</transition-group>
 </template>
 
 <script>
 import BookmarkGrid from './BookmarkGrid.vue'
-import SvgIcon from '@/components/shared/SvgIcon'
 
 export default {
 	components: {
-		BmBookmarkGrid: BookmarkGrid,
-		BmSvgIcon: SvgIcon
+		BmBookmarkGrid: BookmarkGrid
 	},
 	props: {
 		bookmarks: {
