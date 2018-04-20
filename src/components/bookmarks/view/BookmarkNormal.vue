@@ -35,9 +35,10 @@
 	</div>
 
 	<div class="col-options">
-		<button class="options-button">
-			<slot class="options-icon" name="options"/>
-		</button>	
+		<BmBookmarkOptions
+			@goToUrl="goToUrl"
+			@deleteBookmark="deleteBookmark"
+			@editBookmark="editBookmark"/>	
 	</div>	
 
 		
@@ -46,10 +47,12 @@
 
 <script>
 import TagDisplay from '../../shared/TagDisplay';
+import BookmarkOptions from '../BookmarkOptions';
 
 export default {
 	components: {
-		BmTagDisplay: TagDisplay
+		BmTagDisplay: TagDisplay,
+		BmBookmarkOptions: BookmarkOptions
 	},
 	props: {
 		bookmark: {
@@ -77,7 +80,15 @@ export default {
 		}
 	},
 	methods: {
-		
+		deleteBookmark() {
+			this.$store.commit('deleteBookmark', this.bookmark.id);
+		},
+		editBookmark() {
+			this.$store.commit('currentlyEditingBookmark', this.bookmark.id);
+		},
+		goToUrl() {
+			window.open(this.url);
+		}
 	}
 }
 </script>

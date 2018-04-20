@@ -153,6 +153,8 @@ span.highlight {
 .bm-item-normal .col-tags {
 	flex: 1 3 10%;
 	padding: 0.1em 0.25em;
+	padding-right: 0;
+	margin-right: -0.25em;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
@@ -166,19 +168,26 @@ span.highlight {
 }
 
 .bm-item-normal .col-options {
-	flex: 0 0 1.5em;
+	flex: 0 0 2em;
 	display: inline-flex;
 	align-items:center;
 	justify-content: center;
+}
+
+.bm-item-normal .options-button {
 	transition: opacity .1s linear;
 	opacity: 0;
 }
 
-.bm-item-normal:hover .col-options {
+.bm-item-normal:hover .options-button {
 	opacity: 0.5;
 }
 
-.bm-item-normal:hover .col-options:hover {
+.bm-item-normal:hover .options-button:hover {
+	opacity: 0.9;
+}
+
+.bm-item-normal .options-button.active {
 	opacity: 0.9;
 }
 
