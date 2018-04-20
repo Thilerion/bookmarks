@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import TagListItem from '@/components/TagListItem';
+import TagListItem from './TagListItem';
 
 export default {
 	components: {

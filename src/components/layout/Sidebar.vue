@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import TagList from '@/components/TagList';
-import SvgIcon from '@/components/SvgIcon';
+import TagList from '../tag-list/TagList';
+import SvgIcon from '../shared/SvgIcon';
 
 export default {
 	components: {

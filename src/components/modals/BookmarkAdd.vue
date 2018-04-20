@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import TagDisplay from '@/components/TagDisplay';
-import Modal from '@/components/Modal';
+import TagDisplay from '../shared/TagDisplay';
+import Modal from './Modal';
 
 export default {
 	components: {

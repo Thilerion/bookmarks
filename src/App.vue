@@ -34,11 +34,11 @@
 
 <script>
 import Search from '@/components/Search';
-import Bookmarks from '@/components/Bookmarks';
-import Sidebar from '@/components/Sidebar';
-import SubHeader from '@/components/SubHeader';
-import AddBookmark from '@/components/AddBookmark';
-import TagAdd from '@/components/TagAdd';
+import Bookmarks from '@/components/bookmarks/Bookmarks';
+import Sidebar from '@/components/layout/Sidebar';
+import SubHeader from '@/components/layout/SubHeader';
+import AddBookmark from '@/components/modals/BookmarkAdd';
+import TagAdd from '@/components/modals/TagAdd';
 import SortList from '@/components/SortList';
 
 export default {

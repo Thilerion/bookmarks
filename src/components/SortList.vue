@@ -8,11 +8,11 @@
 			</svg>
 			<span class="sort-string">{{currentSortModeString}}</span>
 		</button>
-		<BmBaseDropdownMenu v-if="showMenu">
-			<BmBaseDropdownMenuItem v-for="(mode, index) in sortModes" :key="index" v-show="currentSortModeString !== mode">
+		<BmDropdownMenu v-if="showMenu">
+			<BmDropdownMenuItem v-for="(mode, index) in sortModes" :key="index" v-show="currentSortModeString !== mode">
 				<button @click="setSortMode(index)">{{mode}}</button>
-			</BmBaseDropdownMenuItem>
-		</BmBaseDropdownMenu>
+			</BmDropdownMenuItem>
+		</BmDropdownMenu>
 	</div>
 </div>
 </template>

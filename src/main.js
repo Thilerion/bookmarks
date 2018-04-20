@@ -2,10 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import store from './store/store'
 
-import BaseDropdownMenu from './components/BaseDropdownMenu'
-import BaseDropdownMenuItem from '@/components/BaseDropdownMenuItem';
-Vue.component('BmBaseDropdownMenu', BaseDropdownMenu)
-Vue.component('BmBaseDropdownMenuItem', BaseDropdownMenuItem)
+import DropdownMenu from './components/shared/DropdownMenu'
+import DropdownMenuItem from '@/components/shared/DropdownMenuItem';
+Vue.component('BmDropdownMenu', DropdownMenu)
+Vue.component('BmDropdownMenuItem', DropdownMenuItem)
 
 import vClickOutside from 'v-click-outside'
 Vue.use(vClickOutside)
