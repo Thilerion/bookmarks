@@ -26,8 +26,7 @@
 		</div>	   
 	</div>
 
-	<BmAddBookmark v-if="modalAddBookmark"/>
-	<BmTagAdd v-else-if="modalAddTag"/>
+	<component :is="activeModal"/>
 	
 </div>
 </template>
@@ -37,7 +36,7 @@ import Search from '@/components/Search';
 import Bookmarks from '@/components/bookmarks/Bookmarks';
 import Sidebar from '@/components/layout/Sidebar';
 import SubHeader from '@/components/layout/SubHeader';
-import AddBookmark from '@/components/modals/BookmarkAdd';
+import BookmarkAdd from '@/components/modals/BookmarkAdd';
 import TagAdd from '@/components/modals/TagAdd';
 import SortList from '@/components/SortList';
 
@@ -47,16 +46,21 @@ export default {
 		BmBookmarks: Bookmarks,
 		BmSidebar: Sidebar,
 		BmSubHeader: SubHeader,
-		BmAddBookmark: AddBookmark,
+		BmBookmarkAdd: BookmarkAdd,
 		BmSortList: SortList,
 		BmTagAdd: TagAdd
 	},
 	computed: {
-		modalAddBookmark() {
-			return this.$store.getters.modalAddBookmark;
+		activeModal() {
+			return this.$store.getters.activeModal;
+		}
+	},
+	methods: {
+		enableModalBookmark() {
+			this.$store.commit('enableModal', 0);
 		},
-		modalAddTag() {
-			return this.$store.getters.modalAddTag;
+		enableModalTag() {
+			this.$store.commit('enableModal', 1);
 		}
 	}
 }

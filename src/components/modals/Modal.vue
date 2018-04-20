@@ -24,7 +24,7 @@
 export default {
 	methods: {
 		emitCloseModal() {
-			this.$emit('closeModal');
+			this.$store.commit('disableModal');
 		}
 	}
 }

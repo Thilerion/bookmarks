@@ -14,8 +14,8 @@ export default new Vuex.Store({
 		tagModule
 	},
 	state: {
-		modalAddBookmark: false,
-		modalAddTag: false,
+		modalOptions: ['BmBookmarkAdd', 'BmTagAdd'],
+		activeModal: null,
 		showBookmarkListDebugMode: false
 	},
 	getters: {
@@ -33,12 +33,14 @@ export default new Vuex.Store({
 			}
 			return tagAmounts;
 		},
-		modalAddBookmark: state => state.modalAddBookmark,
-		modalAddTag: state => state.modalAddTag,
+		activeModal: state => {
+			if (state.activeModal == null) return null;
+			else return state.modalOptions[state.activeModal];
+		}
 	},
 	mutations: {
-		toggleModalAddBookmark: state => state.modalAddBookmark = !state.modalAddBookmark,
-		toggleModalAddTag: state => state.modalAddTag = !state.modalAddTag,	
+		enableModal: (state, modalId) => state.activeModal = modalId,
+		disableModal: state => state.activeModal = null
 	},
 	actions: {
 		

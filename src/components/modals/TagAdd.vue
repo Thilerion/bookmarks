@@ -1,5 +1,5 @@
 <template>
-	<SpModal @closeModal="toggleModalAddTag">
+	<SpModal>
 		<template slot="header">Add tag</template>
 
 		<div class="tag-input-group">
@@ -71,8 +71,8 @@ export default {
 		}
 	},
 	methods: {
-		toggleModalAddTag() {
-			this.$store.commit('toggleModalAddTag');
+		disableAddTagModal() {
+			this.$store.commit('disableModal');
 		},
 		saveNewTag() {
 			if (this.error) {
@@ -86,7 +86,7 @@ export default {
 				colour: this.tagColour
 			}
 			this.$store.commit('addNewTag', payload);
-			this.toggleModalAddTag();
+			this.disableAddTagModal();
 		},
 		generateErrorMessages() {
 			this.errorMessages = [];

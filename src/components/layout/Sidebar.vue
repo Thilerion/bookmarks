@@ -2,7 +2,7 @@
 <div class="sidebar">
 	<div class="tag-header">
 		<h2>Tags</h2>
-		<button class="tag-add-button" @click="toggleAddTagModal">
+		<button class="tag-add-button" @click="enableAddTagModal">
 			<BmSvgIcon icon="plus"/>
 		</button>
 		<button class="tag-show-button" @click="toggleTagList">
@@ -47,8 +47,8 @@ export default {
 			if (this.showTagList === true) this.collapseTagList();
 			else this.expandTagList();
 		},
-		toggleAddTagModal() {
-			this.$store.commit('toggleModalAddTag');
+		enableAddTagModal() {
+			this.$store.commit('enableModal', 1);
 		}
 	}
 }

@@ -1,5 +1,5 @@
 <template>
-<SpModal @closeModal="toggleModalAddBookmark">
+<SpModal>
 	<template slot="header">Add bookmark</template>
 	
 	<label for="bookmark-url">Link *</label>
@@ -47,9 +47,6 @@ export default {
 		}
 	},
 	computed: {
-		modalAddBookmark() {
-			return this.$store.getters.modalAddBookmark;
-		},
 		urlValid() {
 			if (this.url.length > 3 && this.url.includes(".")) return true;
 			else return false;
@@ -73,7 +70,7 @@ export default {
 	},
 	methods: {
 		toggleModalAddBookmark() {
-			this.$store.commit('toggleModalAddBookmark');
+			this.$store.commit('disableModal');
 		},
 		removeTag(tagId) {
 			console.log(tagId);
