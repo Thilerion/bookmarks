@@ -7,8 +7,8 @@
 	<div class="bookmark-item">
 		
 		<transition name="bookmark-item-components" mode="out-in">
-			<BmBookmarkShow class="bookmark-main" :bookmark="bookmark" v-if="!editMode" />
-			<BmBookmarkEdit ref="editComponentChild" class="bookmark-main" :bookmark="bookmark" v-else />
+			<BmBookmarkNormalShow class="bookmark-main" :bookmark="bookmark" v-if="!editMode" />
+			<BmBookmarkListEdit ref="editComponentChild" class="bookmark-main" :bookmark="bookmark" v-else />
 		</transition>
 
 		<div class="bookmark-options"
@@ -55,13 +55,13 @@
 </template>
 
 <script>
-import BookmarkShow from './BookmarkShow';
-import BookmarkEdit from './BookmarkEdit';
+import BookmarkNormalShow from './BookmarkNormalShow';
+import BookmarkListEdit from './BookmarkListEdit';
 
 export default {
 	components: {
-		BmBookmarkShow: BookmarkShow,
-		BmBookmarkEdit: BookmarkEdit
+		BmBookmarkNormalShow: BookmarkNormalShow,
+		BmBookmarkListEdit: BookmarkListEdit
 	},
 	props: ["bookmark", "editing"],
 	data() {
