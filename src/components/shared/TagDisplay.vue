@@ -46,8 +46,8 @@ export default {
 
 <style scoped>
 .tag {
-	padding: 0.4em 0.65em;
-	font-size: 0.8em;
+	font-size: 0.7em;
+	padding: 0.3em 0.5em;
 	border: 2px solid transparent;
 	border-radius: 6px;
 	color: #f6f6f6;
