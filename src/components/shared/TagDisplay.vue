@@ -10,8 +10,7 @@
 export default {
 	props: {
 		tagId: {
-			type: Number,
-			required: true
+			type: Number
 		},
 		canClose: {
 			type: Boolean
@@ -21,10 +20,14 @@ export default {
 		},
 		small: {
 			type: Boolean
+		},
+		untagged: {
+			type: Boolean
 		}
 	},
 	computed: {
 		tagProperties() {
+			if (this.untagged) return this.$store.getters.untaggedTag;
 			return this.$store.getters.tagProperties(this.tagId);
 		},
 		tagTitle() {

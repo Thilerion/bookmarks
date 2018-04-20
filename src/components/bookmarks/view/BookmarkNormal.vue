@@ -27,6 +27,11 @@
 			:tagId="tag"
 			canBeInactive
 		/>
+		<BmTagDisplay
+			v-if="bookmark.tags.length === 0"
+			untagged
+			canBeInactive
+		/>
 	</div>
 
 	<div class="col-options">
