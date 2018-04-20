@@ -11,11 +11,14 @@ import vClickOutside from 'v-click-outside'
 Vue.use(vClickOutside)
 
 import filterHighlight from '@/helpers/filter-highlight';
+import filterLinkDomain from '@/helpers/filter-link-domain';
 
 Vue.filter('filterHighlight', function (str, filterStr) {
 	console.log(str, filterStr);
 	return filterHighlight(str, filterStr);
 })
+
+Vue.filter('filterLinkDomain', filterLinkDomain);
 
 Vue.filter('trim', function (str) {
 	return str.trim();

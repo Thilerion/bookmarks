@@ -115,28 +115,48 @@ span.highlight {
  * = Normal view items =
 */
 
-.normal .bm-item {
-	display: grid;
-	grid-template-columns: fit-content auto 1fr;
-	grid-auto-flow: column;
+.bm-item-normal {
+	display: flex;
 }
 
-.normal .bm-item > .bm-left {
+.bm-item-normal .col-text {
 	background: rgb(255, 240, 240);
 	min-width: 5em;
+	display: flex;
+	flex-direction: column;
+	padding: 0.5em 0.25em 0.5em 0.5em;
 }
 
-.normal .bm-item > .bm-left > * {
+.bm-item-normal .bm-sub {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	margin: 0;
+	padding: 0;
 }
 
-.normal .bm-item > .bm-left > a {
+.bm-item-normal .bm-sub:not(:last-child) {
+	padding-bottom: 0.25em;
+}
+
+.bm-item-normal .bm-sub:not(.bm-title) {
+	font-size: 0.8em;
+}
+
+.bm-item-normal .bm-title {
 	max-width: 100%;
 	display: inline-block;
 	overflow: hidden;
 }
+
+.bm-item-normal .col-tags {
+	flex: 1 1 auto;
+}
+
+.bm-item-normal .col-options {
+	flex: 0 0 1.5em;
+}
+
 
 /*
  * = Grid view items =
