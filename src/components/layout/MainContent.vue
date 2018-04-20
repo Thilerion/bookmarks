@@ -38,10 +38,11 @@ export default {
 
 .top-bm-options {
 	padding-bottom: 1em;
+	display: flex;
 }
 
-.top-bm-options > span:not(:first-child) {
-	margin-left: 1em;
+.top-bm-options > span {
+	flex: 0 0 10em;
 }
 
 .top-search {
