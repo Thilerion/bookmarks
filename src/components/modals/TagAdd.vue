@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import Modal from '@/components/Modal';
+import Modal from './Modal';
 import Swatches from 'vue-swatches';
 import "vue-swatches/dist/vue-swatches.min.css"
 

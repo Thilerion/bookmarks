@@ -17,29 +17,29 @@
 			</svg>
 		</button>
 
-		<BmBaseDropdownMenu
+		<BmDropdownMenu
 			v-if="showDropdown && !untagged"
 			origin="top right"
 			position="right">
-			<BmBaseDropdownMenuItem>
+			<BmDropdownMenuItem>
 				<button @click="enableEditName">Change name</button>
-			</BmBaseDropdownMenuItem>
-			<BmBaseDropdownMenuItem>
+			</BmDropdownMenuItem>
+			<BmDropdownMenuItem>
 				<button @click="enableBottomSlide">Change colour</button>
-			</BmBaseDropdownMenuItem>
-			<BmBaseDropdownMenuItem>
+			</BmDropdownMenuItem>
+			<BmDropdownMenuItem>
 				<button @click="deleteTag">Delete tag</button>
-			</BmBaseDropdownMenuItem>			
-		</BmBaseDropdownMenu>
+			</BmDropdownMenuItem>			
+		</BmDropdownMenu>
 
-		<BmBaseDropdownMenu
+		<BmDropdownMenu
 			v-if="showDropdown && untagged"
 			origin="top right"
 			position="right">
-			<BmBaseDropdownMenuItem>
+			<BmDropdownMenuItem>
 				<button @click="enableBottomSlide">Add tag to all</button>
-			</BmBaseDropdownMenuItem>
-		</BmBaseDropdownMenu>
+			</BmDropdownMenuItem>
+		</BmDropdownMenu>
 
 	</div>
 
@@ -56,9 +56,9 @@
 </template>
 
 <script>
-import TagListItemColour from '@/components/TagListItemColour';
-import TagListItemEditName from '@/components/TagListItemEditName';
-import TagListAddTagToUntagged from '@/components/TagListAddTagToUntagged';
+import TagListItemColour from './TagListItemColour';
+import TagListItemEditName from './TagListItemEditName';
+import TagListAddTagToUntagged from './TagListAddTagToUntagged';
 
 export default {
 	props: {

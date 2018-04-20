@@ -32,22 +32,22 @@
 				<button class="bookmark-options-button active-options bookmark-options-close-button" @click="stopEditingBookmark">cancel</button>
 			</div>
 
-			<BmBaseDropdownMenu
+			<BmDropdownMenu
 				v-if="showBookmarkOptions"
 				class="bookmark-options-list"
 				position="right"
 				origin="top right"
 			>
-				<BmBaseDropdownMenuItem border-bottom>
+				<BmDropdownMenuItem border-bottom>
 					<button @click="goToLink">Go to website</button>		
-				</BmBaseDropdownMenuItem>
-				<BmBaseDropdownMenuItem>
+				</BmDropdownMenuItem>
+				<BmDropdownMenuItem>
 					<button @click="deleteBookmark">Delete bookmark</button>				
-				</BmBaseDropdownMenuItem>
-				<BmBaseDropdownMenuItem>
+				</BmDropdownMenuItem>
+				<BmDropdownMenuItem>
 					<button @click="editBookmark">Edit bookmark</button>
-				</BmBaseDropdownMenuItem>
-			</BmBaseDropdownMenu>
+				</BmDropdownMenuItem>
+			</BmDropdownMenu>
 		</div>
 	</div>
 </div>
@@ -55,8 +55,8 @@
 </template>
 
 <script>
-import BookmarkShow from '@/components/BookmarkShow';
-import BookmarkEdit from '@/components/BookmarkEdit';
+import BookmarkShow from './BookmarkShow';
+import BookmarkEdit from './BookmarkEdit';
 
 export default {
 	components: {

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Bookmark from '@/components/Bookmark';
+import Bookmark from './Bookmark';
 export default {
 	components: {
 		BmBookmark: Bookmark

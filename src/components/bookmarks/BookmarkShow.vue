@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import TagDisplay from '@/components/TagDisplay';
+import TagDisplay from '../shared/TagDisplay';
 
 export default {
 	components: {

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import SvgIcon from '@/components/SvgIcon';
+import SvgIcon from '../shared/SvgIcon';
 export default {
 	components: {
 		BmSvgIcon: SvgIcon
