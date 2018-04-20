@@ -67,17 +67,14 @@ export default {
 */
 
 .bm-item {
-	border: 1px solid black;
+	background: #fefefe;
 	position: relative;
 	max-height: 15em;
 	transition: max-height .2s ease;
 }
 
-.grid .bm-item {
-	margin: 0 1em;
-	width: 175px;
-	height: 175px;
-	margin-bottom: 2em;
+.bm-item:hover {
+	background-color: #f7f7f7;
 }
 
 .options-button {
@@ -89,6 +86,34 @@ export default {
 	height: 1.5em;
 	width: 1.5em;
 }
+
+span.highlight {
+	background: yellow;
+}
+
+/*
+** === BookmarksList[VIEW_MODE] > Specific Bookmark Item CSS ===
+*/
+
+.list .bm-item:not(:last-of-type) {
+	border-bottom: 1px solid #ddd;
+}
+
+.list .bm-item:first-of-type {
+	border-radius: 5px 5px 0 0;
+}
+
+.list .bm-item:last-of-type {
+	border-radius: 0 0 5px 5px;
+}
+
+.grid .bm-item {
+	margin: 0 1em;
+	width: 175px;
+	height: 175px;
+	margin-bottom: 2em;
+}
+
 
 /*
 ** === BookmarksList[VIEW_MODE] > Bookmark Transition CSS ===
@@ -104,7 +129,7 @@ export default {
 	overflow: hidden;
 }
 
-.normal .bookmarks-list-enter, .compact .bookmarks-list-enter, .normal .bookmarks-list-leave-to, .compact .bookmarks-list-leave-to {
+.list .bookmarks-list-enter, .list .bookmarks-list-leave-to {
 	max-height: 0;
 	opacity: 0;
 }

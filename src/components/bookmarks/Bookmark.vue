@@ -198,7 +198,5 @@ export default {
 </style>
 
 <style>
-span.highlight {
-	background: yellow;
-}
+
 </style>

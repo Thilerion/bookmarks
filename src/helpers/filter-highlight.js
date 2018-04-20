@@ -1,0 +1,14 @@
+function filterHighlight(str, filterStr) {
+	console.log(str, filterStr);
+	if (filterStr === "" || filterStr == null) return str;
+	else {
+		let parsedFilterStr = encodeURIComponent(filterStr);
+		let re = new RegExp(parsedFilterStr, "ig");
+		let parsedStr = parsedStr.replace(re, (matchedText) => {
+			return `<span class="highlight">${matchedText}</span>`;
+		});
+		return decodeURIComponent(parsedStr);
+	}
+}
+
+export default filterHighlight;

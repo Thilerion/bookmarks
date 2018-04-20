@@ -10,6 +10,13 @@ Vue.component('BmDropdownMenuItem', DropdownMenuItem)
 import vClickOutside from 'v-click-outside'
 Vue.use(vClickOutside)
 
+import filterHighlight from '@/helpers/filter-highlight';
+
+Vue.filter('filterHighlight', function (str, filterStr) {
+	console.log(str, filterStr);
+	return filterHighlight(str, filterStr);
+})
+
 Vue.filter('trim', function (str) {
 	return str.trim();
 })

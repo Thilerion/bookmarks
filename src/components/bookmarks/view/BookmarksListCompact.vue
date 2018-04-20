@@ -1,7 +1,7 @@
 <template>
  	 <transition-group
 		name="bookmarks-list"
-		class="bm-wrapper compact"
+		class="bm-wrapper list compact"
 		tag="div">
 		<BmBookmarkCompact
 			v-for="bm in bookmarks"
