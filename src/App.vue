@@ -82,8 +82,7 @@ body {
 
 #app {
 	min-height: 100vh;
-	display: grid;
-	grid-template-columns: 25em auto;
+	display: flex;
 }
 
 .col {
@@ -99,10 +98,14 @@ body {
 	height: 100vh;
 	overflow-y: auto;
 	/*z-index: 999;*/
+	flex: 1 1 25%;
+	min-width: 17.5em;
+	max-width: 25em;
 }
 
 .col-right {
 	background: #eee;
+	flex: 1 1 75%;
 }
 
 

@@ -95,6 +95,10 @@ span.highlight {
 ** === BookmarksList[VIEW_MODE] > Specific Bookmark Item CSS ===
 */
 
+/*
+ * = Both lists (normal and compact) items =
+*/
+
 .list .bm-item:not(:last-of-type) {
 	border-bottom: 1px solid #ddd;
 }
@@ -106,6 +110,37 @@ span.highlight {
 .list .bm-item:last-of-type {
 	border-radius: 0 0 5px 5px;
 }
+
+/*
+ * = Normal view items =
+*/
+
+.normal .bm-item {
+	display: grid;
+	grid-template-columns: fit-content auto 1fr;
+	grid-auto-flow: column;
+}
+
+.normal .bm-item > .bm-left {
+	background: rgb(255, 240, 240);
+	min-width: 5em;
+}
+
+.normal .bm-item > .bm-left > * {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.normal .bm-item > .bm-left > a {
+	max-width: 100%;
+	display: inline-block;
+	overflow: hidden;
+}
+
+/*
+ * = Grid view items =
+*/
 
 .grid .bm-item {
 	margin: 0 1em;
