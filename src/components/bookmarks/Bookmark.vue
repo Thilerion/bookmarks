@@ -66,7 +66,6 @@ export default {
 	props: ["bookmark", "editing"],
 	data() {
 		return {
-			tagsCanBeInactive: true,
 			hovering: false,
 			showBookmarkOptions: false
 		}
