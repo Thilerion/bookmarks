@@ -1,38 +1,24 @@
 <template>
-<div class="bookmarks">
-	<transition-group
-		name="bookmarks-list"
-		:class="bookmarkWrapperClass"
-		class="bm-wrapper"
-		tag="span" >
+<div class="bookmarks">	
+	<transition name="bookmark-list-mode" mode="out-in">	
 		<component
 			:is="currentViewComponent"
-			v-for="bm in bookmarksArray"
-			:key="bm.title"
-			:bookmark="bm"
-			:class="bookmarkItemClass"
-			class="bm-item">
-
-			<BmSvgIcon :icon="optionsIcon" slot="options"/>
-
-		</component>
-	</transition-group>
+			:bookmarks="bookmarksArray"
+			:key="currentViewComponent" />
+	</transition>
 </div>
 </template>
 
 <script>
-import BookmarkCompact from './view/BookmarkCompact.vue'
-import BookmarkNormal from './view/BookmarkNormal.vue'
-import BookmarkGrid from './view/BookmarkGrid.vue'
-
-import SvgIcon from '../shared/SvgIcon'
+import BookmarksListCompact from './view/BookmarksListCompact'
+import BookmarksListNormal from './view/BookmarksListNormal'
+import BookmarksListGrid from './view/BookmarksListGrid'
 
 export default {
 	components: {
-		BmBookmarkCompact: BookmarkCompact,
-		BmBookmarkNormal: BookmarkNormal,
-		BmBookmarkGrid: BookmarkGrid,
-		BmSvgIcon: SvgIcon
+		BmBookmarksListCompact: BookmarksListCompact,
+		BmBookmarksListNormal: BookmarksListNormal,
+		BmBookmarksListGrid: BookmarksListGrid
 	},
 	data() {
 		return {
@@ -45,19 +31,6 @@ export default {
 		},
 		currentViewComponent() {
 			return this.$store.getters.currentBookmarkListViewComp;
-		},
-		currentViewName() {
-			return this.$store.getters.currentBookmarkListView.name;
-		},
-		bookmarkItemClass() {
-			return `bm-item-${this.currentViewName.toLowerCase()}`;
-		},
-		bookmarkWrapperClass() {
-			return `${this.currentViewName.toLowerCase()}`;
-		},
-		optionsIcon() {
-			if (this.currentViewName === "Grid") return "options-vert";
-			else return "options-hor";
 		}
 	},
 	methods: {
@@ -67,17 +40,21 @@ export default {
 </script>
 
 <style>
-.bm-wrapper {
-	position: relative;
+/*
+** === Bookmarks View Mode fading transition ===
+*/
+
+.bookmark-list-mode-enter-active, .bookmark-list-mode-leave-active {
+	transition: all .5s ease-in-out;
 }
 
-.bm-wrapper.compact {
-
+.bookmark-list-mode-enter, .bookmark-list-mode-leave-to {
+	opacity: 0;
 }
 
-.bm-wrapper.normal {
-
-}
+/*
+** === BookmarksList[VIEW_MODE] > List CSS ===
+*/
 
 .bm-wrapper.grid {
 	display: flex;
@@ -85,25 +62,22 @@ export default {
 	justify-content: center;
 }
 
+/*
+** === BookmarksList[VIEW_MODE] > Bookmark Item CSS ===
+*/
+
 .bm-item {
 	border: 1px solid black;
 	position: relative;
 	max-height: 15em;
+	transition: max-height .2s ease;
 }
 
-.bm-item-compact {
-	max-height: 4em;
-}
-
-.bm-item-normal {
-
-}
-
-.bm-item-grid {
-	height: 200px;
-	width: 200px;
-	margin: 0 0.75em 1.5em;
-	padding: 0 0.5em;
+.grid .bm-item {
+	margin: 0 1em;
+	width: 175px;
+	height: 175px;
+	margin-bottom: 2em;
 }
 
 .options-button {
@@ -116,23 +90,47 @@ export default {
 	width: 1.5em;
 }
 
-.bookmark-list-enter-active {
+/*
+** === BookmarksList[VIEW_MODE] > Bookmark Transition CSS ===
+*/
+
+.bookmarks-list-enter-active {
 	transition: all .5s ease;
 	overflow: hidden;
 }
 
-.bookmark-list-leave-active {
+.bookmarks-list-leave-active {
 	transition: all .4s ease;
 	overflow: hidden;
 }
 
-.bookmark-list-enter, .bookmark-list-leave-to {
+.normal .bookmarks-list-enter, .compact .bookmarks-list-enter, .normal .bookmarks-list-leave-to, .compact .bookmarks-list-leave-to {
 	max-height: 0;
 	opacity: 0;
 }
 
-.bookmark-list-move {
-	transition: transform 0.5s ease;
-	/*animation: move-list .5s;*/
+.grid .bookmarks-list-enter, .grid .bookmarks-list-leave-to {
+	opacity: 0;	
 }
+
+.bookmark-lists-move {
+	animation: move-list-fade .6s;
+	transition: transform .6s ease;
+}
+
+@keyframes move-list-fade {
+	0% {
+		opacity: 1;
+	}
+	25% {
+		opacity: 0.5;
+	}
+	50% {
+		opacity: 0.5;
+	}
+	80% {
+		opacity: 1;
+	}
+}
+
 </style>

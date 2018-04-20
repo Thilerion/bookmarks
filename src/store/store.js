@@ -18,9 +18,9 @@ export default new Vuex.Store({
 		modalOptions: ['BmBookmarkAdd', 'BmTagAdd'],
 		activeModal: null,
 		bookmarkListViews: [
-			{ name: "Compact", icon: "view-compact", component: "BmBookmarkCompact" },
-			{ name: "Normal", icon: "view-list", component: "BmBookmarkNormal" },
-			{ name: 'Grid', icon: "view-grid", component: "BmBookmarkGrid" }
+			{ name: "Compact", icon: "view-compact", component: "BmBookmarksListCompact" },
+			{ name: "Normal", icon: "view-list", component: "BmBookmarksListNormal" },
+			{ name: 'Grid', icon: "view-grid", component: "BmBookmarksListGrid" }
 		],
 		currentBookmarkListView: 1
 	},
