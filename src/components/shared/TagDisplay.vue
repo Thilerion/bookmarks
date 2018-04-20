@@ -1,5 +1,6 @@
 <template>
 <div class="tag" :style="tagStyle" :class="{'padding-right': canClose}">
+	<span class="tag-hash" v-if="small">#&nbsp;</span>
 	<span class="tag-title">{{tagTitle}}</span>
 	<span class="tag-close" v-if="canClose">x</span>
 </div>
@@ -16,6 +17,9 @@ export default {
 		},
 		canBeInactive: {
 			type: Boolean
+		},
+		small: {
+			type: Boolean
 		}
 	},
 	computed: {
@@ -30,6 +34,18 @@ export default {
 		},
 		tagStyle() {
 			let styleObj = {};
+			styleObj.cursor = "default";
+			if (this.small) {
+				styleObj.color = 'currentColor';
+				styleObj.border = 0;
+				styleObj['border-radius'] = 0;
+				styleObj['border-bottom'] = `2px solid ${this.tagProperties.colour}`;
+				styleObj.opacity = 0.8;
+				styleObj.padding = '0 0 1px 0';
+				styleObj.background = 'none';
+				return styleObj;
+			}
+
 			if (this.canBeInactive === true && this.tagActive === false) {
 				styleObj.color = this.tagProperties.colour;
 				styleObj.border = `2px solid ${this.tagProperties.colour}`;
@@ -37,7 +53,6 @@ export default {
 				styleObj.backgroundColor = this.tagProperties.colour;
 			}
 			if (this.canClose === true) styleObj.cursor = "pointer";
-			else styleObj.cursor = "default";
 			return styleObj;
 		}
 	}

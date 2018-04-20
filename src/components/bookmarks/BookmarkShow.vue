@@ -25,6 +25,7 @@
 			:tagId="tag.id"
 			:canClose="editMode"
 			:canBeInactive="!editMode"
+			:small="smallTag"
 		/>
 		<span v-if="untaggedActive && bookmarkTags.length < 1" class="untagged-tag-display" :style="{'background-color': untaggedTag.colour}">Untagged</span>
 	</div>
@@ -88,6 +89,11 @@ export default {
 			let str = this.description;
 			let filter = this.searchString;
 			return this.highlightWithString(str, filter);
+		},
+		smallTag() {
+			let viewMode = this.$store.getters.currentBookmarkListView;
+			if (viewMode.name === "Compact") return true;
+			else return false;
 		}
 	},
 	methods: {
