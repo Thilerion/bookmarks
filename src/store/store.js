@@ -17,7 +17,11 @@ export default new Vuex.Store({
 	state: {
 		modalOptions: ['BmBookmarkAdd', 'BmTagAdd'],
 		activeModal: null,
-		bookmarkListViews: [{ name: "Compact", icon: "view-compact" }, { name: "Normal", icon: "view-list" }, { name: 'Grid', icon: "view-grid" }],
+		bookmarkListViews: [
+			{ name: "Compact", icon: "view-compact", component: "BmBookmarkCompact" },
+			{ name: "Normal", icon: "view-list", component: "BmBookmarkNormal" },
+			{ name: 'Grid', icon: "view-grid", component: "BmBookmarkGrid" }
+		],
 		currentBookmarkListView: 1
 	},
 
@@ -40,7 +44,8 @@ export default new Vuex.Store({
 			else return state.modalOptions[state.activeModal];
 		},
 		bookmarkListViews: state => state.bookmarkListViews,
-		currentBookmarkListView: state => state.bookmarkListViews[state.currentBookmarkListView]
+		currentBookmarkListView: state => state.bookmarkListViews[state.currentBookmarkListView],
+		currentBookmarkListViewComp: state => state.bookmarkListViews[state.currentBookmarkListView].component
 	},
 
 	mutations: {

@@ -19,6 +19,11 @@ export default {
 	components: {
 		BmBookmark: Bookmark
 	},
+	data() {
+		return {
+			test: true
+		}
+	},
 	computed: {
 		bookmarksList() {
 			return this.$store.getters.bookmarks;

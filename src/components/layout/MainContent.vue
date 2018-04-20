@@ -8,21 +8,21 @@
 		</div>
 	</div>	
 		
-	<BmBookmarks class="content" />
+	<BmBookmarksList class="content" />
 
 </div>
 </template>
 
 <script>
 import Search from '@/components/Search';
-import Bookmarks from '@/components/bookmarks/Bookmarks';
+import BookmarksList from '@/components/bookmarks/BookmarksList';
 import SortList from '@/components/SortList';
 import ViewList from '@/components/ViewList';
 
 export default {
 	components: {
 		BmSearch: Search,
-		BmBookmarks: Bookmarks,
+		BmBookmarksList: BookmarksList,
 		BmSortList: SortList,
 		BmViewList: ViewList
 	}
