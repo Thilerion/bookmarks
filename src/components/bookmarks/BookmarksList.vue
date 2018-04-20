@@ -111,29 +111,59 @@ span.highlight {
 	border-radius: 0 0 5px 5px;
 }
 
+.list .bm-item {
+	display: flex;
+	position: relative;
+	padding-left: 1em;
+}
+
+.list .col-options {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.list .bm-title {
+	display: inline-block;
+	overflow: hidden;
+}
+
+.list .bm-sub {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin: 0;
+	padding: 0;
+}
+
+.list .options-button {
+	transition: opacity .1s linear;
+	opacity: 0;
+}
+
+.list .bm-item:hover .options-button {
+	opacity: 0.5;
+}
+
+.list .bm-item:hover .options-button:hover {
+	opacity: 0.9;
+}
+
+.list .options-button.active {
+	opacity: 0.9;
+}
+
 /*
  * = Normal view items =
 */
-
-.bm-item-normal {
-	display: flex;
-	position: relative;
-	padding-left: 0.5em;
-}
 
 .bm-item-normal .col-text {
 	min-width: 5em;
 	display: flex;
 	flex-direction: column;
 	padding: 0.5em;
-}
-
-.bm-item-normal .bm-sub {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	margin: 0;
-	padding: 0;
+	padding-left: 0;
 }
 
 .bm-item-normal .bm-sub:not(:last-child) {
@@ -144,14 +174,8 @@ span.highlight {
 	font-size: 0.8em;
 }
 
-.bm-item-normal .bm-title {
-	max-width: 100%;
-	display: inline-block;
-	overflow: hidden;
-}
-
 .bm-item-normal .col-tags {
-	flex: 1 3 10%;
+	flex: 1 3 5em;
 	padding: 0.1em 0.25em;
 	padding-right: 0;
 	margin-right: -0.25em;
@@ -160,7 +184,6 @@ span.highlight {
 	align-items: center;
 	flex-wrap: wrap;
 	align-content: space-around;
-	overflow: hidden;
 }
 
 .bm-item-normal .col-tags > div {
@@ -169,26 +192,41 @@ span.highlight {
 
 .bm-item-normal .col-options {
 	flex: 0 0 2em;
-	display: inline-flex;
-	align-items:center;
-	justify-content: center;
 }
 
-.bm-item-normal .options-button {
-	transition: opacity .1s linear;
-	opacity: 0;
+/*
+ * = Compact view items =
+*/
+
+.bm-item-compact {
+	height: 2em;
+	align-items: center;
 }
 
-.bm-item-normal:hover .options-button {
-	opacity: 0.5;
+.bm-item-compact .bm-title {
+	flex: 3 1 auto;
 }
 
-.bm-item-normal:hover .options-button:hover {
-	opacity: 0.9;
+.bm-item-compact .bm-tags {
+	flex: 1 10000 auto;
+	text-align: right;
+	padding-bottom: 3px;
+	white-space: nowrap;
 }
 
-.bm-item-normal .options-button.active {
-	opacity: 0.9;
+.bm-item-compact .tag:not(:last-child) {
+	margin-right: 0.75em;
+}
+
+.bm-item-compact .bm-tags {
+	overflow: hidden;
+}
+
+.bm-item-compact .col-options {
+	flex: 0 0 2em;
+	height: 100%;
+	position: relative;
+	top: 2px;
 }
 
 /*

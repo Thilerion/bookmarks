@@ -1,5 +1,5 @@
 <template>
- 	 <transition-group
+	<transition-group
 		name="bookmarks-list"
 		class="bm-wrapper list compact"
 		tag="div">
@@ -7,11 +7,7 @@
 			v-for="bm in bookmarks"
 			:key="bm.title"
 			:bookmark="bm"
-			class="bm-item">
-
-			<BmSvgIcon icon="options-vert" slot="options"/>
-
-		</BmBookmarkCompact>
+			class="bm-item"/>
 	</transition-group>
 </template>
 
