@@ -70,6 +70,13 @@ const validateString = (toValidate, minLength = 1, maxLength = 40) => {
 	}
 }
 
+const validateUniqueStringInArray = (str, arr = []) => {
+	if (arr.includes(str)) {
+		return returnVal(false, "Input is not unique.", str);
+	} else {
+		return returnVal(true, "Input is unique.", str);
+	}
+}
 
 
-export { validateUrl, validateHexColour, validateString };
+export { validateUrl, validateHexColour, validateString, validateUniqueStringInArray };

@@ -1,13 +1,13 @@
 <template>
-<SpModal>
+<SpModal :errors="errorMessages">
 	<template slot="header">Add bookmark</template>
 	
 	<label for="bookmark-url">Link *</label>
-	<input type="text" id="bookmark-url" v-model="url" :class="{invalid: !urlValid && inputFailedMinOnce}">
+	<input type="text" id="bookmark-url" v-model="url">
 	<label for="bookmark-title">Title *</label>
-	<input type="text" id="bookmark-title" v-model="title" :class="{invalid: !titleValid && inputFailedMinOnce}">
+	<input type="text" id="bookmark-title" v-model="title">
 	<label for="bookmark-description">Description</label>
-	<input type="text" id="bookmark-description" v-model="description" :class="{invalid: !descriptionValid && inputFailedMinOnce}">
+	<input type="text" id="bookmark-description" v-model="description">
 	<label for="bookmark-tags">Tags</label>
 	<div class="group-bookmark-tag">
 		<select name="bookmark-tags" v-model="selectedTag">
@@ -22,7 +22,7 @@
 		</div>
 		
 	</div>			
-	<button class="action-button-base" @click="saveBookmark">Add bookmark</button>
+	<button class="action-button-base" @click="validate">Add bookmark</button>
 </SpModal>
 			
 </template>
@@ -30,6 +30,7 @@
 <script>
 import TagDisplay from '../shared/TagDisplay';
 import Modal from './Modal';
+import {validateString, validateUrl} from '@/helpers/validators'
 
 export default {
 	components: {
@@ -43,21 +44,12 @@ export default {
 			description: "",
 			tags: [],
 			inputFailedMinOnce: false,
-			selectedTag: ""
+			selectedTag: "",
+			error: false,
+			errorMessages: []
 		}
 	},
 	computed: {
-		urlValid() {
-			if (this.url.length > 3 && this.url.includes(".")) return true;
-			else return false;
-		},
-		titleValid() {
-			if (this.title.length > 0) return true;
-			else return false;
-		},
-		descriptionValid() {
-			return true;
-		},
 		allTags() {
 			return this.$store.getters.tags;
 		},
@@ -82,7 +74,7 @@ export default {
 			this.selectedTag = "";
 		},
 		saveBookmark() {
-			if (this.urlValid && this.titleValid && this.descriptionValid) {
+			if (true) {
 				let bm = {
 					title: this.title,
 					description: this.description,
@@ -94,6 +86,32 @@ export default {
 			} else {
 				this.inputFailedMinOnce = true;
 			}			
+		},
+		validate() {
+			let errors = {
+				allValid: true,
+				messages: []
+			}
+			let linkValid = validateUrl(this.url);
+			if (!linkValid.valid) {
+				errors.allValid = false;
+				errors.messages.push(linkValid.message);
+			} else {
+				this.url = linkValid.result;
+			}
+
+			let titleValid = validateString(this.title, 2, 50);
+			if (!titleValid.valid) {
+				errors.allValid = false;
+				errors.messages.push(titleValid.message);
+			} else {
+				this.title = titleValid.result;
+			}
+			this.error = errors.allValid;
+			this.errorMessages = errors.messages;
+			if (errors.allValid === true) {
+				this.saveBookmark();
+			}
 		}
 	}
 }

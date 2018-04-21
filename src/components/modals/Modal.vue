@@ -12,6 +12,10 @@
 				<div class="modal-main">
 					<slot/>
 				</div>
+
+				<div v-if="hasErrors" class="modal-errors">
+					<div v-for="error in errorMessages" :key="error">{{error}}</div>
+				</div>
 			</div>
 		</div>
 
@@ -22,11 +26,24 @@
 
 <script>
 export default {
+	props: {
+		errors: {
+			type: Array
+		}
+	},
 	methods: {
 		emitCloseModal() {
 			this.$store.commit('disableModal');
 		}
-	}
+	},
+	computed: {
+		errorMessages() {
+			return this.errors || null;
+		},
+		hasErrors() {
+			return this.errors.length > 0;
+		}
+	}	
 }
 </script>
 
@@ -57,6 +74,7 @@ export default {
 	background: white;
 	border-radius: 5px;
 	transition: transform .3s ease;
+	padding-bottom: 1em;
 }
 
 .modal-top {
@@ -69,6 +87,7 @@ export default {
 
 .modal-main {
 	padding: 1em;
+	padding-bottom: 0;
 	display: grid;
 	grid-auto-flow: row;
 }
@@ -78,6 +97,18 @@ export default {
 	flex: 1 1 100%;
 	font-size: 1em;
 	font-weight: normal;
+}
+
+.modal-errors {
+	border: 1px solid #e60f04;
+	border-radius: 5px;
+	font-size: 0.8em;
+	width: 80%;
+	margin: auto;
+	text-align: center;
+	color: #e60f04;
+	margin-top: 0.75rem;
+	padding: 0.25rem;
 }
 
 .modal-close {
