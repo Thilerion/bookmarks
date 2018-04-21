@@ -70,13 +70,31 @@ let tagStore = {
 		deleteTagFromTags: (state, tagId) => {			
 			const index = state.tags.findIndex(tag => tag.id === tagId);
 			state.tags.splice(index, 1);
-		}
+		},
+		setAllTags: (state, tags) => state.tags = tags
 	},
 
 	actions: {
 		deleteTag({ commit }, tagId) {
 			commit('deleteTagFromBookmarks', tagId);
 			commit('deleteTagFromTags', tagId);
+		},
+		retrieveTags({ commit, dispatch }) {
+			let tags = localStorage.getItem("tags");
+			if (tags !== null) {
+				tags = JSON.parse(tags);
+				console.warn("Retrieved tags from localStorage");
+				console.warn(tags);
+				commit('setAllTags', tags);
+			} else {
+				console.warn("No tags were found in localStorage.");
+				dispatch("saveTagsToLocalStorage");
+			}
+		},
+		saveTagsToLocalStorage({ getters }) {
+			let tags = JSON.stringify(getters.tags);
+			localStorage.setItem("tags", tags);
+			console.warn("Tags were saved to localStorage");
 		}
 	}
 }

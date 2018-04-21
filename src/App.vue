@@ -53,10 +53,21 @@ export default {
 		},
 		enableModalTag() {
 			this.$store.commit('enableModal', 1);
+		},
+		watchTags(state, getters) {
+			return getters.tags;
+		},
+		updateTagLocalStorage() {
+			console.warn("Tags array has been updated!");
+			this.$store.dispatch("saveTagsToLocalStorage");
 		}
 	},
 	beforeMount() {
 		this.$store.dispatch('retrieveUserPrefs');
+		this.$store.dispatch('retrieveTags');
+		this.$store.watch(this.watchTags, this.updateTagLocalStorage, {
+			deep: true
+		});
 	}
 }
 </script>
