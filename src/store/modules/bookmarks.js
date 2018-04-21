@@ -111,6 +111,7 @@ let bookmarkStore = {
 	mutations: {
 		currentlyEditingBookmark: (state, id) => state.currentlyEditingBookmark = id,
 		pushNewBookmark: (state, bm) => state.bookmarks.push(bm),
+		setAllBookmarks: (state, bms) => state.bookmarks = bms,
 		deleteBookmark: (state, id) => {
 			let index = state.bookmarks.findIndex((bm) => {
 				return bm.id === id;
@@ -142,12 +143,29 @@ let bookmarkStore = {
 	},
 
 	actions: {
-		saveNewBookmark({ commit, getters }, bm) {
+		saveNewBookmark({ commit, getters, dispatch }, bm) {
 			const lastBmId = Math.max(...getters.allBookmarkIds);
 			bm.id = lastBmId + 1;
 			bm.customIndex = bm.id;
 			bm.added = Date.now() * 1;
 			commit('pushNewBookmark', bm);
+		},
+		retrieveBookmarks({ commit, dispatch }) {
+			let bms = localStorage.getItem("bookmarks");
+			if (bms !== null) {
+				bms = JSON.parse(bms);
+				console.warn("Retrieved bookmarks from localStorage");
+				console.warn(bms);
+				commit('setAllBookmarks', bms);
+			} else {
+				console.warn("No bookmarks were found in localStorage.");
+				dispatch("saveBookmarksToLocalStorage");
+			}
+		},
+		saveBookmarksToLocalStorage({ getters }) {
+			let bookmarks = JSON.stringify(getters.bookmarks);
+			localStorage.setItem("bookmarks", bookmarks);
+			console.warn("Bookmarks saved to localStorage");
 		}
 	}
 }

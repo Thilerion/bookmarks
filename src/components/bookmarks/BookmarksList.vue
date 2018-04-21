@@ -34,7 +34,17 @@ export default {
 		}
 	},
 	methods: {
-
+		watchBookmarks(state, getters) {
+			return getters.bookmarks;
+		},
+		logStoreUpdate(...args) {
+			console.warn("Bookmarks array has been updated!");
+			this.$store.dispatch('saveBookmarksToLocalStorage');
+		}
+	},
+	beforeMount() {
+		this.$store.dispatch("retrieveBookmarks");
+		this.$store.watch(this.watchBookmarks, this.logStoreUpdate);
 	}
 }
 </script>
