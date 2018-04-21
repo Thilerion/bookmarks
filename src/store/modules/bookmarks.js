@@ -148,15 +148,24 @@ let bookmarkStore = {
 			bm.id = lastBmId + 1;
 			bm.customIndex = bm.id;
 			bm.added = Date.now() * 1;
+			console.log(bm);
 			commit('pushNewBookmark', bm);
 		},
-		retrieveBookmarks({ commit, dispatch }) {
+		retrieveBookmarks({ commit, dispatch, getters }) {
 			let bms = localStorage.getItem("bookmarks");
 			if (bms !== null) {
 				bms = JSON.parse(bms);
 				console.warn("Retrieved bookmarks from localStorage");
 				console.warn(bms);
-				commit('setAllBookmarks', bms);
+				let allTagIds = getters.allTagIds;
+				console.log(allTagIds);
+				let removedOldTags = bms;
+				for (let bm of removedOldTags) {
+					bm.tags = bm.tags.filter((t) => {
+						return allTagIds.includes(t);
+					})
+				}
+				commit('setAllBookmarks', removedOldTags);
 			} else {
 				console.warn("No bookmarks were found in localStorage.");
 				dispatch("saveBookmarksToLocalStorage");

@@ -15,7 +15,7 @@ const validateUrl = urlString => {
 
 	let message = "";
 
-	if (!urlString.startsWith("https://") || !urlString.startsWith("http://")) {
+	if (!urlString.startsWith("https://") && !urlString.startsWith("http://")) {
 		urlString = "http://" + urlString;
 		message = "Prepended with http://";
 	} else {

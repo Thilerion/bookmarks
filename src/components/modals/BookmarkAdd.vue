@@ -97,7 +97,7 @@ export default {
 				errors.allValid = false;
 				errors.messages.push(linkValid.message);
 			} else {
-				this.url = linkValid.result;
+				this.url = linkValid.result.href;
 			}
 
 			let titleValid = validateString(this.title, 2, 50);
