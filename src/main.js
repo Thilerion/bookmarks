@@ -14,7 +14,6 @@ import filterHighlight from '@/helpers/filter-highlight';
 import filterLinkDomain from '@/helpers/filter-link-domain';
 
 Vue.filter('filterHighlight', function (str, filterStr) {
-	console.log(str, filterStr);
 	return filterHighlight(str, filterStr);
 })
 

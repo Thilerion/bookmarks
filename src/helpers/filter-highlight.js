@@ -1,5 +1,4 @@
 function filterHighlight(str, filterStr) {
-	console.log(str, filterStr);
 	if (filterStr === "" || filterStr == null) return str;
 	else {
 		let parsedFilterStr = encodeURIComponent(filterStr);

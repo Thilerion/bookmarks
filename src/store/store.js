@@ -4,11 +4,13 @@ import Vuex from "vuex";
 import colourModule from './modules/colours.js'
 import tagModule from './modules/tags.js'
 import bookmarkModule from './modules/bookmarks.js'
+import userPrefsModule from './modules/prefs.js'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
 	modules: {
+		userPrefsModule,
 		bookmarkModule,
 		colourModule,
 		tagModule
@@ -21,8 +23,7 @@ export default new Vuex.Store({
 			{ name: "Compact", icon: "view-compact", component: "BmBookmarksListCompact" },
 			{ name: "Normal", icon: "view-list", component: "BmBookmarksListNormal" },
 			{ name: 'Grid', icon: "view-grid", component: "BmBookmarksListGrid" }
-		],
-		currentBookmarkListView: 1
+		]
 	},
 
 	getters: {
@@ -44,18 +45,24 @@ export default new Vuex.Store({
 			else return state.modalOptions[state.activeModal];
 		},
 		bookmarkListViews: state => state.bookmarkListViews,
-		currentBookmarkListView: state => state.bookmarkListViews[state.currentBookmarkListView],
-		currentBookmarkListViewComp: state => state.bookmarkListViews[state.currentBookmarkListView].component
+		listViewMode: (state, getters) => {
+			if (getters.userListViewMode === null || getters.userListViewMode === undefined) {
+				console.warn("List view mode is " + getters.userListViewMode);
+				return 0;
+			} else if (getters.userListViewMode >= state.bookmarkListViews.length || getters.userListViewMode < 0) {
+				console.warn("List view mode is not recognized: " + getters.userListViewMode);
+				return 0;
+			} else {
+				return getters.userListViewMode;
+			}
+		},
+		currentBookmarkListView: (state, getters) => state.bookmarkListViews[getters.listViewMode],
+		currentBookmarkListViewComp: (state, getters) => state.bookmarkListViews[getters.listViewMode].component
 	},
 
 	mutations: {
 		enableModal: (state, modalId) => state.activeModal = modalId,
-		disableModal: state => state.activeModal = null,
-		setViewMode: (state, modeId) => {
-			if (-1 < modeId < state.bookmarkListViews.length) {
-				state.currentBookmarkListView = modeId;
-			}
-		}
+		disableModal: state => state.activeModal = null
 	},
 
 	actions: {
