@@ -36,7 +36,7 @@ export default {
 	methods: {
 		setSortMode(newSortIndex) {
 			this.hideMenu();
-			this.$store.commit('setSortMode', newSortIndex);			
+			this.$store.dispatch('setSortMode', newSortIndex);			
 		},
 		hideMenu() {
 			this.showMenu = false;

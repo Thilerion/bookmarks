@@ -53,7 +53,7 @@ export default {
 		},
 		setViewMode(modeId) {
 			this.hideMenu();
-			this.$store.commit('setViewMode', modeId);
+			this.$store.dispatch('setViewMode', modeId);
 		}
 	}
 }

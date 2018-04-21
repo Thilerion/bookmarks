@@ -54,6 +54,9 @@ export default {
 		enableModalTag() {
 			this.$store.commit('enableModal', 1);
 		}
+	},
+	beforeMount() {
+		this.$store.dispatch('retrieveUserPrefs');
 	}
 }
 </script>
