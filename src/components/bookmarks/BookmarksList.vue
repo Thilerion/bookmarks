@@ -296,6 +296,7 @@ span.highlight {
 .bm-item-grid .bm-tags {
 	margin-top: auto;
 	overflow: hidden;
+	white-space: nowrap;
 	display: inline-flex;
 	justify-content: flex-start;
 	align-items: center;
@@ -307,8 +308,6 @@ span.highlight {
 
 .bm-item-grid .bm-tags .tag {
 	display: inline-block;
-	overflow: hidden;
-	white-space: nowrap;
 	text-overflow: ellipsis;
 	margin-left: 0.5em;
 	margin-bottom: 0.25em;
