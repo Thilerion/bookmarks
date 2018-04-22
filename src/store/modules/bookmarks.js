@@ -83,10 +83,91 @@ let bookmarkStore = {
 				title: "Blackboard",
 				description: "",
 				url: "http://blackboard.leidenuniv.nl/webapps/portal/frameset.jsp",
-				tags: [2],
+				tags: [2, 5],
 				id: 5,
 				added: 1522590867705,
 				customIndex: 5
+			},
+			{
+				title: "Alpha",
+				description: "Greek Alphabet Generator",
+				url: "https://www.greekalpha.com",
+				tags: [0, 4],
+				id: 9,
+				added: 1520090067706,
+				customIndex: 9
+			},
+			{
+				title: "Beta",
+				description: "",
+				url: "https://www.beta.nl",
+				tags: [0],
+				id: 10,
+				added: 1520890177705,
+				customIndex: 10
+			},
+			{
+				title: "Gamma",
+				description: "GGammaGammaA",
+				url: "https://www.gamma.com/bla-bla/blaaaa/gammaaaaaa",
+				tags: [5],
+				id: 11,
+				added: 1520390367705,
+				customIndex: 11
+			},
+			{
+				title: "Delta",
+				description: "",
+				url: "https://delta.com/super/awesome-bookmarks-2-visit-some-time/perfecttt/1",
+				tags: [],
+				id: 12,
+				added: 1522190361105,
+				customIndex: 12
+			},
+			{
+				title: "Epsilon",
+				description: "",
+				url: "https://app.episolon.tv/",
+				tags: [1, 2, 3, 5],
+				id: 13,
+				added: 1521690467205,
+				customIndex: 13
+			},
+			{
+				title: "Zeto",
+				description: "",
+				url: "https://www.zeta.com",
+				tags: [2],
+				id: 14,
+				added: 1527190537705,
+				customIndex: 14
+			},
+			{
+				title: "Eta",
+				description: "Eta Theta Iota?",
+				url: "https://en.m.eta.org/",
+				tags: [5],
+				id: 15,
+				added: 1520190867705,
+				customIndex: 15
+			},
+			{
+				title: "Theta",
+				description: "Theta Web",
+				url: "https://web.Theta.com",
+				tags: [5],
+				id: 16,
+				added: 1521690717705,
+				customIndex: 16
+			},
+			{
+				title: "Iota",
+				description: "",
+				url: "http://iota.kappa.nl/lambda/nu/nu-xi-omikron.jsp",
+				tags: [0, 1, 5],
+				id: 17,
+				added: 1522590267705,
+				customIndex: 17
 			}
 		],
 		currentlyEditingBookmark: null
