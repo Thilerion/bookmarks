@@ -1,17 +1,50 @@
 <template>
-<li v-click-outside="closeBottomSlide" :class="{empty: emptyTag, untagged: untagged}">
-	<span class="tag-color" :style="tagStyle(tag)" @contextmenu.prevent="enableBottomSlide" @click="changeTagStatus(tag.id)"></span>
+<li
+	v-click-outside="closeBottomSlide"
+	:class="{empty: emptyTag, untagged: untagged}"
+>
+	<span
+		class="tag-color"
+		:style="tagStyle(tag)"
+		@click.left.exact="changeTagStatus"
+		@click.ctrl.exact="enableTagHideRest"
+		@click.alt.exact="enableAllTags"
+		></span>
 
-	<div v-if="!showEditName" class="tag-name" @contextmenu.prevent="showDropdown = true" @click="clickChangeTagStatus(tag.id)" @dblclick="doubleClickEnableEditName">
-		<span class="tag-title" :class="{disabled: tag.active === false}">{{tag.name}}</span>
+	<div
+		v-if="!showEditName"
+		class="tag-name"
+		@click.left.exact="changeTagStatus"
+		@click.ctrl.exact="enableTagHideRest"
+		@click.alt.exact="enableAllTags"
+	>
+		<span
+			class="tag-title"
+			:class="{disabled: tag.active === false}"
+		>{{tag.name}}</span>
+
 		<span class="tag-amount"> {{tagAmount}}</span>
+		
 	</div>
 
-	<BmTagListItemEditName class="tag-name" v-if="showEditName" :tagId="tag.id" :tagName="tag.name" @closeTagNameInput="closeEditName" />
+	<BmTagListItemEditName
+		class="tag-name"
+		v-if="showEditName"
+		:tagId="tag.id"
+		:tagName="tag.name"
+		@closeTagNameInput="closeEditName"
+	/>
 
-	<div class="tag-edit" v-click-outside="hideDropdown">
+	<div
+		class="tag-edit"
+		v-click-outside="hideDropdown"
+	>
 		<button @click="showDropdown = !showDropdown">
-			<svg class="more-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<svg
+				class="more-icon"
+				viewBox="0 0 24 24"
+				xmlns="http://www.w3.org/2000/svg"
+			>
 				<path d="M0 0h24v24H0z" fill="none"/>
 				<path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
 			</svg>
@@ -20,14 +53,27 @@
 		<BmDropdownMenu
 			v-if="showDropdown && !untagged"
 			origin="top right"
-			position="right">
-			<BmDropdownMenuItem>
+			position="right"
+		>
+			<BmDropdownMenuItem v-if="tagActive">
+				<button @click="changeTagStatus">Disable tag</button>
+			</BmDropdownMenuItem>
+			<BmDropdownMenuItem v-else-if="!tagActive">
+				<button @click="changeTagStatus">Enable tag</button>
+			</BmDropdownMenuItem>
+			<BmDropdownMenuItem v-if="tagActive">
+				<button @click="enableTagHideRest">Disable other tags</button>
+			</BmDropdownMenuItem>
+			<BmDropdownMenuItem v-else-if="!tagActive">
+				<button @click="enableTagHideRest">Enable tag &amp; disable other tags</button>
+			</BmDropdownMenuItem>
+			<BmDropdownMenuItem border-top>
 				<button @click="enableEditName">Change name</button>
 			</BmDropdownMenuItem>
 			<BmDropdownMenuItem>
 				<button @click="enableBottomSlide">Change colour</button>
 			</BmDropdownMenuItem>
-			<BmDropdownMenuItem>
+			<BmDropdownMenuItem border-top>
 				<button @click="deleteTag">Delete tag</button>
 			</BmDropdownMenuItem>			
 		</BmDropdownMenu>
@@ -35,7 +81,8 @@
 		<BmDropdownMenu
 			v-if="showDropdown && untagged"
 			origin="top right"
-			position="right">
+			position="right"
+		>
 			<BmDropdownMenuItem>
 				<button @click="enableBottomSlide">Add tag to all</button>
 			</BmDropdownMenuItem>
@@ -90,6 +137,9 @@ export default {
 	computed: {
 		emptyTag() {
 			return this.tagAmount == 0;
+		},
+		tagActive() {
+			return this.tag.active;
 		}
 	},
 	methods: {
@@ -101,38 +151,27 @@ export default {
 			style.borderColor = tag.colour;
 			return style;
 		},
-		clickChangeTagStatus(tagId) {
-			if (this.untagged) {
-				this.$store.commit('changeUntaggedTagStatus');
+		changeTagStatus() {
+			this.hideDropdown();	
+			if (this.tagActive) {
+				this.$store.dispatch('deactivateTag', this.tag.id);
 			} else {
-				this.clickTimer = setTimeout(() => {
-					if (this.preventSingleClick) return;
-					this.$store.commit('changeTagStatus', tagId);
-					this.preventSingleClick = false;
-				}, 150);
-			}			
+				this.$store.dispatch('activateTag', this.tag.id);	
+			}
 		},
-		doubleClickEnableEditName() {
-			if (this.untagged) return;
-			clearTimeout(this.clickTimer);
-			this.preventSingleClick = true;
-			this.enableEditName();
-			setTimeout(() => {
-				this.preventSingleClick = false;
-			}, 400);
+		enableTagHideRest() {
+			this.hideDropdown();
+			this.$store.dispatch('deactivateAllTagsButOne', this.tag.id);
 		},
-		changeTagStatus(tagId) {
-			if (this.untagged) {
-				this.$store.commit('changeUntaggedTagStatus');
-			} else {
-				this.$store.commit('changeTagStatus', tagId);	
-			}		
+		enableAllTags() {
+			this.hideDropdown();
+			this.$store.commit('activateAllTags');
 		},
 		hideDropdown() {
 			this.showDropdown = false;
 		},
 		enableBottomSlide() {
-			this.showDropdown = false;
+			this.hideDropdown();
 			this.showEditName = false;
 			this.showBottomSlide = true;
 		},
@@ -142,7 +181,7 @@ export default {
 		enableEditName() {
 			if (this.untagged) return;
 			this.showEditName = true;
-			this.showDropdown = false;
+			this.hideDropdown();
 			this.showBottomSlide = false;
 		},
 		closeEditName() {
