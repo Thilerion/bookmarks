@@ -3,13 +3,15 @@
 	v-click-outside="closeBottomSlide"
 	:class="{empty: emptyTag, untagged: untagged}"
 >
-	<span
-		class="tag-color"
-		:style="tagStyle(tag)"
-		@click.left.exact="changeTagStatus"
-		@click.ctrl.exact="enableTagHideRest"
-		@click.alt.exact="enableAllTags"
+	<div class="tag-color-wrapper">
+		<span
+			class="tag-color"
+			:style="tagStyle(tag)"
+			@click.left.exact="changeTagStatus"
+			@click.ctrl.exact="enableTagHideRest"
+			@click.alt.exact="enableAllTags"
 		></span>
+	</div>
 
 	<div
 		v-if="!showEditName"
@@ -18,12 +20,12 @@
 		@click.ctrl.exact="enableTagHideRest"
 		@click.alt.exact="enableAllTags"
 	>
-		<span
+		<div
 			class="tag-title"
 			:class="{disabled: tag.active === false}"
-		>{{tag.name}}</span>
+		>{{tag.name}}</div>
 
-		<span class="tag-amount"> {{tagAmount}}</span>
+		<div class="tag-amount"> {{tagAmount}}</div>
 		
 	</div>
 
@@ -195,13 +197,18 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.tag-color-wrapper {
+	grid-column: 2;
+	display: flex;
+}
+
 .tag-color {
 	display: inline-block;
 	height: 1em;
 	width: 1em;
 	border-radius: 50%;
-	grid-column: 2;
+	margin: auto;
 	border: 2px solid;
 	cursor: pointer;
 }
@@ -213,9 +220,9 @@ export default {
 .tag-name {
 	grid-column: 4;
 	cursor: pointer;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+	overflow-x: hidden;
+	display: flex;
+	align-items: center;
 }
 
 .tag-amount {
@@ -223,11 +230,21 @@ export default {
 	padding-left: 0.5em;
 	opacity: 0.5;
 	user-select: none;
+	flex: 0 0 1em;
+	text-align: left;
+	position: relative;
+	top: 1px;
 }
 
 .tag-title {
 	transition: opacity .2s ease;
 	user-select: none;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	flex: 0 1 auto;
+	position: relative;
+	bottom: 1px;
 }
 
 .tag-title.disabled {
@@ -242,11 +259,11 @@ export default {
 .tag-edit {
 	grid-column: 5;
 	position: relative;
-	display: inline;
-	text-align: right;
+	display: flex;
 }
 
 .tag-edit > button {
+	margin: auto;
 	height: 1.5em;
 	width: 1.5em;
 }

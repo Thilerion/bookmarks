@@ -2,12 +2,16 @@
 <div class="sidebar">
 	<div class="tag-header">
 		<h2>Tags</h2>
-		<button class="tag-add-button" @click="enableAddTagModal">
-			<BmSvgIcon icon="plus"/>
-		</button>
-		<button class="tag-show-button" @click="toggleTagList">
-			<BmSvgIcon :icon="showIcon"/>
-		</button>
+		<div class="tag-add-button-wrapper">
+			<button class="tag-add-button" @click="enableAddTagModal">
+				<BmSvgIcon icon="plus"/>
+			</button>
+		</div>
+		<div class="tag-show-button-wrapper">
+			<button class="tag-show-button" @click="toggleTagList">
+				<BmSvgIcon :icon="showIcon"/>
+			</button>
+		</div>
 	</div>
 	
 	<transition name="collapse-tag-list">
@@ -67,20 +71,29 @@ h2 {
 	display: grid;
 	grid-auto-flow: column;
 	grid-template-columns: 3.5em min-content min-content auto 2em 1.5em;
-	align-items: center;
+	align-items: stretch;
 	position: relative;
 	z-index: 2;
 }
 
-.tag-show-button {
+.tag-show-button-wrapper {
 	grid-column: 5;
+	display: flex;
+}
+
+.tag-show-button {
 	text-align: right;
+	margin: auto;
+}
+
+.tag-add-button-wrapper {
+	grid-column: 3;
+	display: flex;
 }
 
 .tag-add-button {
-	grid-column: 3;
 	box-sizing: content-box;
-	margin-top: 0.25em;
+	margin: auto;
 	width: 1.2em;
 	height: 1.2em;
 }
