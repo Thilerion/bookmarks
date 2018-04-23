@@ -81,14 +81,14 @@ export default {
 */
 
 .bm-item {
-	background: #fefefe;
+	background: var(--bg-light-alpha);
 	position: relative;
 	max-height: 15em;
 	transition: max-height .2s ease;
 }
 
 .bm-item:hover {
-	background-color: #f7f7f7;
+	background-color: var(--bg-light-alphabetabeta);
 }
 
 .options-button {
@@ -250,7 +250,7 @@ span.highlight {
 .grid .bm-item {
 	width: 16em;
 	height: 16em;
-	box-shadow: 1px 1px 5px -2px rgba(0,0,0,0.4);
+	box-shadow: 0 0 12px -5px rgba(0,0,0,0.5), 1px 1px 3px -1px rgba(0,0,0,0.3);
 	display: flex;
 	flex-direction: column;
 }

@@ -3,7 +3,7 @@
 	<div class="main-fixed" :class="{'main-fixed-border': applyTopBorder}">
 		This part stays on top.
 	</div>
-	<div class="scroll-wrap vertical" @scroll="contentScrolled($event.target)" ref="mainContent">
+	<div class="scroll-wrap vertical" @scroll="contentScrolled($event.target, $event)" ref="mainContent">
 		<main class="main-content">
 			<BmBookmarksList />
 		</main>
@@ -25,7 +25,7 @@ export default {
 		}
 	},
 	methods: {
-		contentScrolled(target) {
+		contentScrolled(target, e) {
 			this.applyTopBorder = target.scrollTop >= 4;
 		}
 	},
@@ -58,7 +58,7 @@ export default {
 
 .main-content {
 	flex: 1 1 auto;
-	padding: 0.5em 2em;
+	padding: 0.5em 2em 1em;
 }
 
 .scroll-wrap {
