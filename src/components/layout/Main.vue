@@ -1,9 +1,9 @@
 <template>
 <div class="main-wrapper">
-	<div class="main-fixed">
+	<div class="main-fixed" :class="{'main-fixed-border': applyTopBorder}">
 		This part stays on top.
 	</div>
-	<div class="scroll-wrap vertical">
+	<div class="scroll-wrap vertical" @scroll="contentScrolled($event.target)" ref="mainContent">
 		<main class="main-content">
 			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius distinctio facere vitae quisquam debitis placeat enim blanditiis tenetur explicabo, qui excepturi eligendi quo similique iusto illo quibusdam ad nesciunt cumque hic itaque amet tempore minus. Tempore recusandae delectus veritatis nam impedit ex officiis totam praesentium eos facere excepturi, qui asperiores!</p>
 			<p>Possimus voluptatum perferendis reiciendis iste iure mollitia in ad? Possimus consectetur in, nisi, perspiciatis iusto ad maxime aspernatur ut id non quod dolorum? Nobis corporis et hic unde, ad optio doloribus eos dolorem exercitationem natus ratione molestias dolores cumque excepturi itaque laborum aliquid. Exercitationem recusandae sed repellat voluptatum fugiat numquam.</p>
@@ -29,7 +29,19 @@ export default {
 	components: {
 		
 	},
-
+	data() {
+		return {
+			applyTopBorder: false
+		}
+	},
+	methods: {
+		contentScrolled(target) {
+			this.applyTopBorder = target.scrollTop >= 4;
+		}
+	},
+	mounted() {
+		this.contentScrolled(this.$refs.mainContent);
+	}
 }
 </script>
 
@@ -44,6 +56,11 @@ export default {
 	flex: 0 0 auto;
 	padding-top: 1em;
 	padding-bottom: 1em;
+	border-bottom: 1px solid transparent;
+}
+
+.main-fixed-border {
+	border-bottom: 1px solid var(--border-main);
 }
 
 .main-content {

@@ -168,7 +168,7 @@ header {
 }
 
 .sidebar-border {
-	border-right: 1px solid var(--border-transparent-darken);
+	border-right: 1px solid var(--border-main);
 }
 
 /*

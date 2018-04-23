@@ -93,8 +93,8 @@ export default {
 :root {
 	--font-dark: 					hsl(0, 0%, 10%);
 	--font-light: 					hsl(0, 0%, 100%);
-	--bg-light-alpha:				hsl(0, 0%, 99%);
-	--bg-light-beta:				hsl(0, 0%, 95.5%);
+	--bg-light-alpha:				hsl(0, 0%, 97%);
+	--bg-light-beta:				hsl(0, 0%, 99.5%);
 	--bg-dark-alpha:				hsl(0, 0%, 17.5%);
 	--bg-dark-beta:					hsl(0, 0%, 22.5%);
 	--bg-dark-gamma:				hsl(0, 0%, 25%);
@@ -113,6 +113,7 @@ html {
 
 html, body {
 	min-height: 100%;
+	max-height: 100vh;
 	margin: 0;
 	padding: 0;
 }
