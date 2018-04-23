@@ -28,7 +28,7 @@ export default {
 	padding: 1em;
 	display: flex;
 	align-items: center;
-	color: white;
+	color: currentColor;
 	border: none;
 	position: relative;
 	background: transparent;

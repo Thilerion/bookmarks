@@ -88,6 +88,8 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700|Open+Sans:300,400,700');
 
+@import './assets/scrollbar-styling.css';
+
 :root {
 	--font-dark: 					hsl(0, 0%, 10%);
 	--font-light: 					hsl(0, 0%, 100%);

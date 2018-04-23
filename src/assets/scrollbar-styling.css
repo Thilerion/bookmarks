@@ -1,0 +1,41 @@
+.scroll-wrap {
+	height: 100%;
+	overflow: hidden;
+	padding-right: .75em;
+}
+
+.scroll-wrap.vertical {
+	overflow-y: scroll;
+}
+
+.scroll-wrap.horizontal {
+	overflow-x: scroll;
+}
+
+.scroll-wrap:hover {
+	padding-right: calc(.25em - 4px);
+}
+
+.scroll-wrap::-webkit-scrollbar {
+	background: transparent;
+	height: 12px;
+	width: 0;
+	box-sizing: border-box;
+}
+
+.scroll-wrap::-webkit-scrollbar * {
+	background: transparent;
+	box-sizing: border-box;
+}
+
+.scroll-wrap:hover::-webkit-scrollbar {
+	width: calc(.5rem + 4px);
+}
+  
+.scroll-wrap::-webkit-scrollbar-thumb {
+	background: hsla(0, 0%, 20%, 0.7);
+	border: 2px solid var(--bg);
+	border-left-style: transparent;
+	width: .5rem;
+	border-radius: .5rem;
+}
