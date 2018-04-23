@@ -3,102 +3,110 @@
 	v-click-outside="closeBottomSlide"
 	:class="{empty: emptyTag, untagged: untagged}"
 >
-	<div class="tag-color-wrapper">
-		<span
-			class="tag-color"
-			:style="tagStyle(tag)"
+	<div class="tag-item-row-main">
+		<div class="tag-color-wrapper">
+			<span
+				class="tag-color"
+				:style="tagStyle(tag)"
+				@click.left.exact="changeTagStatus"
+				@click.ctrl.exact="enableTagHideRest"
+				@click.alt.exact="enableAllTags"
+			></span>
+		</div>
+
+		<div
+			v-if="!showEditName"
+			class="tag-name"
 			@click.left.exact="changeTagStatus"
 			@click.ctrl.exact="enableTagHideRest"
 			@click.alt.exact="enableAllTags"
-		></span>
-	</div>
+		>
+			<div
+				class="tag-title"
+				:class="{disabled: tag.active === false}"
+			>{{tag.name}}</div>
 
-	<div
-		v-if="!showEditName"
-		class="tag-name"
-		@click.left.exact="changeTagStatus"
-		@click.ctrl.exact="enableTagHideRest"
-		@click.alt.exact="enableAllTags"
-	>
+			<div class="tag-amount"> {{tagAmount}}</div>
+			
+		</div>
+
+		<BmTagListItemEditName
+			class="tag-name"
+			v-if="showEditName"
+			:tagId="tag.id"
+			:tagName="tag.name"
+			@closeTagNameInput="closeEditName"
+		/>
+
 		<div
-			class="tag-title"
-			:class="{disabled: tag.active === false}"
-		>{{tag.name}}</div>
+			class="tag-edit"
+			v-click-outside="hideDropdown"
+		>
+			<button @click="showDropdown = !showDropdown">
+				<svg
+					class="more-icon"
+					viewBox="0 0 24 24"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path d="M0 0h24v24H0z" fill="none"/>
+					<path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+				</svg>
+			</button>
 
-		<div class="tag-amount"> {{tagAmount}}</div>
-		
-	</div>
-
-	<BmTagListItemEditName
-		class="tag-name"
-		v-if="showEditName"
-		:tagId="tag.id"
-		:tagName="tag.name"
-		@closeTagNameInput="closeEditName"
-	/>
-
-	<div
-		class="tag-edit"
-		v-click-outside="hideDropdown"
-	>
-		<button @click="showDropdown = !showDropdown">
-			<svg
-				class="more-icon"
-				viewBox="0 0 24 24"
-				xmlns="http://www.w3.org/2000/svg"
+			<BmDropdownMenu
+				v-if="showDropdown && !untagged"
+				origin="top right"
+				position="right"
 			>
-				<path d="M0 0h24v24H0z" fill="none"/>
-				<path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
-			</svg>
-		</button>
+				<BmDropdownMenuItem v-if="tagActive">
+					<button @click="changeTagStatus">Disable tag</button>
+				</BmDropdownMenuItem>
+				<BmDropdownMenuItem v-else-if="!tagActive">
+					<button @click="changeTagStatus">Enable tag</button>
+				</BmDropdownMenuItem>
+				<BmDropdownMenuItem v-if="tagActive">
+					<button @click="enableTagHideRest">Disable other tags</button>
+				</BmDropdownMenuItem>
+				<BmDropdownMenuItem v-else-if="!tagActive">
+					<button @click="enableTagHideRest">Enable tag &amp; disable other tags</button>
+				</BmDropdownMenuItem>
+				<BmDropdownMenuItem border-top>
+					<button @click="enableEditName">Change name</button>
+				</BmDropdownMenuItem>
+				<BmDropdownMenuItem>
+					<button @click="enableBottomSlide">Change colour</button>
+				</BmDropdownMenuItem>
+				<BmDropdownMenuItem border-top>
+					<button @click="deleteTag">Delete tag</button>
+				</BmDropdownMenuItem>			
+			</BmDropdownMenu>
 
-		<BmDropdownMenu
-			v-if="showDropdown && !untagged"
-			origin="top right"
-			position="right"
-		>
-			<BmDropdownMenuItem v-if="tagActive">
-				<button @click="changeTagStatus">Disable tag</button>
-			</BmDropdownMenuItem>
-			<BmDropdownMenuItem v-else-if="!tagActive">
-				<button @click="changeTagStatus">Enable tag</button>
-			</BmDropdownMenuItem>
-			<BmDropdownMenuItem v-if="tagActive">
-				<button @click="enableTagHideRest">Disable other tags</button>
-			</BmDropdownMenuItem>
-			<BmDropdownMenuItem v-else-if="!tagActive">
-				<button @click="enableTagHideRest">Enable tag &amp; disable other tags</button>
-			</BmDropdownMenuItem>
-			<BmDropdownMenuItem border-top>
-				<button @click="enableEditName">Change name</button>
-			</BmDropdownMenuItem>
-			<BmDropdownMenuItem>
-				<button @click="enableBottomSlide">Change colour</button>
-			</BmDropdownMenuItem>
-			<BmDropdownMenuItem border-top>
-				<button @click="deleteTag">Delete tag</button>
-			</BmDropdownMenuItem>			
-		</BmDropdownMenu>
+			<BmDropdownMenu
+				v-if="showDropdown && untagged"
+				origin="top right"
+				position="right"
+			>
+				<BmDropdownMenuItem>
+					<button @click="enableBottomSlide">Add tag to all</button>
+				</BmDropdownMenuItem>
+			</BmDropdownMenu>
 
-		<BmDropdownMenu
-			v-if="showDropdown && untagged"
-			origin="top right"
-			position="right"
-		>
-			<BmDropdownMenuItem>
-				<button @click="enableBottomSlide">Add tag to all</button>
-			</BmDropdownMenuItem>
-		</BmDropdownMenu>
-
+		</div>
 	</div>
 
 	<transition name="tag-bottom-slide">
-		<BmTagListItemColour v-if="showBottomSlide && !untagged" class="tag-list-bottom-slide" @closeColour="closeBottomSlide" :tagId="tag.id" :tagColor="tag.colour">
-			<!--<button @click="closeColourPicker" slot="close-button">Close</button>-->
-		</BmTagListItemColour>
-		<BmTagListAddTagToUntagged v-else-if="showBottomSlide && untagged" class="tag-list-bottom-slide" @closeAddTagToUntagged="closeBottomSlide">
-
-		</BmTagListAddTagToUntagged>
+		<BmTagListItemColour
+			v-if="showBottomSlide && !untagged"
+			class="tag-list-bottom-slide"
+			@closeColour="closeBottomSlide"
+			:tagId="tag.id"
+			:tagColor="tag.colour"
+		/>
+		<BmTagListAddTagToUntagged
+			v-else-if="showBottomSlide && untagged"
+			class="tag-list-bottom-slide"
+			@closeAddTagToUntagged="closeBottomSlide"
+		/>
 	</transition>
 
 </li>
@@ -131,9 +139,7 @@ export default {
 		return {
 			showDropdown: false,
 			showBottomSlide: false,
-			showEditName: false,
-			clickTimer: null,
-			preventSingleClick: false
+			showEditName: false
 		}
 	},
 	computed: {
@@ -198,6 +204,14 @@ export default {
 </script>
 
 <style scoped>
+.tag-item-row-main {
+
+	display: grid;
+	grid-template-columns: 1em 1em 1.5em auto 2em 1.5em;
+	height: 2em;
+	font-size: 1em;
+}
+
 .tag-color-wrapper {
 	grid-column: 2;
 	display: flex;
@@ -259,13 +273,14 @@ export default {
 .tag-edit {
 	grid-column: 5;
 	position: relative;
-	display: flex;
+	text-align: center;
+	align-self: center;
 }
 
 .tag-edit > button {
-	margin: auto;
 	height: 1.5em;
 	width: 1.5em;
+	vertical-align: middle;
 }
 
 .more-icon {
@@ -275,7 +290,7 @@ export default {
 }
 
 .tag-list-bottom-slide {
-	grid-row: 3;
+	grid-row: 2;
 	grid-column: 1 / span 6;
 	background: #f2f2f2;
 	box-shadow: inset 0 2px 4px -2px rgba(0,0,0,0.4);
