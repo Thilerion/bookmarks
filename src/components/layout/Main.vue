@@ -47,10 +47,13 @@ export default {
 	padding-top: 1em;
 	padding-bottom: 1em;
 	border-bottom: 1px solid transparent;
+	transition: background-color .5s ease-out, border .3s ease;
 }
 
 .main-fixed-border {
+	transition: all .2s ease-in;
 	border-bottom: 1px solid var(--border-main);
+	background-color: var(--bg-light-alphabeta);
 }
 
 .main-content {
