@@ -141,8 +141,8 @@ h1.site-heading {
 }
 
 header {
-	background: #333;
-	color: white;
+	background: var(--bg-dark-alpha);
+	color: var(--font-light);
 	text-align: center;
 	padding: 2em 0;
 	cursor:default;
@@ -150,8 +150,8 @@ header {
 }
 
 .sub-header {
-	background: #444;
-	color: white;
+	background: var(--bg-dark-beta);
+	color: var(--font-light);
 	flex: 0 0 auto;
 }
 
@@ -159,8 +159,8 @@ header {
 	overflow-y: scroll;
 	overflow-x: hidden;
 	flex: 1 1 auto;
-	border-right: 1px solid hsl(0,0%,80%);
-	background: hsl(0, 0%, 99%);
+	border-right: 1px solid var(--border-transparent-darken);
+	background: var(--bg-light-alpha);
 }
 /*
 h2 {

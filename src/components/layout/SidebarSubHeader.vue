@@ -36,11 +36,11 @@ export default {
 }
 
 .add-bm-btn:hover {
-	background: rgba(255,255,255,0.05);
+	background: var(--bg-dark-gamma);
 }
 
 .add-bm-btn:not(:last-of-type)::after {
-	background: rgba(255,255,255,0.2);
+	background: var(--border-transparent-lighten);
 	display: block;
 	height: 1px;
 	content: "";

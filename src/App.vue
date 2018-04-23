@@ -88,6 +88,19 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700|Open+Sans:300,400,700');
 
+:root {
+	--font-dark: 					hsl(0, 0%, 10%);
+	--font-light: 					hsl(0, 0%, 100%);
+	--bg-light-alpha:				hsl(0, 0%, 99%);
+	--bg-light-beta:				hsl(0, 0%, 95.5%);
+	--bg-dark-alpha:				hsl(0, 0%, 17.5%);
+	--bg-dark-beta:					hsl(0, 0%, 22.5%);
+	--bg-dark-gamma:				hsl(0, 0%, 25%);
+	--border-transparent-lighten:	hsla(0, 0%, 80%, 0.1);
+	--border-transparent-darken:	hsla(0, 0%, 20%, 0.25);
+	--border-main:					hsl(0, 0%, 80%);
+}
+
 html {
 	box-sizing: border-box;
 }
@@ -104,8 +117,8 @@ html, body {
 
 body {
 	height: 100vh;
-	font-family: Lato, sans-serif;	
-	color: hsl(0,0%,10%);
+	font-family: 'Lato', sans-serif;	
+	color: var(--font-dark);
 	overflow: hidden;
 }
 
@@ -135,7 +148,7 @@ h1, h2, h3, h4 {
 button {
 	margin: 0;
 	padding: 0;
-	background: rgba(150,150,150,0.5);
+	background: var(--bg-dark-beta);
 	border: none;
 	font-family: inherit;
 	outline: none;
