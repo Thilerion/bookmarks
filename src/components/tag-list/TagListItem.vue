@@ -205,9 +205,8 @@ export default {
 
 <style scoped>
 .tag-item-row-main {
-
 	display: grid;
-	grid-template-columns: 1em 1em 1.5em auto 2em 1.5em;
+	grid-template-columns: 2.5em [tag-color] 0.75em 0.5em [tag-title] auto 1.5em 1em;
 	height: 2em;
 	font-size: 1em;
 }
@@ -219,8 +218,8 @@ export default {
 
 .tag-color {
 	display: inline-block;
-	height: 1em;
-	width: 1em;
+	height: 0.75em;
+	width: 0.75em;
 	border-radius: 50%;
 	margin: auto;
 	border: 2px solid;

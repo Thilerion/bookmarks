@@ -60,24 +60,25 @@ export default {
 
 <style scoped>
 h2 {
-	font-size: 1.2em;
+	font-size: 1em;
+	font-weight: bold;
 	padding-right: 1em;
-	grid-column: 2;
+	grid-column: tags-header;
 }
 
 .tag-header {
-	padding: 1em 0;
+	padding: 1em 0 0.75em 0;
 	background: linear-gradient(to bottom, rgb(250, 250, 250) 80%,rgba(250,250,250,0) 100%);
 	display: grid;
 	grid-auto-flow: column;
-	grid-template-columns: 3.5em min-content min-content auto 2em 1.5em;
+	grid-template-columns: 0.75em [tags-show] 1em 0.75em [tags-header] min-content auto [tags-add] 1.5em 1em;
 	align-items: stretch;
 	position: relative;
 	z-index: 2;
 }
 
 .tag-show-button-wrapper {
-	grid-column: 5;
+	grid-column: tags-show;
 	display: flex;
 }
 
@@ -87,7 +88,7 @@ h2 {
 }
 
 .tag-add-button-wrapper {
-	grid-column: 3;
+	grid-column: tags-add;
 	display: flex;
 }
 
