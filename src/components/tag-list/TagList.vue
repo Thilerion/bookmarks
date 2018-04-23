@@ -38,12 +38,9 @@ export default {
 }
 
 .tag-item {
-	margin: 1.5em 0;
-	display: grid;
-	grid-template-columns: 1em 1em 1.5em auto 2em 1.5em;
-	/*grid-auto-rows: minmax(1em, auto);*/
-	grid-auto-rows: auto;
-	align-items: center;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
 }
 
 .tag-item:first-of-type {

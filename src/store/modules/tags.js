@@ -39,13 +39,29 @@ let tagStore = {
 	},
 
 	mutations: {
-		changeTagStatus: (state, tagId) => {
+		changeTagStatus: (state, {tagId, newStatus}) => {
 			let tagToChange = state.tags.find((tag) => {
 				return tag.id === tagId;
 			});
-			tagToChange.active = !tagToChange.active;
+			console.log(newStatus);
+			tagToChange.active = newStatus;
 		},
-		changeUntaggedTagStatus: state => state.untaggedTag.active = !state.untaggedTag.active,
+		deactivateAllTagsButOne: (state, exceptionTagId = null) => {			
+			for (let tag of state.tags) {
+				if (exceptionTagId !== null && tag.id === exceptionTagId) {
+					tag.active = true;
+				} else {
+					tag.active = false;
+				}
+			}
+		},
+		activateAllTags: state => {
+			for (let tag of state.tags) {
+				tag.active = true;
+			}
+			state.untaggedTag.active = true;
+		},
+		changeUntaggedTagStatus: (state, newStatus) => state.untaggedTag.active = newStatus,
 		editTagColour: (state, payload) => {
 			const id = payload.id;
 			const colour = payload.colour;
@@ -95,6 +111,39 @@ let tagStore = {
 			let tags = JSON.stringify(getters.tags);
 			localStorage.setItem("tags", tags);
 			console.warn("Tags were saved to localStorage");
+		},
+		activateTag({ getters, commit }, tagId) {
+			if (tagId === getters.untaggedTag.id) {
+				commit('changeUntaggedTagStatus', true);
+			} else if (getters.allTagIds.includes(tagId)) {
+				commit('changeTagStatus', { tagId, newStatus: true });
+			} else {
+				console.warn("Tag ID does not exist!");
+			}
+		},
+		deactivateTag({ getters, commit }, tagId) {
+			if (tagId === getters.untaggedTag.id) {
+				commit('changeUntaggedTagStatus', false);
+			} else if (getters.allTagIds.includes(tagId)) {
+				commit('changeTagStatus', { tagId, newStatus: false });
+			} else {
+				console.warn("Tag ID does not exist!");
+			}
+		},
+		deactivateAllTagsButOne({ getters, commit }, tagId) {
+			if (tagId === getters.untaggedTag.id) {
+				//deactivate all tags
+				commit('deactivateAllTagsButOne');
+				//activate untagged tag
+				commit('changeUntaggedTagStatus', true);
+			} else if (getters.allTagIds.includes(tagId)) {
+				//deactivate untagged tag
+				commit('changeUntaggedTagStatus', false);
+				//deactivate all tags, except tagId
+				commit('deactivateAllTagsButOne', tagId);
+			} else {
+				console.warn("Tag ID does not exist!");
+			}
 		}
 	}
 }

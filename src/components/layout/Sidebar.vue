@@ -2,12 +2,16 @@
 <div class="sidebar">
 	<div class="tag-header">
 		<h2>Tags</h2>
-		<button class="tag-add-button" @click="enableAddTagModal">
-			<BmSvgIcon icon="plus"/>
-		</button>
-		<button class="tag-show-button" @click="toggleTagList">
-			<BmSvgIcon :icon="showIcon"/>
-		</button>
+		<div class="tag-add-button-wrapper">
+			<button class="tag-add-button" @click="enableAddTagModal">
+				<BmSvgIcon icon="plus"/>
+			</button>
+		</div>
+		<div class="tag-show-button-wrapper">
+			<button class="tag-show-button" @click="toggleTagList">
+				<BmSvgIcon :icon="showIcon"/>
+			</button>
+		</div>
 	</div>
 	
 	<transition name="collapse-tag-list">
@@ -56,31 +60,41 @@ export default {
 
 <style scoped>
 h2 {
-	font-size: 1.2em;
+	font-size: 1em;
+	font-weight: bold;
 	padding-right: 1em;
-	grid-column: 2;
+	grid-column: tags-header;
 }
 
 .tag-header {
-	padding: 1em 0;
+	padding: 1em 0 0.75em 0;
 	background: linear-gradient(to bottom, rgb(250, 250, 250) 80%,rgba(250,250,250,0) 100%);
 	display: grid;
 	grid-auto-flow: column;
-	grid-template-columns: 3.5em min-content min-content auto 2em 1.5em;
-	align-items: center;
+	grid-template-columns: 0.75em [tags-show] 1em 0.75em [tags-header] min-content auto [tags-add] 1.5em 1em;
+	align-items: stretch;
 	position: relative;
 	z-index: 2;
 }
 
+.tag-show-button-wrapper {
+	grid-column: tags-show;
+	display: flex;
+}
+
 .tag-show-button {
-	grid-column: 5;
 	text-align: right;
+	margin: auto;
+}
+
+.tag-add-button-wrapper {
+	grid-column: tags-add;
+	display: flex;
 }
 
 .tag-add-button {
-	grid-column: 3;
 	box-sizing: content-box;
-	margin-top: 0.25em;
+	margin: auto;
 	width: 1.2em;
 	height: 1.2em;
 }

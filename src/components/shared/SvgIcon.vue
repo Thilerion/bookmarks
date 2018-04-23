@@ -54,5 +54,6 @@ export default {
 svg {
 	fill: currentColor;
 	position: relative;
+	vertical-align: middle;
 }
 </style>
