@@ -1,10 +1,10 @@
 <template>
 <div class="main-wrapper">
-	<div class="main-fixed pad-hor">
-
+	<div class="main-fixed">
+		This part stays on top.
 	</div>
 	<div class="scroll-wrap vertical">
-		<main class="main-content pad-hor">
+		<main class="main-content">
 			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius distinctio facere vitae quisquam debitis placeat enim blanditiis tenetur explicabo, qui excepturi eligendi quo similique iusto illo quibusdam ad nesciunt cumque hic itaque amet tempore minus. Tempore recusandae delectus veritatis nam impedit ex officiis totam praesentium eos facere excepturi, qui asperiores!</p>
 			<p>Possimus voluptatum perferendis reiciendis iste iure mollitia in ad? Possimus consectetur in, nisi, perspiciatis iusto ad maxime aspernatur ut id non quod dolorum? Nobis corporis et hic unde, ad optio doloribus eos dolorem exercitationem natus ratione molestias dolores cumque excepturi itaque laborum aliquid. Exercitationem recusandae sed repellat voluptatum fugiat numquam.</p>
 			<p>Autem doloribus provident optio impedit doloremque nostrum eligendi eius quae repudiandae, officia earum accusantium. Quis, doloribus porro! Adipisci ex minus molestiae repellendus maiores non laboriosam consequatur quidem! Praesentium veritatis, impedit voluptatum delectus maiores nisi inventore voluptate aperiam repellendus ipsum nostrum atque sint perspiciatis sit iusto reprehenderit hic ad! At, facilis.</p>
@@ -15,6 +15,9 @@
 			<p>Adipisci, quidem id tenetur laudantium et nostrum animi voluptates in dolorem non voluptas expedita ab nesciunt, voluptate ad velit? Officia, nam, quidem natus delectus dolorum hic animi itaque in iure dolores eaque mollitia beatae quasi non velit repudiandae ea qui, architecto illum ad deleniti cumque. Magnam vitae perspiciatis sequi quidem!</p>
 			<p>Iusto facilis corporis saepe voluptate debitis vitae. Doloremque ipsum consequuntur accusantium harum esse facilis voluptatibus sapiente suscipit, nesciunt reprehenderit cumque cupiditate optio modi sed est minima dolorem quasi ipsa vel. Necessitatibus soluta architecto quaerat porro vitae libero, ipsa accusamus adipisci tempora assumenda perspiciatis excepturi dolores ad asperiores est non distinctio.</p>
 			<p>Quam reprehenderit dolorum sint eligendi expedita, blanditiis nemo maxime. Saepe accusamus est veniam eos ad voluptatem, molestiae magnam perferendis quas suscipit. Provident sunt odio ducimus, neque esse eligendi, sequi exercitationem mollitia, numquam rerum eum suscipit. Expedita voluptatibus saepe eveniet, accusamus eligendi vitae dolores adipisci at nulla deserunt ratione porro explicabo.</p>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius distinctio facere vitae quisquam debitis placeat enim blanditiis tenetur explicabo, qui excepturi eligendi quo similique iusto illo quibusdam ad nesciunt cumque hic itaque amet tempore minus. Tempore recusandae delectus veritatis nam impedit ex officiis totam praesentium eos facere excepturi, qui asperiores!</p>
+			<p>Possimus voluptatum perferendis reiciendis iste iure mollitia in ad? Possimus consectetur in, nisi, perspiciatis iusto ad maxime aspernatur ut id non quod dolorum? Nobis corporis et hic unde, ad optio doloribus eos dolorem exercitationem natus ratione molestias dolores cumque excepturi itaque laborum aliquid. Exercitationem recusandae sed repellat voluptatum fugiat numquam.</p>
+			<p>Autem doloribus provident optio impedit doloremque nostrum eligendi eius quae repudiandae, officia earum accusantium. Quis, doloribus porro! Adipisci ex minus molestiae repellendus maiores non laboriosam consequatur quidem! Praesentium veritatis, impedit voluptatum delectus maiores nisi inventore voluptate aperiam repellendus ipsum nostrum atque sint perspiciatis sit iusto reprehenderit hic ad! At, facilis.</p>
 		</main>
 	</div>
 	
@@ -25,7 +28,8 @@
 export default {
 	components: {
 		
-	}
+	},
+
 }
 </script>
 
@@ -44,11 +48,7 @@ export default {
 
 .main-content {
 	flex: 1 1 auto;
-}
-
-.main-wrapper > .pad-hor {
-	padding-left: 2em;
-	padding-right: 2em;
+	padding: 0.5em 2em;
 }
 
 .scroll-wrap {
