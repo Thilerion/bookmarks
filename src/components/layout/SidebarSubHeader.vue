@@ -31,6 +31,12 @@ export default {
 	color: white;
 	border: none;
 	position: relative;
+	background: transparent;
+	transition: background 150ms ease-out;
+}
+
+.add-bm-btn:hover {
+	background: rgba(255,255,255,0.05);
 }
 
 .add-bm-btn:not(:last-of-type)::after {

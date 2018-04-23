@@ -146,16 +146,21 @@ header {
 	text-align: center;
 	padding: 2em 0;
 	cursor:default;
+	flex: 0 0 auto;
 }
 
 .sub-header {
 	background: #444;
 	color: white;
+	flex: 0 0 auto;
 }
 
 .sidebar-content {
 	overflow-y: scroll;
 	overflow-x: hidden;
+	flex: 1 1 auto;
+	border-right: 1px solid hsl(0,0%,80%);
+	background: hsl(0, 0%, 99%);
 }
 /*
 h2 {
