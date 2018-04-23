@@ -93,7 +93,7 @@ export default {
 :root {
 	--font-dark: 					hsl(0, 0%, 10%);
 	--font-light: 					hsl(0, 0%, 100%);
-	--bg-light-alpha:				hsl(0, 0%, 97%);
+	--bg-light-alpha:				hsl(0, 0%, 95%);
 	--bg-light-beta:				hsl(0, 0%, 99.5%);
 	--bg-dark-alpha:				hsl(0, 0%, 17.5%);
 	--bg-dark-beta:					hsl(0, 0%, 22.5%);
