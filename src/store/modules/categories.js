@@ -9,7 +9,8 @@ let categoryStore = {
 			{ name: "Sociaal", 		colour: "#f8b056", _id: 5, icon: null }
 		],
 		uncategorizedCat: { name: "Uncategorized", colour: 'var(--base-cat-colour)', id: null, icon: null },
-		allBookmarksCat: { name: "All bookmarks", colour: 'var(--base-cat-colour)', id: 'all', icon: null}
+		allBookmarksCat: { name: "All bookmarks", colour: 'var(--base-cat-colour)', id: 'all', icon: null },
+		categoryOrder: [1, 4, 2, 3, 5, 0]
 	},
 
 	getters: {
@@ -24,11 +25,19 @@ let categoryStore = {
 			if (id === 'all') return state.allBookmarksCat;
 			else if (getters.allCategoryIds.includes(id)) return state.categories.find(cat => cat._id === id);
 			else return state.uncategorizedCat;
+		},
+		categoryOrder: state => state.categoryOrder,
+		categoriesSortedByOrder: state => {
+			return state.categoryOrder.map(catId => {
+				return state.categories.find(c => c._id === catId);
+			});
 		}
 	},
 
 	mutations: {
-		
+		updateCategoryOrder: (state, val) => {
+			state.categoryOrder = val;
+		}
 	},
 
 	actions: {}
