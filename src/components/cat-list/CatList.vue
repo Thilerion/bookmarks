@@ -46,7 +46,8 @@ export default {
 			return {
 				ghostClass: 'ghost',
 				chosenClass: 'chosen',
-				animation: 0
+				animation: 0,
+				delay: 1000
 			}
 		}
 	}

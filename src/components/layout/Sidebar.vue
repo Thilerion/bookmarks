@@ -19,8 +19,22 @@
 	<div class="scroll-wrap vertical sidebar-border">
 		<div class="sidebar-content">
 			<div class="menu-block">
-				<div class="menu-item" :class="{selected: allBookmarksSelected}" @click="selectCategory('all')" >All bookmarks</div>
-				<div class="menu-item" :class="{selected: uncategorizedSelected}" @click="selectCategory(null)" >Uncategorized</div>
+				<div
+					class="menu-item"
+					:class="{selected: allBookmarksSelected}"
+					@click="selectCategory('all')"
+				>
+					<div class="title">All bookmarks</div>
+					<div class="amount">{{allBookmarksAmount}}</div>
+				</div>
+				<div
+					class="menu-item"
+					:class="{selected: uncategorizedSelected}"
+					@click="selectCategory('none')"
+				>
+					<div class="title">Uncategorized</div>
+					<div class="amount">{{uncategorizedAmount}}</div>
+				</div>
 			</div>
 			<BmCatList class="menu-block"/>
 		</div>
@@ -43,10 +57,19 @@ export default {
 			return this.$store.getters.selectedCategoryId;
 		},
 		uncategorizedSelected() {
-			return this.selected === null;
+			return this.selected === 'none';
 		},
 		allBookmarksSelected() {
 			return this.selected === "all";
+		},
+		categoryAmount() {
+			return this.$store.getters.categoryAmount;
+		},
+		allBookmarksAmount() {
+			return this.$store.getters.bookmarks.length;
+		},
+		uncategorizedAmount() {
+			return this.$store.getters.categoryAmount['none'];
 		}
 	},
 	methods: {
@@ -102,11 +125,40 @@ header {
 .sidebar-border {
 	border-right: 1px solid var(--border-main);
 }
+
+.menu-item {
+	display: flex;
+	align-items: center;
+}
+
+.menu-item .icon {
+	flex: 0 0 1em;
+	align-self: center;
+	padding-top: 0.15em;
+}
+
+.menu-item .title {
+	flex: 1 0 1em;
+	padding-left: 0.25em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.menu-item .amount {
+	flex: 0 0 1rem;
+	font-size: 0.7em;
+	align-self: center;
+	text-align: right;
+	opacity: 0.7;
+	padding-right: 0.5em;
+}
 </style>
 
 <style>
 .menu-block {
 	padding-top: 0.75rem;
+	overflow: hidden;
 }
 
 .menu-block:first-child {
@@ -121,6 +173,7 @@ header {
 	font-weight: normal;
 	color: var(--font-dark-tertiary);
 	text-transform: uppercase;
+	cursor: default;
 }
 
 .menu-block .list-item, .menu-block .menu-item {

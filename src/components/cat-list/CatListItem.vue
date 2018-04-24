@@ -12,6 +12,7 @@
 		></div>
 	</div>
 	<div class="title">{{name}}</div>
+	<div class="amount">{{amount}}</div>
 </li>
 </template>
 
@@ -30,6 +31,9 @@ export default {
 	computed: {
 		name() {
 			return this.category.name;
+		},
+		amount() {
+			return this.$store.getters.categoryAmount[this.category._id] || "";
 		},
 		showIcon() {
 			return this.category.icon != null;
@@ -75,7 +79,19 @@ export default {
 	}
 
 	.list-item .title {
-		flex: 1 1 auto;
+		flex: 1 0 1em;
 		padding-left: 0.25em;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.list-item .amount {
+		flex: 0 0 1rem;
+		font-size: 0.7em;
+		align-self: center;
+		text-align: right;
+		opacity: 0.7;
+		padding-right: 0.5em;
 	}
 </style>

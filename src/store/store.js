@@ -25,17 +25,6 @@ export default new Vuex.Store({
 	},
 
 	getters: {
-		categoryAmount: (state, getters) => {
-			const categoryAmounts = {};
-			for (let catId of getters.allCategoryIds) {
-				categoryAmounts[catId] = 0;
-			}
-			/* CHANGE TO GET ALL CATEGORIES */
-			for (let bm of getters.bookmarks) {
-				categoryAmounts[bm.category] += 1;
-			}
-			return categoryAmounts;
-		},
 		activeModal: state => {
 			if (state.activeModal == null) return null;
 			else return state.modalOptions[state.activeModal];

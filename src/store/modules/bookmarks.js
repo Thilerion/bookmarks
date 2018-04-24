@@ -126,7 +126,7 @@ let bookmarkStore = {
 				title: "Zeto",
 				url: "https://www.zeta.com",
 				id: 14,
-				category: null,
+				category: 'none',
 				added: 1527190537705,
 				customIndex: 14
 			},
@@ -134,7 +134,7 @@ let bookmarkStore = {
 				title: "Eta",
 				url: "https://en.m.eta.org/",
 				id: 15,
-				category: null,
+				category: 'none',
 				added: 1520190867705,
 				customIndex: 15
 			},
@@ -161,6 +161,21 @@ let bookmarkStore = {
 	getters: {
 		bookmarks: state => state.bookmarks,
 		allBookmarkIds: state => state.bookmarks.map(bm => bm.id).sort(),
+		categoryAmount: (state, getters) => {
+			const categoryAmounts = {};
+			for (let catId of getters.allCategoryIds) {
+				categoryAmounts[catId] = 0;
+			}
+			/* CHANGE TO GET ALL CATEGORIES */
+			for (let bm of getters.bookmarks) {
+				if (categoryAmounts[bm.category]) {
+					categoryAmounts[bm.category] += 1;
+				} else {
+					categoryAmounts[bm.category] = 1;
+				}				
+			}
+			return categoryAmounts;
+		},
 		currentlyEditingBookmark: state => state.currentlyEditingBookmark
 	},
 
