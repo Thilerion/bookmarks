@@ -7,16 +7,19 @@
 		v-html="$options.filters.filterHighlight(title, searchString)">
 	</a>
 
+	
+	<BmCategoryDisplay
+		:catId="catId"
+		class="cat-display"
+	/>
+
 	<div class="col-options">
 		<BmBookmarkOptions
 			@goToUrl="goToUrl"
 			@deleteBookmark="deleteBookmark"
-			@editBookmark="editBookmark"/>
-	</div>	
-
-	<BmCategoryDisplay
-			:catId="catId"
+			@editBookmark="editBookmark"
 		/>
+	</div>	
 </div>
 </template>
 

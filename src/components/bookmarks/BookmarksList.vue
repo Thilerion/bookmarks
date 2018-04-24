@@ -159,6 +159,7 @@ span.highlight {
 	min-width: 5em;
 	display: flex;
 	flex-direction: column;
+	flex: 10 1 auto;
 	padding: 0.5em;
 	padding-left: 0;
 }
@@ -171,8 +172,13 @@ span.highlight {
 	font-size: 0.8em;
 }
 
+.bm-item-normal .cat-display {
+	align-self: center;
+}
+
 .bm-item-normal .col-options {
 	flex: 0 0 2em;
+	margin: auto;
 }
 
 /*

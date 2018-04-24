@@ -24,17 +24,20 @@
 			v-if="description !== ''"
 			v-html="$options.filters.filterHighlight(description, searchString)"></p>
 
+		<BmCategoryDisplay
+			:catId="catId"
+			class="cat-display"
+		/>
+		
 		<div class="col-options">
 			<BmBookmarkOptions
 				vertical-icon
 				@goToUrl="goToUrl"
 				@deleteBookmark="deleteBookmark"
-				@editBookmark="editBookmark"/>
+				@editBookmark="editBookmark"
+			/>
 		</div>
 
-		<BmCategoryDisplay
-			:catId="catId"
-		/>
 	</div>		
 </div>
 </template>

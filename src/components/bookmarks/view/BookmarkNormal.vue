@@ -20,16 +20,19 @@
 
 	</div>
 
+	<BmCategoryDisplay
+		:catId="catId"
+		class="cat-display"
+	/>
+	
 	<div class="col-options">
 		<BmBookmarkOptions
 			@goToUrl="goToUrl"
 			@deleteBookmark="deleteBookmark"
-			@editBookmark="editBookmark"/>	
+			@editBookmark="editBookmark"
+		/>	
 	</div>	
 
-	<BmCategoryDisplay
-			:catId="catId"
-		/>
 </div>
 </template>
 
