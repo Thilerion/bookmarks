@@ -20,20 +20,6 @@
 
 	</div>
 
-	<div class="col-tags">
-		<BmCategoryDisplay
-			v-for="tag in bookmark.tags"
-			:key="tag"
-			:tagId="tag"
-			canBeInactive
-		/>
-		<BmCategoryDisplay
-			v-if="bookmark.tags.length === 0"
-			untagged
-			canBeInactive
-		/>
-	</div>
-
 	<div class="col-options">
 		<BmBookmarkOptions
 			@goToUrl="goToUrl"
@@ -46,12 +32,10 @@
 </template>
 
 <script>
-import CategoryDisplay from '../../shared/CategoryDisplay';
 import BookmarkOptions from '../BookmarkOptions';
 
 export default {
 	components: {
-		BmCategoryDisplay: CategoryDisplay,
 		BmBookmarkOptions: BookmarkOptions
 	},
 	props: {

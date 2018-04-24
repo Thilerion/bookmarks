@@ -171,22 +171,6 @@ span.highlight {
 	font-size: 0.8em;
 }
 
-.bm-item-normal .col-tags {
-	flex: 1 3 5em;
-	padding: 0.1em 0.25em;
-	padding-right: 0;
-	margin-right: -0.25em;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	flex-wrap: wrap;
-	align-content: space-around;
-}
-
-.bm-item-normal .col-tags > div {
-	margin: 0.25em;
-}
-
 .bm-item-normal .col-options {
 	flex: 0 0 2em;
 }
@@ -202,21 +186,6 @@ span.highlight {
 
 .bm-item-compact .bm-title {
 	flex: 3 1 auto;
-}
-
-.bm-item-compact .bm-tags {
-	flex: 1 10000 auto;
-	text-align: right;
-	padding-bottom: 3px;
-	white-space: nowrap;
-}
-
-.bm-item-compact .tag:not(:last-child) {
-	margin-right: 0.75em;
-}
-
-.bm-item-compact .bm-tags {
-	overflow: hidden;
 }
 
 .bm-item-compact .col-options {
@@ -286,30 +255,6 @@ span.highlight {
 	position: absolute;
 	right: 0;
 	bottom: 0;
-}
-
-.bm-item-grid .bm-tags {
-	margin-top: auto;
-	overflow: hidden;
-	white-space: nowrap;
-	display: inline-flex;
-	justify-content: flex-start;
-	align-items: center;
-	margin-left: -0.25em;
-	margin-bottom: -0.25em;
-	flex-wrap: wrap;
-	padding-top: 0.25em;
-}
-
-.bm-item-grid .bm-tags .tag {
-	display: inline-block;
-	text-overflow: ellipsis;
-	margin-left: 0.5em;
-	margin-bottom: 0.25em;
-}
-
-.bm-item-grid .bm-tags .tag:last-child {
-	margin-right: 0.50em;
 }
 
 .bm-item-grid > a:first-child {

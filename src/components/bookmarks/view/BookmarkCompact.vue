@@ -7,20 +7,6 @@
 		v-html="$options.filters.filterHighlight(title, searchString)">
 	</a>
 
-	<span class="bm-tags">
-		<BmCategoryDisplay
-			v-for="tag in bookmark.tags"
-			:key="tag"
-			:tagId="tag"
-			small
-		/>
-		<BmCategoryDisplay
-			v-if="bookmark.tags.length === 0"
-			untagged
-			small
-		/>
-	</span>
-
 	<div class="col-options">
 		<BmBookmarkOptions
 			@goToUrl="goToUrl"
@@ -31,12 +17,10 @@
 </template>
 
 <script>
-import CategoryDisplay from '../../shared/CategoryDisplay';
 import BookmarkOptions from '../BookmarkOptions';
 
 export default {
 	components: {
-		BmCategoryDisplay: CategoryDisplay,
 		BmBookmarkOptions: BookmarkOptions
 	},
 	props: {

@@ -6,8 +6,7 @@
 		:title="url"
 	><div class="top">
 		<div
-			class="top-bg"
-			:style="randomBackgroundColor()"></div>
+			class="top-bg"></div>
 		<p class="host">{{url | filterLinkDomain}}</p>
 	</div>
 	</a>
@@ -24,20 +23,6 @@
 			class="bm-description bm-sub"
 			v-if="description !== ''"
 			v-html="$options.filters.filterHighlight(description, searchString)"></p>
-
-		<div class="bm-tags">
-			<BmCategoryDisplay
-				v-for="tag in bookmark.tags"
-				:key="tag"
-				:tagId="tag"
-				small
-			/>
-			<BmCategoryDisplay
-				v-if="bookmark.tags.length === 0"
-				untagged
-				small
-			/>
-		</div>
 
 		<div class="col-options">
 			<BmBookmarkOptions
@@ -56,7 +41,6 @@ import BookmarkOptions from '../BookmarkOptions';
 
 export default {
 	components: {
-		BmCategoryDisplay: CategoryDisplay,
 		BmBookmarkOptions: BookmarkOptions
 	},
 	props: {
@@ -88,18 +72,6 @@ export default {
 		},
 		goToUrl() {
 			window.open(this.url);
-		},
-		randomBackgroundColor() {
-			if (this.bookmark.tags.length < 1) {
-				return {
-					'background-color': "#444"
-				}
-			}
-			let amount = this.bookmark.tags.length;
-			let rnd = Math.floor(Math.random() * amount);
-			return {
-				'background-color': this.$store.getters.tagProperties(this.bookmark.tags[rnd]).colour
-			}
 		}
 	}
 }
