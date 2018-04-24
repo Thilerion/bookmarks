@@ -7,7 +7,8 @@ let categoryStore = {
 			{ name: "Nieuws", 		colour: "#79ccd4", _id: 3, icon: null },
 			{ name: "Programmeren", colour: "#afcd9c", _id: 4, icon: null },
 			{ name: "Sociaal", 		colour: "#f8b056", _id: 5, icon: null }
-		]
+		],
+		uncategorized: {name: "Uncategorized", colour: 'var(--base-cat-colour)', id: null, icon: null}
 	},
 
 	getters: {
@@ -15,7 +16,8 @@ let categoryStore = {
 		allCategoryIds: state => state.categories.map(c => c._id),
 		nextCategoryId: (state, getters) =>
 			Math.max(...getters.allCategoryIds) + 1,
-		allCategoryNames: state => state.categories.map(c => c.name)
+		allCategoryNames: state => state.categories.map(c => c.name),
+		uncategorized: state => state.uncategorized
 	},
 
 	mutations: {

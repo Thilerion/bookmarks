@@ -21,8 +21,12 @@ let bookmarkSearch = {
 		},
 		currentSortModeString: (state, getters) => state.sortModes[getters.sortMode],
 		sortModes: state => state.sortModes,
-		sortedBookmarks: (state, getters, rootState, rootGetters) => {
-			const items = [...rootGetters.bookmarks];
+		bookmarksByCategory: (state, getters, rootState, rootGetters) => {
+			if (state.bookmarksToShow.category === "all") return rootGetters.bookmarks;
+			else return rootGetters.bookmarks.filter(bm => bm.category === state.bookmarksToShow.category);
+		},
+		sortedBookmarks: (state, getters) => {
+			const items = getters.bookmarksByCategory;
 			const mode = getters.sortMode;
 			if (mode === 0) return items.sort(sortNewestFirst);
 			else if (mode === 1) return items.sort(sortOldestFirst);

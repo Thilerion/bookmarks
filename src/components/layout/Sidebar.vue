@@ -107,7 +107,6 @@ header {
 <style>
 .menu-block {
 	padding-top: 0.75rem;
-	--base-cat-colour: var(--bg-dark-gamma);
 }
 
 .menu-block:first-child {

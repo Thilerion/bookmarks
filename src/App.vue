@@ -62,6 +62,7 @@ export default {
 	--border-transparent-lighten:	hsla(0, 0%, 80%, 0.1);
 	--border-transparent-darken:	hsla(0, 0%, 20%, 0.1);
 	--border-main:					hsl(0, 0%, 80%);
+	--base-cat-colour: 				var(--bg-dark-gamma);
 }
 
 html {
