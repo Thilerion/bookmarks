@@ -3,12 +3,16 @@ import { sortNewestFirst, sortOldestFirst, sortAlphaDescending, sortAlphaAscendi
 let bookmarkSearch = {
 
 	state: {
-		currentSearch: "",
-		sortModes: ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)", "Custom"]
+		sortModes: ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)", "Custom"],
+		bookmarksToShow: {
+			category: 3,
+			searchTerm: "",
+			tags: []
+		}
 	},
 
 	getters: {
-		searchString: state => state.currentSearch,
+		searchString: state => state.bookmarksToShow.searchTerm,
 		sortMode: (state, getters) => {
 			if (getters.userSortMode < 0 || getters.userSortMode >= state.sortModes.length) {
 				console.warn("Unexpected sort mode: " + getters.userSortMode);
@@ -28,16 +32,18 @@ let bookmarkSearch = {
 		},
 		searchSortedBookmarks: (state, getters) => {
 			return getters.sortedBookmarks.filter((bookmark) => {
-				let filterKey = state.currentSearch.toLowerCase();
+				let filterKey = state.bookmarksToShow.searchTerm.toLowerCase();
 				if (bookmark.title.toLowerCase().includes(filterKey) || bookmark.description.toLowerCase().includes(filterKey)) {
 					return true;
 				} else return false;
 			});
-		}
+		},
+		selectedCategoryId: state => state.bookmarksToShow.category,
 	},
 
 	mutations: {
-		changeCurrentSearch: (state, searchString) => state.currentSearch = searchString
+		changeCurrentSearch: (state, searchString) => state.bookmarksToShow.searchTerm = searchString,
+		selectCategory: (state, id) => state.bookmarksToShow.category = id
 	},
 
 	actions: {

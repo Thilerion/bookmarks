@@ -18,7 +18,9 @@ let categoryStore = {
 		allCategoryNames: state => state.categories.map(c => c.name)
 	},
 
-	mutations: {},
+	mutations: {
+		
+	},
 
 	actions: {}
 };

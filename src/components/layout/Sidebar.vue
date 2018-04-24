@@ -18,111 +18,43 @@
 
 	<div class="scroll-wrap vertical sidebar-border">
 		<div class="sidebar-content">
-			Main sidebar content here
-			<ul>
-				<li>Lorem ipsum dolor sit amet.</li>
-				<li>Accusantium veritatis nisi cumque repellat!</li>
-				<li>Praesentium, culpa! Libero, nobis voluptatum.</li>
-				<li>Ex dolorum recusandae earum aliquam?</li>
-				<li>Corrupti dolores velit nulla vitae.</li>
-				<li>Eligendi suscipit ex sunt rerum.</li>
-				<li>Consequuntur possimus quisquam non perspiciatis.</li>
-				<li>Vitae illum quod exercitationem corporis.</li>
-				<li>Tenetur odit consectetur alias optio!</li>
-				<li>Obcaecati harum tempore rem facere?</li>
-				<li>Earum necessitatibus temporibus provident totam?</li>
-				<li>Perspiciatis eum quidem perferendis? Aliquid?</li>
-				<li>Dignissimos ducimus quam rerum odio.</li>
-				<li>Numquam officia repellendus sunt consequuntur?</li>
-				<li>Reprehenderit soluta autem ea exercitationem?</li>
-				<li>Debitis quibusdam veniam rerum ex.</li>
-				<li>Enim deleniti modi eius laboriosam.</li>
-				<li>At dicta atque consequatur perferendis!</li>
-				<li>Laudantium veniam placeat repudiandae magnam.</li>
-				<li>Nam a expedita doloremque nihil.</li>
-				<li>Aperiam necessitatibus voluptatibus sunt iusto.</li>
-				<li>Laboriosam veritatis sapiente voluptatum officiis.</li>
-				<li>Laborum sapiente eius omnis ratione!</li>
-				<li>Alias, repudiandae. Tempore, vero quasi.</li>
-				<li>Nihil eius quia sequi iusto.</li>
-				<li>Doloremque, soluta voluptas! Nesciunt, magnam?</li>
-				<li>Dolore aut quibusdam temporibus nobis.</li>
-				<li>Modi neque totam sunt sapiente.</li>
-				<li>Neque accusamus dolore odit nam.</li>
-				<li>Facilis, nisi. Tempore, quidem maxime.</li>
-			</ul>
+			<div class="menu-block">
+				<div class="menu-item" :class="{selected: allBookmarksSelected}" @click="selectCategory('all')" >All bookmarks</div>
+				<div class="menu-item" :class="{selected: uncategorizedSelected}" @click="selectCategory(null)" >Uncategorized</div>
+			</div>
+			<BmCatList class="menu-block"/>
 		</div>
 		
 	</div>
 </aside>
-
-<!--
-<div class="sidebar">
-	<div class="tag-header">
-		<h2>Tags</h2>
-		<div class="tag-add-button-wrapper">
-			<button class="tag-add-button" @click="enableAddTagModal">
-				<BmSvgIcon icon="plus"/>
-			</button>
-		</div>
-		<div class="tag-show-button-wrapper">
-			<button class="tag-show-button" @click="toggleTagList">
-				<BmSvgIcon :icon="showIcon"/>
-			</button>
-		</div>
-	</div>
-	
-	<transition name="collapse-tag-list">
-		<BmTagList class="tags-list" v-if="showTagList" ref="tagList" />
-	</transition>
-</div>-->
 </template>
 
 <script>
 import SidebarSubHeader from './SidebarSubHeader'
+import CatList from '../cat-list/CatList'
 
 export default {
 	components: {
-		BmSidebarSubHeader: SidebarSubHeader
-	}
-}
-/*
-import TagList from '../tag-list/TagList';
-import SvgIcon from '../shared/SvgIcon';
-
-export default {
-	components: {
-		BmTagList: TagList,
-		BmSvgIcon: SvgIcon,
-	},
-	data() {
-		return {
-			showTagList: true
-		}
+		BmSidebarSubHeader: SidebarSubHeader,
+		BmCatList: CatList
 	},
 	computed: {
-		showIcon() {
-			if (this.showTagList === true) return 'drop-down';
-			else return 'drop-up';
+		selected() {
+			return this.$store.getters.selectedCategoryId;
+		},
+		uncategorizedSelected() {
+			return this.selected === null;
+		},
+		allBookmarksSelected() {
+			return this.selected === "all";
 		}
 	},
 	methods: {
-		collapseTagList() {			
-			this.showTagList = false;			
-		},
-		expandTagList() {
-			this.showTagList = true;
-		},
-		toggleTagList() {
-			if (this.showTagList === true) this.collapseTagList();
-			else this.expandTagList();
-		},
-		enableAddTagModal() {
-			this.$store.commit('enableModal', 1);
+		selectCategory(whichOne) {
+			this.$store.commit('selectCategory', whichOne);
 		}
 	}
 }
-*/
 </script>
 
 <style scoped>
@@ -170,74 +102,44 @@ header {
 .sidebar-border {
 	border-right: 1px solid var(--border-main);
 }
+</style>
 
-/*
-h2 {
-	font-size: 1em;
-	font-weight: bold;
-	padding-right: 1em;
-	grid-column: tags-header;
+<style>
+.menu-block {
+	padding-top: 0.75rem;
+	--base-cat-colour: var(--bg-dark-gamma);
 }
 
-.tag-header {
-	padding: 1em 0 0.75em 0;
-	background: linear-gradient(to bottom, rgb(250, 250, 250) 80%,rgba(250,250,250,0) 100%);
-	display: grid;
-	grid-auto-flow: column;
-	grid-template-columns: 0.75em [tags-show] 1em 0.75em [tags-header] min-content auto [tags-add] 1.5em 1em;
-	align-items: stretch;
-	position: relative;
-	z-index: 2;
+.menu-block:first-child {
+	padding-top: 1rem;
 }
 
-.tag-show-button-wrapper {
-	grid-column: tags-show;
-	display: flex;
+.menu-block .menu-heading {
+	padding-left: 1rem;
+	padding-right: 0.5rem;
+	padding-bottom: 0.2rem;
+	font-size: 0.9em;
+	font-weight: normal;
+	color: var(--font-dark-tertiary);
+	text-transform: uppercase;
 }
 
-.tag-show-button {
-	text-align: right;
-	margin: auto;
+.menu-block .list-item, .menu-block .menu-item {
+	padding-left: 0.5rem;
+	margin-left: 0.5rem;
+	padding-top: 0.45em;
+	padding-bottom: 0.45em;
+	user-select: none;
+	cursor: pointer;
 }
 
-.tag-add-button-wrapper {
-	grid-column: tags-add;
-	display: flex;
+.menu-block .list-item:hover, .menu-block .menu-item:hover {
+	background: var(--bg-light-beta);
 }
 
-.tag-add-button {
-	box-sizing: content-box;
-	margin: auto;
-	width: 1.2em;
-	height: 1.2em;
+.menu-block .list-item.selected, .menu-block .menu-item.selected {
+	background: var(--bg-dark-gamma);
+	color: var(--font-light);
 }
 
-.tag-add-button .add-icon {
-	width: 1.2em;
-	height: 1.2em;
-}
-
-.tag-show-button svg {
-	width: 1.5em;
-	height: 1.5em;
-}
-
-.collapse-tag-list-enter-active {
-	transition: all .3s ease;
-}
-
-.collapse-tag-list-enter {
-	transform: translateY(-20em);
-	opacity: 0;
-}
-
-.collapse-tag-list-leave-active {
-	transition: all .3s ease;
-}
-
-.collapse-tag-list-leave-to {
-	transform: translateY(-20em);
-	opacity: 0;
-}
-*/
 </style>
