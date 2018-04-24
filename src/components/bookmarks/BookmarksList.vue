@@ -329,10 +329,14 @@ span.highlight {
 	opacity: 0;	
 }
 
-.bookmarks-list-move {
-	transition: all .6s ease;
+.list .bookmarks-list-move {
+	transition: all .4s ease;
 	/* For some reason these two don't work together:
 	animation: move-list-fade .6s;*/
+}
+
+.grid .bookmarks-list-move {
+	transition: all .6s ease;
 }
 
 @keyframes move-list-fade {
