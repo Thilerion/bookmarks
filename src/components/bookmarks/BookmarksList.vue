@@ -228,6 +228,7 @@ span.highlight {
 
 .bm-item-grid > a {
 	flex: 0 0 8em;
+	color: rgb(250,250,250);
 }
 
 .bm-item-grid .top {
@@ -285,7 +286,7 @@ span.highlight {
 }
 
 .bm-item-grid .host {
-	margin: auto;	
+	margin: auto;
 	color: rgba(250,250,250);
 	text-shadow: 1px 1px .5px rgba(0,0,0,0.6);
 	z-index: 2;
@@ -303,7 +304,7 @@ span.highlight {
 }
 
 .bm-item-grid a:hover {
-	text-decoration: underline;
+	text-decoration: underline currentColor;
 }
 
 /*
