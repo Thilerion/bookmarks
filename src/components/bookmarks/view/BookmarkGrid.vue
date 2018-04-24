@@ -6,7 +6,9 @@
 		:title="url"
 	><div class="top">
 		<div
-			class="top-bg"></div>
+			class="top-bg"
+			:style="gridItemColour"
+		></div>
 		<p class="host">{{url | filterLinkDomain}}</p>
 	</div>
 	</a>
@@ -67,6 +69,11 @@ export default {
 		},
 		catId() {
 			return this.bookmark.category;
+		},
+		gridItemColour() {
+			return {
+				background: this.$store.getters.categoryById(this.catId).colour
+			};
 		}
 	},
 	methods: {

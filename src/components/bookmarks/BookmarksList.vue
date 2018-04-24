@@ -244,7 +244,7 @@ span.highlight {
 	position: absolute;
 	left: 0; right: 0;
 	top: 0; bottom: 0;
-	filter: brightness(95%);
+	filter: brightness(90%);
 }
 
 .bm-item-grid .mid {
@@ -288,7 +288,7 @@ span.highlight {
 .bm-item-grid .host {
 	margin: auto;
 	color: rgba(250,250,250);
-	text-shadow: 1px 1px .5px rgba(0,0,0,0.6);
+	text-shadow: 1px 1px .8px rgba(0,0,0,0.7);
 	z-index: 2;
 }
 
