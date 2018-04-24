@@ -212,6 +212,11 @@ span.highlight {
 	flex: 3 1 auto;
 }
 
+.bm-item-compact .cat-display {
+	flex: 0 10000 auto;
+	margin-left: 0.5em;
+}
+
 .bm-item-compact .col-options {
 	flex: 0 0 2em;
 	height: 100%;
