@@ -11,7 +11,7 @@
 	</div>
 	</a>
 
-	<div class="bot">
+	<div class="mid">
 		<a
 			:href="url"
 			class="bm-title bm-sub"
@@ -19,16 +19,15 @@
 			v-html="$options.filters.filterHighlight(title, searchString)">
 		</a>
 
-		<p
-			class="bm-description bm-sub"
-			v-if="description !== ''"
-			v-html="$options.filters.filterHighlight(description, searchString)"></p>
+		<span class="bm-tags bm-sub"></span>
+	</div>		
 
+	<div class="bot">
 		<BmCategoryDisplay
 			:catId="catId"
 			class="cat-display"
 		/>
-		
+
 		<div class="col-options">
 			<BmBookmarkOptions
 				vertical-icon
@@ -37,8 +36,7 @@
 				@editBookmark="editBookmark"
 			/>
 		</div>
-
-	</div>		
+	</div>
 </div>
 </template>
 
@@ -63,9 +61,6 @@ export default {
 		},
 		searchString() {
 			return this.$store.getters.searchString;
-		},
-		description() {
-			return this.bookmark.description;
 		},
 		url() {
 			return this.bookmark.url;

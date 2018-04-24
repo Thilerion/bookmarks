@@ -98,13 +98,15 @@ h1, h2, h3, h4 {
 .col-side {
 	height: 100vh;
 	overflow: hidden;
-	flex: 0 0 25em;
+	flex: 0 5 27vw;
+	min-width: 20em;
+	max-width: 25em;
 }
 
 .col-main {
 	height: 100vh;
 	overflow: hidden;
-	flex: 1 1 auto;
+	flex: 3 1 auto;
 }
 
 button {
