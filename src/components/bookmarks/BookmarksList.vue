@@ -7,7 +7,7 @@
 		<component
 			:is="currentViewComponent"
 			:bookmarks="bookmarksArray"
-			:key="currentViewComponent"
+			:key="viewComponentAndBookmarksCategory"
 		/>
 	</transition>
 </div>
@@ -30,6 +30,10 @@ export default {
 		},
 		currentViewComponent() {
 			return this.$store.getters.currentBookmarkListViewComp;
+		},
+		viewComponentAndBookmarksCategory() {
+			//used to trigger the transition when the view component OR the selected category change
+			return `${this.currentViewComponent} ${this.$store.getters.selectedCategoryId}`;
 		}
 	}
 }
@@ -41,7 +45,7 @@ export default {
 */
 
 .bookmark-list-mode-enter-active, .bookmark-list-mode-leave-active {
-	transition: all .5s ease-in-out;
+	transition: all .3s ease-in-out;
 }
 
 .bookmark-list-mode-enter, .bookmark-list-mode-leave-to {
