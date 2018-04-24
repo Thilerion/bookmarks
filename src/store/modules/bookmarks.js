@@ -9,7 +9,6 @@ let bookmarkStore = {
 		bookmarks: [
 			{
 				title: "Reddit",
-				description: "Reddit - social media website",
 				url: "https://www.reddit.com",
 				id: 0,
 				category: 4,
@@ -18,7 +17,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "nu.nl",
-				description: "",
 				url: "https://www.nu.nl",
 				id: 1,
 				category: 3,
@@ -27,7 +25,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "Agenda",
-				description: "Google Calendar",
 				url: "https://www.google.com/calendar",
 				id: 3,
 				category: 4,
@@ -36,7 +33,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "Learn Vue 2: Basic Data Binding",
-				description: "",
 				url:
 					"https://laracasts.com/series/learn-vue-2-step-by-step/episodes/1",
 				id: 8,
@@ -46,7 +42,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "Plex",
-				description: "",
 				url: "https://app.plex.tv/web/app",
 				id: 4,
 				category: 1,
@@ -55,7 +50,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "YouTube",
-				description: "",
 				url: "https://www.youtube.com",
 				id: 2,
 				category: 0,
@@ -64,7 +58,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "Vigenère cipher - Wikipedia",
-				description: "",
 				url: "https://en.m.wikipedia.org/wiki/Vigenère_cipher",
 				id: 7,
 				category: 2,
@@ -73,7 +66,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "Whatsapp",
-				description: "Whatsapp Web",
 				url: "https://web.whatsapp.com",
 				id: 6,
 				category: 1,
@@ -82,7 +74,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "Blackboard",
-				description: "",
 				url:
 					"http://blackboard.leidenuniv.nl/webapps/portal/frameset.jsp",
 				id: 5,
@@ -92,7 +83,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "Alpha",
-				description: "Greek Alphabet Generator",
 				url: "https://www.greekalpha.com",
 				id: 9,
 				category: 3,
@@ -101,7 +91,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "Beta",
-				description: "",
 				url: "https://www.beta.nl",
 				id: 10,
 				category: 0,
@@ -110,7 +99,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "Gamma",
-				description: "GGammaGammaA",
 				url: "https://www.gamma.com/bla-bla/blaaaa/gammaaaaaa",
 				id: 11,
 				category: 1,
@@ -119,7 +107,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "Delta",
-				description: "",
 				url:
 					"https://delta.com/super/awesome-bookmarks-2-visit-some-time/perfecttt/1",
 				id: 12,
@@ -129,7 +116,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "Epsilon",
-				description: "",
 				url: "https://app.episolon.tv/",
 				id: 13,
 				category: 5,
@@ -138,7 +124,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "Zeto",
-				description: "",
 				url: "https://www.zeta.com",
 				id: 14,
 				category: null,
@@ -147,7 +132,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "Eta",
-				description: "Eta Theta Iota?",
 				url: "https://en.m.eta.org/",
 				id: 15,
 				category: null,
@@ -156,7 +140,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "Theta",
-				description: "Theta Web",
 				url: "https://web.Theta.com",
 				id: 16,
 				category: 1,
@@ -165,7 +148,6 @@ let bookmarkStore = {
 			},
 			{
 				title: "Iota",
-				description: "",
 				url: "http://iota.kappa.nl/lambda/nu/nu-xi-omikron.jsp",
 				id: 17,
 				category: 2,

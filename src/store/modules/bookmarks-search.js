@@ -37,7 +37,7 @@ let bookmarkSearch = {
 		searchSortedBookmarks: (state, getters) => {
 			return getters.sortedBookmarks.filter((bookmark) => {
 				let filterKey = state.bookmarksToShow.searchTerm.toLowerCase();
-				if (bookmark.title.toLowerCase().includes(filterKey) || bookmark.description.toLowerCase().includes(filterKey)) {
+				if (bookmark.title.toLowerCase().includes(filterKey)) {
 					return true;
 				} else return false;
 			});

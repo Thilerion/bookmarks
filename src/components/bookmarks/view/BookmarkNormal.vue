@@ -8,12 +8,6 @@
 			v-html="$options.filters.filterHighlight(title, searchString)">
 		</a>
 
-		<p
-			class="bm-sub bm-description"
-			v-if="description !== ''"
-			v-html="$options.filters.filterHighlight(description, searchString)">
-		</p>
-
 		<p class="bm-sub bm-url" :title="url">{{url | filterLinkDomain}}</p>
 
 		<p class="bm-sub bm-date">{{dateAddedString}}</p>
@@ -53,9 +47,6 @@ export default {
 	computed: {
 		title() {
 			return this.bookmark.title;
-		},
-		description() {
-			return this.bookmark.description;
 		},
 		searchString() {
 			return this.$store.getters.searchString;
