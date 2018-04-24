@@ -16,8 +16,7 @@ export default {
 	},
 	computed: {
 		category() {
-			if (this.catId === null) return this.$store.getters.uncategorized;
-			else return this.$store.getters.categories.find(c => c._id === this.catId);
+			return this.$store.getters.categoryById(this.catId);
 		},
 		catName() {
 			return this.category.name;

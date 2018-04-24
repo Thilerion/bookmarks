@@ -8,7 +8,8 @@ let categoryStore = {
 			{ name: "Programmeren", colour: "#afcd9c", _id: 4, icon: null },
 			{ name: "Sociaal", 		colour: "#f8b056", _id: 5, icon: null }
 		],
-		uncategorized: {name: "Uncategorized", colour: 'var(--base-cat-colour)', id: null, icon: null}
+		uncategorizedCat: { name: "Uncategorized", colour: 'var(--base-cat-colour)', id: null, icon: null },
+		allBookmarksCat: { name: "All bookmarks", colour: 'var(--base-cat-colour)', id: 'all', icon: null}
 	},
 
 	getters: {
@@ -17,7 +18,13 @@ let categoryStore = {
 		nextCategoryId: (state, getters) =>
 			Math.max(...getters.allCategoryIds) + 1,
 		allCategoryNames: state => state.categories.map(c => c.name),
-		uncategorized: state => state.uncategorized
+		uncategorizedCategory: state => state.uncategorized,
+		allBookmarksCategory: state => state.allBookmarks,
+		categoryById: (state, getters) => id => {
+			if (id === 'all') return state.allBookmarksCat;
+			else if (getters.allCategoryIds.includes(id)) return state.categories.find(cat => cat._id === id);
+			else return state.uncategorizedCat;
+		}
 	},
 
 	mutations: {
