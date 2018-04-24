@@ -303,6 +303,10 @@ span.highlight {
 	bottom: 3px;
 }
 
+.bm-item-grid .cat-display {
+	margin-right: 1em;
+}
+
 .bm-item-grid a {
 	text-decoration: none;
 	outline: none;

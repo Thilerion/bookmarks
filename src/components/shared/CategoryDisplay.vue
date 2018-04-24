@@ -8,7 +8,8 @@
 export default {
 	props: {
 		catId: {
-			type: Number
+			type: [Number, String],
+			default: 'none'
 		},
 		small: {
 			type: Boolean
@@ -60,6 +61,13 @@ export default {
 	justify-content: space-between;
 	align-items: center;
 	cursor: default;
+	min-width: 4em;
+}
+
+.cat-name {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 .cat-display.has-colour {	
