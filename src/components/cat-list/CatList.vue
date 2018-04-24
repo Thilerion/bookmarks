@@ -45,9 +45,7 @@ export default {
 		draggableCatOptions() {
 			return {
 				ghostClass: 'ghost',
-				chosenClass: 'chosen',
-				animation: 0,
-				delay: 1000
+				animation: 0
 			}
 		}
 	}
@@ -64,5 +62,6 @@ export default {
 
 .ghost {
 	opacity: 0.4;
+	background-color: rgba(0, 84, 153, 0.5)!important;
 }
 </style>

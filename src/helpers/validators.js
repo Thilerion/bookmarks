@@ -10,7 +10,7 @@ const validateUrl = urlString => {
 	if (urlString == null) {
 		return returnVal(false, "No url was entered.", urlString);
 	} else if (urlString.length < 2) {
-		return returnVal(false, "URL was too short.", urlString);
+		return returnVal(false, "URL is too short.", urlString);
 	}
 
 	let message = "";
@@ -20,6 +20,10 @@ const validateUrl = urlString => {
 		message = "Prepended with http://";
 	} else {
 		message = "URL was valid";
+	}
+
+	if (!urlString.includes('.')) {
+		return returnVal(false, "URL is not valid.", urlString);
 	}
 
 	try {

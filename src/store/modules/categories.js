@@ -5,7 +5,7 @@ let categoryStore = {
 			{ name: "Video", 		colour: "#be7fa5", _id: 1, icon: null },
 			{ name: "Studeren", 	colour: "#938eba", _id: 2, icon: null },
 			{ name: "Nieuws", 		colour: "#79ccd4", _id: 3, icon: null },
-			{ name: "ProgrammerenProgrammerenProgrammeren", colour: "#afcd9c", _id: 4, icon: null },
+			{ name: "EvenEenHeleLangeNaamTestennnnnnnnnnn", colour: "#afcd9c", _id: 4, icon: null },
 			{ name: "Sociaal", 		colour: "#f8b056", _id: 5, icon: null }
 		],
 		uncategorizedCat: { name: "Uncategorized", colour: 'var(--base-cat-colour)', id: null, icon: null },

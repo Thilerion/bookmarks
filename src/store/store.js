@@ -21,7 +21,9 @@ export default new Vuex.Store({
 			{ name: "Compact", icon: "view-compact", component: "BmBookmarksListCompact" },
 			{ name: "Normal", icon: "view-list", component: "BmBookmarksListNormal" },
 			{ name: 'Grid', icon: "view-grid", component: "BmBookmarksListGrid" }
-		]
+		],
+		modalOptions: ['BmAddBookmark'],
+		activeModal: 0
 	},
 
 	getters: {

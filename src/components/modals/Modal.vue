@@ -1,26 +1,29 @@
 <template>
 <transition name="modal-fade">
-	<div class="modal-wrapper">
-		<div class="modal-overlay" appear>
-			<div class="modal" v-click-outside="emitCloseModal">
+<div class="modal-wrapper" appear>
 
-				<div class="modal-top">
-					<h2 class="modal-title header-font"><slot name="header"/></h2>
-					<button class="modal-close" @click="emitCloseModal">X</button>
-				</div>
+	<div class="modal" v-click-outside="emitCloseModal">
 
-				<div class="modal-main">
-					<slot/>
-				</div>
-
-				<div v-if="hasErrors" class="modal-errors">
-					<div v-for="error in errorMessages" :key="error">{{error}}</div>
-				</div>
-			</div>
+		<div class="modal-top">
+			<h2 class="modal-title header-font"><slot name="header"/></h2>
+			<button class="modal-close" @click="emitCloseModal">X</button>
 		</div>
 
-		
+		<div class="modal-main">
+			<slot/>
+		</div>
+
+		<div class="modal-buttons">
+			<slot name="buttons"/>
+		</div>
+
+		<div v-if="hasErrors" class="modal-errors">
+			<div v-for="error in errorMessages" :key="error">{{error}}</div>
+		</div>
+
 	</div>
+
+</div>
 </transition>
 </template>
 
@@ -28,7 +31,10 @@
 export default {
 	props: {
 		errors: {
-			type: Array
+			type: Array,
+			default() {
+				return [];
+			}
 		}
 	},
 	methods: {
@@ -50,15 +56,12 @@ export default {
 <style>
 .modal-wrapper {
 	position: fixed;
-	z-index: 9999;
+	z-index: 9001;
 	width: 100vw;
 	height: 100vh;
 	left: 0;
 	top: 0;
 	transition: all .3s ease;
-}
-
-.modal-overlay {
 	position: absolute;
 	width: 100vw;
 	height: 100vh;
@@ -68,7 +71,6 @@ export default {
 
 .modal {
 	position: relative;
-	width: 500px;
 	min-height: 200px;
 	margin: auto;
 	background: white;
@@ -109,6 +111,34 @@ export default {
 	color: #e60f04;
 	margin-top: 0.75rem;
 	padding: 0.25rem;
+}
+
+.modal-buttons {
+	display: flex;
+	min-height: 2em;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 0.75rem;
+}
+
+.modal-buttons button {
+	margin: 0 1.5em;
+	padding: 0.5em;
+	border-radius: 5px;
+	border: 1px solid var(--font-dark-secondary);
+	transition: all .15s ease;
+}
+
+.modal-buttons button:hover {
+	background-color: var(--font-dark-secondary);
+	color: var(--font-light);
+	border: 1px solid transparent;
+}
+
+.modal-buttons button:active {
+	transition: all .05s ease;
+	background-color: var(--font-dark-tertiary);
+	border: 1px solid var(--border-transparent-darken);
 }
 
 .modal-close {

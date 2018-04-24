@@ -13,7 +13,6 @@ let bookmarkStore = {
 				id: 0,
 				category: 4,
 				added: 1520090067705,
-				customIndex: 0
 			},
 			{
 				title: "nu.nl",
@@ -21,7 +20,6 @@ let bookmarkStore = {
 				id: 1,
 				category: 3,
 				added: 1520890167705,
-				customIndex: 1
 			},
 			{
 				title: "Agenda",
@@ -29,7 +27,6 @@ let bookmarkStore = {
 				id: 3,
 				category: 4,
 				added: 1520390267705,
-				customIndex: 3
 			},
 			{
 				title: "Learn Vue 2: Basic Data Binding",
@@ -38,7 +35,6 @@ let bookmarkStore = {
 				id: 8,
 				category: 5,
 				added: 1522190367705,
-				customIndex: 8
 			},
 			{
 				title: "Plex",
@@ -46,7 +42,6 @@ let bookmarkStore = {
 				id: 4,
 				category: 1,
 				added: 1521690467705,
-				customIndex: 4
 			},
 			{
 				title: "YouTube",
@@ -54,7 +49,6 @@ let bookmarkStore = {
 				id: 2,
 				category: 0,
 				added: 1527190567705,
-				customIndex: 2
 			},
 			{
 				title: "Vigenère cipher - Wikipedia",
@@ -62,7 +56,6 @@ let bookmarkStore = {
 				id: 7,
 				category: 2,
 				added: 1520190667705,
-				customIndex: 7
 			},
 			{
 				title: "Whatsapp",
@@ -70,7 +63,6 @@ let bookmarkStore = {
 				id: 6,
 				category: 1,
 				added: 1521690767705,
-				customIndex: 6
 			},
 			{
 				title: "Blackboard",
@@ -79,7 +71,6 @@ let bookmarkStore = {
 				id: 5,
 				category: 0,
 				added: 1522590867705,
-				customIndex: 5
 			},
 			{
 				title: "Alpha",
@@ -87,7 +78,6 @@ let bookmarkStore = {
 				id: 9,
 				category: 3,
 				added: 1520090067706,
-				customIndex: 9
 			},
 			{
 				title: "Beta",
@@ -95,7 +85,6 @@ let bookmarkStore = {
 				id: 10,
 				category: 0,
 				added: 1520890177705,
-				customIndex: 10
 			},
 			{
 				title: "Gamma",
@@ -103,7 +92,6 @@ let bookmarkStore = {
 				id: 11,
 				category: 1,
 				added: 1520390367705,
-				customIndex: 11
 			},
 			{
 				title: "Delta",
@@ -112,7 +100,6 @@ let bookmarkStore = {
 				id: 12,
 				category: 5,
 				added: 1522190361105,
-				customIndex: 12
 			},
 			{
 				title: "Epsilon",
@@ -120,7 +107,6 @@ let bookmarkStore = {
 				id: 13,
 				category: 5,
 				added: 1521690467205,
-				customIndex: 13
 			},
 			{
 				title: "Zeto",
@@ -128,7 +114,6 @@ let bookmarkStore = {
 				id: 14,
 				category: 'none',
 				added: 1527190537705,
-				customIndex: 14
 			},
 			{
 				title: "Eta",
@@ -136,7 +121,6 @@ let bookmarkStore = {
 				id: 15,
 				category: 'none',
 				added: 1520190867705,
-				customIndex: 15
 			},
 			{
 				title: "Theta",
@@ -144,7 +128,6 @@ let bookmarkStore = {
 				id: 16,
 				category: 1,
 				added: 1521690717705,
-				customIndex: 16
 			},
 			{
 				title: "Iota",
@@ -152,7 +135,6 @@ let bookmarkStore = {
 				id: 17,
 				category: 2,
 				added: 1522590267705,
-				customIndex: 17
 			}
 		],
 		currentlyEditingBookmark: null
@@ -206,7 +188,6 @@ let bookmarkStore = {
 		saveNewBookmark({ commit, getters, dispatch }, bm) {
 			const lastBmId = Math.max(...getters.allBookmarkIds);
 			bm.id = lastBmId + 1;
-			bm.customIndex = bm.id;
 			bm.added = Date.now() * 1;
 			console.log(bm);
 			commit("pushNewBookmark", bm);
