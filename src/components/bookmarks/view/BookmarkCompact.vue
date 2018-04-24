@@ -12,16 +12,22 @@
 			@goToUrl="goToUrl"
 			@deleteBookmark="deleteBookmark"
 			@editBookmark="editBookmark"/>
-	</div>		
+	</div>	
+
+	<BmCategoryDisplay
+			:catId="catId"
+		/>
 </div>
 </template>
 
 <script>
 import BookmarkOptions from '../BookmarkOptions';
+import CategoryDisplay from '../../shared/CategoryDisplay';
 
 export default {
 	components: {
-		BmBookmarkOptions: BookmarkOptions
+		BmBookmarkOptions: BookmarkOptions,
+		BmCategoryDisplay: CategoryDisplay
 	},
 	props: {
 		bookmark: {
@@ -38,6 +44,9 @@ export default {
 		},
 		url() {
 			return this.bookmark.url;
+		},
+		catId() {
+			return this.bookmark.category;
 		}
 	},
 	methods: {

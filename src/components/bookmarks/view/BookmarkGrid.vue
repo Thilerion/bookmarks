@@ -31,6 +31,10 @@
 				@deleteBookmark="deleteBookmark"
 				@editBookmark="editBookmark"/>
 		</div>
+
+		<BmCategoryDisplay
+			:catId="catId"
+		/>
 	</div>		
 </div>
 </template>
@@ -41,7 +45,8 @@ import BookmarkOptions from '../BookmarkOptions';
 
 export default {
 	components: {
-		BmBookmarkOptions: BookmarkOptions
+		BmBookmarkOptions: BookmarkOptions,
+		BmCategoryDisplay: CategoryDisplay
 	},
 	props: {
 		bookmark: {
@@ -61,6 +66,9 @@ export default {
 		},
 		url() {
 			return this.bookmark.url;
+		},
+		catId() {
+			return this.bookmark.category;
 		}
 	},
 	methods: {

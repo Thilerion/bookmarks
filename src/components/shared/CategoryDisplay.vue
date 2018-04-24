@@ -1,95 +1,69 @@
 <template>
-<div class="tag" :style="tagStyle" :class="{'padding-right': canClose}">
-	<span class="tag-hash" v-if="small">#&nbsp;</span>
-	<span class="tag-title">{{tagTitle}}</span>
-	<span class="tag-close" v-if="canClose">x</span>
+<div class="cat-display" :class="{'has-colour': showColour, 'has-icon': showIcon}" :style="[colourStyle, iconStyle]">
+	<span class="cat-name">{{catName}}</span>
 </div>
 </template>
 
 <script>
 export default {
 	props: {
-		tagId: {
+		catId: {
 			type: Number
 		},
-		canClose: {
-			type: Boolean
-		},
-		canBeInactive: {
-			type: Boolean
-		},
 		small: {
-			type: Boolean
-		},
-		untagged: {
 			type: Boolean
 		}
 	},
 	computed: {
-		tagProperties() {
-			if (this.untagged) return this.$store.getters.untaggedTag;
-			return this.$store.getters.tagProperties(this.tagId);
+		category() {
+			return this.$store.getters.categories.find(c => c._id === this.catId);
 		},
-		tagTitle() {
-			return this.tagProperties.name;
+		catName() {
+			return this.category.name;
 		},
-		tagActive() {
-			return this.tagProperties.active;
+		showColour() {
+			return this.category.colour != null;
 		},
-		tagStyle() {
-			let styleObj = {};
-			styleObj.cursor = "default";
-			if (this.small) {
-				styleObj.color = 'currentColor';
-				styleObj.border = 0;
-				styleObj['border-radius'] = 0;
-				styleObj['border-bottom'] = `2px solid ${this.tagProperties.colour}`;
-				styleObj.opacity = 0.8;
-				styleObj.padding = '0 0 1px 0';
-				styleObj.background = 'none';
-				return styleObj;
+		colour() {
+			return this.category.colour;
+		},
+		showIcon() {
+			return this.category.icon != null;
+		},
+		colourStyle() {
+			if (this.showColour === false) return null;
+			else return {
+				'background-color': this.colour,
+				'border-color': this.colour
 			}
+		},
+		iconStyle() {
+			if (this.showIcon === false) return null;
+			else return {
 
-			if (this.canBeInactive === true && this.tagActive === false) {
-				styleObj.color = this.tagProperties.colour;
-				styleObj.border = `2px solid ${this.tagProperties.colour}`;
-			} else {
-				styleObj.backgroundColor = this.tagProperties.colour;
 			}
-			if (this.canClose === true) styleObj.cursor = "pointer";
-			return styleObj;
 		}
 	}
 }
 </script>
 
 <style scoped>
-.tag {
+.cat-display {
 	font-size: 0.7em;
 	padding: 0.3em 0.5em;
+	margin: 2px 4px;
 	border: 2px solid transparent;
-	border-radius: 6px;
-	color: #f6f6f6;
+	letter-spacing: 0.5px;
+	border-radius: 5px;
 	font-weight: bold;
 	position: relative;
 	display: inline-flex;
 	justify-content: space-between;
 	align-items: center;
+	cursor: default;
 }
 
-.tag.padding-right {
-	padding: 0.4em;
-}
-
-.tag.padding-right:hover .tag-close {
-	opacity: 1;
-}
-
-.tag-close {
-	opacity: 0.5;
-	transition: opacity .2s ease;
-	font-weight: 300;
-	margin-left: 0.75em;
-	margin-right: 0.2em;
+.cat-display.has-colour {	
+	color: var(--bg-light-alpha);
 }
 </style>
