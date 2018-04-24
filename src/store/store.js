@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import colourModule from './modules/colours.js'
-import tagModule from './modules/tags.js'
+import categoriesModule from './modules/categories.js'
 import bookmarkModule from './modules/bookmarks.js'
 import userPrefsModule from './modules/prefs.js'
 
@@ -13,12 +13,10 @@ export default new Vuex.Store({
 		userPrefsModule,
 		bookmarkModule,
 		colourModule,
-		tagModule
+		categoriesModule
 	},
 
 	state: {
-		modalOptions: ['BmBookmarkAdd', 'BmTagAdd'],
-		activeModal: null,
 		bookmarkListViews: [
 			{ name: "Compact", icon: "view-compact", component: "BmBookmarksListCompact" },
 			{ name: "Normal", icon: "view-list", component: "BmBookmarksListNormal" },
@@ -27,18 +25,16 @@ export default new Vuex.Store({
 	},
 
 	getters: {
-		tagAmount: (state, getters) => {
-			const tagAmounts = {};
-			for (let tId of getters.allTagIds) {
-				tagAmounts[tId] = 0;
+		categoryAmount: (state, getters) => {
+			const categoryAmounts = {};
+			for (let catId of getters.allCategoryIds) {
+				categoryAmounts[catId] = 0;
 			}
-			
+			/* CHANGE TO GET ALL CATEGORIES */
 			for (let bm of getters.bookmarks) {
-				for (let bmTag of bm.tags) {
-					tagAmounts[bmTag] += 1;
-				}
+				categoryAmounts[bm.category] += 1;
 			}
-			return tagAmounts;
+			return categoryAmounts;
 		},
 		activeModal: state => {
 			if (state.activeModal == null) return null;

@@ -26,13 +26,13 @@
 			v-html="$options.filters.filterHighlight(description, searchString)"></p>
 
 		<div class="bm-tags">
-			<BmTagDisplay
+			<BmCategoryDisplay
 				v-for="tag in bookmark.tags"
 				:key="tag"
 				:tagId="tag"
 				small
 			/>
-			<BmTagDisplay
+			<BmCategoryDisplay
 				v-if="bookmark.tags.length === 0"
 				untagged
 				small
@@ -51,12 +51,12 @@
 </template>
 
 <script>
-import TagDisplay from '../../shared/TagDisplay';
+import CategoryDisplay from '../../shared/CategoryDisplay';
 import BookmarkOptions from '../BookmarkOptions';
 
 export default {
 	components: {
-		BmTagDisplay: TagDisplay,
+		BmCategoryDisplay: CategoryDisplay,
 		BmBookmarkOptions: BookmarkOptions
 	},
 	props: {

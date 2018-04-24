@@ -18,7 +18,7 @@
 	</div>	
 	<div class="chosen-tags">
 		<div v-for="tagId in tags" :key="tagId" @click="removeTag(tagId)" class="tag-display-div">
-			<SpTagDisplay :tagId="tagId" canClose />
+			<SpCategoryDisplay :tagId="tagId" canClose />
 		</div>
 		
 	</div>			
@@ -28,13 +28,13 @@
 </template>
 
 <script>
-import TagDisplay from '../shared/TagDisplay';
+import CategoryDisplay from '../shared/CategoryDisplay';
 import Modal from './Modal';
 import {validateString, validateUrl} from '@/helpers/validators'
 
 export default {
 	components: {
-		SpTagDisplay: TagDisplay,
+		SpCategoryDisplay: CategoryDisplay,
 		SpModal: Modal
 	},
 	data() {

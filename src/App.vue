@@ -40,49 +40,6 @@ export default {
 		BmSidebar: Sidebar
 	}
 }
-/*
-import SubHeader from '@/components/layout/SubHeader';
-import BookmarkAdd from '@/components/modals/BookmarkAdd';
-import TagAdd from '@/components/modals/TagAdd';
-import MainContent from '@/components/layout/MainContent';
-
-export default {
-	components: {
-		BmSidebar: Sidebar,
-		BmSubHeader: SubHeader,
-		BmMainContent: MainContent,
-		BmBookmarkAdd: BookmarkAdd,
-		BmTagAdd: TagAdd
-	},
-	computed: {
-		activeModal() {
-			return this.$store.getters.activeModal;
-		}
-	},
-	methods: {
-		enableModalBookmark() {
-			this.$store.commit('enableModal', 0);
-		},
-		enableModalTag() {
-			this.$store.commit('enableModal', 1);
-		},
-		watchTags(state, getters) {
-			return getters.tags;
-		},
-		updateTagLocalStorage() {
-			console.warn("Tags array has been updated!");
-			this.$store.dispatch("saveTagsToLocalStorage");
-		}
-	},
-	beforeMount() {
-		this.$store.dispatch('retrieveUserPrefs');
-		this.$store.dispatch('retrieveTags');
-		this.$store.watch(this.watchTags, this.updateTagLocalStorage, {
-			deep: true
-		});
-	}
-}
-*/
 </script>
 
 <style>

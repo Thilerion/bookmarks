@@ -11,8 +11,8 @@ let bookmarkStore = {
 				title: "Reddit",
 				description: "Reddit - social media website",
 				url: "https://www.reddit.com",
-				tags: [0, 1, 3],
 				id: 0,
+				category: 1,
 				added: 1520090067705,
 				customIndex: 0
 			},
@@ -20,8 +20,8 @@ let bookmarkStore = {
 				title: "nu.nl",
 				description: "",
 				url: "https://www.nu.nl",
-				tags: [3],
 				id: 1,
+				category: 1,
 				added: 1520890167705,
 				customIndex: 1
 			},
@@ -29,8 +29,8 @@ let bookmarkStore = {
 				title: "Agenda",
 				description: "Google Calendar",
 				url: "https://www.google.com/calendar",
-				tags: [0],
 				id: 3,
+				category: 1,
 				added: 1520390267705,
 				customIndex: 3
 			},
@@ -38,8 +38,8 @@ let bookmarkStore = {
 				title: "Learn Vue 2: Basic Data Binding",
 				description: "",
 				url: "https://laracasts.com/series/learn-vue-2-step-by-step/episodes/1",
-				tags: [0, 1, 4, 2],
 				id: 8,
+				category: 1,
 				added: 1522190367705,
 				customIndex: 8
 			},
@@ -47,8 +47,8 @@ let bookmarkStore = {
 				title: "Plex",
 				description: "",
 				url: "https://app.plex.tv/web/app",
-				tags: [0, 1],
 				id: 4,
+				category: 1,
 				added: 1521690467705,
 				customIndex: 4
 			},
@@ -56,8 +56,8 @@ let bookmarkStore = {
 				title: "YouTube",
 				description: "",
 				url: "https://www.youtube.com",
-				tags: [1],
 				id: 2,
+				category: 1,
 				added: 1527190567705,
 				customIndex: 2
 			},
@@ -65,8 +65,8 @@ let bookmarkStore = {
 				title: "Vigenère cipher - Wikipedia",
 				description: "",
 				url: "https://en.m.wikipedia.org/wiki/Vigenère_cipher",
-				tags: [0, 4],
 				id: 7,
+				category: 1,
 				added: 1520190667705,
 				customIndex: 7
 			},
@@ -74,8 +74,8 @@ let bookmarkStore = {
 				title: "Whatsapp",
 				description: "Whatsapp Web",
 				url: "https://web.whatsapp.com",
-				tags: [0],
 				id: 6,
+				category: 1,
 				added: 1521690767705,
 				customIndex: 6
 			},
@@ -83,8 +83,8 @@ let bookmarkStore = {
 				title: "Blackboard",
 				description: "",
 				url: "http://blackboard.leidenuniv.nl/webapps/portal/frameset.jsp",
-				tags: [2, 5],
 				id: 5,
+				category: 1,
 				added: 1522590867705,
 				customIndex: 5
 			},
@@ -92,8 +92,8 @@ let bookmarkStore = {
 				title: "Alpha",
 				description: "Greek Alphabet Generator",
 				url: "https://www.greekalpha.com",
-				tags: [0, 4],
 				id: 9,
+				category: 1,
 				added: 1520090067706,
 				customIndex: 9
 			},
@@ -101,8 +101,8 @@ let bookmarkStore = {
 				title: "Beta",
 				description: "",
 				url: "https://www.beta.nl",
-				tags: [0],
 				id: 10,
+				category: 1,
 				added: 1520890177705,
 				customIndex: 10
 			},
@@ -110,8 +110,8 @@ let bookmarkStore = {
 				title: "Gamma",
 				description: "GGammaGammaA",
 				url: "https://www.gamma.com/bla-bla/blaaaa/gammaaaaaa",
-				tags: [5],
 				id: 11,
+				category: 1,
 				added: 1520390367705,
 				customIndex: 11
 			},
@@ -119,8 +119,8 @@ let bookmarkStore = {
 				title: "Delta",
 				description: "",
 				url: "https://delta.com/super/awesome-bookmarks-2-visit-some-time/perfecttt/1",
-				tags: [],
 				id: 12,
+				category: 1,
 				added: 1522190361105,
 				customIndex: 12
 			},
@@ -128,8 +128,8 @@ let bookmarkStore = {
 				title: "Epsilon",
 				description: "",
 				url: "https://app.episolon.tv/",
-				tags: [1, 2, 3, 5],
 				id: 13,
+				category: 1,
 				added: 1521690467205,
 				customIndex: 13
 			},
@@ -137,8 +137,8 @@ let bookmarkStore = {
 				title: "Zeto",
 				description: "",
 				url: "https://www.zeta.com",
-				tags: [2],
 				id: 14,
+				category: 1,
 				added: 1527190537705,
 				customIndex: 14
 			},
@@ -146,8 +146,8 @@ let bookmarkStore = {
 				title: "Eta",
 				description: "Eta Theta Iota?",
 				url: "https://en.m.eta.org/",
-				tags: [5],
 				id: 15,
+				category: 1,
 				added: 1520190867705,
 				customIndex: 15
 			},
@@ -155,8 +155,8 @@ let bookmarkStore = {
 				title: "Theta",
 				description: "Theta Web",
 				url: "https://web.Theta.com",
-				tags: [5],
 				id: 16,
+				category: 1,
 				added: 1521690717705,
 				customIndex: 16
 			},
@@ -164,8 +164,8 @@ let bookmarkStore = {
 				title: "Iota",
 				description: "",
 				url: "http://iota.kappa.nl/lambda/nu/nu-xi-omikron.jsp",
-				tags: [0, 1, 5],
 				id: 17,
+				category: 1,
 				added: 1522590267705,
 				customIndex: 17
 			}
@@ -175,17 +175,7 @@ let bookmarkStore = {
 
 	getters: {
 		bookmarks: state => state.bookmarks,
-		allBookmarkIds: state => {
-			return state.bookmarks.reduce((acc, bm) => {
-				acc.push(bm.id);
-				return acc;
-			}, []).sort();
-		},
-		untaggedBookmarks: (state, getters) => {
-			return getters.bookmarks.filter((bm) => {
-				return bm.tags.length < 1;
-			});
-		},
+		allBookmarkIds: state => state.bookmarks.map(bm => bm.id).sort(),
 		currentlyEditingBookmark: state => state.currentlyEditingBookmark
 	},
 
@@ -205,21 +195,6 @@ let bookmarkStore = {
 			console.log(id);
 			console.log(state.bookmarks[idIndex]);
 			state.bookmarks[idIndex] = Object.assign(state.bookmarks[idIndex], bookmark.edits);
-		},
-		deleteTagFromBookmarks: (state, tagId) => {
-			for (let bm of state.bookmarks) {
-				const tagIndex = bm.tags.indexOf(tagId);
-				if (tagIndex > -1) {
-					bm.tags.splice(tagIndex, 1);
-				}
-			}
-		},
-		addTagToAllUntagged: (state, tagId) => {
-			state.bookmarks.forEach((bm) => {
-				if (bm.tags.length < 1) {
-					bm.tags.push(tagId);
-				}
-			})
 		}
 	},
 
@@ -231,31 +206,6 @@ let bookmarkStore = {
 			bm.added = Date.now() * 1;
 			console.log(bm);
 			commit('pushNewBookmark', bm);
-		},
-		retrieveBookmarks({ commit, dispatch, getters }) {
-			let bms = localStorage.getItem("bookmarks");
-			if (bms !== null) {
-				bms = JSON.parse(bms);
-				console.warn("Retrieved bookmarks from localStorage");
-				console.warn(bms);
-				let allTagIds = getters.allTagIds;
-				console.log(allTagIds);
-				let removedOldTags = bms;
-				for (let bm of removedOldTags) {
-					bm.tags = bm.tags.filter((t) => {
-						return allTagIds.includes(t);
-					})
-				}
-				commit('setAllBookmarks', removedOldTags);
-			} else {
-				console.warn("No bookmarks were found in localStorage.");
-				dispatch("saveBookmarksToLocalStorage");
-			}
-		},
-		saveBookmarksToLocalStorage({ getters }) {
-			let bookmarks = JSON.stringify(getters.bookmarks);
-			localStorage.setItem("bookmarks", bookmarks);
-			console.warn("Bookmarks saved to localStorage");
 		}
 	}
 }
