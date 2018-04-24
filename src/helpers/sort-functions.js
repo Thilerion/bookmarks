@@ -1,4 +1,4 @@
-//newest (number dateAdded), oldest (number dateAdded), alpha A-Z (title), alpha Z-A (title), custom (list order)
+//newest (number dateAdded), oldest (number dateAdded), alpha A-Z (title), alpha Z-A (title)
 
 export const sortNewestFirst = (a, b) => b.added - a.added;
 export const sortOldestFirst = (a, b) => a.added - b.added;
@@ -16,4 +16,3 @@ export const sortAlphaAscending = (a, b) => {
 	else if (titleA > titleB) return -1;
 	else return 0;
 };
-export const sortCustom = (a, b) => a.customIndex - b.customIndex;

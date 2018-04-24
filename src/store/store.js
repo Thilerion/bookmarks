@@ -23,7 +23,7 @@ export default new Vuex.Store({
 			{ name: 'Grid', icon: "view-grid", component: "BmBookmarksListGrid" }
 		],
 		modalOptions: ['BmAddBookmark'],
-		activeModal: 0
+		activeModal: null
 	},
 
 	getters: {

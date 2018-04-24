@@ -1,9 +1,9 @@
-import { sortNewestFirst, sortOldestFirst, sortAlphaDescending, sortAlphaAscending, sortCustom } from '@/helpers/sort-functions'
+import { sortNewestFirst, sortOldestFirst, sortAlphaDescending, sortAlphaAscending } from '@/helpers/sort-functions'
 
 let bookmarkSearch = {
 
 	state: {
-		sortModes: ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)", "Custom"],
+		sortModes: ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)"],
 		bookmarksToShow: {
 			category: 3,
 			searchTerm: "",
@@ -32,7 +32,7 @@ let bookmarkSearch = {
 			else if (mode === 1) return items.sort(sortOldestFirst);
 			else if (mode === 2) return items.sort(sortAlphaDescending);
 			else if (mode === 3) return items.sort(sortAlphaAscending);
-			else return items.sort(sortCustom);
+			else return items;
 		},
 		searchSortedBookmarks: (state, getters) => {
 			return getters.sortedBookmarks.filter((bookmark) => {

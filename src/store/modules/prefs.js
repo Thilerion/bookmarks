@@ -1,8 +1,8 @@
 let userPrefs = {
 
 	state: {
-		sortMode: 4,
-		listViewMode: 2
+		sortMode: 2,
+		listViewMode: 1
 	},
 
 	getters: {
