@@ -96,20 +96,9 @@ span.highlight {
  * = Both lists (normal and compact) items =
 */
 
-.list .bm-item:not(:last-of-type) {
-	border-bottom: 1px solid var(--border-transparent-darken);
-}
-
-.list .bm-item:first-of-type {
-	border-radius: 5px 5px 0 0;
-}
-
-.list .bm-item:last-of-type {
-	border-radius: 0 0 5px 5px;
-}
-
 .list .bm-item {
 	display: flex;
+	border: 1px solid transparent;
 	position: relative;
 	padding-left: 1em;
 }
@@ -149,6 +138,31 @@ span.highlight {
 
 .list .options-button.active {
 	opacity: 0.9;
+}
+
+.list .bm-item:not(:last-of-type) {
+	border-bottom: 1px solid var(--border-transparent-darken);
+}
+
+.list .bm-item:first-of-type {
+	border-radius: 5px 5px 0 0;
+}
+
+.list .bm-item:last-of-type {
+	border-radius: 0 0 5px 5px;
+}
+
+.list .bm-item:hover {
+	border-left-color: var(--border-transparent-darken);
+	border-right-color: var(--border-transparent-darken);
+}
+
+.list .bm-item:first-of-type:hover {
+	border-top-color: var(--border-transparent-darken);;
+}
+
+.list .bm-item:last-of-type:hover {
+	border-bottom-color: var(--border-transparent-darken);;
 }
 
 /*
