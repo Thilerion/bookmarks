@@ -47,7 +47,9 @@ export default {
 	},
 	methods: {
 		selectCategory() {
-			this.$store.commit('selectCategory', this.category._id);
+			if (!this.selected) {
+				this.$store.commit('selectCategory', this.category._id);
+			}			
 		}
 	}
 }
