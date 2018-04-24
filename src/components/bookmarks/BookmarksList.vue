@@ -53,10 +53,11 @@ export default {
 */
 
 .bm-wrapper.grid {
-	justify-content: center;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, 16em);
 	grid-gap: 1.5em;
+
+	max-width: 1200px;
 }
 
 /*
