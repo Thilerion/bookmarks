@@ -51,7 +51,6 @@ export default {
 .cat-display {
 	font-size: 0.7em;
 	padding: 0.3em 0.5em;
-	margin: 2px 4px;
 	border: 2px solid transparent;
 	letter-spacing: 0.5px;
 	border-radius: 5px;

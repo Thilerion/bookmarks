@@ -7,7 +7,11 @@
 		</svg>
 		<span class="sort-string">{{currentSortModeString}}</span>
 	</button>
-	<BmDropdownMenu v-if="showMenu">
+	<BmDropdownMenu
+		v-if="showMenu"
+		directionX="right"
+		directionY="down"
+	>
 		<BmDropdownMenuItem
 		v-for="(mode, index) in sortModes"
 		:key="mode"

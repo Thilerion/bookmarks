@@ -24,14 +24,13 @@
 		:catId="catId"
 		class="cat-display"
 	/>
-	
-	<div class="col-options">
+
 		<BmBookmarkOptions
+			class="col-options"
 			@goToUrl="goToUrl"
 			@deleteBookmark="deleteBookmark"
 			@editBookmark="editBookmark"
-		/>	
-	</div>	
+		/>		
 
 </div>
 </template>

@@ -178,7 +178,6 @@ span.highlight {
 
 .bm-item-normal .col-options {
 	flex: 0 0 2em;
-	margin: auto;
 }
 
 /*

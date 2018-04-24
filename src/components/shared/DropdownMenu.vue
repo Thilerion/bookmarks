@@ -1,6 +1,6 @@
 <template>
   <transition name="fold-menu">
-  <div class="dropdown-menu" :style="propStyle">
+  <div class="dropdown-menu" :style="propStyle" :class="directionClasses">
 	  <div class="dropdown-menu-contents">
 		  <slot/>
 	  </div>
@@ -11,27 +11,32 @@
 <script>
 export default {
 	props: {
-		origin: {
-			type: [String, Number],
-			default: "left top"
-		},
 		align: {
 			type: String,
 			default: "left"
 		},
-		position: {
+		directionX: {
 			type: String,
 			default: "left"
+		},
+		directionY: {
+			type: String,
+			default: "down"
 		}
 	},
 	computed: {
 		propStyle() {
 			let styleObj = {
-				'transform-origin': this.origin,
+				//'transform-origin': this.origin,
 				'text-align': this.align
 			};
-			styleObj[this.position] = "0px";
 			return styleObj;
+		},
+		directionClasses() {
+			let classes = [];
+			classes.push(`dir-x-${this.directionX}`);
+			classes.push(`dir-y-${this.directionY}`);
+			return classes;
 		}
 	}
 }
@@ -48,6 +53,38 @@ export default {
 	white-space: nowrap;
 }
 
+.dropdown-menu.dir-x-left {
+	right: 5px;
+}
+
+.dropdown-menu.dir-x-right.dir-y-down {
+	transform-origin: 5px 5px;
+}
+
+.dropdown-menu.dir-x-left.dir-y-down {
+	transform-origin: calc(100% - 5px) 5px;
+}
+
+.dropdown-menu.dir-x-right.dir-y-up {
+	transform-origin: 5px calc(100% - 5px);
+}
+
+.dropdown-menu.dir-x-left.dir-y-up {
+	transform-origin: calc(100% - 5px) calc(100% - 5px);
+}
+
+.dropdown-menu.dir-x-right {
+	left: 5px;
+}
+
+.dropdown-menu.dir-y-down {
+	top: calc(50% + 12px);
+}
+
+.dropdown-menu.dir-y-up {
+	bottom: calc(50% + 12px);
+}
+
 .dropdown-menu button {
 	display: inline-block;
 	width: 100%;
@@ -59,7 +96,7 @@ export default {
 }
 
 .fold-menu-enter, .fold-menu-leave-to {
-	transform: scale(0.3);
+	transform: scale(0.5);
 	opacity: 0;
 }
 </style>

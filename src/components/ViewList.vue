@@ -5,7 +5,11 @@
 		<span class="view-mode">{{currentViewModeName}}</span>
 	</button>
 
-	<BmDropdownMenu v-if="showMenu">
+	<BmDropdownMenu
+		v-if="showMenu"
+		directionX="right"
+		directionY="down"
+	>
 		<BmDropdownMenuItem
 			v-for="(mode, index) in viewModes"
 			:key="mode.name"

@@ -10,8 +10,9 @@
 
 	<BmDropdownMenu
 		v-if="showDropdown"
-		position="right"
-		origin="top right">
+		direction-x="left"
+		direction-y="down"
+	>
 
 		<BmDropDownMenuItem border-bottom>
 			<button @click="goToLink">Go to website</button>
