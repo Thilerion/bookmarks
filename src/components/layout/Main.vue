@@ -1,9 +1,10 @@
 <template>
 <div class="main-wrapper">
-	<div class="main-fixed" :class="{'main-fixed-border': applyTopBorder}">
-		This part stays on top.
+	<div class="main-fixed minimal-padding" :class="{'main-fixed-border': applyTopBorder}">
+		<BmSearchBar />
 	</div>
 	<div class="scroll-wrap vertical" @scroll="contentScrolled($event.target, $event)" ref="mainContent">
+		<BmBookmarksListOptions class="minimal-padding"/>
 		<main class="main-content">
 			<BmBookmarksList />
 		</main>
@@ -14,10 +15,14 @@
 
 <script>
 import BookmarksList from '../bookmarks/BookmarksList'
+import SearchBar from '@/components/Search'
+import BookmarksListOptions from '../bookmarks/BookmarksListOptions';
 
 export default {
 	components: {
-		BmBookmarksList: BookmarksList
+		BmBookmarksList: BookmarksList,
+		BmSearchBar: SearchBar,
+		BmBookmarksListOptions: BookmarksListOptions
 	},
 	data() {
 		return {
@@ -42,23 +47,33 @@ export default {
 	background: var(--bg-light-beta);
 }
 
+.main-wrapper .minimal-padding {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
 .main-fixed {
-	flex: 0 0 auto;
-	padding-top: 1em;
-	padding-bottom: 1em;
+	flex: 0 0 3em;
+	max-height: 3em;
 	border-bottom: 1px solid transparent;
 	transition: background-color .5s ease-out, border .3s ease;
+	display: flex;
+	align-items: center;
+}
+
+.main-fixed > *:not(:last-child) {
+	margin-right: 0.5em;
 }
 
 .main-fixed-border {
-	transition: all .2s ease-in;
+	transition: all .1s ease-in;
 	border-bottom: 1px solid var(--border-main);
 	background-color: var(--bg-light-alphabeta);
 }
 
 .main-content {
 	flex: 1 1 auto;
-	padding: 0.5em 2em 1em;
+	padding: 1em 2em;
 }
 
 .scroll-wrap {

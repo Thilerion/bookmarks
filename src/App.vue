@@ -92,16 +92,16 @@ export default {
 
 :root {
 	--font-dark: 					hsl(0, 0%, 10%);
+	--font-dark-secondary:			hsl(0, 0%, 30%);
 	--font-light: 					hsl(0, 0%, 100%);
 	--bg-light-alpha:				hsl(0, 0%, 99%);
-	--bg-light-alphabeta:			hsl(0, 0%, 97.5%);
-	--bg-light-alphabetabeta:		hsl(0, 0%, 96%);
+	--bg-light-alphabeta:			hsl(0, 0%, 97%);
 	--bg-light-beta:				hsl(0, 0%, 95%);
 	--bg-dark-alpha:				hsl(0, 0%, 17.5%);
 	--bg-dark-beta:					hsl(0, 0%, 22.5%);
 	--bg-dark-gamma:				hsl(0, 0%, 25%);
 	--border-transparent-lighten:	hsla(0, 0%, 80%, 0.1);
-	--border-transparent-darken:	hsla(0, 0%, 20%, 0.25);
+	--border-transparent-darken:	hsla(0, 0%, 20%, 0.1);
 	--border-main:					hsl(0, 0%, 80%);
 }
 
@@ -153,11 +153,12 @@ h1, h2, h3, h4 {
 button {
 	margin: 0;
 	padding: 0;
-	background: var(--bg-dark-beta);
+	background: initial;
 	border: none;
 	font-family: inherit;
 	outline: none;
 	cursor: pointer;
+	color: inherit;
 }
 
 p {

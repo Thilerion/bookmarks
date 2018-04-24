@@ -1,10 +1,14 @@
 <template>
 <div class="bookmarks">	
-	<transition name="bookmark-list-mode" mode="out-in">	
+	<transition
+		name="bookmark-list-mode"
+		mode="out-in"
+	>	
 		<component
 			:is="currentViewComponent"
 			:bookmarks="bookmarksArray"
-			:key="currentViewComponent" />
+			:key="currentViewComponent"
+		/>
 	</transition>
 </div>
 </template>
@@ -20,11 +24,6 @@ export default {
 		BmBookmarksListNormal: BookmarksListNormal,
 		BmBookmarksListGrid: BookmarksListGrid
 	},
-	data() {
-		return {
-
-		}
-	},
 	computed: {
 		bookmarksArray() {
 			return this.$store.getters.searchSortedBookmarks;
@@ -32,21 +31,6 @@ export default {
 		currentViewComponent() {
 			return this.$store.getters.currentBookmarkListViewComp;
 		}
-	},
-	methods: {
-		watchBookmarks(state, getters) {
-			return getters.bookmarks;
-		},
-		updateBookmarkLocalStorage(...args) {
-			console.warn("Bookmarks array has been updated!");
-			this.$store.dispatch('saveBookmarksToLocalStorage');
-		}
-	},
-	beforeMount() {
-		this.$store.dispatch("retrieveBookmarks");
-		this.$store.watch(this.watchBookmarks, this.updateBookmarkLocalStorage, {
-			deep: true
-		});
 	}
 }
 </script>
@@ -70,7 +54,6 @@ export default {
 
 .bm-wrapper.grid {
 	justify-content: center;
-	padding-top: 1em;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, 16em);
 	grid-gap: 1.5em;
@@ -88,7 +71,7 @@ export default {
 }
 
 .bm-item:hover {
-	background-color: var(--bg-light-alphabetabeta);
+	background-color: var(--bg-light-alphabeta);
 }
 
 .options-button {
@@ -114,7 +97,7 @@ span.highlight {
 */
 
 .list .bm-item:not(:last-of-type) {
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid var(--border-transparent-darken);
 }
 
 .list .bm-item:first-of-type {

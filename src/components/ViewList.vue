@@ -59,7 +59,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .bm-view-items {
 	display: inline-block;
 	position: relative;
@@ -67,11 +67,10 @@ export default {
 
 .bm-view-button {
 	display: inline-flex;
-	padding-top: 0.25em;
-	padding-bottom: 0.25em;
+	padding: 0.2em 0.5em;
 	align-items: center;
 	justify-content: space-between;
-	opacity: 0.5;
+	color: var(--font-dark-secondary);
 }
 
 .bm-view-icon {
@@ -82,6 +81,5 @@ export default {
 
 .view-mode {
 	padding-left: 0.25em;
-	font-style: italic;
 }
 </style>
