@@ -1,6 +1,6 @@
 <template>
 <span class="bm-view-items" v-click-outside="hideMenu">
-	<button class="bm-view-button" @click="showMenu = !showMenu">
+	<button class="bm-view-button button-light has-text" @click="showMenu = !showMenu">
 		<BmSvgIcon class="bm-view-icon" :icon="currentViewModeIcon" />
 		<span class="view-mode">{{currentViewModeName}}</span>
 	</button>
@@ -67,14 +67,6 @@ export default {
 .bm-view-items {
 	display: inline-block;
 	position: relative;
-}
-
-.bm-view-button {
-	display: inline-flex;
-	padding: 0.2em 0.5em;
-	align-items: center;
-	justify-content: space-between;
-	color: var(--font-dark-secondary);
 }
 
 .bm-view-icon {

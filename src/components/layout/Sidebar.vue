@@ -165,16 +165,23 @@ header {
 	padding-top: 1rem;
 }
 
-.menu-block .menu-heading {
+.menu-block .menu-header {
 	padding-left: 1rem;
-	padding-right: 0.5rem;
 	padding-bottom: 0.2rem;
+	cursor: default;
+	color: var(--font-dark-tertiary);
+	display: flex;
+	align-items: center;
+}
+
+.menu-block .menu-heading {	
+	text-transform: uppercase;
 	font-size: 0.9em;
 	font-weight: normal;
-	color: var(--font-dark-tertiary);
-	text-transform: uppercase;
-	cursor: default;
+	color: inherit;
+	flex: 1 1 auto;
 }
+	
 
 .menu-block .list-item, .menu-block .menu-item {
 	padding-left: 0.5rem;

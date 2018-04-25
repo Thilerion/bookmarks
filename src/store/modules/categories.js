@@ -40,6 +40,11 @@ let categoryStore = {
 		},
 		setAllCategories: (state, cats) => {
 			state.categories = cats;
+		},
+		pushNewCategory: (state, cat) => {
+			const catId = cat._id;
+			state.categories.push(cat);
+			state.categoryOrder.push(catId);
 		}
 	},
 

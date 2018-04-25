@@ -118,6 +118,20 @@ button {
 	color: inherit;
 }
 
+.button-light {
+	display: inline-flex;
+	align-items: center;
+	justify-content: space-between;
+	color: var(--font-dark-secondary);
+	border: 1px solid var(--border-transparent-darken);
+	background: var(--bg-light-alphabeta);
+	border-radius: 5px;
+}
+
+.button-light.has-text {
+	padding: 0.2em 0.5em;
+}
+
 p {
 	padding: 0;
 	margin: 0;

@@ -1,6 +1,11 @@
 <template>
 <div class="cat-list-wrapper">
-	<h2 class="menu-heading">Categories</h2>
+	<header class="menu-header">
+		<h2 class="menu-heading">Categories</h2>
+		<button class="cat-add button-light">
+			<BmSvgIcon icon="plus" />
+		</button>
+	</header>
 	<draggable
 		class="cat-list"
 		element="ul"
@@ -19,13 +24,15 @@
 
 <script>
 import CatListItem from './CatListItem'
+import SvgIcon from '../shared/SvgIcon'
 
 import draggable from 'vuedraggable'
 
 export default {
 	components: {
 		BmCatListItem: CatListItem,
-		draggable
+		draggable,
+		BmSvgIcon: SvgIcon
 	},
 	computed: {
 		categoriesSortedByOrder() {

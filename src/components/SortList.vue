@@ -1,6 +1,6 @@
 <template>
 <span class="sort-items" v-click-outside="hideMenu">
-	<button class="sort-button" @click="showMenu = !showMenu">
+	<button class="sort-button button-light has-text" @click="showMenu = !showMenu">
 		<svg class="sort-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 			<path d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/>
 			<path d="M0 0h24v24H0z" fill="none"/>
@@ -53,14 +53,6 @@ export default {
 .sort-items {
 	display: inline-block;
 	position: relative;
-}
-
-.sort-button {
-	display: inline-flex;
-	padding: 0.2em 0.5em;
-	align-items: center;
-	justify-content: space-between;
-	color: var(--font-dark-secondary);
 }
 
 .sort-icon {

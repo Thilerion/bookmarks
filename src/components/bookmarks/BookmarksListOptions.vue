@@ -21,10 +21,4 @@ export default {
 .bm-list-options > *:not(:first-child) {
 	margin-left: 1em;
 }
-
-.bm-list-options > span > button {
-	border: 1px solid var(--border-transparent-darken);
-	background: var(--bg-light-alphabeta);
-	border-radius: 5px;
-}
 </style>
