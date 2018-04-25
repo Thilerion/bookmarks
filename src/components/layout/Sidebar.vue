@@ -190,15 +190,18 @@ header {
 	padding-bottom: 0.45em;
 	user-select: none;
 	cursor: pointer;
+	--menu-bg-color: var(--bg-light-beta);
 }
 
 .menu-block .list-item:hover, .menu-block .menu-item:hover {
 	background: var(--bg-light-beta);
+	--menu-bg-color: var(--bg-light-beta);
 }
 
 .menu-block .list-item.selected, .menu-block .menu-item.selected {
 	background: var(--bg-dark-gamma);
 	color: var(--font-light);
+	--menu-bg-color: var(--bg-dark-gamma);
 }
 
 </style>

@@ -118,7 +118,7 @@ export default {
 		right: 0;
 		padding-right: 0.25rem;
 		padding-left: 1.25rem;
-		background: linear-gradient(to right, rgba(255,255,255,0), var(--bg-light-beta) 30%);
+		background: linear-gradient(to right, rgba(255,255,255,0), var(--menu-bg-color) 30%);
 		top: 0;
 		bottom: 0;
 		display: flex;
