@@ -49,6 +49,7 @@ export default {
 	--bg-dark-alpha:				hsl(0, 0%, 17.5%);
 	--bg-dark-beta:					hsl(0, 0%, 22.5%);
 	--bg-dark-gamma:				hsl(0, 0%, 25%);
+	--bg-dark-delta:				hsl(0, 0%, 30%);
 	--border-transparent-lighten:	hsla(0, 0%, 80%, 0.1);
 	--border-transparent-darken:	hsla(0, 0%, 20%, 0.1);
 	--border-main:					hsl(0, 0%, 80%);

@@ -39,6 +39,10 @@ export default {
 	background: var(--bg-dark-gamma);
 }
 
+.add-bm-btn:active {
+	background: var(--bg-dark-delta);
+}
+
 .add-bm-btn:not(:last-of-type)::after {
 	background: var(--border-transparent-lighten);
 	display: block;

@@ -17,7 +17,11 @@
 		<label for="bookmark-category">Category</label>
 		<select v-model="category" id="bookmark-category">
 			<option value="none">Please select a category</option>
-			<option v-for="cat in categories" :key="cat._id" :value="cat._id">{{cat.name}}</option>
+			<option
+				v-for="cat in categories"
+				:key="cat._id"
+				:value="cat._id"
+			>{{cat.name}}</option>
 		</select>
 	</div>
 
@@ -40,7 +44,7 @@ export default {
 		return {
 			url: "",
 			title: "",
-			category: "none",
+			category: this.$store.getters.selectedCategoryId,
 			valid: true,
 			errorMessages: []
 		}
