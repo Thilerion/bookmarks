@@ -81,18 +81,18 @@ let store = new Vuex.Store({
 		saveToStorageAllData({ getters }) {
 			save('bookmarksAndCategories', getters.allToSave);
 		},
-		setAllSaved({ commit }, allRetrieved) {
+		setAllSaved({ commit, dispatch }, allRetrieved) {
 			if (allRetrieved.bookmarks) {
 				console.log('Retrieved bookmarks, now setting.');
 				commit('setAllBookmarks', allRetrieved.bookmarks);
 			}
 			if (allRetrieved.categories) {
 				console.log('Retrieved categories, now setting.');
-				commit('setAllCategories', allRetrieved.categories);
+				dispatch('updateAllCategories', allRetrieved.categories);
 			}
 			if (allRetrieved.categoryOrder) {
 				console.log('Retrieved category order, now setting.');
-				commit('updateCategoryOrder', allRetrieved.categoryOrder);
+				dispatch('updateCategoryOrder', allRetrieved.categoryOrder);
 			}			
 		}
 	}	

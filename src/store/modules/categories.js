@@ -35,7 +35,7 @@ let categoryStore = {
 	},
 
 	mutations: {
-		updateCategoryOrder: (state, val) => {
+		setCategoryOrder: (state, val) => {
 			state.categoryOrder = val;
 		},
 		setAllCategories: (state, cats) => {
@@ -45,6 +45,14 @@ let categoryStore = {
 			const catId = cat._id;
 			state.categories.push(cat);
 			state.categoryOrder.push(catId);
+		},
+		removeCategoryFromOrder: (state, id) => {
+			const idIndex = state.categoryOrder.indexOf(id);
+			state.categoryOrder.splice(idIndex, 1);
+		},
+		removeCategory: (state, id) => {
+			const idIndex = state.categories.findIndex(c => c._id === id);
+			state.categories.splice(idIndex, 1);
 		}
 	},
 
@@ -52,6 +60,29 @@ let categoryStore = {
 		addNewCategory({ commit, getters }, newCat) {
 			newCat._id = getters.nextCategoryId;
 			commit('pushNewCategory', newCat);
+		},
+		deleteCategory({ commit, getters }, catId) {
+			commit('removeCategoryFromOrder', catId);
+			commit('removeCategory', catId);
+		},
+		updateCategoryOrder({commit, getters}, cOrder) {
+			let catIds = getters.allCategoryIds;
+			//to check if the category id in category order even exists
+			let filteredOrder = cOrder.filter(cId => {
+				return catIds.includes(cId);
+			});
+
+			//to add any categories missing from the order
+			for (let cId of catIds) {
+				if (filteredOrder.includes(cId) === false) {
+					filteredOrder.push(cId);
+				}
+			}
+
+			commit('setCategoryOrder', filteredOrder);
+		},
+		updateAllCategories({commit}, cats) {
+			commit('setAllCategories', cats);
 		}
 	}
 };
