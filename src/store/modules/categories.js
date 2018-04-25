@@ -19,8 +19,8 @@ let categoryStore = {
 		nextCategoryId: (state, getters) =>
 			Math.max(...getters.allCategoryIds) + 1,
 		allCategoryNames: state => state.categories.map(c => c.name),
-		uncategorizedCategory: state => state.uncategorized,
-		allBookmarksCategory: state => state.allBookmarks,
+		uncategorizedCategory: state => state.uncategorizedCat,
+		allBookmarksCategory: state => state.allBookmarksCat,
 		categoryById: (state, getters) => id => {
 			if (id === 'all') return state.allBookmarksCat;
 			else if (getters.allCategoryIds.includes(id)) return state.categories.find(cat => cat._id === id);
@@ -37,6 +37,9 @@ let categoryStore = {
 	mutations: {
 		updateCategoryOrder: (state, val) => {
 			state.categoryOrder = val;
+		},
+		setAllCategories: (state, cats) => {
+			state.categories = cats;
 		}
 	},
 

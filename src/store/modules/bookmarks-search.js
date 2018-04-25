@@ -5,7 +5,7 @@ let bookmarkSearch = {
 	state: {
 		sortModes: ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)"],
 		bookmarksToShow: {
-			category: 3,
+			category: 'all',
 			searchTerm: "",
 			tags: []
 		}

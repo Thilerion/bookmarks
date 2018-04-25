@@ -6,9 +6,11 @@ import categoriesModule from './modules/categories.js'
 import bookmarkModule from './modules/bookmarks.js'
 import userPrefsModule from './modules/prefs.js'
 
+import {save, retrieve} from './persist/persist'
+
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+let store = new Vuex.Store({
 	modules: {
 		userPrefsModule,
 		bookmarkModule,
@@ -44,7 +46,21 @@ export default new Vuex.Store({
 			}
 		},
 		currentBookmarkListView: (state, getters) => state.bookmarkListViews[getters.listViewMode],
-		currentBookmarkListViewComp: (state, getters) => state.bookmarkListViews[getters.listViewMode].component
+		currentBookmarkListViewComp: (state, getters) => state.bookmarkListViews[getters.listViewMode].component,
+		categoryToSave: (state, getters) => {
+			return {
+				categories: getters.categories,
+				categoryOrder: getters.categoryOrder
+			}
+		},
+		bookmarkToSave: (state, getters) => {
+			return {
+				bookmarks: getters.bookmarks
+			}
+		},
+		allToSave: (state, getters) => {
+			return { ...getters.categoryToSave, ...getters.bookmarkToSave };
+		}
 	},
 
 	mutations: {
@@ -53,7 +69,40 @@ export default new Vuex.Store({
 	},
 
 	actions: {
-		
-	}
-	
+		retrieveFromStorageAllData({ commit, dispatch }) {
+			let retrieved = retrieve('bookmarksAndCategories');
+			console.log(retrieved);
+			if (retrieved !== null) {
+				dispatch('setAllSaved', retrieved);
+			} else {
+				dispatch('saveToStorageUserPrefs');
+			}
+		},
+		saveToStorageAllData({ getters }) {
+			save('bookmarksAndCategories', getters.allToSave);
+		},
+		setAllSaved({ commit }, allRetrieved) {
+			if (allRetrieved.bookmarks) {
+				console.log('Retrieved bookmarks, now setting.');
+				commit('setAllBookmarks', allRetrieved.bookmarks);
+			}
+			if (allRetrieved.categories) {
+				console.log('Retrieved categories, now setting.');
+				commit('setAllCategories', allRetrieved.categories);
+			}
+			if (allRetrieved.categoryOrder) {
+				console.log('Retrieved category order, now setting.');
+				commit('updateCategoryOrder', allRetrieved.categoryOrder);
+			}			
+		}
+	}	
+});
+
+export default store;
+
+store.dispatch('retrieveFromStorageAllData');
+
+store.watch((state, getters) => getters.allToSave, (oldVal, newVal) => {
+	console.log("Watched store values have changed. Now going to update localStorage...");
+	store.dispatch('saveToStorageAllData');
 });

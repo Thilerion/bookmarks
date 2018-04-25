@@ -1,53 +1,58 @@
+import {save, retrieve} from '../persist/persist'
+
 let userPrefs = {
 
 	state: {
 		sortMode: 2,
-		listViewMode: 1
+		listViewMode: 1,
+		defaultOpenCategory: 'all'
 	},
 
 	getters: {
 		userSortMode: state => state.sortMode,
 		userListViewMode: state => state.listViewMode,
+		defaultOpenCategory: state => state.defaultOpenCategory,
 		userPrefs: state => {
 			return {
 				sortMode: state.sortMode,
-				viewMode: state.listViewMode
+				listViewMode: state.listViewMode,
+				defaultOpenCategory: state.defaultOpenCategory
 			}
 		}
 	},
 
 	mutations: {
 		setSortMode: (state, newSortIndex) => state.sortMode = newSortIndex,
-		setViewMode: (state, modeId) => state.listViewMode = modeId
+		setViewMode: (state, modeId) => state.listViewMode = modeId,
+		setUserPrefs: (state, {sortMode, listViewMode, defaultOpenCategory}) => {
+			state.sortMode = sortMode;
+			state.listViewMode = listViewMode;
+			state.defaultOpenCategory = defaultOpenCategory;
+		}
 	},
 
 	actions: {
-		retrieveUserPrefs({ commit, dispatch }) {
-			let retrieved = localStorage.getItem("userPrefs");
-			if (retrieved !== null) {
-				retrieved = JSON.parse(retrieved);
-				console.warn("Retrieved user prefs from localStorage.");
-				console.warn(retrieved);
-				commit('setSortMode', retrieved.sortMode);
-				commit('setViewMode', retrieved.viewMode);
-			} else {
-				console.warn("No local storage for userPrefs was found");
-				dispatch("saveUserPrefsToLocalStorage");
-			}
-		},
-		saveUserPrefsToLocalStorage({ getters }) {
-			let userPrefs = JSON.stringify(getters.userPrefs);
-			console.log(userPrefs);
-			localStorage.setItem("userPrefs", userPrefs);
-			console.warn("User prefs saved to localStorage");
-		},
 		setSortMode({ commit, dispatch }, newSortId) {
 			commit("setSortMode", newSortId);
-			dispatch("saveUserPrefsToLocalStorage");
+			dispatch('saveToStorageUserPrefs');
 		},
 		setViewMode({ commit, dispatch }, newViewId) {
 			commit('setViewMode', newViewId);
-			dispatch("saveUserPrefsToLocalStorage");
+			dispatch('saveToStorageUserPrefs');
+		},
+		retrieveFromStorageUserPrefs({ commit, dispatch }) {
+			let retrieved = retrieve('userPrefs');
+			if (retrieved !== null) {
+				commit('setUserPrefs', retrieved);
+				if (retrieved.defaultOpenCategory) {
+					commit('selectCategory', retrieved.defaultOpenCategory);
+				}				
+			} else {
+				dispatch('saveToStorageUserPrefs');
+			}
+		},
+		saveToStorageUserPrefs({ getters }) {
+			save('userPrefs', getters.userPrefs);
 		}
 	}
 }

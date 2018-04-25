@@ -28,6 +28,9 @@ export default {
 		activeModal() {
 			return this.$store.getters.activeModal;
 		}
+	},
+	methods: {
+		
 	}
 }
 </script>
