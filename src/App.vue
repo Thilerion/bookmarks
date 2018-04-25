@@ -17,12 +17,14 @@ import Sidebar from '@/components/layout/Sidebar'
 import Main from '@/components/layout/Main'
 
 import AddBookmark from '@/components/modals/AddBookmark'
+import AddCategory from '@/components/modals/AddCategory'
 
 export default {
 	components: {
 		BmMain: Main,
 		BmSidebar: Sidebar,
-		BmAddBookmark: AddBookmark
+		BmAddBookmark: AddBookmark,
+		BmAddCategory: AddCategory
 	},
 	computed: {
 		activeModal() {

@@ -48,7 +48,12 @@ let categoryStore = {
 		}
 	},
 
-	actions: {}
+	actions: {
+		addNewCategory({ commit, getters }, newCat) {
+			newCat._id = getters.nextCategoryId;
+			commit('pushNewCategory', newCat);
+		}
+	}
 };
 
 export default categoryStore;

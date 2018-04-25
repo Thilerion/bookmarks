@@ -24,7 +24,7 @@ let store = new Vuex.Store({
 			{ name: "Normal", icon: "view-list", component: "BmBookmarksListNormal" },
 			{ name: 'Grid', icon: "view-grid", component: "BmBookmarksListGrid" }
 		],
-		modalOptions: ['BmAddBookmark'],
+		modalOptions: ['BmAddBookmark', 'BmAddCategory'],
 		activeModal: null
 	},
 

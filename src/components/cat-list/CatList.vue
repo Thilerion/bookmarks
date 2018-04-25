@@ -2,7 +2,7 @@
 <div class="cat-list-wrapper">
 	<header class="menu-header">
 		<h2 class="menu-heading">Categories</h2>
-		<button class="cat-add button-light">
+		<button class="cat-add button-light" @click="toggleModalAddCategory">
 			<BmSvgIcon icon="plus" />
 		</button>
 	</header>
@@ -54,6 +54,11 @@ export default {
 				ghostClass: 'ghost',
 				animation: 0
 			}
+		}
+	},
+	methods: {
+		toggleModalAddCategory() {
+			this.$store.commit('enableModal', 1);
 		}
 	}
 }
