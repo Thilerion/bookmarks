@@ -34,7 +34,7 @@ let bookmarkView = {
 		},
 
 		bookmarksToShow(state, getters, rootState) {
-			const bookmarks = [...rootState.bookmarks.all];
+			let bookmarks = [...rootState.bookmarks.all];
 			const search = getters.searchActive;
 			const group = getters.currentBookmarkGroup;
 			const category = state.currentCategory;
