@@ -181,6 +181,13 @@ let bookmarkStore = {
 				state.bookmarks[idIndex],
 				bookmark.edits
 			);
+		},
+		removeCategoryFromBookmarks: (state, catId) => {
+			for (let bm of state.bookmarks) {
+				if (bm.category === catId) {
+					bm.category = "none";
+				}
+			}
 		}
 	},
 

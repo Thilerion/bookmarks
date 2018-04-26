@@ -46,7 +46,7 @@ export default {
 				return this.$store.getters.categoryOrder;
 			},
 			set(val) {
-				this.$store.commit('updateCategoryOrder', val);
+				this.$store.commit('setCategoryOrder', val);
 			}			
 		},
 		draggableCatOptions() {

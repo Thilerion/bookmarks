@@ -158,7 +158,6 @@ header {
 <style>
 .menu-block {
 	padding-top: 0.75rem;
-	overflow: hidden;
 }
 
 .menu-block:first-child {
@@ -184,13 +183,23 @@ header {
 	
 
 .menu-block .list-item, .menu-block .menu-item {
-	padding-left: 0.5rem;
 	margin-left: 0.5rem;
-	padding-top: 0.45em;
-	padding-bottom: 0.45em;
 	user-select: none;
 	cursor: pointer;
-	--menu-bg-color: var(--bg-light-beta);
+	--menu-bg-color: var(--bg-light-alpha);
+}
+
+.menu-block .menu-item {
+	padding-left: 0.5rem;
+	
+	padding-top: 0.45em;
+	padding-bottom: 0.45em;
+}
+
+.menu-block .list-item-inner {
+	padding-left: 0.5rem;
+	padding-top: 0.45em;
+	padding-bottom: 0.45em;
 }
 
 .menu-block .list-item:hover, .menu-block .menu-item:hover {

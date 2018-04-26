@@ -64,6 +64,7 @@ let categoryStore = {
 		deleteCategory({ commit, getters }, catId) {
 			commit('removeCategoryFromOrder', catId);
 			commit('removeCategory', catId);
+			commit('removeCategoryFromBookmarks', catId);
 		},
 		updateCategoryOrder({commit, getters}, cOrder) {
 			let catIds = getters.allCategoryIds;

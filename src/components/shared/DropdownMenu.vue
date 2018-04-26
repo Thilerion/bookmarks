@@ -46,7 +46,7 @@ export default {
 .dropdown-menu {
 	background: #fefefe;
 	color: currentColor;
-	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	box-shadow: 0 2px 8px rgba(0,0,0,0.1), 1px 1px 1px rgba(0,0,0,0.13);
 	border-radius: 3px;
 	position: absolute;
 	z-index: 500;
