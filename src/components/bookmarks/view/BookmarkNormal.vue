@@ -68,7 +68,7 @@ export default {
 			this.$store.commit('deleteBookmark', this.bookmark.id);
 		},
 		editBookmark() {
-			this.$store.commit('currentlyEditingBookmark', this.bookmark.id);
+			
 		},
 		goToUrl() {
 			window.open(this.url);

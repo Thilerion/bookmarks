@@ -1,10 +1,11 @@
 import { sortNewestFirst, sortOldestFirst, sortAlphaDescending, sortAlphaAscending } from '@/helpers/sort-functions'
 
+const SORT_MODES = ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)"];
+const BOOKMARK_GROUPS = ["All", "Favorites", "Category"];
+
 let bookmarkSearch = {
 
 	state: {
-		sortModes: ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)"],
-		bookmarkGroups: ["all", "favorites", "category"],
 		bookmarksToShow: {
 			currentBookmarkGroup: 0,
 			category: 0,
@@ -16,13 +17,14 @@ let bookmarkSearch = {
 	getters: {
 		searchString: state => state.bookmarksToShow.searchTerm,
 		sortMode: (state, getters) => {
-			if (getters.userSortMode < 0 || getters.userSortMode >= state.sortModes.length) {
+			if (getters.userSortMode < 0 || getters.userSortMode >= SORT_MODES.length) {
 				console.warn("Unexpected sort mode: " + getters.userSortMode);
 				return 0;
 			} else return getters.userSortMode;
 		},
-		currentSortModeString: (state, getters) => state.sortModes[getters.sortMode],
-		sortModes: state => state.sortModes,
+		sortModes: () => SORT_MODES,
+		bookmarkGroups: () => BOOKMARK_GROUPS,
+		currentSortModeString: (state, getters) => SORT_MODES[getters.sortMode],
 		bookmarksToShow: (state, getters, rootState, rootGetters) => {
 			const group = getters.selectedGroup;
 			const bookmarks = rootGetters.bookmarks;
@@ -53,7 +55,7 @@ let bookmarkSearch = {
 			});
 		},
 		selectedCategoryId: state => state.bookmarksToShow.category,
-		selectedGroup: state => state.bookmarkGroups[state.bookmarksToShow.currentBookmarkGroup]
+		selectedGroup: state => BOOKMARK_GROUPS[state.bookmarksToShow.currentBookmarkGroup]
 	},
 
 	mutations: {
