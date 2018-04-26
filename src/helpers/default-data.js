@@ -118,7 +118,7 @@ const defaultBookmarks = [
 		title: "Zeto",
 		url: "https://www.zeta.com",
 		id: 14,
-		category: 'none',
+		category: null,
 		added: 1527190537705,
 		favorite: false
 	},
@@ -126,7 +126,7 @@ const defaultBookmarks = [
 		title: "Eta",
 		url: "https://en.m.eta.org/",
 		id: 15,
-		category: 'none',
+		category: null,
 		added: 1520190867705,
 		favorite: false
 	},

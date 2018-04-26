@@ -1,7 +1,7 @@
 import { SORT_MODES, sortBookmarks } from '../../helpers/bookmark-sort'
 import { filterWithSearch, filterWithCategory } from '../../helpers/bookmark-filters'
 
-const BOOKMARK_GROUPS = ["All", "Favorites", "Category"];
+const BOOKMARK_GROUPS = ["All", "Favorites", "Category", "Uncategorized"];
 
 let bookmarkView = {
 
@@ -34,55 +34,55 @@ let bookmarkView = {
 			return rootState.categories.all.find(cat => cat._id === id);
 		},
 
-		
-		bookmarksToShow: (state, getters, rootState, rootGetters) => {
-			const group = getters.selectedGroup;
-			const bookmarks = rootState.bookmarks.all;
-			if (group === "all") {
-				return rootGetters.bookmarks;
-			} else if (group === "favorites") {
-				return bookmarks.filter(bm => bm.favorite === true);
-			} else {
-				const cat = state.bookmarksToShow.category;
-				return bookmarks.filter(bm => bm.category === cat);
-			}
-		},
-		sortedBookmarks: (state, getters) => {
-			const items = [...getters.bookmarksToShow];
-			const mode = getters.sortMode;
-			if (mode === 0) return items.sort(sortNewestFirst);
-			else if (mode === 1) return items.sort(sortOldestFirst);
-			else if (mode === 2) return items.sort(sortAlphaDescending);
-			else if (mode === 3) return items.sort(sortAlphaAscending);
-			else return items;
-		},
-		searchSortedBookmarks: (state, getters) => {
-			return getters.sortedBookmarks.filter((bookmark) => {
-				let filterKey = state.bookmarksToShow.searchTerm.toLowerCase();
-				if (bookmark.title.toLowerCase().includes(filterKey)) {
-					return true;
-				} else return false;
-			});
-		},
-		selectedCategoryId: state => state.bookmarksToShow.category,
-		selectedGroup: state => BOOKMARK_GROUPS[state.bookmarksToShow.currentBookmarkGroup],
+		bookmarksToShow(state, getters, rootState) {
+			const bookmarks = [...rootState.bookmarks.all];
+			const search = getters.searchActive;
+			const group = getters.currentBookmarkGroup;
+			const category = getters.currentCategory;
 
-		sortModes: () => SORT_MODES,
-		bookmarkGroups: () => BOOKMARK_GROUPS
+			if (search === true) {
+				bookmarks = filterWithSearch(bookmarks, getters.searchTerm);
+			}
+
+			return bookmarks.filterWithCategory(bookmarks, category, group);
+		},
+
+		sortedBookmarksToShow(state, getters) {
+			return sortBookmarks(getters.bookmarksToShow, state.currentSortMode);
+		}
 	},
 
 	mutations: {
-		changeCurrentSearch: (state, searchString) => state.bookmarksToShow.searchTerm = searchString,
-		selectBookmarkGroup: (state, groupId) => state.bookmarksToShow.currentBookmarkGroup = groupId,
-		selectCategory: (state, id) => {
-			state.bookmarksToShow.category = id;
-			state.bookmarksToShow.currentBookmarkGroup = 2;
+
+		changeSearchTerm(state, searchTerm) {
+			state.searchTerm = searchTerm;
+		},
+
+		changeSortMode(state, sortModeId) {
+			state.currentSortMode = sortModeId;
+		},
+
+		selectFavoritesGroup(state) {
+			state.currentBookmarkGroup = "Favorites";
+			state.currentCategory = null;
+		},
+		selectAllBookmarksGroup(state) {
+			state.currentBookmarkGroup = "All";
+			state.currentCategory = null;
+		},
+		selectUncategorizedGroup(state) {
+			state.currentBookmarkGroup = "Uncategorized";
+			state.currentCategory = null;
+		},
+		selectCategory(state, id) {
+			state.currentBookmarkGroup = "Category";
+			state.currentCategory = id;
 		}
 	},
 
 	actions: {
-		editSearchFilter({ commit }, searchString) {
-			commit('changeCurrentSearch', searchString);
+		editSearchFilter({ commit }, searchTerm) {
+			commit('changeSearchTerm', searchTerm);
 		}
 	}
 }

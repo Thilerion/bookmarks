@@ -20,7 +20,7 @@ const SORT_MODES = ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A
 const SORT_MODE_FUNCTIONS = [sortNewestFirst, sortOldestFirst, sortAlphaAscending, sortAlphaDescending];
 
 function sortBookmarks(bookmarks, sortModeId) {
-	return { ...bookmarks }.sort(SORT_MODE_FUNCTION[sortModeId]);
+	return [...bookmarks].sort(SORT_MODE_FUNCTION[sortModeId]);
 }
 
 export { SORT_MODES, sortBookmarks };
