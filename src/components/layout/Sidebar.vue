@@ -19,6 +19,7 @@
 	<div class="scroll-wrap vertical sidebar-border">
 		<div class="sidebar-content">
 			<div class="menu-block">
+
 				<div
 					class="menu-item"
 					:class="{selected: showAllBookmarks}"
@@ -27,6 +28,7 @@
 					<div class="title">All bookmarks</div>
 					<div class="amount">{{allBookmarksAmount}}</div>
 				</div>
+
 				<div
 					class="menu-item"
 					:class="{selected: showUncategorizedBookmarks}"
@@ -35,6 +37,16 @@
 					<div class="title">Uncategorized</div>
 					<div class="amount">{{uncategorizedBookmarksAmount}}</div>
 				</div>
+
+				<div
+					class="menu-item"
+					:class="{selected: showFavoriteBookmarks}"
+					@click="selectBookmarkGroup(1)"
+				>
+					<div class="title">Favorites</div>
+					<div class="amount">{{favoriteBookmarksAmount}}</div>
+				</div>
+
 			</div>
 			<BmCatList class="menu-block"/>
 		</div>

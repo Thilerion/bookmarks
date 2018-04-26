@@ -11,6 +11,7 @@ import {save, retrieve} from './persist/persist'
 Vue.use(Vuex);
 
 let store = new Vuex.Store({
+	strict: true,
 	modules: {
 		userPrefsModule,
 		bookmarkModule,
