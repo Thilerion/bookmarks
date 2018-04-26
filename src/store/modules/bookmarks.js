@@ -1,11 +1,11 @@
-import bookmarkSearch from "./bookmarks-search";
+import bookmarkView from "./bookmark-view";
 
 import { defaultBookmarks } from '../../helpers/default-data'
 
 let bookmarkStore = {
 
 	modules: {
-		bookmarkSearch
+		bookmarkView
 	},
 
 	state: {

@@ -3,7 +3,7 @@ import { sortNewestFirst, sortOldestFirst, sortAlphaDescending, sortAlphaAscendi
 const SORT_MODES = ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)"];
 const BOOKMARK_GROUPS = ["All", "Favorites", "Category"];
 
-let bookmarkSearch = {
+let bookmarkView = {
 
 	state: {
 		bookmarksToShow: {
@@ -74,4 +74,4 @@ let bookmarkSearch = {
 	}
 }
 
-export default bookmarkSearch;
+export default bookmarkView;

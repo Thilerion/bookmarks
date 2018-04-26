@@ -2,29 +2,34 @@ import { defaultCategories } from '../../helpers/default-data'
 
 let categoryStore = {
 	state: {
-		categories: defaultCategories,
+		all: defaultCategories,
+		categoryOrder: [1, 4, 2, 3, 5, 0],
 		uncategorizedCat: { name: "Uncategorized", colour: 'var(--base-cat-colour)', id: null, icon: null },
-		allBookmarksCat: { name: "All bookmarks", colour: 'var(--base-cat-colour)', id: 'all', icon: null },
-		categoryOrder: [1, 4, 2, 3, 5, 0]
+		allBookmarksCat: { name: "All bookmarks", colour: 'var(--base-cat-colour)', id: 'all', icon: null }
 	},
 
 	getters: {
-		categories: state => state.categories,
-		allCategoryIds: state => state.categories.map(c => c._id),
-		nextCategoryId: (state, getters) =>
-			Math.max(...getters.allCategoryIds) + 1,
-		allCategoryNames: state => state.categories.map(c => c.name),
+		categories: state => state.all,
+
+		allCategoryIds: state => state.all.map(category => category._id),
+
+		nextCategoryId: (state, getters) => Math.max(...getters.allCategoryIds) + 1,
+
+		allCategoryNames: state => state.all.map(c => c.name),
+
 		uncategorizedCategory: state => state.uncategorizedCat,
+
 		allBookmarksCategory: state => state.allBookmarksCat,
+
 		categoryById: (state, getters) => id => {
 			if (id === 'all') return state.allBookmarksCat;
-			else if (getters.allCategoryIds.includes(id)) return state.categories.find(cat => cat._id === id);
+			else if (getters.allCategoryIds.includes(id)) return state.all.find(cat => cat._id === id);
 			else return state.uncategorizedCat;
 		},
 		categoryOrder: state => state.categoryOrder,
 		categoriesSortedByOrder: state => {
 			return state.categoryOrder.map(catId => {
-				return state.categories.find(c => c._id === catId);
+				return state.all.find(c => c._id === catId);
 			});
 		}
 	},
@@ -34,11 +39,11 @@ let categoryStore = {
 			state.categoryOrder = val;
 		},
 		setAllCategories: (state, cats) => {
-			state.categories = cats;
+			state.all = cats;
 		},
 		pushNewCategory: (state, cat) => {
 			const catId = cat._id;
-			state.categories.push(cat);
+			state.all.push(cat);
 			state.categoryOrder.push(catId);
 		},
 		removeCategoryFromOrder: (state, id) => {
@@ -46,8 +51,8 @@ let categoryStore = {
 			state.categoryOrder.splice(idIndex, 1);
 		},
 		removeCategory: (state, id) => {
-			const idIndex = state.categories.findIndex(c => c._id === id);
-			state.categories.splice(idIndex, 1);
+			const idIndex = state.all.findIndex(c => c._id === id);
+			state.all.splice(idIndex, 1);
 		}
 	},
 
