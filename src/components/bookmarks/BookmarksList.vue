@@ -26,14 +26,14 @@ export default {
 	},
 	computed: {
 		bookmarksArray() {
-			return this.$store.getters.searchSortedBookmarks;
+			return this.$store.getters.sortedBookmarksToShow;
 		},
 		currentViewComponent() {
 			return this.$store.getters.currentBookmarkListViewComp;
 		},
 		viewComponentAndBookmarksCategory() {
 			//used to trigger the transition when the view component OR the selected category change
-			return `${this.currentViewComponent} ${this.$store.getters.selectedCategoryId} ${this.$store.getters.selectedGroup}`;
+			return `${this.currentViewComponent} ${this.$store.getters.currentBookmarkGroup} ${this.$store.getters.currentCategoryId}`;
 		}
 	}
 }

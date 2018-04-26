@@ -23,7 +23,7 @@
 				<div
 					class="menu-item"
 					:class="{selected: showAllBookmarks}"
-					@click="selectBookmarkGroup(0)"
+					@click="selectAllBookmarksGroup"
 				>
 					<div class="title">All bookmarks</div>
 					<div class="amount">{{allBookmarksAmount}}</div>
@@ -32,7 +32,7 @@
 				<div
 					class="menu-item"
 					:class="{selected: showUncategorizedBookmarks}"
-					@click="selectCategory('none')"
+					@click="selectUncategorizedGroup"
 				>
 					<div class="title">Uncategorized</div>
 					<div class="amount">{{uncategorizedBookmarksAmount}}</div>
@@ -41,7 +41,7 @@
 				<div
 					class="menu-item"
 					:class="{selected: showFavoriteBookmarks}"
-					@click="selectBookmarkGroup(1)"
+					@click="selectFavoritesGroup"
 				>
 					<div class="title">Favorites</div>
 					<div class="amount">{{favoriteBookmarksAmount}}</div>
@@ -97,8 +97,14 @@ export default {
 		selectCategory(whichOne) {
 			this.$store.commit('selectCategory', whichOne);
 		},
-		selectBookmarkGroup(groupId) {
-			this.$store.commit('selectBookmarkGroup', groupId);
+		selectAllBookmarksGroup() {
+			this.$store.commit('selectAllBookmarksGroup');
+		},
+		selectUncategorizedGroup() {
+			this.$store.commit('selectUncategorizedGroup');
+		},
+		selectFavoritesGroup() {
+			this.$store.commit('selectFavoritesGroup');
 		}
 	}
 }

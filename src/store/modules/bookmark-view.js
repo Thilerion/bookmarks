@@ -9,7 +9,7 @@ let bookmarkView = {
 		searchTerm: "",
 		currentSortMode: 0,
 
-		currentBookmarkGroup: 0,
+		currentBookmarkGroup: "All",
 		currentCategory: null,
 
 		sortModes: SORT_MODES,
@@ -23,11 +23,10 @@ let bookmarkView = {
 		sortModeId: state => state.sortMode,
 		sortMode: state => state.sortModes[state.sortMode],
 
-		currentBookmarkGroupId: state => state.currentBookmarkGroup,
-		currentBookmarkGroup: state => state.state.bookmarkGroups[state.currentBookmarkGroup],
+		currentBookmarkGroup: state => state.currentBookmarkGroup,
 
 		currentCategoryId: state => state.currentCategory,
-		currentCategory(state, getters, rootState) {
+		currentCategoryName(state, getters, rootState) {
 			const id = state.currentCategory;
 			if (id === null) return null;
 			
@@ -38,13 +37,13 @@ let bookmarkView = {
 			const bookmarks = [...rootState.bookmarks.all];
 			const search = getters.searchActive;
 			const group = getters.currentBookmarkGroup;
-			const category = getters.currentCategory;
+			const category = state.currentCategory;
 
 			if (search === true) {
 				bookmarks = filterWithSearch(bookmarks, getters.searchTerm);
 			}
 
-			return bookmarks.filterWithCategory(bookmarks, category, group);
+			return filterWithCategory(bookmarks, category, group);
 		},
 
 		sortedBookmarksToShow(state, getters) {
@@ -66,14 +65,17 @@ let bookmarkView = {
 			state.currentBookmarkGroup = "Favorites";
 			state.currentCategory = null;
 		},
+
 		selectAllBookmarksGroup(state) {
 			state.currentBookmarkGroup = "All";
 			state.currentCategory = null;
 		},
+
 		selectUncategorizedGroup(state) {
 			state.currentBookmarkGroup = "Uncategorized";
 			state.currentCategory = null;
 		},
+
 		selectCategory(state, id) {
 			state.currentBookmarkGroup = "Category";
 			state.currentCategory = id;

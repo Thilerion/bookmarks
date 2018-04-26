@@ -28,7 +28,6 @@ let views = {
 		},
 		allBookmarksAmount: (state, getters, rootState, rootGetters) => rootState.bookmarks.all.length,
 		favoriteBookmarksAmount: (state, getters, rootState, rootGetters) => {
-			console.log(rootState);
 			return rootState.bookmarks.all.filter(bm => bm.favorite === true).length;
 		},
 		activeModal: state => {
