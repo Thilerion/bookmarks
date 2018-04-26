@@ -45,7 +45,7 @@ let userPrefs = {
 			if (retrieved !== null) {
 				commit('setUserPrefs', retrieved);
 				if (retrieved.defaultOpenCategory) {
-					commit('selectCategory', retrieved.defaultOpenCategory);
+					commit('selectBookmarkGroup', 0);
 				}				
 			} else {
 				dispatch('saveToStorageUserPrefs');

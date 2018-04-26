@@ -3,7 +3,8 @@ import { sortNewestFirst, sortOldestFirst, sortAlphaDescending, sortAlphaAscendi
 let bookmarkSearch = {
 
 	state: {
-		sortModes: ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)"],bookmarkGroups: ["all", "favorites", "category"],
+		sortModes: ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)"],
+		bookmarkGroups: ["all", "favorites", "category"],
 		bookmarksToShow: {
 			currentBookmarkGroup: 0,
 			category: 0,
@@ -35,7 +36,7 @@ let bookmarkSearch = {
 			}
 		},
 		sortedBookmarks: (state, getters) => {
-			const items = getters.bookmarksToShow;
+			const items = [...getters.bookmarksToShow];
 			const mode = getters.sortMode;
 			if (mode === 0) return items.sort(sortNewestFirst);
 			else if (mode === 1) return items.sort(sortOldestFirst);
