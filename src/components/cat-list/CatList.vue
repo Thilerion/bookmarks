@@ -16,7 +16,6 @@
 			v-for="cat in categoriesSortedByOrder"
 			:key="cat._id"
 			:category="cat"
-			:selected="selectedCategory === cat._id"
 		/>
 	</draggable>
 </div>
@@ -37,9 +36,6 @@ export default {
 	computed: {
 		categoriesSortedByOrder() {
 			return this.$store.getters.categoriesSortedByOrder;
-		},
-		selectedCategory() {
-			return this.$store.getters.selectedCategoryId;
 		},
 		categoryOrder: {
 			get() {

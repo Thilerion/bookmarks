@@ -1,7 +1,7 @@
 <template>
 <li
 	class="list-item"
-	:class="{selected: selected}"
+	:class="{selected: isSelected}"
 	@mouseover="showCatOptions = true"
 	@mouseout="showCatOptions = false" 
 >
@@ -34,10 +34,6 @@ export default {
 		category: {
 			type: Object,
 			required: true
-		},
-		selected: {
-			type: Boolean,
-			default: false
 		}
 	},
 	data() {
@@ -67,11 +63,18 @@ export default {
 		},
 		catId() {
 			return this.category._id;
+		},
+		isSelected() {
+			if (this.$store.getters.selectedGroup !== "category") {
+				return false;
+			} else {
+				return this.catId === this.$store.getters.selectedCategoryId;
+			}
 		}
 	},
 	methods: {
 		selectCategory() {
-			if (!this.selected) {
+			if (!this.isSelected) {
 				this.$store.commit('selectCategory', this.catId);
 			}			
 		},

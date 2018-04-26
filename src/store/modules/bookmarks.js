@@ -13,6 +13,7 @@ let bookmarkStore = {
 				id: 0,
 				category: 4,
 				added: 1520090067705,
+				favorite: true
 			},
 			{
 				title: "nu.nl",
@@ -20,6 +21,7 @@ let bookmarkStore = {
 				id: 1,
 				category: 3,
 				added: 1520890167705,
+				favorite: true
 			},
 			{
 				title: "Agenda",
@@ -27,6 +29,7 @@ let bookmarkStore = {
 				id: 3,
 				category: 4,
 				added: 1520390267705,
+				favorite: true
 			},
 			{
 				title: "Learn Vue 2: Basic Data Binding",
@@ -35,6 +38,7 @@ let bookmarkStore = {
 				id: 8,
 				category: 5,
 				added: 1522190367705,
+				favorite: false
 			},
 			{
 				title: "Plex",
@@ -42,6 +46,7 @@ let bookmarkStore = {
 				id: 4,
 				category: 1,
 				added: 1521690467705,
+				favorite: false
 			},
 			{
 				title: "YouTube",
@@ -49,6 +54,7 @@ let bookmarkStore = {
 				id: 2,
 				category: 0,
 				added: 1527190567705,
+				favorite: false
 			},
 			{
 				title: "Vigenère cipher - Wikipedia",
@@ -56,6 +62,7 @@ let bookmarkStore = {
 				id: 7,
 				category: 2,
 				added: 1520190667705,
+				favorite: false
 			},
 			{
 				title: "Whatsapp",
@@ -63,6 +70,7 @@ let bookmarkStore = {
 				id: 6,
 				category: 1,
 				added: 1521690767705,
+				favorite: false
 			},
 			{
 				title: "Blackboard",
@@ -71,6 +79,7 @@ let bookmarkStore = {
 				id: 5,
 				category: 0,
 				added: 1522590867705,
+				favorite: false
 			},
 			{
 				title: "Alpha",
@@ -78,6 +87,7 @@ let bookmarkStore = {
 				id: 9,
 				category: 3,
 				added: 1520090067706,
+				favorite: false
 			},
 			{
 				title: "Beta",
@@ -85,6 +95,7 @@ let bookmarkStore = {
 				id: 10,
 				category: 0,
 				added: 1520890177705,
+				favorite: false
 			},
 			{
 				title: "Gamma",
@@ -92,6 +103,7 @@ let bookmarkStore = {
 				id: 11,
 				category: 1,
 				added: 1520390367705,
+				favorite: false
 			},
 			{
 				title: "Delta",
@@ -100,6 +112,7 @@ let bookmarkStore = {
 				id: 12,
 				category: 5,
 				added: 1522190361105,
+				favorite: false
 			},
 			{
 				title: "Epsilon",
@@ -107,6 +120,7 @@ let bookmarkStore = {
 				id: 13,
 				category: 5,
 				added: 1521690467205,
+				favorite: false
 			},
 			{
 				title: "Zeto",
@@ -114,6 +128,7 @@ let bookmarkStore = {
 				id: 14,
 				category: 'none',
 				added: 1527190537705,
+				favorite: false
 			},
 			{
 				title: "Eta",
@@ -121,6 +136,7 @@ let bookmarkStore = {
 				id: 15,
 				category: 'none',
 				added: 1520190867705,
+				favorite: false
 			},
 			{
 				title: "Theta",
@@ -128,6 +144,7 @@ let bookmarkStore = {
 				id: 16,
 				category: 1,
 				added: 1521690717705,
+				favorite: false
 			},
 			{
 				title: "Iota",
@@ -135,6 +152,7 @@ let bookmarkStore = {
 				id: 17,
 				category: 2,
 				added: 1522590267705,
+				favorite: false
 			}
 		],
 		currentlyEditingBookmark: null
@@ -158,6 +176,8 @@ let bookmarkStore = {
 			}
 			return categoryAmounts;
 		},
+		allBookmarksAmount: state => state.bookmarks.length,
+		favoriteBookmarksAmount: state => state.bookmarks.filter(bm => bm.favorite === true).length,
 		currentlyEditingBookmark: state => state.currentlyEditingBookmark
 	},
 

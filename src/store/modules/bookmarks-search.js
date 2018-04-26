@@ -3,9 +3,10 @@ import { sortNewestFirst, sortOldestFirst, sortAlphaDescending, sortAlphaAscendi
 let bookmarkSearch = {
 
 	state: {
-		sortModes: ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)"],
+		sortModes: ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)"],bookmarkGroups: ["all", "favorites", "category"],
 		bookmarksToShow: {
-			category: 'all',
+			currentBookmarkGroup: 0,
+			category: 0,
 			searchTerm: "",
 			tags: []
 		}
@@ -21,12 +22,20 @@ let bookmarkSearch = {
 		},
 		currentSortModeString: (state, getters) => state.sortModes[getters.sortMode],
 		sortModes: state => state.sortModes,
-		bookmarksByCategory: (state, getters, rootState, rootGetters) => {
-			if (state.bookmarksToShow.category === "all") return rootGetters.bookmarks;
-			else return rootGetters.bookmarks.filter(bm => bm.category === state.bookmarksToShow.category);
+		bookmarksToShow: (state, getters, rootState, rootGetters) => {
+			const group = getters.selectedGroup;
+			const bookmarks = rootGetters.bookmarks;
+			if (group === "all") {
+				return rootGetters.bookmarks;
+			} else if (group === "favorites") {
+				return bookmarks.filter(bm => bm.favorite === true);
+			} else {
+				const cat = state.bookmarksToShow.category;
+				return bookmarks.filter(bm => bm.category === cat);
+			}
 		},
 		sortedBookmarks: (state, getters) => {
-			const items = getters.bookmarksByCategory;
+			const items = getters.bookmarksToShow;
 			const mode = getters.sortMode;
 			if (mode === 0) return items.sort(sortNewestFirst);
 			else if (mode === 1) return items.sort(sortOldestFirst);
@@ -43,11 +52,16 @@ let bookmarkSearch = {
 			});
 		},
 		selectedCategoryId: state => state.bookmarksToShow.category,
+		selectedGroup: state => state.bookmarkGroups[state.bookmarksToShow.currentBookmarkGroup]
 	},
 
 	mutations: {
 		changeCurrentSearch: (state, searchString) => state.bookmarksToShow.searchTerm = searchString,
-		selectCategory: (state, id) => state.bookmarksToShow.category = id
+		selectBookmarkGroup: (state, groupId) => state.bookmarksToShow.currentBookmarkGroup = groupId,
+		selectCategory: (state, id) => {
+			state.bookmarksToShow.category = id;
+			state.bookmarksToShow.currentBookmarkGroup = 2;
+		}
 	},
 
 	actions: {

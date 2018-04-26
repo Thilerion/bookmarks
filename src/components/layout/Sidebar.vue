@@ -21,19 +21,19 @@
 			<div class="menu-block">
 				<div
 					class="menu-item"
-					:class="{selected: allBookmarksSelected}"
-					@click="selectCategory('all')"
+					:class="{selected: showAllBookmarks}"
+					@click="selectBookmarkGroup(0)"
 				>
 					<div class="title">All bookmarks</div>
 					<div class="amount">{{allBookmarksAmount}}</div>
 				</div>
 				<div
 					class="menu-item"
-					:class="{selected: uncategorizedSelected}"
+					:class="{selected: showUncategorizedBookmarks}"
 					@click="selectCategory('none')"
 				>
 					<div class="title">Uncategorized</div>
-					<div class="amount">{{uncategorizedAmount}}</div>
+					<div class="amount">{{uncategorizedBookmarksAmount}}</div>
 				</div>
 			</div>
 			<BmCatList class="menu-block"/>
@@ -53,28 +53,40 @@ export default {
 		BmCatList: CatList
 	},
 	computed: {
-		selected() {
+		selectedCategory() {
 			return this.$store.getters.selectedCategoryId;
 		},
-		uncategorizedSelected() {
-			return this.selected === 'none';
+		selectedGroup() {
+			return this.$store.getters.selectedGroup;
 		},
-		allBookmarksSelected() {
-			return this.selected === "all";
+		showAllBookmarks() {
+			return this.selectedGroup === "all";
 		},
-		categoryAmount() {
-			return this.$store.getters.categoryAmount;
+		showUncategorizedBookmarks() {
+			return this.selectedGroup === "category" && this.selectedCategory === "none";
+		},
+		showFavoriteBookmarks() {
+			return this.selectedGroup === "favorites";
+		},
+		showCategory() {
+			return this.selectedGroup === "category";
 		},
 		allBookmarksAmount() {
-			return this.$store.getters.bookmarks.length;
+			return this.$store.getters.allBookmarksAmount;
 		},
-		uncategorizedAmount() {
+		favoriteBookmarksAmount() {
+			return this.$store.getters.favoriteBookmarksAmount;
+		},
+		uncategorizedBookmarksAmount() {
 			return this.$store.getters.categoryAmount['none'];
 		}
 	},
 	methods: {
 		selectCategory(whichOne) {
 			this.$store.commit('selectCategory', whichOne);
+		},
+		selectBookmarkGroup(groupId) {
+			this.$store.commit('selectBookmarkGroup', groupId);
 		}
 	}
 }

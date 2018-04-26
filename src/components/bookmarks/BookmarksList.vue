@@ -33,7 +33,7 @@ export default {
 		},
 		viewComponentAndBookmarksCategory() {
 			//used to trigger the transition when the view component OR the selected category change
-			return `${this.currentViewComponent} ${this.$store.getters.selectedCategoryId}`;
+			return `${this.currentViewComponent} ${this.$store.getters.selectedCategoryId} ${this.$store.getters.selectedGroup}`;
 		}
 	}
 }
