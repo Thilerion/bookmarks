@@ -1,30 +1,40 @@
-import { sortNewestFirst, sortOldestFirst, sortAlphaDescending, sortAlphaAscending } from '@/helpers/sort-functions'
+import { SORT_MODES, sortBookmarks } from '../../helpers/bookmark-sort'
+import { filterWithSearch, filterWithCategory } from '../../helpers/bookmark-filters'
 
-const SORT_MODES = ["Newest", "Oldest", "Alphabetical (A-Z)", "Alphabetical (Z-A)"];
 const BOOKMARK_GROUPS = ["All", "Favorites", "Category"];
 
 let bookmarkView = {
 
 	state: {
-		bookmarksToShow: {
-			currentBookmarkGroup: 0,
-			category: 0,
-			searchTerm: "",
-			tags: []
-		}
+		searchTerm: "",
+		currentSortMode: 0,
+
+		currentBookmarkGroup: 0,
+		currentCategory: null,
+
+		sortModes: SORT_MODES,
+		bookmarkGroups: BOOKMARK_GROUPS
 	},
 
 	getters: {
-		searchString: state => state.bookmarksToShow.searchTerm,
-		sortMode: (state, getters) => {
-			if (getters.userSortMode < 0 || getters.userSortMode >= SORT_MODES.length) {
-				console.warn("Unexpected sort mode: " + getters.userSortMode);
-				return 0;
-			} else return getters.userSortMode;
+		searchActive: state => state.searchTerm !== "",
+		searchTerm: state => state.searchTerm,
+
+		sortModeId: state => state.sortMode,
+		sortMode: state => state.sortModes[state.sortMode],
+
+		currentBookmarkGroupId: state => state.currentBookmarkGroup,
+		currentBookmarkGroup: state => state.state.bookmarkGroups[state.currentBookmarkGroup],
+
+		currentCategoryId: state => state.currentCategory,
+		currentCategory(state, getters, rootState) {
+			const id = state.currentCategory;
+			if (id === null) return null;
+			
+			return rootState.categories.all.find(cat => cat._id === id);
 		},
-		sortModes: () => SORT_MODES,
-		bookmarkGroups: () => BOOKMARK_GROUPS,
-		currentSortModeString: (state, getters) => SORT_MODES[getters.sortMode],
+
+		
 		bookmarksToShow: (state, getters, rootState, rootGetters) => {
 			const group = getters.selectedGroup;
 			const bookmarks = rootState.bookmarks.all;
@@ -55,7 +65,10 @@ let bookmarkView = {
 			});
 		},
 		selectedCategoryId: state => state.bookmarksToShow.category,
-		selectedGroup: state => BOOKMARK_GROUPS[state.bookmarksToShow.currentBookmarkGroup]
+		selectedGroup: state => BOOKMARK_GROUPS[state.bookmarksToShow.currentBookmarkGroup],
+
+		sortModes: () => SORT_MODES,
+		bookmarkGroups: () => BOOKMARK_GROUPS
 	},
 
 	mutations: {
