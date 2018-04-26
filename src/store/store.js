@@ -1,10 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import colourModule from './modules/colours.js'
-import categoriesModule from './modules/categories.js'
-import bookmarkModule from './modules/bookmarks.js'
-import userPrefsModule from './modules/prefs.js'
+import colours from './modules/colours.js'
+import categories from './modules/categories.js'
+import bookmarks from './modules/bookmarks.js'
+import userPrefs from './modules/prefs.js'
+import view from './modules/views.js'
 
 import {save, retrieve} from './persist/persist'
 
@@ -13,10 +14,11 @@ Vue.use(Vuex);
 let store = new Vuex.Store({
 	strict: true,
 	modules: {
-		userPrefsModule,
-		bookmarkModule,
-		colourModule,
-		categoriesModule
+		userPrefs,
+		bookmarks,
+		colours,
+		categories,
+		view
 	},
 
 	state: {
@@ -54,9 +56,9 @@ let store = new Vuex.Store({
 				categoryOrder: getters.categoryOrder
 			}
 		},
-		bookmarkToSave: (state, getters) => {
+		bookmarkToSave: (state, getters, rootState) => {
 			return {
-				bookmarks: getters.bookmarks
+				bookmarks: rootState.bookmarks.all
 			}
 		},
 		allToSave: (state, getters) => {

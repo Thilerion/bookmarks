@@ -27,7 +27,7 @@ let bookmarkSearch = {
 		currentSortModeString: (state, getters) => SORT_MODES[getters.sortMode],
 		bookmarksToShow: (state, getters, rootState, rootGetters) => {
 			const group = getters.selectedGroup;
-			const bookmarks = rootGetters.bookmarks;
+			const bookmarks = rootState.bookmarks.all;
 			if (group === "all") {
 				return rootGetters.bookmarks;
 			} else if (group === "favorites") {
