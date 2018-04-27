@@ -65,23 +65,20 @@ export default {
 		BmCatList: CatList
 	},
 	computed: {
-		selectedCategory() {
-			return this.$store.getters.selectedCategoryId;
-		},
 		selectedGroup() {
-			return this.$store.getters.selectedGroup;
+			return this.$store.getters.currentBookmarkGroup;
 		},
 		showAllBookmarks() {
-			return this.selectedGroup === "all";
+			return this.selectedGroup === "All";
 		},
 		showUncategorizedBookmarks() {
-			return this.selectedGroup === "category" && this.selectedCategory === "none";
+			return this.selectedGroup === "Uncategorized";
 		},
 		showFavoriteBookmarks() {
-			return this.selectedGroup === "favorites";
+			return this.selectedGroup === "Favorites";
 		},
 		showCategory() {
-			return this.selectedGroup === "category";
+			return this.selectedGroup === "Category";
 		},
 		allBookmarksAmount() {
 			return this.$store.getters.allBookmarksAmount;

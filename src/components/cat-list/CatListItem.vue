@@ -65,11 +65,7 @@ export default {
 			return this.category._id;
 		},
 		isSelected() {
-			if (this.$store.getters.selectedGroup !== "category") {
-				return false;
-			} else {
-				return this.catId === this.$store.getters.selectedCategoryId;
-			}
+			return this.$store.getters.currentCategoryId === this.catId;
 		}
 	},
 	methods: {
