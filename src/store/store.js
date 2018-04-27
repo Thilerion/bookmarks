@@ -12,7 +12,7 @@ import { initialize } from './api/api'
 Vue.use(Vuex);
 
 let store = new Vuex.Store({
-	strict: true,
+	strict: process.env.NODE_ENV !== 'production',
 	modules: {
 		userPrefs,
 		bookmarks,
