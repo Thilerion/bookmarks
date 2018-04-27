@@ -830,6 +830,6 @@ export default {
 		all: defaultCategories,
 		categoryOrder: defaultCategoryOrder
 	},
-	bookmarks: defaultBookmarks,
+	bookmarks: defaultBookmarks.splice(0,50),
 	prefs: defaultUserPrefs
 };
