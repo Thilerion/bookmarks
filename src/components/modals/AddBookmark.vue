@@ -44,7 +44,7 @@ export default {
 		return {
 			url: "",
 			title: "",
-			category: this.$store.getters.selectedCategoryId,
+			category: "none",
 			valid: true,
 			errorMessages: []
 		}
@@ -59,6 +59,9 @@ export default {
 		errors() {
 			if (this.valid === false) return this.errorMessages;
 			else return [];
+		},
+		initialCategory() {
+			
 		}
 	},
 	methods: {
@@ -94,10 +97,22 @@ export default {
 				this.url = validatedUrl.result.href;
 			}
 
+			if (!this.categoryIds.includes(this.category)) {
+				this.category = null;
+			}
+
 			if (valid) {
 				this.valid = true;
 				this.saveBookmark();
 			} else this.valid = false;	
+		}
+	},
+	created() {
+		//get which category to be initial category
+		const group = this.$store.getters.currentBookmarkGroup;
+		const currentCatId = this.$store.getters.currentCategoryId;
+		if (group === "Category" && currentCatId !== null) {
+			this.category = currentCatId;
 		}
 	}
 }
