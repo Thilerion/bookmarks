@@ -76,6 +76,12 @@ export default {
 	padding: 1em 2em;
 }
 
+@media screen and (max-width: 1100px) {
+	.main-content {
+		padding: 1em 0 1.25em .75em;
+	}
+}
+
 .scroll-wrap {
 	--bg: var(--bg-light-beta);
 }
