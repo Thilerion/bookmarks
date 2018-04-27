@@ -31,21 +31,6 @@ let categoryStore = {
 			return state.categoryOrder.map(catId => {
 				return state.all.find(c => c._id === catId);
 			});
-		},
-
-		categoryAmounts: (state, getters, rootState) => {
-			const bookmarks = [...rootState.bookmarks.all];
-
-			let amounts = {};
-			for (let catId of state.all) {
-				//to get all categories, including those which have 0 bookmarks
-				amounts[catId] = 0;
-			}
-			for (let bm of bookmarks) {
-				if (amounts[bm.category]) amounts[bm.category] += 1;
-				else amounts[bm.category] = 1;
-			}
-			return amounts;
 		}
 	},
 

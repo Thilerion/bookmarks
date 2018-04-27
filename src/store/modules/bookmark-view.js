@@ -34,16 +34,48 @@ let bookmarkView = {
 			return rootState.categories.all.find(cat => cat._id === id);
 		},
 
+		bookmarksPerCategory(state, getters, rootState, rootGetters) {
+			let catIds = rootGetters.allCategoryIds;
+			let bookmarksPerCategory = {};
+			bookmarksPerCategory.category = {};
+			for (let catId of catIds) {
+				bookmarksPerCategory.category[catId] = [];
+			}
+			bookmarksPerCategory.uncategorized = [];
+			bookmarksPerCategory.favorites = [];
+
+			for (let bm of rootState.bookmarks.all) {
+				if (bm.category === null) {
+					bookmarksPerCategory.uncategorized.push(bm);
+				} else {
+					bookmarksPerCategory.category[bm.category].push(bm);
+				}
+				if (bm.favorite === true) {
+					bookmarksPerCategory.favorites.push(bm);
+				}
+			}
+			return bookmarksPerCategory;
+		},
+
 		bookmarksToShow(state, getters, rootState) {
-			let bookmarks = [...rootState.bookmarks.all];
 			const search = getters.searchActive;
 			const group = getters.currentBookmarkGroup;
 			const category = state.currentCategory;
+			let bookmarks = [];
+
+			if (group === "All") {
+				bookmarks = [...rootState.bookmarks.all];
+			} else if (group === "Uncategorized") {
+				bookmarks = getters.bookmarksPerCategory.uncategorized;
+			} else if (group === "Favorites") {
+				bookmarks = getters.bookmarksPerCategory.favorites;
+			} else {
+				bookmarks = getters.bookmarksPerCategory.category[category];
+			}
 
 			if (search === true) {
-				bookmarks = filterWithSearch(bookmarks, getters.searchTerm);
-			}
-			return filterWithCategory(bookmarks, category, group);
+				return filterWithSearch(bookmarks, getters.searchTerm);
+			} else return bookmarks;			
 		},
 
 		sortedBookmarksToShow(state, getters) {

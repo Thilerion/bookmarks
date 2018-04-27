@@ -12,13 +12,26 @@ let views = {
 
 	getters: {
 		bookmarkGroupAmounts: (state, getters, rootState, rootGetters) => {
-			const bookmarks = [...rootState.bookmarks.all];
+			const bookmarksPerCategory = rootGetters.bookmarksPerCategory;
 
 			return {
-				"All": bookmarks.length,
-				"Uncategorized": bookmarks.filter(bm => bm.category === null).length,
-				"Favorites": bookmarks.filter(bm => bm.favorite === true).length
+				"All": rootState.bookmarks.all.length,
+				"Uncategorized": bookmarksPerCategory.uncategorized.length,
+				"Favorites": bookmarksPerCategory.favorites.length
 			};
+		},
+
+		categoryAmounts: (state, getters, rootState, rootGetters) => {
+			const bookmarksPerCategory = rootGetters.bookmarksPerCategory.category;
+			console.log(bookmarksPerCategory);
+
+			let amounts = {};
+			for (let cat in bookmarksPerCategory) {
+				console.log(cat);
+				amounts[cat] = bookmarksPerCategory[cat].length
+			}
+			console.log(amounts);
+			return amounts;
 		},
 
 		activeModal: state => {
