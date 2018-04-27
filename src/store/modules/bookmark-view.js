@@ -20,7 +20,7 @@ let bookmarkView = {
 		searchActive: state => state.searchTerm !== "",
 		searchTerm: state => state.searchTerm,
 
-		sortModeId: state => state.sortMode,
+		sortModeId: state => state.currentSortMode,
 		sortMode: state => state.sortModes[state.currentSortMode],
 		sortModes: state => state.sortModes,
 

@@ -1,14 +1,11 @@
 <template>
-	<transition-group
-		name="bookmarks-list"
-		class="bm-wrapper list compact"
-		tag="div">
+	<div class="bm-wrapper list compact">
 		<BmBookmarkCompact
 			v-for="bm in bookmarks"
 			:key="bm.title"
 			:bookmark="bm"
 			class="bm-item"/>
-	</transition-group>
+	</div>
 </template>
 
 <script>

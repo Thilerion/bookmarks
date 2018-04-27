@@ -7,7 +7,7 @@
 		<component
 			:is="currentViewComponent"
 			:bookmarks="bookmarksArray"
-			:key="viewComponentAndBookmarksCategory"
+			:key="triggerBookmarkTransition"
 		/>
 	</transition>
 </div>
@@ -31,9 +31,14 @@ export default {
 		currentViewComponent() {
 			return this.$store.getters.currentBookmarkListViewComp;
 		},
-		viewComponentAndBookmarksCategory() {
+		triggerBookmarkTransition() {
 			//used to trigger the transition when the view component OR the selected category change
-			return `${this.currentViewComponent} ${this.$store.getters.currentBookmarkGroup} ${this.$store.getters.currentCategoryId}`;
+			let view = this.currentViewComponent;
+			let group = this.$store.getters.currentBookmarkGroup;
+			let cat = this.$store.getters.currentCategoryId;
+			let sort = this.$store.getters.sortModeId;
+
+			return `${view}${group}${cat}${sort}`;
 		}
 	}
 }

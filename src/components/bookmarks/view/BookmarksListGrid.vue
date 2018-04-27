@@ -1,14 +1,11 @@
 <template>
-	<transition-group
-		name="bookmarks-list"
-		class="bm-wrapper grid"
-		tag="div">
+	<div class="bm-wrapper grid">
 		<BmBookmarkGrid
 			v-for="bm in bookmarks"
 			:key="bm.title"
 			:bookmark="bm"
 			class="bm-item"/>
-	</transition-group>
+	</div>
 </template>
 
 <script>
