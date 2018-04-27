@@ -7,7 +7,7 @@ import bookmarks from './modules/bookmarks.js'
 import userPrefs from './modules/prefs.js'
 import view from './modules/views.js'
 
-import {save, retrieve} from './api/api'
+import { initialize } from './api/api'
 
 Vue.use(Vuex);
 
@@ -47,20 +47,31 @@ let store = new Vuex.Store({
 	},
 
 	actions: {
+
+		initalizeStorageFromApi({dispatch}) {
+			let retrievedItems = initialize("bookmarks", "categories", "prefs")
+				.then(retrieved => {
+					console.log(retrieved);
+					dispatch('initializeBookmarks', retrieved.bookmarks);
+					dispatch('initializeCategories', retrieved.categories);
+					dispatch('initializePrefs', retrieved.prefs);
+				})
+		},
+
 		retrieveFromStorageAllData({ commit, dispatch }) {
-			let retrieved = retrieve('bookmarksAndCategories');
+			/*let retrieved = retrieve('bookmarksAndCategories');
 			console.log(retrieved);
 			if (retrieved !== null) {
 				dispatch('setAllSaved', retrieved);
 			} else {
 				dispatch('saveToStorageUserPrefs');
-			}
+			}*/
 		},
 		saveToStorageAllData({ getters }) {
-			save('bookmarksAndCategories', getters.allToSave);
+			//save('bookmarksAndCategories', getters.allToSave);
 		},
 		setAllSaved({ commit, dispatch }, allRetrieved) {
-			if (allRetrieved.bookmarks) {
+			/*if (allRetrieved.bookmarks) {
 				console.log('Retrieved bookmarks, now setting.');
 				commit('setAllBookmarks', allRetrieved.bookmarks);
 			}
@@ -71,14 +82,14 @@ let store = new Vuex.Store({
 			if (allRetrieved.categoryOrder) {
 				console.log('Retrieved category order, now setting.');
 				dispatch('updateCategoryOrder', allRetrieved.categoryOrder);
-			}			
+			}			*/
 		}
 	}	
 });
 
 export default store;
 
-store.dispatch('retrieveFromStorageAllData');
+store.dispatch('initalizeStorageFromApi');
 
 store.watch((state, getters) => getters.allToSave, (oldVal, newVal) => {
 	console.log("Watched store values have changed. Now going to update localStorage...");

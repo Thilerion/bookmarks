@@ -173,4 +173,19 @@ const defaultCategories = [
 	{ name: "Sociaal", colour: "#f8b056", _id: 5, icon: null }
 ];
 
-export { defaultBookmarks, defaultCategories };
+const defaultCategoryOrder = [0, 1, 2, 5, 4, 3];
+
+const defaultUserPrefs = {
+	sortMode: 2,
+	listViewMode: 1,
+	defaultOpenCategory: 'all'
+}
+
+export default {
+	categories: {
+		all: defaultCategories,
+		categoryOrder: defaultCategoryOrder
+	},
+	bookmarks: defaultBookmarks,
+	prefs: defaultUserPrefs
+}

@@ -40,19 +40,8 @@ let userPrefs = {
 			commit('setViewMode', newViewId);
 			dispatch('saveToStorageUserPrefs');
 		},
-		retrieveFromStorageUserPrefs({ commit, dispatch }) {
-			let retrieved = retrieve('userPrefs');
-			if (retrieved !== null) {
-				commit('setUserPrefs', retrieved);
-				if (retrieved.defaultOpenCategory) {
-					commit('selectBookmarkGroup', 0);
-				}				
-			} else {
-				dispatch('saveToStorageUserPrefs');
-			}
-		},
-		saveToStorageUserPrefs({ getters }) {
-			save('userPrefs', getters.userPrefs);
+		initializePrefs({ commit }, prefs) {
+			commit('setUserPrefs', prefs);
 		}
 	}
 }

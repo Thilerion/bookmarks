@@ -1,9 +1,7 @@
-import { defaultCategories } from '../../helpers/default-data'
-
 let categoryStore = {
 	state: {
-		all: defaultCategories,
-		categoryOrder: [1, 4, 2, 3, 5, 0],
+		all: [],
+		categoryOrder: [],
 		uncategorizedCat: { name: "Uncategorized", colour: 'var(--base-cat-colour)', id: null, icon: null },
 		allBookmarksCat: { name: "All bookmarks", colour: 'var(--base-cat-colour)', id: 'all', icon: null }
 	},
@@ -101,6 +99,10 @@ let categoryStore = {
 		},
 		updateAllCategories({commit}, cats) {
 			commit('setAllCategories', cats);
+		},
+		initializeCategories({ commit, dispatch }, {all, categoryOrder}) {
+			commit('setAllCategories', all);
+			dispatch('updateCategoryOrder', categoryOrder);
 		}
 	}
 };

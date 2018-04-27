@@ -1,3 +1,5 @@
+import defaultData from './default-data';
+
 const TEST_MODE = true;
 
 function retrieve(item) {
@@ -24,4 +26,17 @@ function save(item, data) {
 	console.log("Saved " + item + " to local storage.");
 }
 
-export { save, retrieve };
+function initialize(...items) {
+	return new Promise((resolve, reject) => {
+		let retrievedItems = {};
+		if (TEST_MODE === true) {
+			for (let item of items) {
+				console.log(item);
+				retrievedItems[item] = defaultData[item];
+			}
+		}
+		resolve(retrievedItems);
+	})
+}
+
+export { initialize, save, retrieve };

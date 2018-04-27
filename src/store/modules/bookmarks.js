@@ -1,7 +1,5 @@
 import bookmarkView from "./bookmark-view";
 
-import { defaultBookmarks } from '../../helpers/default-data'
-
 let bookmarkStore = {
 
 	modules: {
@@ -9,7 +7,7 @@ let bookmarkStore = {
 	},
 
 	state: {
-		all: defaultBookmarks
+		all: []
 	},
 
 	getters: {
@@ -46,6 +44,10 @@ let bookmarkStore = {
 			bm.added = Date.now() * 1;
 			console.log(bm);
 			commit("pushNewBookmark", bm);
+		},
+
+		initializeBookmarks({ commit }, bookmarks) {
+			commit('setAllBookmarks', bookmarks);
 		}
 	}
 };
