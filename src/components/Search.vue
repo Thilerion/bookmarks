@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import debounce from 'lodash/debounce'
+
 export default {
 	computed: {
 		searchFilter: {
@@ -27,8 +29,17 @@ export default {
 				return this.$store.state.searchFilter;
 			},
 			set(value) {
-				this.$store.dispatch('editSearchFilter', value);
+				if (value === "") this.setNewValue(value);
+				this.debouncedSetter(value);
 			}
+		}
+	},
+	created() {
+		this.debouncedSetter = debounce(this.setNewValue, 300);
+	},
+	methods: {
+		setNewValue(value) {
+			this.$store.dispatch('editSearchFilter', value);
 		}
 	}
 }
