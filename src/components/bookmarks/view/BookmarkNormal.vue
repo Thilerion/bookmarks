@@ -19,12 +19,12 @@
 		class="cat-display"
 	/>
 
-		<BmBookmarkOptions
-			class="col-options"
-			@goToUrl="goToUrl"
-			@deleteBookmark="deleteBookmark"
-			@editBookmark="editBookmark"
-		/>		
+	<BmBookmarkOptions
+		class="col-options"
+		@goToUrl="goToUrl"
+		@deleteBookmark="deleteBookmark"
+		@editBookmark="editBookmark"
+	/>		
 
 </div>
 </template>
