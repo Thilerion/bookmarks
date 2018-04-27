@@ -336,7 +336,7 @@ span.highlight {
 /*
 ** === BookmarksList[VIEW_MODE] > Bookmark Transition CSS ===
 */
-
+/* 
 .bookmarks-list-enter-active {
 	transition: all .5s ease;
 	overflow: hidden;
@@ -359,7 +359,7 @@ span.highlight {
 .list .bookmarks-list-move {
 	transition: all .4s ease;
 	/* For some reason these two don't work together:
-	animation: move-list-fade .6s;*/
+	animation: move-list-fade .6s;
 }
 
 .grid .bookmarks-list-move {
@@ -382,6 +382,6 @@ span.highlight {
 	100% {
 		opacity: 1;
 	}
-}
+} */
 
 </style>
