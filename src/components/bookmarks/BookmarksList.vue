@@ -176,6 +176,11 @@ span.highlight {
 	border-bottom-color: var(--border-transparent-darken);;
 }
 
+.list .cat-display {
+	flex: 0 1 auto;
+	min-width: 5em!important;
+}
+
 /*
  * = Normal view items =
 */
@@ -220,7 +225,7 @@ span.highlight {
 
 .bm-item-compact .cat-display {
 	flex: 0 10000 auto;
-	margin-left: 0.5em;
+	margin-left: 1em;
 }
 
 .bm-item-compact .col-options {
