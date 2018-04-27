@@ -8,6 +8,7 @@
 	</a>
 	
 	<BmCategoryDisplay
+		v-if="showCategory"
 		:catId="catId"
 		class="cat-display"
 	/>
@@ -35,6 +36,10 @@ export default {
 		bookmark: {
 			type: Object,
 			required: true
+		},
+		showCategory: {
+			type: Boolean,
+			default: true
 		}
 	},
 	computed: {

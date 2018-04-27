@@ -27,7 +27,8 @@
 	<div class="bot">
 		<BmCategoryDisplay
 			:catId="catId"
-			class="cat-display"
+			class="cat-display"			
+			v-if="showCategory"
 		/>
 
 		<div class="col-options">
@@ -55,6 +56,10 @@ export default {
 		bookmark: {
 			type: Object,
 			required: true
+		},
+		showCategory: {
+			type: Boolean,
+			default: true
 		}
 	},
 	computed: {
@@ -100,12 +105,12 @@ export default {
 }
 
 .bm-item > a {
-	flex: 0 0 8em;
+	flex: 0 0 8rem;
 	color: rgb(250,250,250);
 }
 
 .bm-item .top {
-	height: 8em;
+	height: 100%;
 	background: darkblue;
 	display: flex;
 	position: relative;
@@ -121,7 +126,8 @@ export default {
 }
 
 .bm-item .mid {
-	flex: 0 0 5em;
+	flex: 1 0 5rem;
+	line-height: 1.33rem;
 	padding: 0.25em 0.5em;
 	display: flex;
 	flex-direction: column;
@@ -149,12 +155,12 @@ export default {
 }
 
 .bm-item .bot {
-	padding: 0.25em 0.5em;
-	flex: 1 1 auto;
+	padding: 0.25em 0.5em 0.5em;
+	flex: 0 1 auto;
 	display: inline-flex;
-	justify-content: flex-start;
+	justify-content: space-between;
 	align-items: center;
-	padding-right: 1.5em;
+	padding-right: 0;
 }
 
 .bm-item p {
@@ -170,9 +176,26 @@ export default {
 }
 
 .bm-item .col-options {
-	position: absolute;
-	right: 0;
-	bottom: 3px;
+	flex: 0 0 auto;	
+	transition: opacity .1s linear;
+	position: relative;
+	z-index: 100;
+}
+
+.col-options >>> .options-button {
+	opacity: 0;
+}
+
+.bm-item:hover .col-options >>> .options-button {
+	opacity: 0.5;
+}
+
+.bot:hover .col-options >>> .options-button {
+	opacity: 0.9;
+}
+
+.bot .col-options >>> .options-button.active {
+	opacity: 0.9;
 }
 
 .bm-item .cat-display {

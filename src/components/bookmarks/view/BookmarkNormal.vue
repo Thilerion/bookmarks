@@ -16,7 +16,8 @@
 
 	<BmCategoryDisplay
 		:catId="catId"
-		class="cat-display"
+		class="cat-display"		
+		v-if="showCategory"
 	/>
 
 	<BmBookmarkOptions
@@ -42,6 +43,10 @@ export default {
 		bookmark: {
 			type: Object,
 			required: true
+		},
+		showCategory: {
+			type: Boolean,
+			default: true
 		}
 	},
 	computed: {
