@@ -1,6 +1,6 @@
 <template>
 <div class="bm-item">
-	<div class="col-text">
+	<!--<div class="col-text">
 		<a
 			:href="url"
 			class="bm-title bm-sub"
@@ -25,7 +25,32 @@
 		@goToUrl="goToUrl"
 		@deleteBookmark="deleteBookmark"
 		@editBookmark="editBookmark"
-	/>		
+	/>-->
+
+	<div class="left">
+		<a
+			:href="url"
+			class="title"
+			target="_blank"
+			v-html="$options.filters.filterHighlight(title, searchTerm)">
+		</a>
+		<p class="bm-sub url" :title="url">{{url | filterLinkDomain}}</p>
+		<div class="bm-sub options">
+			<button class="fav">Star</button>
+			<span class="dash">-</span>
+			<button class="edit">Edit</button>
+			<span class="dash">-</span>
+			<button class="delete">Delete</button>
+		</div>		
+	</div>
+	<div class="right" :class="{'align-middle': !showCategory}">
+		<p class="bm-sub bm-date">{{dateAddedString | filterDateString}}</p>
+		<BmCategoryDisplay
+			:catId="catId"
+			class="cat-display"		
+			v-if="showCategory"
+		/>
+	</div>
 
 </div>
 </template>
@@ -85,62 +110,66 @@ export default {
 .bm-item {
 	display: flex;
 	border: 1px solid transparent;
-	padding-left: 1em;
-}
-
-.col-text {
-	min-width: 5em;
-	display: flex;
-	flex-direction: column;
-	flex: 10 1 auto;
-	padding: 0.5em;
-	padding-left: 0;
-}
-
-.col-options {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex: 0 0 2em;
-}
-
-.bm-title {
-	display: inline-block;
-	overflow: hidden;
+	padding: 0.5em 1em;
+	height: 5em;
 }
 
 .bm-sub {
+	font-size: 0.85em;
+}
+
+.left {
+	flex: 1 0 1em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-width: 1em;
+	overflow: hidden;
+}
+
+.right {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: space-between;
+	flex: 0 0 auto;
+}
+
+.date {
+	flex: 0 0 auto;
+}
+
+.right.align-middle {
+	justify-content: center;
+}
+
+.title {
+	display: inline-block;
+	flex: 0 0 1rem;
+	min-width: 1em;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	margin: 0;
-	padding: 0;
 }
 
-.bm-sub:not(:last-child) {
-	padding-bottom: 0.25em;
+.url {
+	flex: 0 0 1rem;
 }
 
-.bm-sub:not(.bm-title) {
-	font-size: 0.8em;
-}
-
-.col-options >>> .options-button {
-	transition: opacity .1s linear;
-	opacity: 0;
-}
-
-.bm-item:hover .col-options >>> .options-button {
+.options {
+	flex: 0 0 1rem;
+	display: flex;
+	align-items: flex-end;	
 	opacity: 0.5;
 }
 
-.bm-item:hover .col-options >>> .options-button:hover {
-	opacity: 0.9;
+.options > button {
+	font-style: italic;
+	letter-spacing: 0.2px;
 }
 
-.col-options >>> .options-button.active {
-	opacity: 0.9;
+.options .dash {
+	margin: 0 0.5em;	
 }
 
 .bm-item:not(:last-of-type) {
@@ -171,6 +200,5 @@ export default {
 .cat-display {
 	flex: 0 1 auto;
 	min-width: 2em!important;
-	align-self: center;
 }
 </style>
