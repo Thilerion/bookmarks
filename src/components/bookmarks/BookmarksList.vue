@@ -37,8 +37,9 @@ export default {
 			let group = this.$store.getters.currentBookmarkGroup;
 			let cat = this.$store.getters.currentCategoryId;
 			let sort = this.$store.getters.sortModeId;
+			let length = this.bookmarksArray.length;
 
-			return `${view}${group}${cat}${sort}`;
+			return `${view}${group}${cat}${sort}${length}`;
 		}
 	}
 }
