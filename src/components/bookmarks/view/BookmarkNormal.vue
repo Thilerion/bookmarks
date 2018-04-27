@@ -10,7 +10,7 @@
 
 		<p class="bm-sub bm-url" :title="url">{{url | filterLinkDomain}}</p>
 
-		<p class="bm-sub bm-date">{{dateAddedString}}</p>
+		<p class="bm-sub bm-date">{{dateAddedString | filterDateString}}</p>
 
 	</div>
 
@@ -60,9 +60,8 @@ export default {
 			return this.bookmark.url;
 		},
 		dateAddedString() {
-			if (this.bookmark.added) {
-				return new Date(this.bookmark.added).toLocaleString();
-			}
+			
+				return this.bookmark.added;
 		},
 		catId() {
 			return this.bookmark.category;
