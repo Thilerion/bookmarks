@@ -21,7 +21,8 @@ let bookmarkView = {
 		searchTerm: state => state.searchTerm,
 
 		sortModeId: state => state.sortMode,
-		sortMode: state => state.sortModes[state.sortMode],
+		sortMode: state => state.sortModes[state.currentSortMode],
+		sortModes: state => state.sortModes,
 
 		currentBookmarkGroup: state => state.currentBookmarkGroup,
 
