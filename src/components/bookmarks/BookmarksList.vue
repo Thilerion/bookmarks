@@ -51,11 +51,11 @@ export default {
 */
 
 .bookmark-list-mode-enter-active, .bookmark-list-mode-leave-active {
-	transition: all .1s ease-in-out;
+	transition: all .2s ease-in-out;
 }
 
 .bookmark-list-mode-enter, .bookmark-list-mode-leave-to {
-	opacity: 0.5;
+	opacity: 0.3;
 }
 
 /*
