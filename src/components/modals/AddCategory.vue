@@ -5,7 +5,7 @@
 	
 	<div class="input-group">
 		<label for="category-name">Name *</label>
-		<input type="text" id="category-name" v-model="name">
+		<input type="text" id="category-name" v-model="name" v-focus>
 	</div>
 
 	<div class="input-group">

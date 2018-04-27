@@ -5,7 +5,7 @@
 	
 	<div class="input-group">
 		<label for="bookmark-url">Link *</label>
-		<input type="text" id="bookmark-url" v-model="url">
+		<input type="text" id="bookmark-url" v-model="url" v-focus>
 	</div>
 
 	<div class="input-group">

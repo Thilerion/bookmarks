@@ -23,6 +23,12 @@ Vue.filter('trim', function (str) {
 	return str.trim();
 })
 
+Vue.directive('focus', {
+	inserted(el) {
+		el.focus();
+	}
+})
+
 Vue.config.productionTip = false
 
 new Vue({
