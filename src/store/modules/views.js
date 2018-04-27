@@ -11,25 +11,32 @@ let views = {
 	},
 
 	getters: {
-		categoryAmount: (state, getters, rootState, rootGetters) => {
-			const categoryAmounts = {};
-			for (let catId of rootGetters.allCategoryIds) {
-				categoryAmounts[catId] = 0;
-			}
-			/* CHANGE TO GET ALL CATEGORIES */
-			for (let bm of rootState.bookmarks.all) {
-				if (categoryAmounts[bm.category]) {
-					categoryAmounts[bm.category] += 1;
-				} else {
-					categoryAmounts[bm.category] = 1;
-				}				
-			}
-			return categoryAmounts;
+		bookmarkGroupAmounts: (state, getters, rootState, rootGetters) => {
+			const bookmarks = [...rootState.bookmarks.all];
+
+			return {
+				"All": bookmarks.length,
+				"Uncategorized": bookmarks.filter(bm => bm.category === null).length,
+				"Favorites": bookmarks.filter(bm => bm.favorite === true).length
+			};
 		},
-		allBookmarksAmount: (state, getters, rootState, rootGetters) => rootState.bookmarks.all.length,
-		favoriteBookmarksAmount: (state, getters, rootState, rootGetters) => {
-			return rootState.bookmarks.all.filter(bm => bm.favorite === true).length;
+
+		categoryAmounts: (state, getters, rootState) => {
+			const categories = [...rootState.bookmarks.all];
+			const bookmarks = [...rootState.bookmarks.all];
+
+			let amounts = {};
+			for (let catId of categories) {
+				//to get all categories, including those which have 0 bookmarks
+				amounts[catId] = 0;
+			}
+			for (let bm of bookmarks) {
+				if (amounts[bm.category]) amounts[bm.category] += 1;
+				else amounts[bm.category] = 1;
+			}
+			return amounts;
 		},
+
 		activeModal: state => {
 			if (state.activeModal == null) return null;
 			else return state.modalOptions[state.activeModal];

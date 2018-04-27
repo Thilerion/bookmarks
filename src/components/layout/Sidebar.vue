@@ -77,17 +77,17 @@ export default {
 		showFavoriteBookmarks() {
 			return this.selectedGroup === "Favorites";
 		},
-		showCategory() {
-			return this.selectedGroup === "Category";
+		bookmarkGroupAmounts() {
+			return this.$store.getters.bookmarkGroupAmounts;
 		},
 		allBookmarksAmount() {
-			return this.$store.getters.allBookmarksAmount;
+			return this.bookmarkGroupAmounts["All"];
 		},
 		favoriteBookmarksAmount() {
-			return this.$store.getters.favoriteBookmarksAmount;
+			return this.bookmarkGroupAmounts["Favorites"];
 		},
 		uncategorizedBookmarksAmount() {
-			return this.$store.getters.categoryAmount['none'];
+			return this.bookmarkGroupAmounts["Uncategorized"];
 		}
 	},
 	methods: {
