@@ -1,6 +1,6 @@
 <template>
 <transition name="modal-fade">
-<div class="modal-wrapper" appear>
+<div class="modal-wrapper" appear @keydown.esc="emitCloseModal">
 
 	<div class="modal" v-click-outside="emitCloseModal">
 
@@ -40,6 +40,13 @@ export default {
 	methods: {
 		emitCloseModal() {
 			this.$store.commit('disableModal');
+		},
+		checkKeydown(e) {
+			if (e.key === "Escape") {
+				this.emitCloseModal();
+			} else if (e.key === "Enter") {
+				this.$emit("submitModalForm");
+			}
 		}
 	},
 	computed: {
@@ -49,7 +56,13 @@ export default {
 		hasErrors() {
 			return this.errors.length > 0;
 		}
-	}	
+	},
+	mounted() {
+		window.addEventListener('keydown', this.checkKeydown);
+	},
+	beforeDestroy() {
+		window.removeEventListener('keydown', this.checkKeydown);
+	}
 }
 </script>
 

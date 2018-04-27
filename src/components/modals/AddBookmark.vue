@@ -1,5 +1,5 @@
 <template>
-<BmModal :errors="errors">
+<BmModal :errors="errors" @submitModalForm="validate">
 
 	<template slot="header">Add bookmark</template>
 	
