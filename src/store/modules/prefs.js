@@ -1,4 +1,4 @@
-import {save, retrieve} from '../persist/persist'
+import {save, retrieve} from '../api/api'
 
 let userPrefs = {
 

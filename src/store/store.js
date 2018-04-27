@@ -7,7 +7,7 @@ import bookmarks from './modules/bookmarks.js'
 import userPrefs from './modules/prefs.js'
 import view from './modules/views.js'
 
-import {save, retrieve} from './persist/persist'
+import {save, retrieve} from './api/api'
 
 Vue.use(Vuex);
 
