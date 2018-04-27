@@ -10,12 +10,10 @@
 
 <script>
 import BookmarkCompact from './BookmarkCompact.vue'
-import SvgIcon from '@/components/shared/SvgIcon'
 
 export default {
 	components: {
-		BmBookmarkCompact: BookmarkCompact,
-		BmSvgIcon: SvgIcon
+		BmBookmarkCompact: BookmarkCompact
 	},
 	props: {
 		bookmarks: {
