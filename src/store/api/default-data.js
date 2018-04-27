@@ -4,7 +4,7 @@ const defaultBookmarks = [
 		url: "https://www.reddit.com",
 		id: 0,
 		category: 4,
-		added: 1520090067705,
+		added: 1524904767398,
 		favorite: true
 	},
 	{
@@ -12,7 +12,7 @@ const defaultBookmarks = [
 		url: "https://www.nu.nl",
 		id: 1,
 		category: 3,
-		added: 1520890167705,
+		added: 1524911767398,
 		favorite: true
 	},
 	{
@@ -20,7 +20,7 @@ const defaultBookmarks = [
 		url: "https://www.google.com/calendar",
 		id: 3,
 		category: 4,
-		added: 1520390267705,
+		added: 1524895767398,
 		favorite: true
 	},
 	{
@@ -28,7 +28,7 @@ const defaultBookmarks = [
 		url: "https://laracasts.com/series/learn-vue-2-step-by-step/episodes/1",
 		id: 8,
 		category: 5,
-		added: 1522190367705,
+		added: 1524885767398,
 		favorite: false
 	},
 	{
