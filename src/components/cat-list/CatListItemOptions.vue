@@ -98,6 +98,8 @@ export default {
 	opacity: 0.5;
 	transition: opacity 0.15s ease;
 	margin: auto;
+	height: 1.5em;
+	width: 1.5em;
 }
 
 .cat-options:hover .options-button, .cat-options.active .options-button {

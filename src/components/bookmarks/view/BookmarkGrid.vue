@@ -16,7 +16,7 @@
 	<div class="mid">
 		<a
 			:href="url"
-			class="bm-title bm-sub"
+			class="bm-title bm-sub heading bold"
 			target="_blank"
 			v-html="$options.filters.filterHighlight(title, searchTerm)">
 		</a>
@@ -132,7 +132,7 @@ export default {
 .bm-item .bm-title {
 	color: black;
 	text-decoration: none;
-	font-weight: bold;
+	font-weight: 600;
 	letter-spacing: 0.01em;
 	
 }

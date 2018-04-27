@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700|Open+Sans:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700|Open+Sans:300,400,700|Raleway:300,400,500,600,700');
 
 @import './assets/scrollbar-styling.css';
 
@@ -84,10 +84,14 @@ body {
 	overflow: hidden;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, .heading {
 	margin: 0;
 	font-weight: 300;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Raleway', sans-serif;
+}
+
+h1.bold, h2.bold, h3.bold, h4.bold, .heading.bold {
+	font-weight: 500;
 }
 
 #app {
@@ -137,5 +141,19 @@ button {
 p {
 	padding: 0;
 	margin: 0;
+}
+
+a {
+	font-family: "Raleway", sans-serif;
+	font-weight: 600;
+	letter-spacing: 0.1px;
+	word-spacing: 0.5px;
+	font-size: 0.9rem;
+	color: var(--font-dark);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline currentColor;
 }
 </style>

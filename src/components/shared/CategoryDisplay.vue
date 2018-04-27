@@ -50,12 +50,13 @@ export default {
 
 <style scoped>
 .cat-display {
-	font-size: 0.7em;
+	font-size: 0.6em;
 	padding: 0.3em 0.5em;
 	border: 2px solid transparent;
-	letter-spacing: 0.5px;
+	letter-spacing: 0.8px;
 	border-radius: 5px;
-	font-weight: bold;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 600;
 	position: relative;
 	display: inline-flex;
 	justify-content: space-between;

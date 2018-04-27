@@ -76,11 +76,6 @@ export default {
 	width: 1.5em;
 }
 
-.bm-wrapper .options-icon {
-	height: 1.5em;
-	width: 1.5em;
-}
-
 span.highlight {
 	background: yellow;
 }
