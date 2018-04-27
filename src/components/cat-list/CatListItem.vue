@@ -75,7 +75,6 @@ export default {
 			}			
 		},
 		deleteCategory() {
-			console.log(this.catId);
 			this.$store.dispatch('deleteCategory', this.catId);
 		}
 	}

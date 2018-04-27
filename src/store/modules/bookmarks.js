@@ -42,7 +42,6 @@ let bookmarkStore = {
 		saveNewBookmark({ commit, getters, dispatch }, bm) {
 			bm.id = getters.nextBookmarkId;
 			bm.added = Date.now() * 1;
-			console.log(bm);
 			commit("pushNewBookmark", bm);
 		},
 

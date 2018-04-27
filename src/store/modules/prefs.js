@@ -34,11 +34,9 @@ let userPrefs = {
 	actions: {
 		setSortMode({ commit, dispatch }, newSortId) {
 			commit("setSortMode", newSortId);
-			dispatch('saveToStorageUserPrefs');
 		},
 		setViewMode({ commit, dispatch }, newViewId) {
 			commit('setViewMode', newViewId);
-			dispatch('saveToStorageUserPrefs');
 		},
 		initializePrefs({ commit }, prefs) {
 			commit('setUserPrefs', prefs);

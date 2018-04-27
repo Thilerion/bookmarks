@@ -26,7 +26,6 @@ function generateBookmarks(amount) {
 		}
 		bookmarks.push(bm);
 	}
-	console.log(bookmarks);
 	return bookmarks;
 }
 

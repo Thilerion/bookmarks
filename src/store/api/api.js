@@ -31,7 +31,6 @@ function initialize(...items) {
 		let retrievedItems = {};
 		if (TEST_MODE === true) {
 			for (let item of items) {
-				console.log(item);
 				retrievedItems[item] = defaultData[item];
 			}
 		}

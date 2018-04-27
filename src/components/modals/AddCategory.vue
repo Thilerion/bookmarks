@@ -71,14 +71,11 @@ export default {
 		toggleModalAddCategory() {
 			this.$store.commit('disableModal');
 		},
-		saveCategory() {			
-			console.log('save cat');
+		saveCategory() {
 			this.$store.dispatch('addNewCategory', {name: this.name, colour: this.colour, icon: null, _id: null});
 			this.toggleModalAddCategory();			
 		},
 		validate() {
-			console.log('validate');
-
 			let valid = true;
 			this.errorMessages = [];
 

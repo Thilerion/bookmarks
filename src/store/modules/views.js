@@ -23,14 +23,11 @@ let views = {
 
 		categoryAmounts: (state, getters, rootState, rootGetters) => {
 			const bookmarksPerCategory = rootGetters.bookmarksPerCategory.category;
-			console.log(bookmarksPerCategory);
 
 			let amounts = {};
 			for (let cat in bookmarksPerCategory) {
-				console.log(cat);
 				amounts[cat] = bookmarksPerCategory[cat].length
 			}
-			console.log(amounts);
 			return amounts;
 		},
 
