@@ -21,22 +21,6 @@ let views = {
 			};
 		},
 
-		categoryAmounts: (state, getters, rootState) => {
-			const categories = [...rootState.bookmarks.all];
-			const bookmarks = [...rootState.bookmarks.all];
-
-			let amounts = {};
-			for (let catId of categories) {
-				//to get all categories, including those which have 0 bookmarks
-				amounts[catId] = 0;
-			}
-			for (let bm of bookmarks) {
-				if (amounts[bm.category]) amounts[bm.category] += 1;
-				else amounts[bm.category] = 1;
-			}
-			return amounts;
-		},
-
 		activeModal: state => {
 			if (state.activeModal == null) return null;
 			else return state.modalOptions[state.activeModal];

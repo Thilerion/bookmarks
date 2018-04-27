@@ -106,7 +106,7 @@ h1, h2, h3, h4 {
 .col-main {
 	height: 100vh;
 	overflow: hidden;
-	flex: 3 1 auto;
+	flex: 3 1 73vw;
 }
 
 button {

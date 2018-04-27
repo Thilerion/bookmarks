@@ -43,7 +43,6 @@ let bookmarkView = {
 			if (search === true) {
 				bookmarks = filterWithSearch(bookmarks, getters.searchTerm);
 			}
-
 			return filterWithCategory(bookmarks, category, group);
 		},
 

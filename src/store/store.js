@@ -28,8 +28,8 @@ let store = new Vuex.Store({
 	getters: {
 		categoryToSave: (state, getters) => {
 			return {
-				categories: getters.categories,
-				categoryOrder: getters.categoryOrder
+				categories: state.categories.all,
+				categoryOrder: state.categories.categoryOrder
 			}
 		},
 		bookmarkToSave: (state, getters, rootState) => {
