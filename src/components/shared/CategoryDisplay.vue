@@ -61,7 +61,7 @@ export default {
 	justify-content: space-between;
 	align-items: center;
 	cursor: default;
-	min-width: 4em;
+	min-width: fit-content;
 }
 
 .cat-name {

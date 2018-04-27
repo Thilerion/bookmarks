@@ -145,6 +145,22 @@ const defaultBookmarks = [
 		category: 2,
 		added: 1522590267705,
 		favorite: false
+	},
+	{
+		title: "RegExp/Test\\Something   \//\\\\\\//\\/\//\\^***%^&%@@^%^$#&!",
+		url: "http://iota.kappa.nl/lambda/nu/nu-xi-omikron.jsp",
+		id: 18,
+		category: 2,
+		added: 1522590267706,
+		favorite: false
+	},
+	{
+		title: "RegExp%2FTest%5CSomething%20%20%20%2F%2F%5C%5C%5C%2F%2F%5C%2F%2F%2F%5C%5E***%25%5E%26%25%40%40%5E%25%5E%24%23%26!",
+		url: "http://iota.kappa.nl/lambda/nu/nu-xi-omikron.jsp",
+		id: 19,
+		category: 2,
+		added: 1522590267707,
+		favorite: false
 	}
 ];
 

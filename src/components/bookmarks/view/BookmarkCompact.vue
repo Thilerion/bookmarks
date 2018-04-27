@@ -4,7 +4,7 @@
 		:href="url"
 		class="bm-title bm-sub"
 		target="blank"
-		v-html="$options.filters.filterHighlight(title, searchString)">
+		v-html="$options.filters.filterHighlight(title, searchTerm)">
 	</a>
 
 	
@@ -42,8 +42,8 @@ export default {
 		title() {
 			return this.bookmark.title;
 		},
-		searchString() {
-			return this.$store.getters.searchString;
+		searchTerm() {
+			return this.$store.getters.searchTerm;
 		},
 		url() {
 			return this.bookmark.url;
