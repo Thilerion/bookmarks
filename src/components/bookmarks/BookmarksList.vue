@@ -59,283 +59,30 @@ export default {
 }
 
 /*
-** === BookmarksList[VIEW_MODE] > List CSS ===
-*/
-
-.bm-wrapper.grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, 16em);
-	grid-gap: 1.5em;
-
-	max-width: 1200px;
-}
-
-/*
 ** === BookmarksList[VIEW_MODE] > Bookmark Item CSS ===
 */
 
-.bm-item {
+.bm-wrapper .bm-item {
 	background: var(--bg-light-alpha);
 	position: relative;
-	max-height: 15em;
-	transition: max-height .2s ease;
 }
 
-.bm-item:hover {
+.bm-wrapper .bm-item:hover {
 	background-color: var(--bg-light-alphabeta);
 }
 
-.options-button {
+.bm-wrapper .options-button {
 	height: 1.5em;
 	width: 1.5em;
 }
 
-.options-icon {
+.bm-wrapper .options-icon {
 	height: 1.5em;
 	width: 1.5em;
 }
 
 span.highlight {
 	background: yellow;
-}
-
-/*
-** === BookmarksList[VIEW_MODE] > Specific Bookmark Item CSS ===
-*/
-
-/*
- * = Both lists (normal and compact) items =
-*/
-
-.list .bm-item {
-	display: flex;
-	border: 1px solid transparent;
-	position: relative;
-	padding-left: 1em;
-}
-
-.list .col-options {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.list .bm-title {
-	display: inline-block;
-	overflow: hidden;
-}
-
-.list .bm-sub {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	margin: 0;
-	padding: 0;
-}
-
-.list .options-button {
-	transition: opacity .1s linear;
-	opacity: 0;
-}
-
-.list .bm-item:hover .options-button {
-	opacity: 0.5;
-}
-
-.list .bm-item:hover .options-button:hover {
-	opacity: 0.9;
-}
-
-.list .options-button.active {
-	opacity: 0.9;
-}
-
-.list .bm-item:not(:last-of-type) {
-	border-bottom: 1px solid var(--border-transparent-darken);
-}
-
-.list .bm-item:first-of-type {
-	border-radius: 5px 5px 0 0;
-}
-
-.list .bm-item:last-of-type {
-	border-radius: 0 0 5px 5px;
-}
-
-.list .bm-item:hover {
-	border-left-color: var(--border-transparent-darken);
-	border-right-color: var(--border-transparent-darken);
-}
-
-.list .bm-item:first-of-type:hover {
-	border-top-color: var(--border-transparent-darken);;
-}
-
-.list .bm-item:last-of-type:hover {
-	border-bottom-color: var(--border-transparent-darken);;
-}
-
-.list .cat-display {
-	flex: 0 1 auto;
-	min-width: 5em!important;
-}
-
-/*
- * = Normal view items =
-*/
-
-.bm-item-normal .col-text {
-	min-width: 5em;
-	display: flex;
-	flex-direction: column;
-	flex: 10 1 auto;
-	padding: 0.5em;
-	padding-left: 0;
-}
-
-.bm-item-normal .bm-sub:not(:last-child) {
-	padding-bottom: 0.25em;
-}
-
-.bm-item-normal .bm-sub:not(.bm-title) {
-	font-size: 0.8em;
-}
-
-.bm-item-normal .cat-display {
-	align-self: center;
-}
-
-.bm-item-normal .col-options {
-	flex: 0 0 2em;
-}
-
-/*
- * = Compact view items =
-*/
-
-.bm-item-compact {
-	height: 2em;
-	align-items: center;
-}
-
-.bm-item-compact .bm-title {
-	flex: 3 1 auto;
-}
-
-.bm-item-compact .cat-display {
-	flex: 0 10000 auto;
-	margin-left: 1em;
-}
-
-.bm-item-compact .col-options {
-	flex: 0 0 2em;
-	height: 100%;
-	position: relative;
-	top: 2px;
-}
-
-/*
- * = Grid view items =
-*/
-
-.grid .bm-item {
-	width: 16em;
-	height: 16em;
-	box-shadow: 0 0 12px -5px rgba(0,0,0,0.5), 1px 1px 3px -1px rgba(0,0,0,0.3);
-	display: flex;
-	flex-direction: column;
-}
-
-.bm-item-grid > a {
-	flex: 0 0 8em;
-	color: rgb(250,250,250);
-}
-
-.bm-item-grid .top {
-	height: 8em;
-	background: darkblue;
-	display: flex;
-	position: relative;
-	user-select: none;
-	cursor: pointer;
-}
-
-.bm-item-grid .top-bg {
-	position: absolute;
-	left: 0; right: 0;
-	top: 0; bottom: 0;
-	filter: brightness(90%);
-}
-
-.bm-item-grid .mid {
-	flex: 0 0 5em;
-	padding: 0.25em 0.5em;
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;	
-	word-break: break-word;
-}
-
-.bm-item-grid .bm-title {
-	color: black;
-	text-decoration: none;
-	font-weight: bold;
-	letter-spacing: 0.01em;
-	
-}
-
-.bm-item-grid .bm-title:hover {
-	text-decoration: underline;
-}
-
-.bm-item-grid .bm-tags {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	padding-top: 0.2em;
-	font-size: 0.9em;
-}
-
-.bm-item-grid .bot {
-	padding: 0.25em 0.5em;
-	flex: 1 1 auto;
-	display: inline-flex;
-	justify-content: flex-start;
-	align-items: center;
-	padding-right: 1.5em;
-}
-
-.bm-item-grid p {
-	margin: 0;
-	padding: 0;
-}
-
-.bm-item-grid .host {
-	margin: auto;
-	color: rgba(250,250,250);
-	text-shadow: 1px 1px .8px rgba(0,0,0,0.7);
-	z-index: 2;
-}
-
-.bm-item-grid .col-options {
-	position: absolute;
-	right: 0;
-	bottom: 3px;
-}
-
-.bm-item-grid .cat-display {
-	flex: 0 1 auto;
-	max-width: 15rem;
-	min-width: 1em!important;
-}
-
-.bm-item-grid a {
-	text-decoration: none;
-	outline: none;
-}
-
-.bm-item-grid a:hover {
-	text-decoration: underline currentColor;
 }
 
 /*

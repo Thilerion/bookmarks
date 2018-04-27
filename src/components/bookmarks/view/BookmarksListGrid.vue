@@ -24,8 +24,11 @@ export default {
 }
 </script>
 
-<style>
-/*
-CSS in BookmarksList.vue
-*/
+<style scoped>
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 16em);
+	grid-gap: 1.5em;
+	max-width: 1200px;
+}
 </style>

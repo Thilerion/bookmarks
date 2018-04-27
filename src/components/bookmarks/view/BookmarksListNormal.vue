@@ -25,7 +25,5 @@ export default {
 </script>
 
 <style>
-/*
-CSS in BookmarksList.vue
-*/
+
 </style>
