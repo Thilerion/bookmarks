@@ -262,6 +262,8 @@ span.highlight {
 	padding: 0.25em 0.5em;
 	display: flex;
 	flex-direction: column;
+	overflow: hidden;	
+	word-break: break-word;
 }
 
 .bm-item-grid .bm-title {
@@ -269,6 +271,7 @@ span.highlight {
 	text-decoration: none;
 	font-weight: bold;
 	letter-spacing: 0.01em;
+	
 }
 
 .bm-item-grid .bm-title:hover {
@@ -285,9 +288,10 @@ span.highlight {
 .bm-item-grid .bot {
 	padding: 0.25em 0.5em;
 	flex: 1 1 auto;
-	display: flex;
+	display: inline-flex;
 	justify-content: flex-start;
 	align-items: center;
+	padding-right: 1.5em;
 }
 
 .bm-item-grid p {
@@ -309,7 +313,9 @@ span.highlight {
 }
 
 .bm-item-grid .cat-display {
-	margin-right: 1em;
+	flex: 0 1 auto;
+	max-width: 15rem;
+	min-width: 1em!important;
 }
 
 .bm-item-grid a {
