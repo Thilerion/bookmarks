@@ -35,6 +35,11 @@ let bookmarkStore = {
 					bookmark.category = "none";
 				}
 			}
+		},
+
+		toggleFavorite(state, id) {
+			let bm = state.all.find(bm => bm.id === id);
+			bm.favorite = !bm.favorite;
 		}
 	},
 

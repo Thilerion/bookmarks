@@ -68,7 +68,7 @@
 		<p v-if="showDescription" class="description">Description comes here, if applicable</p>
 		<p v-if="showTags" class="tags">Tags come here, if there are any</p>
 		<div class="row-options">
-			<button class="btn-small btn-fav" @click="addToFavorites" @mouseover="hoverFav = true" @mouseout="hoverFav = false"><BmSvgIcon class="star-icon" :class="{'active': bookmark.favorite}" :icon="favIcon"/></button>
+			<button class="btn-small btn-fav" @click="toggleFavorite" @mouseover="hoverFav = true" @mouseout="hoverFav = false"><BmSvgIcon class="star-icon" :class="{'active': bookmark.favorite}" :icon="favIcon"/></button>
 			<button class="btn-small" @click="editBookmark">Edit</button>
 			<button class="btn-small" @click="deleteBookmark">Delete</button>
 		</div>
@@ -159,8 +159,8 @@ export default {
 		goToUrl() {
 			window.open(this.url);
 		},
-		addToFavorites() {
-
+		toggleFavorite() {
+			this.$store.commit('toggleFavorite', this.bookmark.id);
 		}
 	}
 }
