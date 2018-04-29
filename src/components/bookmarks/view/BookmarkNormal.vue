@@ -68,7 +68,7 @@
 		<p v-if="showDescription" class="description">Description comes here, if applicable</p>
 		<p v-if="showTags" class="tags">Tags come here, if there are any</p>
 		<div class="row-options">
-			<button class="btn-small btn-fav" @click="addToFavorites" @mouseover="hoverFav = true" @mouseout="hoverFav = false"><BmSvgIcon class="star-icon" :icon="favIcon"/></button>
+			<button class="btn-small btn-fav" @click="addToFavorites" @mouseover="hoverFav = true" @mouseout="hoverFav = false"><BmSvgIcon class="star-icon" :class="{'active': bookmark.favorite}" :icon="favIcon"/></button>
 			<button class="btn-small" @click="editBookmark">Edit</button>
 			<button class="btn-small" @click="deleteBookmark">Delete</button>
 		</div>
@@ -220,13 +220,14 @@ export default {
 	padding-left: 0;
 }
 
+.btn-small:hover {
+	opacity: 1;
+}
+
 .btn-fav {
 	padding: 0;
 	padding-bottom: 0.25em;
-}
-
-.btn-small:hover {
-	opacity: 0.9;
+	opacity: 1;
 }
 
 .row-options > .btn-small:not(:first-of-type) {
@@ -236,6 +237,17 @@ export default {
 .star-icon {
 	width: 16px;
 	height: 16px;
+	opacity: 0.4;
+}
+
+.star-icon.active {
+	color: gold;
+	opacity: 1;
+}
+
+.star-icon.active:hover {
+	color: var(--font-dark-tertiary);
+	opacity: 0.6;
 }
 
 .col-cat {
