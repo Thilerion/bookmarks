@@ -65,24 +65,29 @@
 			target="_blank"
 			v-html="$options.filters.filterHighlight(title, searchTerm)"
 		></a>
-		<p class="description">Description comes here, if applicable</p>
-		<p class="tags">Tags come here, if there are any</p>
+		<p v-if="showDescription" class="description">Description comes here, if applicable</p>
+		<p v-if="showTags" class="tags">Tags come here, if there are any</p>
 		<div class="row-options">
-			<button>Star</button>
-			<button>Edit</button>
-			<button>Delete</button>
+			<button class="btn-small" @click="addToFavorites">Star</button>
+			<button class="btn-small" @click="editBookmark">Edit</button>
+			<button class="btn-small" @click="deleteBookmark">Delete</button>
 		</div>
 	</div>
-	<div class="col-cat">
-		<BmCategoryDisplay
-			:catId="catId"
-			class="cat-display"		
-			v-if="showCategory"
-		/>
-	</div>
+
+	<BmCategoryDisplay
+		:catId="catId"
+		class="cat-display col-cat"		
+		v-if="showCategory"
+	/>
+
 	<div class="col-options">
-		<button>More</button>
-	</div>
+		<BmBookmarkOptions
+			class="col-button-wrapper"
+			@goToUrl="goToUrl"
+			@deleteBookmark="deleteBookmark"
+			@editBookmark="editBookmark"
+		/>
+	</div>	
 
 </div>
 </template>
@@ -124,6 +129,12 @@ export default {
 		},
 		catId() {
 			return this.bookmark.category;
+		},
+		showDescription() {
+			return false;
+		},
+		showTags() {
+			return false;
 		}
 	},
 	methods: {
@@ -135,6 +146,9 @@ export default {
 		},
 		goToUrl() {
 			window.open(this.url);
+		},
+		addToFavorites() {
+
 		}
 	}
 }
@@ -143,12 +157,80 @@ export default {
 <style scoped>
 .bm-item {
 	display: flex;
+	min-height: 4.5em;
 	border: 1px solid transparent;
 	padding: 0.5em 1em;
+	align-items: center;
+	justify-content: space-around;
 }
 
-.cat-display {
-	flex: 0 1 auto;
-	min-width: 2em!important;
+.bm-item > div:not(:first-of-type) {
+	margin-left: 1em;
+}
+
+.col-bm-main {
+	align-self: stretch;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	flex: 1 1 auto;
+	min-width: 10em;
+}
+
+.col-bm-main > * {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.title {
+	line-height: 1.5;
+}
+
+.description, .tags {
+	color: var(--font-dark-tertiary);
+	font-size: 0.9rem;
+	line-height: 1.4;
+}
+
+.tags {
+
+}
+
+.row-options {
+}
+
+.row-options > .btn-small {
+	font-weight: 600;
+	opacity: 0.4;
+	padding: 0.25em;
+	padding-left: 0;
+}
+
+.btn-small:hover {
+	opacity: 0.9;
+}
+
+.row-options > .btn-small:not(:first-of-type) {
+	padding-left: 0.5em;
+}
+
+.col-cat {
+	flex: 0 999999 fit-content;
+	min-width: 4.5em!important;
+}
+
+.col-cat >>> .cat-name {
+	margin: auto;
+}
+
+.col-options {
+	flex: 0 0 1.5em;
+	min-width: 1.5em;
+}
+
+.col-button-wrapper {
+	width: 1.5em;
+	position: relative;
 }
 </style>

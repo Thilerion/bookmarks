@@ -148,7 +148,8 @@ a {
 	font-weight: 600;
 	letter-spacing: 0.1px;
 	word-spacing: 0.5px;
-	font-size: 0.9rem;
+	font-size: 0.97rem;
+	line-height: 1.2;
 	color: var(--font-dark);
 	text-decoration: none;
 }
