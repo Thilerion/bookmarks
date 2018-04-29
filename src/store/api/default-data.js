@@ -4,7 +4,7 @@ const defaultBookmarks = [
 		url: "https://www.reddit.com",
 		id: 0,
 		category: 4,
-		added: 1524904767398,
+		added: 1525023000000,
 		favorite: true
 	},
 	{
@@ -12,7 +12,7 @@ const defaultBookmarks = [
 		url: "https://www.nu.nl",
 		id: 1,
 		category: 3,
-		added: 1524911767398,
+		added: 1525021200000,
 		favorite: true
 	},
 	{
@@ -20,7 +20,7 @@ const defaultBookmarks = [
 		url: "https://www.google.com/calendar",
 		id: 3,
 		category: 4,
-		added: 1524895767398,
+		added: 1524952740000,
 		favorite: true
 	},
 	{
@@ -28,7 +28,7 @@ const defaultBookmarks = [
 		url: "https://laracasts.com/series/learn-vue-2-step-by-step/episodes/1",
 		id: 8,
 		category: 5,
-		added: 1524885767398,
+		added: 1524885000000,
 		favorite: false
 	},
 	{
@@ -36,7 +36,7 @@ const defaultBookmarks = [
 		url: "https://app.plex.tv/web/app",
 		id: 4,
 		category: 1,
-		added: 1521690467705,
+		added: 1524849000000,
 		favorite: false
 	},
 	{
@@ -44,7 +44,7 @@ const defaultBookmarks = [
 		url: "https://www.youtube.com",
 		id: 2,
 		category: 0,
-		added: 1524190567705,
+		added: 1506532200000,
 		favorite: false
 	},
 	{
