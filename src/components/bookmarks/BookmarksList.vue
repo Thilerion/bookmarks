@@ -62,6 +62,12 @@ export default {
 ** === BookmarksList[VIEW_MODE] > Bookmark Item CSS ===
 */
 
+.bm-wrapper.list {
+	width: 100%;
+	margin: auto;
+	max-width: 1250px;
+}
+
 .bm-wrapper .bm-item {
 	background: var(--bg-light-alpha);
 	position: relative;
