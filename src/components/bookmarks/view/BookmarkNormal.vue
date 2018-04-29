@@ -65,7 +65,7 @@
 			target="_blank"
 			v-html="$options.filters.filterHighlight(title, searchTerm)"
 		></a>
-		<p v-if="showDescription" class="description">Description comes here, if applicable</p>
+		<p v-if="showDescription" class="description">{{bookmark.description}}</p>
 		<p v-if="showTags" class="tags">Tags come here, if there are any</p>
 		<div class="row-options">
 			<button class="btn-small btn-fav" @click="toggleFavorite" @mouseover="hoverFav = true" @mouseout="hoverFav = false"><BmSvgIcon class="star-icon" :class="{'active': bookmark.favorite}" :icon="favIcon"/></button>
@@ -87,6 +87,7 @@
 			@deleteBookmark="deleteBookmark"
 			@editBookmark="editBookmark"
 			@toggleFavorite="toggleFavorite"
+			vertical-icon
 		>
 			<template slot="favButtonText">{{favButtonText}}</template>
 		</BmBookmarkOptions>
@@ -141,6 +142,7 @@ export default {
 			return this.bookmark.category;
 		},
 		showDescription() {
+			if (this.bookmark.description !== "" || this.bookmark.description != null) return this.bookmark.description;
 			return false;
 		},
 		showTags() {
@@ -176,7 +178,6 @@ export default {
 <style scoped>
 .bm-item {
 	display: flex;
-	min-height: 4.5em;
 	border: 1px solid transparent;
 	padding: 0.5em 1em;
 	align-items: center;

@@ -15,19 +15,19 @@
 	>
 
 		<BmDropDownMenuItem border-bottom>
-			<button @click="goToLink">Go to website</button>
+			<button class="btn-dropdown-menu" @click="goToLink">Go to website</button>
 		</BmDropDownMenuItem>
 
 		<BmDropDownMenuItem>
-			<button @click="deleteBookmark">Delete bookmark</button>
+			<button class="btn-dropdown-menu" @click="deleteBookmark">Delete bookmark</button>
 		</BmDropDownMenuItem>
 
 		<BmDropDownMenuItem>
-			<button @click="editBookmark">Edit bookmark</button>
+			<button class="btn-dropdown-menu" @click="editBookmark">Edit bookmark</button>
 		</BmDropDownMenuItem>
 
 		<BmDropDownMenuItem>
-			<button @click="toggleFavorite"><slot name="favButtonText">Toggle favorite</slot></button>
+			<button class="btn-dropdown-menu" @click="toggleFavorite"><slot name="favButtonText">Toggle favorite</slot></button>
 		</BmDropDownMenuItem>
 	
 	</BmDropdownMenu>
@@ -89,5 +89,7 @@ export default {
 </script>
 
 <style scoped>
-
+.btn-dropdown-menu:hover {
+	background-color: var(--bg-light-alphabeta);
+}
 </style>
