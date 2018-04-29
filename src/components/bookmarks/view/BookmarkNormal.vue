@@ -44,7 +44,10 @@
 		</div>		
 	</div>
 	<div class="right" :class="{'align-middle': !showCategory}">
-		<p class="bm-sub bm-date">{{dateAddedString | filterDateString}}</p>
+		<p
+			class="bm-sub bm-date"
+			:title="dateTotalString"
+		>{{dateAdded | filterDateString}}</p>
 		<BmCategoryDisplay
 			:catId="catId"
 			class="cat-display"		
@@ -84,9 +87,11 @@ export default {
 		url() {
 			return this.bookmark.url;
 		},
-		dateAddedString() {
-			
+		dateAdded() {			
 				return this.bookmark.added;
+		},
+		dateTotalString() {
+			return new Date(this.dateAdded).toLocaleString();
 		},
 		catId() {
 			return this.bookmark.category;
