@@ -25,6 +25,10 @@
 		<BmDropDownMenuItem>
 			<button @click="editBookmark">Edit bookmark</button>
 		</BmDropDownMenuItem>
+
+		<BmDropDownMenuItem>
+			<button @click="toggleFavorite"><slot name="favButtonText">Toggle favorite</slot></button>
+		</BmDropDownMenuItem>
 	
 	</BmDropdownMenu>
 </div>
@@ -74,6 +78,10 @@ export default {
 		},
 		editBookmark() {
 			this.$emit('editBookmark');
+			this.hideBookmarkOptions();
+		},
+		toggleFavorite() {
+			this.$emit('toggleFavorite');
 			this.hideBookmarkOptions();
 		}
 	}

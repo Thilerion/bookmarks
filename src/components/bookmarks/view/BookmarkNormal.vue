@@ -86,7 +86,10 @@
 			@goToUrl="goToUrl"
 			@deleteBookmark="deleteBookmark"
 			@editBookmark="editBookmark"
-		/>
+			@toggleFavorite="toggleFavorite"
+		>
+			<template slot="favButtonText">{{favButtonText}}</template>
+		</BmBookmarkOptions>
 	</div>	
 
 </div>
@@ -147,6 +150,10 @@ export default {
 			if (this.bookmark.favorite === true) return "star-full";
 			if (this.hoverFav === true) return "star-full";
 			else return "star-empty";
+		},
+		favButtonText() {
+			if (this.bookmark.favorite === true) return "Remove from favorites";
+			else return "Add to favorites";
 		}
 	},
 	methods: {
@@ -241,7 +248,7 @@ export default {
 }
 
 .star-icon.active {
-	color: gold;
+	color: hsl(51, 100%, 47%);
 	opacity: 1;
 }
 
@@ -262,6 +269,18 @@ export default {
 .col-options {
 	flex: 0 0 1.5em;
 	min-width: 1.5em;
+}
+
+.bm-item >>> .options-button {
+	opacity: 0.2;
+}
+
+.bm-item:hover >>> .options-button {
+	opacity: 0.7;
+}
+
+.bm-item >>> .options-button.active {
+	opacity: 0.7;
 }
 
 .col-button-wrapper {
