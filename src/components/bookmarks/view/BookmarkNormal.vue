@@ -68,7 +68,7 @@
 		<p v-if="showDescription" class="description">Description comes here, if applicable</p>
 		<p v-if="showTags" class="tags">Tags come here, if there are any</p>
 		<div class="row-options">
-			<button class="btn-small" @click="addToFavorites">Star</button>
+			<button class="btn-small btn-fav" @click="addToFavorites" @mouseover="hoverFav = true" @mouseout="hoverFav = false"><BmSvgIcon class="star-icon" :icon="favIcon"/></button>
 			<button class="btn-small" @click="editBookmark">Edit</button>
 			<button class="btn-small" @click="deleteBookmark">Delete</button>
 		</div>
@@ -95,11 +95,13 @@
 <script>
 import BookmarkOptions from '../BookmarkOptions';
 import CategoryDisplay from '../../shared/CategoryDisplay';
+import SvgIcon from '../../shared/SvgIcon';
 
 export default {
 	components: {
 		BmBookmarkOptions: BookmarkOptions,
-		BmCategoryDisplay: CategoryDisplay
+		BmCategoryDisplay: CategoryDisplay,
+		BmSvgIcon: SvgIcon
 	},
 	props: {
 		bookmark: {
@@ -109,6 +111,11 @@ export default {
 		showCategory: {
 			type: Boolean,
 			default: true
+		}
+	},
+	data() {
+		return {
+			hoverFav: false
 		}
 	},
 	computed: {
@@ -135,6 +142,11 @@ export default {
 		},
 		showTags() {
 			return false;
+		},
+		favIcon() {
+			if (this.bookmark.favorite === true) return "star-full";
+			if (this.hoverFav === true) return "star-full";
+			else return "star-empty";
 		}
 	},
 	methods: {
@@ -198,13 +210,19 @@ export default {
 }
 
 .row-options {
+	display: flex;
 }
 
-.row-options > .btn-small {
+.btn-small {
 	font-weight: 600;
 	opacity: 0.4;
 	padding: 0.25em;
 	padding-left: 0;
+}
+
+.btn-fav {
+	padding: 0;
+	padding-bottom: 0.25em;
 }
 
 .btn-small:hover {
@@ -213,6 +231,11 @@ export default {
 
 .row-options > .btn-small:not(:first-of-type) {
 	padding-left: 0.5em;
+}
+
+.star-icon {
+	width: 16px;
+	height: 16px;
 }
 
 .col-cat {
