@@ -1,5 +1,5 @@
 <template>
-<BmModal :errors="errors" @submitModalForm="validate">
+<BmModal :errors="errors" @submitModalForm="validate" @closingModal="toggleModalAddBookmark">
 
 	<template slot="header">Add category</template>
 	

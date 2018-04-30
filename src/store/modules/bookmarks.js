@@ -7,12 +7,15 @@ let bookmarkStore = {
 	},
 
 	state: {
-		all: []
+		all: [],
+		currentlyEditingBookmark: null
 	},
 
 	getters: {
 		allBookmarkIds: state => state.all.map(bm => bm.id).sort(),
-		nextBookmarkId: (state, getters) => Math.max(...getters.allBookmarkIds) + 1
+		getBookmarkById: state => id => state.all.find(bm => bm.id === id),
+		nextBookmarkId: (state, getters) => Math.max(...getters.allBookmarkIds) + 1,
+		currentlyEditingBookmark: state => state.currentlyEditingBookmark
 	},
 
 	mutations: {
@@ -22,6 +25,10 @@ let bookmarkStore = {
 
 		setAllBookmarks(state, allBookmarks) {
 			state.all = allBookmarks;
+		},
+
+		setCurrentlyEditingBookmark(state, bmId) {
+			state.currentlyEditingBookmark = bmId;
 		},
 
 		deleteBookmark(state, id) {
@@ -40,6 +47,13 @@ let bookmarkStore = {
 		toggleFavorite(state, id) {
 			let bm = state.all.find(bm => bm.id === id);
 			bm.favorite = !bm.favorite;
+		},
+
+		editBookmark(state, {id, title, url, category}) {
+			let bookmark = state.all.find(bm => bm.id === id);
+			bookmark.title = title;
+			bookmark.url = url;
+			bookmark.category = category;
 		}
 	},
 
@@ -52,6 +66,19 @@ let bookmarkStore = {
 
 		initializeBookmarks({ commit }, bookmarks) {
 			commit('setAllBookmarks', bookmarks);
+		},
+
+		startBookmarkEditing({ commit }, id) {
+			commit('setCurrentlyEditingBookmark', id);
+			commit('enableModal', 2);
+		},
+
+		stopEditingBookmark({ commit }) {
+			commit('setCurrentlyEditingBookmark', null);
+		},
+
+		saveEditedBookmark({ commit }, bm) {
+			commit('editBookmark', bm);
 		}
 	}
 };

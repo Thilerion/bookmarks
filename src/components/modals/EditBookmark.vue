@@ -16,7 +16,7 @@
 	<div class="input-group">
 		<label for="bookmark-category">Category</label>
 		<select v-model="category" id="bookmark-category">
-			<option value="none">Please select a category</option>
+			<option value="none">Select a category</option>
 			<option
 				v-for="cat in categories"
 				:key="cat._id"
@@ -26,7 +26,7 @@
 	</div>
 
 	<template slot="buttons">	
-	<button class="action-button-base" @click="validate">Add bookmark</button>
+	<button class="action-button-base" @click="validate">Edit bookmark</button>
 	</template>
 
 </BmModal>
@@ -45,6 +45,7 @@ export default {
 			url: "",
 			title: "",
 			category: "none",
+			id: null,
 			valid: true,
 			errorMessages: []
 		}
@@ -59,22 +60,21 @@ export default {
 		errors() {
 			if (this.valid === false) return this.errorMessages;
 			else return [];
-		},
-		initialCategory() {
-			
 		}
 	},
 	methods: {
 		toggleModalAddBookmark() {
+			this.$store.dispatch('stopEditingBookmark');
 			this.$store.commit('disableModal');
 		},
-		saveBookmark() {			
+		finishBookmarkEdit() {			
 			let bm = {
+				id: this.id,
 				title: this.title,
 				url: this.url,
 				category: this.category
 			};
-			this.$store.dispatch('saveNewBookmark', bm);
+			this.$store.dispatch('saveEditedBookmark', bm);
 			this.toggleModalAddBookmark();					
 		},
 		validate() {
@@ -103,17 +103,19 @@ export default {
 
 			if (valid) {
 				this.valid = true;
-				this.saveBookmark();
+				this.finishBookmarkEdit();
 			} else this.valid = false;	
 		}
 	},
 	created() {
-		//get which category to be initial category
-		const group = this.$store.getters.currentBookmarkGroup;
-		const currentCatId = this.$store.getters.currentCategoryId;
-		if (group === "Category" && currentCatId !== null) {
-			this.category = currentCatId;
-		}
+		const bm = this.$store.getters.getBookmarkById(this.$store.getters.currentlyEditingBookmark);
+
+		this.url = bm.url;
+		this.id = bm.id;
+		this.title = bm.title;
+		this.category = bm.category;
+
+		if (this.category === null) this.category = "none";
 	}
 }
 </script>

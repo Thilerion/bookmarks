@@ -17,6 +17,7 @@ import Sidebar from '@/components/layout/Sidebar'
 import Main from '@/components/layout/Main'
 
 import AddBookmark from '@/components/modals/AddBookmark'
+import EditBookmark from '@/components/modals/EditBookmark'
 import AddCategory from '@/components/modals/AddCategory'
 
 export default {
@@ -24,7 +25,8 @@ export default {
 		BmMain: Main,
 		BmSidebar: Sidebar,
 		BmAddBookmark: AddBookmark,
-		BmAddCategory: AddCategory
+		BmAddCategory: AddCategory,
+		BmEditBookmark: EditBookmark
 	},
 	computed: {
 		activeModal() {

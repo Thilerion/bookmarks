@@ -109,7 +109,7 @@ export default {
 			this.$store.commit('deleteBookmark', this.bookmark.id);
 		},
 		editBookmark() {
-			
+			this.$store.dispatch('startBookmarkEditing', this.bookmark.id);
 		},
 		goToUrl() {
 			window.open(this.url);

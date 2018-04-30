@@ -39,7 +39,7 @@ export default {
 	},
 	methods: {
 		emitCloseModal() {
-			this.$store.commit('disableModal');
+			this.$emit('closingModal');
 		},
 		checkKeydown(e) {
 			if (e.key === "Escape") {

@@ -6,7 +6,7 @@ let views = {
 			{ name: "Normal", icon: "view-list", component: "BmBookmarksListNormal" },
 			{ name: 'Grid', icon: "view-grid", component: "BmBookmarksListGrid" }
 		],
-		modalOptions: ['BmAddBookmark', 'BmAddCategory'],
+		modalOptions: ['BmAddBookmark', 'BmAddCategory', 'BmEditBookmark'],
 		activeModal: null
 	},
 
