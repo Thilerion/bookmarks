@@ -1,36 +1,40 @@
 <template>
 <div class="bm-item">
+	<div class="star">St</div>
 	<a
 		:href="url"
-		class="bm-title bm-sub"
-		target="blank"
-		v-html="$options.filters.filterHighlight(title, searchTerm)">
-	</a>
-	
-	<BmCategoryDisplay
-		v-if="showCategory"
-		:catId="catId"
-		class="cat-display"
-	/>
-
-	<BmBookmarkOptions
-		class="col-options"
-		@goToUrl="goToUrl"
-		@deleteBookmark="deleteBookmark"
-		@editBookmark="editBookmark"
-	/>
-	
+		class="title"
+		target="_blank"
+		v-html="$options.filters.filterHighlight(title, searchTerm)"
+	></a>
+	<div class="category">
+		<BmCategoryDisplay class="cat-inner" :catId="catId" />
+	</div>
+	<div class="options">
+		<BmBookmarkOptions
+			class="col-button-wrapper"
+			@goToUrl="goToUrl"
+			@deleteBookmark="deleteBookmark"
+			@editBookmark="editBookmark"
+			@toggleFavorite="toggleFavorite"
+			vertical-icon
+		>
+			<template slot="favButtonText">{{favButtonText}}</template>
+		</BmBookmarkOptions>
+	</div>
 </div>
 </template>
 
 <script>
 import BookmarkOptions from '../BookmarkOptions';
 import CategoryDisplay from '../../shared/CategoryDisplay';
+import SvgIcon from '../../shared/SvgIcon';
 
 export default {
 	components: {
 		BmBookmarkOptions: BookmarkOptions,
-		BmCategoryDisplay: CategoryDisplay
+		BmCategoryDisplay: CategoryDisplay,
+		BmSvgIcon: SvgIcon
 	},
 	props: {
 		bookmark: {
@@ -40,6 +44,11 @@ export default {
 		showCategory: {
 			type: Boolean,
 			default: true
+		}
+	},
+	data() {
+		return {
+			hoverFav: false
 		}
 	},
 	computed: {
@@ -54,6 +63,15 @@ export default {
 		},
 		catId() {
 			return this.bookmark.category;
+		},
+		favIcon() {
+			if (this.bookmark.favorite === true) return "star-full";
+			if (this.hoverFav === true) return "star-full";
+			else return "star-empty";
+		},
+		favButtonText() {
+			if (this.bookmark.favorite === true) return "Remove from favorites";
+			else return "Add to favorites";
 		}
 	},
 	methods: {
@@ -65,99 +83,32 @@ export default {
 		},
 		goToUrl() {
 			window.open(this.url);
+		},
+		toggleFavorite() {
+			this.$store.commit('toggleFavorite', this.bookmark.id);
 		}
 	}
 }
 </script>
 
 <style scoped>
-p {
-	margin: 0.25em 0;
-	padding: 0;
-	padding-left: 0.5em;
-	font-size: 0.9em;
-}
-
 .bm-item {
 	display: flex;
-	border: 1px solid transparent;
-	position: relative;
-	padding-left: 1em;
-	height: 2em;
-	align-items: center;
 }
 
-.col-options {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex: 0 0 2em;
-	height: 100%;
-	position: relative;
-	top: 2px;
+.star {
+	flex: 0 0 1.5em;
 }
 
-.bm-title {
-	display: inline-block;
-	overflow: hidden;
-	flex: 3 1 auto;
+.title {
+	flex: 1 1 auto;
 }
 
-.bm-sub {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	margin: 0;
-	padding: 0;
+.category {
+	flex: 0 5 auto;
 }
 
-.col-options >>> .options-button {
-	transition: opacity .1s linear;
-	opacity: 0;
-}
-
-.bm-item:hover .col-options >>> .options-button {
-	opacity: 0.5;
-}
-
-.bm-item:hover .col-options >>> .options-button:hover {
-	opacity: 0.9;
-}
-
-.col-options >>> .options-button.active {
-	opacity: 0.9;
-}
-
-.bm-item:not(:last-of-type) {
-	border-bottom: 1px solid var(--border-transparent-darken);
-}
-
-.bm-item:first-of-type {
-	border-radius: 5px 5px 0 0;
-}
-
-.bm-item:last-of-type {
-	border-radius: 0 0 5px 5px;
-}
-
-.bm-item:hover {
-	border-left-color: var(--border-transparent-darken);
-	border-right-color: var(--border-transparent-darken);
-}
-
-.bm-item:first-of-type:hover {
-	border-top-color: var(--border-transparent-darken);;
-}
-
-.bm-item:last-of-type:hover {
-	border-bottom-color: var(--border-transparent-darken);;
-}
-
-.cat-display {
-	flex: 0 1 auto;
-	min-width: 5em!important;
-	flex: 0 10000 auto;
-	margin-left: 1em;
+.options {
+	flex: 0 0 1.5em;
 }
 </style>
