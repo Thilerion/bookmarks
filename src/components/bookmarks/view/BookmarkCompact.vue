@@ -1,6 +1,16 @@
 <template>
 <div class="bm-item">
-	<div class="star">St</div>
+	<button
+		class="btn-small btn-fav"
+		@click="toggleFavorite"
+		@mouseover="hoverFav = true"
+		@mouseout="hoverFav = false"
+	>	<BmSvgIcon
+			class="star-icon"
+			:class="{'active': bookmark.favorite}"
+			:icon="favIcon"
+		/>
+	</button>
 	<a
 		:href="url"
 		class="title"
@@ -94,21 +104,74 @@ export default {
 <style scoped>
 .bm-item {
 	display: flex;
+	height: 2em;
+	align-items: center;
 }
 
-.star {
+.btn-fav {
 	flex: 0 0 1.5em;
+	padding: 0;
+	padding-bottom: 0.25em;
+	opacity: 1;
+}
+
+.star-icon {
+	width: 16px;
+	height: 16px;
+	opacity: 0.4;
+}
+
+.star-icon.active {
+	color: hsl(51, 100%, 47%);
+	opacity: 1;
+}
+
+.star-icon.active:hover {
+	color: var(--font-dark-tertiary);
+	opacity: 0.6;
 }
 
 .title {
+	font-size: 95%;
+	margin-left: 0.5em;
 	flex: 1 1 auto;
+	line-height: 1.5;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-right: 1em;
 }
 
 .category {
-	flex: 0 5 auto;
+	flex: 0 9999 auto;
+	text-align: right;
+	min-width: 3em;
+	border-radius: 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .options {
-	flex: 0 0 1.5em;
+	flex: 0 0 2em;
+	display: flex;
+	justify-content: center;
+}
+
+.bm-item >>> .options-button {
+	opacity: 0.2;
+}
+
+.bm-item:hover >>> .options-button {
+	opacity: 0.7;
+}
+
+.bm-item >>> .options-button.active {
+	opacity: 0.7;
+}
+
+.col-button-wrapper {
+	width: 1.5em;
+	position: relative;
 }
 </style>
