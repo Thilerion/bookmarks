@@ -75,7 +75,7 @@
 	</div>
 
 	<div class="col-secondary">
-		<div class="date">
+		<div class="date" :title="dateTotalString">
 			{{dateAdded | filterDateString}}
 		</div>
 		<div class="cat">
@@ -146,7 +146,7 @@ export default {
 			return this.bookmark.added;
 		},
 		dateTotalString() {
-			return new Date(this.dateAdded).toLocaleString();
+			return `Added: ${new Date(this.dateAdded).toLocaleString()}`;
 		},
 		catId() {
 			return this.bookmark.category;
@@ -275,11 +275,12 @@ export default {
 	justify-content: space-around;
 	text-align: right;
 	flex: 1 9999 auto;
-	min-width: 10em;
+	min-width: 5em;
 }
 
-.date {
-	margin-bottom: auto;
+.date {	
+	color: var(--font-dark-tertiary);
+	font-size: 0.8em;
 }
 
 .cat {
@@ -289,6 +290,7 @@ export default {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	margin-top: auto;
 }
 
 .col-options {
