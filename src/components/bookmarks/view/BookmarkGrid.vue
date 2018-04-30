@@ -1,45 +1,5 @@
 <template>
 <div class="bm-item">
-	<!--<a
-		:href="url"
-		target="_blank"
-		:title="url"
-	><div class="top">
-		<div
-			class="top-bg"
-			:style="gridItemColour"
-		></div>
-		<p class="host">{{url | filterLinkDomain}}</p>
-	</div>
-	</a>
-
-	<div class="mid">
-		<a
-			:href="url"
-			class="bm-title bm-sub heading bold"
-			target="_blank"
-			v-html="$options.filters.filterHighlight(title, searchTerm)">
-		</a>
-
-		<span class="bm-tags bm-sub"></span>
-	</div>		
-
-	<div class="bot">
-		<BmCategoryDisplay
-			:catId="catId"
-			class="cat-display"			
-			v-if="showCategory"
-		/>
-
-		<div class="col-options">
-			<BmBookmarkOptions
-				vertical-icon
-				@goToUrl="goToUrl"
-				@deleteBookmark="deleteBookmark"
-				@editBookmark="editBookmark"
-			/>
-		</div>
-	</div>-->
 	<a
 		:href="url"
 		:title="url"
