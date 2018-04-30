@@ -1,7 +1,5 @@
 <template>
-<div class="cat-display" :class="{'has-colour': showColour, 'has-icon': showIcon}" :style="[colourStyle, iconStyle]">
-	<span class="cat-name">{{catName}}</span>
-</div>
+<div class="cat-display" :class="{'has-colour': showColour, 'has-icon': showIcon}" :style="[colourStyle, iconStyle]">{{catName}}</div>
 </template>
 
 <script>
@@ -57,18 +55,7 @@ export default {
 	border-radius: 5px;
 	font-family: 'Raleway', sans-serif;
 	font-weight: 600;
-	position: relative;
-	display: inline-flex;
-	justify-content: space-between;
-	align-items: center;
-	cursor: default;
-	min-width: fit-content;
-}
-
-.cat-name {
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
+	display: inline-block;	
 }
 
 .cat-display.has-colour {	

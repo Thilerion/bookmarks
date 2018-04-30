@@ -11,7 +11,7 @@ function timeAgo(ms) {
 	if (diffDays < 1) {
 		retVal = time.fromNow();
 	} else if (diffDays === 1) {
-		retVal = "Yesterday";
+		retVal = "yesterday";
 	} else if (diffDays <= 7) {
 		retVal = time.fromNow();
 	} else if (isThisYear) {

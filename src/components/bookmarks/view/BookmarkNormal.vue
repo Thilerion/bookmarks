@@ -74,11 +74,21 @@
 		</div>
 	</div>
 
-	<BmCategoryDisplay
-		:catId="catId"
-		class="cat-display col-cat"		
-		v-if="showCategory"
-	/>
+	<div class="col-secondary">
+		<div class="date">
+			{{dateAdded | filterDateString}}
+		</div>
+		<div class="cat">
+			<BmCategoryDisplay class="cat-inner" :catId="catId" />
+		</div>
+
+		<!--<BmCategoryDisplay
+			:catId="catId"
+			class="cat"		
+			v-if="showCategory"
+		/>-->
+	</div>
+	
 
 	<div class="col-options">
 		<BmBookmarkOptions
@@ -133,7 +143,7 @@ export default {
 			return this.bookmark.url;
 		},
 		dateAdded() {			
-				return this.bookmark.added;
+			return this.bookmark.added;
 		},
 		dateTotalString() {
 			return new Date(this.dateAdded).toLocaleString();
@@ -258,13 +268,27 @@ export default {
 	opacity: 0.6;
 }
 
-.col-cat {
-	flex: 0 999999 fit-content;
-	min-width: 4.5em!important;
+.col-secondary {
+	align-self: stretch;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	text-align: right;
+	flex: 1 9999 auto;
+	min-width: 10em;
 }
 
-.col-cat >>> .cat-name {
-	margin: auto;
+.date {
+	margin-bottom: auto;
+}
+
+.cat {
+	flex: 0 1 auto;
+	min-width: 0;
+	border-radius: 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .col-options {
