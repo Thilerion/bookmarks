@@ -1,6 +1,6 @@
 <template>
 <div class="bm-item">
-	<a
+	<!--<a
 		:href="url"
 		target="_blank"
 		:title="url"
@@ -39,6 +39,45 @@
 				@editBookmark="editBookmark"
 			/>
 		</div>
+	</div>-->
+	<a
+		:href="url"
+		:title="url"
+		target="_blank"
+		class="box-top"
+	>
+		<div class="box-top-bg" :style="gridItemColour"></div>
+		<div class="host">{{url | filterLinkLongDomain}}</div>
+	</a>
+
+	<div class="box-bottom pad-normal">
+		<a
+			:href="url"
+			class="title"
+			target="_blank"
+			v-html="$options.filters.filterHighlight(title, searchTerm)"
+		></a>
+		<div class="cat">
+			<BmCategoryDisplay class="cat-inner" :catId="catId" />
+		</div>
+	</div>
+
+	<div
+		class="options" 
+		:class="{active: dropdownActive}"
+	>
+		<button class="btn-fav button-light" @click="toggleFavorite" @mouseover="hoverFav = true" @mouseout="hoverFav = false"><BmSvgIcon class="star-icon" :class="{'active': bookmark.favorite}" :icon="favIcon"/></button>
+		<BmBookmarkOptions
+			class="col-button-wrapper button-light"
+			@goToUrl="goToUrl"
+			@deleteBookmark="deleteBookmark"
+			@editBookmark="editBookmark"
+			@toggleFavorite="toggleFavorite"
+			vertical-icon
+			@dropdownShown="dropdownShown"
+		>
+			<template slot="favButtonText">{{favButtonText}}</template>
+		</BmBookmarkOptions>
 	</div>
 </div>
 </template>
@@ -46,11 +85,13 @@
 <script>
 import CategoryDisplay from '../../shared/CategoryDisplay';
 import BookmarkOptions from '../BookmarkOptions';
+import SvgIcon from '../../shared/SvgIcon';
 
 export default {
 	components: {
 		BmBookmarkOptions: BookmarkOptions,
-		BmCategoryDisplay: CategoryDisplay
+		BmCategoryDisplay: CategoryDisplay,
+		BmSvgIcon: SvgIcon
 	},
 	props: {
 		bookmark: {
@@ -60,6 +101,12 @@ export default {
 		showCategory: {
 			type: Boolean,
 			default: true
+		}
+	},
+	data() {
+		return {
+			hoverFav: false,
+			dropdownActive: false
 		}
 	},
 	computed: {
@@ -79,6 +126,15 @@ export default {
 			return {
 				background: this.$store.getters.categoryById(this.catId).colour
 			};
+		},
+		favIcon() {
+			if (this.bookmark.favorite === true) return "star-full";
+			if (this.hoverFav === true) return "star-full";
+			else return "star-empty";
+		},
+		favButtonText() {
+			if (this.bookmark.favorite === true) return "Remove from favorites";
+			else return "Add to favorites";
 		}
 	},
 	methods: {
@@ -90,6 +146,12 @@ export default {
 		},
 		goToUrl() {
 			window.open(this.url);
+		},
+		toggleFavorite() {
+			this.$store.commit('toggleFavorite', this.bookmark.id);
+		},
+		dropdownShown(bool) {
+			this.dropdownActive = bool;
 		}
 	}
 }
@@ -100,116 +162,115 @@ export default {
 	width: 16em;
 	height: 16em;
 	box-shadow: 0 0 12px -5px rgba(0,0,0,0.5), 1px 1px 3px -1px rgba(0,0,0,0.3);
+}
+
+.pad-normal {
+	padding-left: 0.75em;
+	padding-right: 0.75em;
+}
+
+.box-top {
+	height: 8rem;
 	display: flex;
-	flex-direction: column;
-}
-
-.bm-item > a {
-	flex: 0 0 8rem;
-	color: rgb(250,250,250);
-}
-
-.bm-item .top {
-	height: 100%;
-	background: darkblue;
-	display: flex;
-	position: relative;
-	user-select: none;
-	cursor: pointer;
-}
-
-.bm-item .top-bg {
-	position: absolute;
-	left: 0; right: 0;
-	top: 0; bottom: 0;
-	filter: brightness(90%);
-}
-
-.bm-item .mid {
-	flex: 1 0 5rem;
-	line-height: 1.33rem;
-	padding: 0.25em 0.5em;
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;	
-	word-break: break-word;
-}
-
-.bm-item .bm-title {
-	color: black;
-	text-decoration: none;
-	font-weight: 600;
-	letter-spacing: 0.01em;
-	
-}
-
-.bm-item .bm-title:hover {
-	text-decoration: underline;
-}
-
-.bm-item .bm-tags {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	padding-top: 0.2em;
+	color: var(--bg-light-alphabeta);
 	font-size: 0.9em;
+	padding: 1em;
+	position: relative;
+	margin-bottom: 0.5em;
 }
 
-.bm-item .bot {
-	padding: 0.25em 0.5em 0.5em;
-	flex: 0 1 auto;
-	display: inline-flex;
-	justify-content: space-between;
-	align-items: center;
-	padding-right: 0;
+.box-top-bg {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	filter: brightness(95%);
 }
 
-.bm-item p {
-	margin: 0;
-	padding: 0;
-}
-
-.bm-item .host {
+.box-top > .host {
 	margin: auto;
-	color: rgba(250,250,250);
-	text-shadow: 1px 1px .8px rgba(0,0,0,0.7);
+	text-align: center;
+	text-shadow: 0.7px 0.7px 1px rgba(0,0,0,0.5),
+				 0 0 3px rgba(0,0,0,0.5);
+	font-size: 0.9em;
+	line-height: 1.4;
+	letter-spacing: 0.3px;
+	font-weight: 600;
 	z-index: 2;
 }
 
-.bm-item .col-options {
-	flex: 0 0 auto;	
-	transition: opacity .1s linear;
-	position: relative;
-	z-index: 100;
+.box-bottom {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: calc(8em - 1em);
 }
 
-.col-options >>> .options-button {
+.title {
+	max-height: 3em;
+	width: 100%;
+	line-height: 1.5em;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: inline-block;
+}
+
+.cat {
+	min-width: 0;
+	border-radius: 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.options {
+	position: absolute;
+	right: 0.5em;
+	top: 0.5em;
+	display: flex;
+	align-items: stretch;
+	height: 1.5em;
+}
+
+.btn-fav, .col-button-wrapper {
+	width: 2rem;
+	display: flex;
+	justify-content: center;
+	transition: opacity .2s ease;
 	opacity: 0;
 }
 
-.bm-item:hover .col-options >>> .options-button {
-	opacity: 0.5;
+.bm-item:hover .btn-fav, .bm-item:hover .col-button-wrapper {
+	opacity: 0.8;	
 }
 
-.bot:hover .col-options >>> .options-button {
-	opacity: 0.9;
+.options:hover .btn-fav, .options:hover .col-button-wrapper {
+	opacity: 1;
 }
 
-.bot .col-options >>> .options-button.active {
-	opacity: 0.9;
+.options.active .btn-fav, .options.active .col-button-wrapper {
+	opacity: 1;
 }
 
-.bm-item .cat-display {
-	flex: 0 1 auto;
-	max-width: 15rem;
-	min-width: 1em!important;
+.btn-fav {
+	margin-right: 0.5rem;
 }
 
-.bm-item a {
-	text-decoration: none;
-	outline: none;
+.star-icon {
+	width: 16px;
+	height: 16px;
+	opacity: 1;
 }
 
-.bm-item a:hover {
-	text-decoration: underline currentColor;
+.star-icon.active {
+	color: hsl(51, 100%, 50%);
+	opacity: 1;
 }
+
+.star-icon.active:hover {
+	color: var(--font-dark-tertiary);
+}
+
 </style>

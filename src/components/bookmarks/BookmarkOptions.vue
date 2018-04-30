@@ -64,9 +64,11 @@ export default {
 	methods: {
 		hideBookmarkOptions() {
 			this.showDropdown = false;
+			this.$emit('dropdownShown', this.showDropdown);
 		},
 		toggleBookmarkOptions() {
 			this.showDropdown = !this.showDropdown;
+			this.$emit('dropdownShown', this.showDropdown);
 		},
 		goToLink() {
 			this.$emit('goToUrl');
