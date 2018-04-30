@@ -1,63 +1,5 @@
 <template>
 <div class="bm-item">
-	<!--<div class="col-text">
-		<a
-			:href="url"
-			class="bm-title bm-sub"
-			target="_blank"
-			v-html="$options.filters.filterHighlight(title, searchTerm)">
-		</a>
-
-		<p class="bm-sub bm-url" :title="url">{{url | filterLinkDomain}}</p>
-
-		<p class="bm-sub bm-date">{{dateAddedString | filterDateString}}</p>
-
-	</div>
-
-	<BmCategoryDisplay
-		:catId="catId"
-		class="cat-display"		
-		v-if="showCategory"
-	/>
-
-	<BmBookmarkOptions
-		class="col-options"
-		@goToUrl="goToUrl"
-		@deleteBookmark="deleteBookmark"
-		@editBookmark="editBookmark"
-	/>-->
-	<!--
-	<div class="col1">
-		<a
-			:href="url"
-			class="title"
-			target="_blank"
-			v-html="$options.filters.filterHighlight(title, searchTerm)">
-		</a>
-		<p class="bm-sub url" :title="url">{{url | filterLinkDomain}}</p>
-		<div class="bm-sub options">
-			<button class="fav">Star</button>
-			<span class="dash">-</span>
-			<button class="edit">Edit</button>
-			<span class="dash">-</span>
-			<button class="delete">Delete</button>
-		</div>		
-	</div>
-	<div class="col2" :class="{'align-middle': !showCategory}">
-		<p
-			class="bm-sub date"
-			:title="dateTotalString"
-		>{{dateAdded | filterDateString}}</p>
-		<BmCategoryDisplay
-			:catId="catId"
-			class="cat-display"		
-			v-if="showCategory"
-		/>
-	</div>
-	<div class="col3">
-
-	</div>
-	-->
 	<div class="col-bm-main">
 		<a
 			:href="url"
@@ -81,12 +23,6 @@
 		<div class="cat">
 			<BmCategoryDisplay class="cat-inner" :catId="catId" />
 		</div>
-
-		<!--<BmCategoryDisplay
-			:catId="catId"
-			class="cat"		
-			v-if="showCategory"
-		/>-->
 	</div>
 	
 
