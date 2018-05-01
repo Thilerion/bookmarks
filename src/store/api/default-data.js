@@ -10,6 +10,7 @@ const defaultBookmarks = [
 		id: 0,
 		category: 4,
 		added: 1525023000000,
+		tags: [],
 		favorite: true
 	},
 	{
@@ -19,6 +20,7 @@ const defaultBookmarks = [
 		id: 1,
 		category: 3,
 		added: 1525021200000,
+		tags: [],
 		favorite: true
 	},
 	{
@@ -28,6 +30,7 @@ const defaultBookmarks = [
 		id: 3,
 		category: 4,
 		added: 1524952740000,
+		tags: [],
 		favorite: true
 	},
 	{
@@ -37,6 +40,7 @@ const defaultBookmarks = [
 		id: 8,
 		category: 5,
 		added: 1524885000000,
+		tags: [],
 		favorite: false
 	},
 	{
@@ -46,6 +50,7 @@ const defaultBookmarks = [
 		id: 4,
 		category: 1,
 		added: 1524849000000,
+		tags: [],
 		favorite: false
 	},
 	{
@@ -55,6 +60,7 @@ const defaultBookmarks = [
 		id: 2,
 		category: 0,
 		added: 1506532200000,
+		tags: [],
 		favorite: false
 	},
 	{
@@ -64,6 +70,7 @@ const defaultBookmarks = [
 		id: 7,
 		category: 2,
 		added: 1520190667705,
+		tags: [],
 		favorite: false
 	},
 	{
@@ -73,6 +80,7 @@ const defaultBookmarks = [
 		id: 6,
 		category: 1,
 		added: 1521690767705,
+		tags: ["Alpha", "Beta"],
 		favorite: false
 	},
 	{
@@ -82,6 +90,7 @@ const defaultBookmarks = [
 		id: 5,
 		category: 0,
 		added: 1522590867705,
+		tags: ["Alpha", "Gamma"],
 		favorite: false
 	},
 	{
@@ -91,6 +100,7 @@ const defaultBookmarks = [
 		id: 9,
 		category: 3,
 		added: 1520090067706,
+		tags: ["Alpha", "Beta", "Gamma", "Delta"],
 		favorite: false
 	},
 	{
@@ -100,6 +110,7 @@ const defaultBookmarks = [
 		id: 10,
 		category: 0,
 		added: 1520890177705,
+		tags: [],
 		favorite: false
 	},
 	{
@@ -109,6 +120,7 @@ const defaultBookmarks = [
 		id: 11,
 		category: 1,
 		added: 1520390367705,
+		tags: [],
 		favorite: false
 	},
 	{
@@ -118,6 +130,7 @@ const defaultBookmarks = [
 		id: 12,
 		category: 5,
 		added: 1522190361105,
+		tags: [],
 		favorite: false
 	},
 	{
@@ -127,6 +140,7 @@ const defaultBookmarks = [
 		id: 13,
 		category: 5,
 		added: 1524831175551,
+		tags: [],
 		favorite: false
 	},
 	{
@@ -136,6 +150,7 @@ const defaultBookmarks = [
 		id: 14,
 		category: null,
 		added: 1524821175551,
+		tags: [],
 		favorite: false
 	},
 	{
@@ -145,6 +160,7 @@ const defaultBookmarks = [
 		id: 15,
 		category: null,
 		added: 1524841175551,
+		tags: [],
 		favorite: false
 	},
 	{
@@ -154,6 +170,7 @@ const defaultBookmarks = [
 		id: 16,
 		category: 1,
 		added: 1524862305551,
+		tags: [],
 		favorite: false
 	},
 	{
@@ -163,6 +180,7 @@ const defaultBookmarks = [
 		id: 17,
 		category: 2,
 		added: 1524862374551,
+		tags: [],
 		favorite: false
 	},
 	{
@@ -172,6 +190,7 @@ const defaultBookmarks = [
 		id: 18,
 		category: 2,
 		added: 1524862375551,
+		tags: [],
 		favorite: false
 	},
 	{
@@ -182,6 +201,7 @@ const defaultBookmarks = [
 		id: 19,
 		category: 2,
 		added: 1522590267707,
+		tags: [],
 		favorite: false
 	},
 	{
@@ -190,6 +210,7 @@ const defaultBookmarks = [
 		category: 1,
 		id: 20,
 		added: 1525163723052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -199,6 +220,7 @@ const defaultBookmarks = [
 		category: 0,
 		id: 21,
 		added: 1525160123052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -208,6 +230,7 @@ const defaultBookmarks = [
 		category: 0,
 		id: 22,
 		added: 1525156523052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -217,6 +240,7 @@ const defaultBookmarks = [
 		category: 1,
 		id: 23,
 		added: 1525152923052,
+		tags: [],
 		favorite: true,
 		description: ""
 	},
@@ -226,6 +250,7 @@ const defaultBookmarks = [
 		category: null,
 		id: 24,
 		added: 1525149323052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -235,6 +260,7 @@ const defaultBookmarks = [
 		category: 5,
 		id: 25,
 		added: 1525145723052,
+		tags: [],
 		favorite: false,
 		description: "Acjo suroshe heivimin kac kasues fut gub leoji adiki. Vi wufif po nimsuzpif Juboguluf. Sig rarotlu seg kengebag Amabien!"
 	},
@@ -244,6 +270,7 @@ const defaultBookmarks = [
 		category: 3,
 		id: 26,
 		added: 1525142123052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -253,6 +280,7 @@ const defaultBookmarks = [
 		category: null,
 		id: 27,
 		added: 1525138523052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -262,6 +290,7 @@ const defaultBookmarks = [
 		category: 1,
 		id: 28,
 		added: 1525134923052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -271,6 +300,7 @@ const defaultBookmarks = [
 		category: 2,
 		id: 29,
 		added: 1525131323052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -280,6 +310,7 @@ const defaultBookmarks = [
 		category: 0,
 		id: 30,
 		added: 1525127723052,
+		tags: [],
 		favorite: true,
 		description: "Pev hevulah top mojo zujhav sogujif."
 	},
@@ -289,6 +320,7 @@ const defaultBookmarks = [
 		category: 1,
 		id: 31,
 		added: 1525124123052,
+		tags: [],
 		favorite: true,
 		description: "Ce zenacejiw apoih nebo fivinwa."
 	},
@@ -298,6 +330,7 @@ const defaultBookmarks = [
 		category: 2,
 		id: 32,
 		added: 1525120523052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -307,6 +340,7 @@ const defaultBookmarks = [
 		category: 0,
 		id: 33,
 		added: 1525116923052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -316,6 +350,7 @@ const defaultBookmarks = [
 		category: 2,
 		id: 34,
 		added: 1525113323052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -325,6 +360,7 @@ const defaultBookmarks = [
 		category: 5,
 		id: 35,
 		added: 1525109723052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -334,6 +370,7 @@ const defaultBookmarks = [
 		category: 3,
 		id: 36,
 		added: 1525106123052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -343,6 +380,7 @@ const defaultBookmarks = [
 		category: 2,
 		id: 37,
 		added: 1525102523052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -352,6 +390,7 @@ const defaultBookmarks = [
 		category: 0,
 		id: 38,
 		added: 1525098923052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -361,6 +400,7 @@ const defaultBookmarks = [
 		category: 1,
 		id: 39,
 		added: 1525095323052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -370,6 +410,7 @@ const defaultBookmarks = [
 		category: 0,
 		id: 40,
 		added: 1525091723052,
+		tags: [],
 		favorite: true,
 		description: ""
 	},
@@ -379,6 +420,7 @@ const defaultBookmarks = [
 		category: 0,
 		id: 41,
 		added: 1525088123052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -388,6 +430,7 @@ const defaultBookmarks = [
 		category: null,
 		id: 42,
 		added: 1525084523052,
+		tags: [],
 		favorite: false,
 		description: ""
 	},
@@ -397,6 +440,7 @@ const defaultBookmarks = [
 		category: 1,
 		id: 43,
 		added: 1525080923052,
+		tags: [],
 		favorite: false,
 		description: "La refgeg."
 	},
@@ -406,6 +450,7 @@ const defaultBookmarks = [
 		category: 4,
 		id: 44,
 		added: 1525077323052,
+		tags: [],
 		favorite: true,
 		description: ""
 	},
@@ -415,6 +460,7 @@ const defaultBookmarks = [
 		category: null,
 		id: 45,
 		added: 1525073723052,
+		tags: ["Gamma"],
 		favorite: false,
 		description: "Dipgawtan upe iwisat otu itaahutop."
 	},
@@ -424,6 +470,7 @@ const defaultBookmarks = [
 		category: 2,
 		id: 46,
 		added: 1525070123052,
+		tags: [],
 		favorite: true,
 		description: ""
 	},
@@ -433,6 +480,7 @@ const defaultBookmarks = [
 		category: 0,
 		id: 47,
 		added: 1525066523052,
+		tags: ["Gamma", "Beta", "Epsilon", "Delta"],
 		favorite: false,
 		description: ""
 	},
@@ -442,6 +490,7 @@ const defaultBookmarks = [
 		category: null,
 		id: 48,
 		added: 1525062923052,
+		tags: ["Gamma", "Epsilon", "Beta"],
 		favorite: true,
 		description: ""
 	},
@@ -451,6 +500,7 @@ const defaultBookmarks = [
 		category: 1,
 		id: 49,
 		added: 1525059323052,
+		tags: ["Epsilon"],
 		favorite: true,
 		description:
 			"Obigahok kivdaki ripiviza kew woko jawa ge gujpotpil binerrus."

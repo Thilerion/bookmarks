@@ -6,6 +6,7 @@ import categories from './modules/categories.js'
 import bookmarks from './modules/bookmarks.js'
 import userPrefs from './modules/prefs.js'
 import view from './modules/views.js'
+import tags from './modules/tags.js'
 
 import { initialize } from './api/api'
 
@@ -18,7 +19,8 @@ let store = new Vuex.Store({
 		bookmarks,
 		colours,
 		categories,
-		view
+		view,
+		tags
 	},
 
 	state: {
