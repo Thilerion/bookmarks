@@ -1,7 +1,7 @@
 import Chance from 'chance'
 const chance = Chance();
 
-const categories = [0, 1, 2, 3, 4, 5, null];
+const categories = [0, 0, 0, 1, 1, 2, 3, 3, 4, 5, null, null];
 const catLength = categories.length;
 
 function randomUrl() {
@@ -13,16 +13,21 @@ function generateBookmarks(amount) {
 	
 	for (let i = 0; i < amount; i++) {
 		const titleWords = chance.integer({ min: 1, max: 4 });
+		const descWords = chance.pickone([2, 5, 6, 7, 8, 9, 15]);
 		const bm = {
 			title: chance.sentence({words: titleWords}).slice(0,-1),
 			url: chance.url(),
 			category: chance.pickone(categories),
-			id: i + 50,
-			added: 1527190597705 + i,
-			favorite: chance.bool({likelihood: 15})
+			id: i + 20,
+			added: 1525163723052 - (i * 3600000) ,
+			favorite: chance.bool({ likelihood: 15 }),
+			description: chance.sentence({ words: descWords })
 		}
 		if (chance.bool({ likelihood: 40 }) === true) {
 			bm.title = `${bm.title} ${chance.capitalize(chance.word())}`;
+		}
+		if (chance.bool({ likelihood: 70 }) === true) {
+			bm.description = "";
 		}
 		bookmarks.push(bm);
 	}
