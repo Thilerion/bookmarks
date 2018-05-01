@@ -211,7 +211,7 @@ export default {
 	justify-content: space-around;
 	text-align: right;
 	flex: 1 9999 auto;
-	min-width: 5em;
+	min-width: 10em;
 }
 
 .date {	
