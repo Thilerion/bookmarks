@@ -7,8 +7,7 @@
 			target="_blank"
 			v-html="$options.filters.filterHighlight(title, searchTerm)"
 		></a>
-		<p v-if="showDescription" class="description">{{bookmark.description}}</p>
-		<p v-if="showTags !== false" class="tags">{{tagsDisplay}}</p>
+		<p v-if="showDescription || showTags" class="description"><span class="tags" v-if="showTags"><span class="tag" v-for="tag in tagsDisplay" :key="tag">{{tag}}</span></span>{{bookmark.description}}</p>
 		<div class="row-options">
 			<button class="btn-small btn-fav" @click="toggleFavorite" @mouseover="hoverFav = true" @mouseout="hoverFav = false"><BmSvgIcon class="star-icon" :class="{'active': bookmark.favorite}" :icon="favIcon"/></button>
 			<button class="btn-small" @click="editBookmark">Edit</button>
@@ -96,7 +95,7 @@ export default {
 			return false;
 		},
 		tagsDisplay() {
-			return this.bookmark.tags.map(tag => "#" + tag).join(" ");
+			return this.bookmark.tags.map(tag => "#" + tag);
 		},
 		favIcon() {
 			if (this.bookmark.favorite === true) return "star-full";
@@ -147,26 +146,34 @@ export default {
 	min-width: 10em;
 }
 
-.col-bm-main > * {
+.title {
+	line-height: 1.5;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
-.title {
-	line-height: 1.5;
-}
-
-.description, .tags {
+.description {
 	color: var(--font-dark-tertiary);
+	padding-bottom: 0.1rem;
 	font-size: 0.9rem;
-	line-height: 1.4;
+	line-height: 1.2rem;
+	max-height: calc(4 * 1.2rem + 0.1rem);
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 
 .tags {
 	text-transform: lowercase;
 	font-weight: 600;
-	opacity: 0.9;
+	opacity: 1;
+	margin-right: 0.3rem;
+}
+
+.tag:not(:first-of-type) {
+	margin-left: 0.2rem;
 }
 
 .row-options {
@@ -217,7 +224,7 @@ export default {
 	justify-content: space-around;
 	text-align: right;
 	flex: 1 9999 auto;
-	min-width: 10em;
+	min-width: 7em;
 }
 
 .date {	
