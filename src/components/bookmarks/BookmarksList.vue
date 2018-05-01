@@ -86,6 +86,18 @@ span.highlight {
 	background: yellow;
 }
 
+.tags {
+	color: var(--font-dark-tertiary);
+	text-transform: lowercase;
+	font-weight: 600;
+	opacity: 1;
+	margin-right: 0.3rem;
+}
+
+.tag:not(:first-of-type) {
+	margin-left: 0.2rem;
+}
+
 /*
 ** === BookmarksList[VIEW_MODE] > Bookmark Transition CSS ===
 */

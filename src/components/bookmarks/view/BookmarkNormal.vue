@@ -165,17 +165,6 @@ export default {
 	overflow: hidden;
 }
 
-.tags {
-	text-transform: lowercase;
-	font-weight: 600;
-	opacity: 1;
-	margin-right: 0.3rem;
-}
-
-.tag:not(:first-of-type) {
-	margin-left: 0.2rem;
-}
-
 .row-options {
 	display: flex;
 }

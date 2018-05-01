@@ -11,12 +11,20 @@
 			:icon="favIcon"
 		/>
 	</button>
-	<a
-		:href="url"
-		class="title"
-		target="_blank"
-		v-html="$options.filters.filterHighlight(title, searchTerm)"
-	></a>
+	
+	<div class="main-row">
+		<a
+			:href="url"
+			class="title"
+			target="_blank"
+			v-html="$options.filters.filterHighlight(title, searchTerm)"
+		></a>
+		<span class="tags">
+			<span class="tag" v-for="tag in tagsDisplay" :key="tag">{{tag}}</span>
+		</span>
+	</div>
+	
+
 	<div class="category">
 		<BmCategoryDisplay class="cat-inner" :catId="catId" />
 	</div>
@@ -64,6 +72,9 @@ export default {
 	computed: {
 		title() {
 			return this.bookmark.title;
+		},
+		tagsDisplay() {
+			return this.bookmark.tags.map(tag => "#" + tag);
 		},
 		searchTerm() {
 			return this.$store.getters.searchTerm;
@@ -131,8 +142,7 @@ export default {
 	opacity: 0.6;
 }
 
-.title {
-	font-size: 95%;
+.main-row {
 	margin-left: 0.5em;
 	flex: 1 1 auto;
 	line-height: 1.5;
@@ -140,6 +150,21 @@ export default {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	margin-right: 1em;
+}
+
+.title {
+	font-size: 95%;
+}
+
+.tags {
+	font-size: 0.8rem;
+	letter-spacing: 0.3px;
+	opacity: 0.8;
+	margin-left: 0.1rem;
+}
+
+.tag {
+	margin-left: 0.3rem;
 }
 
 .category {
