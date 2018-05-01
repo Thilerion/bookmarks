@@ -460,7 +460,7 @@ const defaultBookmarks = [
 		category: null,
 		id: 45,
 		added: 1525073723052,
-		tags: ["Gamma"],
+		tags: ["gamma"],
 		favorite: false,
 		description: "Dipgawtan upe iwisat otu itaahutop."
 	},
@@ -480,7 +480,7 @@ const defaultBookmarks = [
 		category: 0,
 		id: 47,
 		added: 1525066523052,
-		tags: ["Gamma", "Beta", "Epsilon", "Delta"],
+		tags: ["gamma", "beta", "epsilon", "delta"],
 		favorite: false,
 		description: ""
 	},
@@ -490,7 +490,7 @@ const defaultBookmarks = [
 		category: null,
 		id: 48,
 		added: 1525062923052,
-		tags: ["Gamma", "Epsilon", "Beta"],
+		tags: ["gamma", "epsilon", "beta"],
 		favorite: true,
 		description: ""
 	},
@@ -500,7 +500,7 @@ const defaultBookmarks = [
 		category: 1,
 		id: 49,
 		added: 1525059323052,
-		tags: ["Epsilon"],
+		tags: ["epsilon"],
 		favorite: true,
 		description:
 			"Obigahok kivdaki ripiviza kew woko jawa ge gujpotpil binerrus."

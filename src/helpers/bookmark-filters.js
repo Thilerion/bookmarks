@@ -13,12 +13,35 @@ function _isUncategorized(bookmark) {
 }
 
 
-function filterWithSearch(bookmarks, searchString) {
+function filterWithSearch(bookmarks, {searchTerm, tags}) {
+	let searchedWithString = filterWithSearchTerm(bookmarks, searchTerm);
+	let searchedWithTags = filterWithTagSearch(searchedWithString, tags);
+
+	return searchedWithTags;
+}
+
+function filterWithSearchTerm(bookmarks, searchString = "") {
 	searchString = searchString.toLowerCase();
 
 	return bookmarks.filter(bookmark => {
 		return bookmark.title.toLowerCase().includes(searchString);
 	});
+}
+
+function filterWithTagSearch(bookmarks, tags = []) {
+	
+	if (tags.includes("#untagged")) {
+		return bookmarks.filter(bm => {
+			return bm.tags.length === 0;
+		})
+	}
+	
+	let tagsWithoutHash = tags.map(tag => tag.slice(1));
+
+	return bookmarks.filter(bm => {
+		let lowercaseTags = bm.tags.map(t => t.toLowerCase());
+		return tagsWithoutHash.every(searchedTag => lowercaseTags.includes(searchedTag));
+	})
 }
 
 function filterWithCategory(bookmarks, categoryId, bookmarkGroup) {

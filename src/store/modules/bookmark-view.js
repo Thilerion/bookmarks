@@ -76,7 +76,7 @@ let bookmarkView = {
 			}
 
 			if (search === true) {
-				return filterWithSearch(bookmarks, getters.searchTerm);
+				return filterWithSearch(bookmarks, { searchTerm: getters.searchTerm, tags: getters.searchTags });
 			} else return bookmarks;			
 		},
 
