@@ -141,6 +141,13 @@ let bookmarkView = {
 			} else {
 				commit('changeSearchTags', [...state.searchTags, tagName]);
 			}
+		},
+		toggleTagInSearch({ commit, state }, tagName) {
+			if (state.searchTags.includes(tagName)) {
+				commit('removeTagFromSearch', tagName);
+			} else {
+				commit('pushTagToSearch', tagName);
+			}
 		}
 	}
 }

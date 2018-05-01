@@ -136,6 +136,11 @@ button {
 	border-radius: 5px;
 }
 
+.button-light.selected {
+	color: var(--bg-light-alphabeta);
+	background: var(--font-dark-secondary);
+}
+
 .button-light.has-text {
 	padding: 0.2em 0.5em;
 }

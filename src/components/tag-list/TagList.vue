@@ -9,10 +9,11 @@
 
 	<div class="tag-list">
 		<button
-			class="tag-item button-light has-text"
+			class="tag-item has-text"
 			v-for="tag in tagAmounts"
 			:key="tag.name"
-			@click="addTagToSearch(tag.name)"
+			@click="toggleTagInSearch(tag.name)"
+			:class="selectedClass(tag.name)"
 		>{{tag.name}}<span class="tag-amount">{{tag.amount}}</span></button>
 	</div>
 
@@ -21,8 +22,6 @@
 
 <script>
 import SvgIcon from '../shared/SvgIcon'
-
-//USEFUL: Vue-Tag-Picker
 
 export default {
 	components: {
@@ -34,8 +33,15 @@ export default {
 		}
 	},
 	methods: {
-		addTagToSearch(tagName) {
-			this.$store.dispatch('addTagToSearch', "#" + tagName);
+		toggleTagInSearch(tagName) {
+			this.$store.dispatch('toggleTagInSearch', tagName);
+		},
+		selectedClass(tagName) {
+			if (this.$store.getters.searchTags.includes(tagName)) {
+				return ["button-light", "selected"];
+			} else {
+				return "button-light";
+			}
 		}
 	}
 }
