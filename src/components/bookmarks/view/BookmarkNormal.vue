@@ -8,7 +8,7 @@
 			v-html="$options.filters.filterHighlight(title, searchTerm)"
 		></a>
 		<p v-if="showDescription" class="description">{{bookmark.description}}</p>
-		<p v-if="showTags" class="tags">Tags come here, if there are any</p>
+		<p v-if="showTags !== false" class="tags">{{tagsDisplay}}</p>
 		<div class="row-options">
 			<button class="btn-small btn-fav" @click="toggleFavorite" @mouseover="hoverFav = true" @mouseout="hoverFav = false"><BmSvgIcon class="star-icon" :class="{'active': bookmark.favorite}" :icon="favIcon"/></button>
 			<button class="btn-small" @click="editBookmark">Edit</button>
@@ -88,11 +88,15 @@ export default {
 			return this.bookmark.category;
 		},
 		showDescription() {
-			if (this.bookmark.description !== "" || this.bookmark.description != null) return this.bookmark.description;
+			if (this.bookmark.description !== "" || this.bookmark.description != null) return true;
 			return false;
 		},
 		showTags() {
+			if (this.bookmark.tags.length > 0) return true;
 			return false;
+		},
+		tagsDisplay() {
+			return this.bookmark.tags.map(tag => "#" + tag).join(" ");
 		},
 		favIcon() {
 			if (this.bookmark.favorite === true) return "star-full";
@@ -160,7 +164,9 @@ export default {
 }
 
 .tags {
-
+	text-transform: lowercase;
+	font-weight: 600;
+	opacity: 0.9;
 }
 
 .row-options {
