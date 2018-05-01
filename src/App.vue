@@ -104,15 +104,15 @@ h1.bold, h2.bold, h3.bold, h4.bold, .heading.bold {
 .col-side {
 	height: 100vh;
 	overflow: hidden;
-	flex: 0 5 27vw;
-	min-width: 20em;
-	max-width: 25em;
+	flex: 0 5 25vw;
+	min-width: 18em;
+	max-width: 22em;
 }
 
 .col-main {
 	height: 100vh;
 	overflow: hidden;
-	flex: 3 1 73vw;
+	flex: 3 1 75vw;
 }
 
 button {

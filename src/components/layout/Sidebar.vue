@@ -143,6 +143,7 @@ header {
 
 .sidebar-content {
 	flex: 1 1 auto;
+	font-size: 87.5%;
 }
 
 .scroll-wrap {
@@ -174,7 +175,7 @@ header {
 
 .menu-item .amount {
 	flex: 0 0 1rem;
-	font-size: 0.7em;
+	font-size: 0.8em;
 	align-self: center;
 	text-align: right;
 	opacity: 0.7;
