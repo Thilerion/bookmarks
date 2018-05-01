@@ -3,15 +3,15 @@ const sortOldestFirst = (a, b) => a.added - b.added;
 const sortAlphaDescending = (a, b) => {
 	const titleA = a.title.toUpperCase();
 	const titleB = b.title.toUpperCase();
-	if (titleA < titleB) return -1;
-	else if (titleA > titleB) return 1;
+	if (titleA < titleB) return 1;
+	else if (titleA > titleB) return -1;
 	else return 0;
 };
 const sortAlphaAscending = (a, b) => {
 	const titleA = a.title.toUpperCase();
 	const titleB = b.title.toUpperCase();
-	if (titleA < titleB) return 1;
-	else if (titleA > titleB) return -1;
+	if (titleA < titleB) return -1;
+	else if (titleA > titleB) return 1;
 	else return 0;
 };
 
