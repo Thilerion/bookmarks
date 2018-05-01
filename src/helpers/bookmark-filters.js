@@ -30,17 +30,15 @@ function filterWithSearchTerm(bookmarks, searchString = "") {
 
 function filterWithTagSearch(bookmarks, tags = []) {
 	
-	if (tags.includes("#untagged")) {
+	if (tags.includes("untagged")) {
 		return bookmarks.filter(bm => {
 			return bm.tags.length === 0;
 		})
 	}
-	
-	let tagsWithoutHash = tags.map(tag => tag.slice(1));
 
 	return bookmarks.filter(bm => {
 		let lowercaseTags = bm.tags.map(t => t.toLowerCase());
-		return tagsWithoutHash.every(searchedTag => lowercaseTags.includes(searchedTag));
+		return tags.every(searchedTag => lowercaseTags.includes(searchedTag));
 	})
 }
 

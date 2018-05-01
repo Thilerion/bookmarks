@@ -11,7 +11,7 @@
 		<input type="text" class="hidden-input" placeholder="Search/filter bookmarks" @keydown="updateField" v-model="searchTerm">
 	</div>-->
 	<!--<div class="search-bar" contenteditable="true" @keydown="updateField" ref="searchBar"></div>-->
-	<div class="tags-selected"><button class="tag-selected button-light has-text" v-for="tag in tags" :key="tag" @click="removeSelectedTag(tag)">{{tag}}</button></div>
+	<div class="tags-selected"><button class="tag-selected button-light has-text" v-for="tag in tags" :key="tag" @click="removeSelectedTag(tag)">#{{tag}}</button></div>
 	<input type="text" class="search-input" @keydown="updateField" v-model="searchTerm">
 
 	<button class="search-button">
