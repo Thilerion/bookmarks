@@ -2,6 +2,7 @@
 <div class="main-wrapper">
 	<div class="main-fixed minimal-padding" :class="{'main-fixed-border': applyTopBorder}">
 		<BmSearchBar />
+		
 	</div>
 	<div class="scroll-wrap vertical" @scroll="contentScrolled($event.target, $event)" ref="mainContent">
 		<BmBookmarksListOptions class="minimal-padding"/>
@@ -16,6 +17,7 @@
 <script>
 import BookmarksList from '../bookmarks/BookmarksList'
 import SearchBar from '@/components/Search'
+
 import BookmarksListOptions from '../bookmarks/BookmarksListOptions';
 
 export default {

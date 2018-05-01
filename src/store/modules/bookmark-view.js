@@ -80,6 +80,10 @@ let bookmarkView = {
 			} else return bookmarks;			
 		},
 
+		bookmarksToShowLength(state, getters) {
+			return getters.bookmarksToShow.length;
+		},
+
 		sortedBookmarksToShow(state, getters) {
 			return sortBookmarks(getters.bookmarksToShow, state.currentSortMode);
 		}
