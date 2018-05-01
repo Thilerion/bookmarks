@@ -111,12 +111,14 @@ export default {
 			let newSearchTerm = this.searchTerm.split("");
 			newSearchTerm.splice(this.lastTagPresent.index, this.lastTagPresent[0].length);
 			this.searchTerm = newSearchTerm.join("");
+			this.debouncedAdder();
 		},
 
 		removeTag() {
 			if (this.tags && this.tags.length > 0) {
 				this.tags.pop();
 			}
+			this.debouncedAdder();
 		},
 
 		removeSelectedTag(tagName) {
