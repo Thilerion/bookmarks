@@ -1,20 +1,9 @@
 <template>
-<div class="search-bar-wrapper">
-	<!--<input
-		type="text"
-		class="search-input"
-		placeholder="Search/filter bookmarks"
-		v-model="searchFilter"
-	>-->
-	<!--<div class="search-bar-wrapper">
-		<div class="selected-tag button-light has-text" v-for="tag in tags" :key="tag">{{tag}}</div>
-		<input type="text" class="hidden-input" placeholder="Search/filter bookmarks" @keydown="updateField" v-model="searchTerm">
-	</div>-->
-	<!--<div class="search-bar" contenteditable="true" @keydown="updateField" ref="searchBar"></div>-->
+<div class="search-bar-wrapper" @click="focusInput">
 	<div class="tags-selected"><button class="tag-selected button-light has-text" v-for="tag in tags" :key="tag" @click="removeSelectedTag(tag)">#{{tag}}</button></div>
-	<input type="text" class="search-input" @keydown="updateField" v-model="searchTerm">
+	<input type="text" class="search-input" @keydown="updateField" v-model="searchTerm" placeholder="Search bookmarks. Type #tag-name + Tab/Enter to search a tag." ref="searchInput">
 
-	<button class="search-button">
+	<button class="search-button" @click.stop="searchAll">
 		<svg
 			class="search-icon"
 			viewBox="0 0 24 24"
@@ -23,6 +12,7 @@
 			<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
 			<path d="M0 0h24v24H0z" fill="none"/>
 		</svg>
+		Search all
 	</button>
 </div>
 </template>
@@ -128,11 +118,24 @@ export default {
 
 		editSearchInStore() {
 			this.$store.dispatch('editSearchFilter', {searchTerm: this.searchTerm + "", searchTags: [...this.tags]});
+		},
+
+		focusInput() {
+			this.$refs.searchInput.focus();
+		},
+
+		searchAll() {
+			this.$store.commit('selectAllBookmarksGroup');
+			this.editSearchInStore();
 		}
 
 	},
 	created() {
 		this.debouncedAdder = debounce(this.editSearchInStore, 750);
+	},
+
+	beforeMount() {
+		this.searchTerm = this.currentSearch;
 	},
 
 	watch: {
@@ -159,7 +162,8 @@ export default {
 	border: 1px solid #ccc;
 	transition: border 125ms ease;
 	background: white;
-	align-items: center;	
+	align-items: center;
+	cursor: text;	
 }
 
 .tags-selected {
@@ -187,6 +191,8 @@ export default {
 	position: absolute;
 	right: calc(12px);
 	top: calc(50% - 12px);
+	display: flex;
+	align-items: center;
 }
 
 .search-icon {
