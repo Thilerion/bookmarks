@@ -1,11 +1,19 @@
 <template>
-<div class="search-bar">
-	<input
+<div class="search-bar-wrapper">
+	<!--<input
 		type="text"
 		class="search-input"
 		placeholder="Search/filter bookmarks"
 		v-model="searchFilter"
-	>
+	>-->
+	<!--<div class="search-bar-wrapper">
+		<div class="selected-tag button-light has-text" v-for="tag in tags" :key="tag">{{tag}}</div>
+		<input type="text" class="hidden-input" placeholder="Search/filter bookmarks" @keydown="updateField" v-model="searchTerm">
+	</div>-->
+	<!--<div class="search-bar" contenteditable="true" @keydown="updateField" ref="searchBar"></div>-->
+	<div class="tags-selected"><button class="tag-selected button-light has-text" v-for="tag in tags" :key="tag" @click="removeSelectedTag(tag)">{{tag}}</button></div>
+	<input type="text" class="search-input" @keydown="updateField" v-model="searchTerm">
+
 	<button class="search-button">
 		<svg
 			class="search-icon"
@@ -22,52 +30,127 @@
 <script>
 import debounce from 'lodash/debounce'
 
+const ADD_TAG_KEYS = ["Tab", "Enter"];
+const REMOVE_TAG_KEYS = ["Backspace"];
+
 export default {
-	computed: {
-		searchFilter: {
-			get() {
-				return this.$store.state.searchFilter;
-			},
-			set(value) {
-				if (value === "") this.setNewValue(value);
-				this.debouncedSetter(value);
-			}
+	data() {
+		return {
+			tags: [],
+			searchTerm: ""
 		}
 	},
-	created() {
-		this.debouncedSetter = debounce(this.setNewValue, 300);
+	computed: {
+		currentSearch() {
+			return this.$store.getters.searchTerm;
+		},
+		currentTags() {
+			return this.$store.getters.searchTags;
+		},
+		availableTags() {
+			return this.$store.getters.uniqueTags;
+		},
+		availableTagsWithHash() {
+			return this.availableTags.map(tag => "#" + tag.toLowerCase());
+		},
+		tagsPresent() {
+			const re = new RegExp(this.availableTagsWithHash.join("|"), "gi");
+			let matches = this.searchTerm.match(re);
+			if (matches) {
+				return matches.length;
+			} else return 0;
+		},
+		lastTagPresent() {
+			if (this.tagsPresent < 1) return null;
+			
+			const re = new RegExp(this.availableTagsWithHash.join("|"), "gi");
+			let matches = [];
+
+			for (let i = 0; i < this.tagsPresent; i++) {
+				matches.push(re.exec(this.searchTerm));
+			}
+			console.log("All matches in input:");
+			console.log(matches);
+			return matches[matches.length - 1];
+		}
 	},
 	methods: {
-		setNewValue(value) {
-			this.$store.dispatch('editSearchFilter', value);
+		setNewValue() {
+			this.$store.dispatch('editSearchFilter', {searchTags: this.tags, searchTerm: this.searchTerm});
+		},
+
+		updateField(e) {
+			if (ADD_TAG_KEYS.includes(e.key) && this.tagsPresent > 0) {
+				//if tab is pressed, and tags are present in input
+				const cursorPosition = e.target.selectionStart;
+
+				//the place where the cursor should be if a tag is to be added is the index of the last tag present + its length
+				const targetCursorPosition = this.lastTagPresent.index + this.lastTagPresent[0].length;
+
+				//if both are equal, add the tag
+				if (cursorPosition === targetCursorPosition) {
+					e.preventDefault();
+					this.tags.push(this.lastTagPresent[0]);
+					let newSearchTerm = this.searchTerm.split("");
+					newSearchTerm.splice(this.lastTagPresent.index, this.lastTagPresent[0].length);
+					this.searchTerm = newSearchTerm.join("");
+				}
+			} else if (this.tags.length > 0 && REMOVE_TAG_KEYS.includes(e.key) && this.searchTerm === "") {
+				//if a remove key is pressed, and there are selected tags, remove the last tag
+				this.removeTag();
+			}
+			//console.log(e.target.selectionStart);
+			console.log(this.lastTagPresent);
+			console.log(this.tagsPresent);
+		},
+
+		addTag(e) {
+			
+		},
+
+		removeTag() {
+			if (this.tags && this.tags.length > 0) {
+				this.tags.pop();
+			}
+		},
+
+		removeSelectedTag(tagName) {
+			this.tags = this.tags.filter(tag => tag !== tagName);
 		}
 	}
 }
 </script>
 
 <style scoped>
-.search-bar {
+.search-bar-wrapper {
 	position: relative;
-	flex: 1 1 100%;
+	flex: 0 1 100%;
+	height: 2.1rem;
+	display: flex;
+	padding: 0.5rem 2em 0.5rem 0.5em;
+	font-size: 1.1rem;
+	line-height: 1.1rem;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	transition: border 125ms ease;
+	background: white;
+	align-items: center;	
+}
+
+.tags-selected {
+	flex: 1 0 auto;
+	white-space: nowrap;
+}
+
+.tag-selected {
+	margin-right: 0.5em;
 }
 
 .search-input {
-	width: 100%;
-	padding: 0.5em;
-	padding-right: 2em;
-	font-size: 0.9em;
-	border-radius: 5px;
-	border: 1px solid #ccc;
+	background: none;
+	border: none;
 	outline: none;
-	transition: border 125ms ease;
-}
-
-.search-input:focus {
-	border: 1px solid #aaa;
-}
-
-.search-input::-webkit-input-placeholder {
-	opacity: 0.5;
+	flex: 1 1 100%;
 }
 
 .search-button {

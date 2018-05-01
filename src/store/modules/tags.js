@@ -8,9 +8,10 @@ let tagStore = {
 			const bms = [...rootState.bookmarks.all] || [];
 			return bms.reduce((acc, bm) => {
 				if (bm.tags.length < 1) {
-					acc.push("Untagged");
+					acc.push("untagged");
 				} else {
-					acc.push(...bm.tags);
+					let lowercaseTags = bm.tags.map(t => t.toLowerCase());
+					acc.push(...lowercaseTags);
 				}				
 				return acc;
 			}, []);

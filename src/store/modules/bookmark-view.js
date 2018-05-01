@@ -7,6 +7,7 @@ let bookmarkView = {
 
 	state: {
 		searchTerm: "",
+		searchTags: [],
 		currentSortMode: 0,
 
 		currentBookmarkGroup: "All",
@@ -17,8 +18,9 @@ let bookmarkView = {
 	},
 
 	getters: {
-		searchActive: state => state.searchTerm !== "",
+		searchActive: state => state.searchTerm !== "" && state.searchTags.length > 0,
 		searchTerm: state => state.searchTerm,
+		searchTags: state => state.searchTags,
 
 		sortModeId: state => state.currentSortMode,
 		sortMode: state => state.sortModes[state.currentSortMode],
@@ -89,6 +91,10 @@ let bookmarkView = {
 			state.searchTerm = searchTerm;
 		},
 
+		changeSearchTags(state, searchTags) {
+			state.searchTags = searchTags;
+		},
+
 		changeSortMode(state, sortModeId) {
 			state.currentSortMode = sortModeId;
 		},
@@ -115,8 +121,9 @@ let bookmarkView = {
 	},
 
 	actions: {
-		editSearchFilter({ commit }, searchTerm) {
+		editSearchFilter({ commit }, {searchTerm, searchTags}) {
 			commit('changeSearchTerm', searchTerm);
+			commit('changeSearchTags', searchTags);
 		}
 	}
 }
