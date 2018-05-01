@@ -49,6 +49,7 @@
 
 			</div>
 			<BmCatList class="menu-block"/>
+			<BmTagList class="menu-block"/>
 		</div>
 		
 	</div>
@@ -58,11 +59,13 @@
 <script>
 import SidebarSubHeader from './SidebarSubHeader'
 import CatList from '../cat-list/CatList'
+import TagList from '../tag-list/TagList'
 
 export default {
 	components: {
 		BmSidebarSubHeader: SidebarSubHeader,
-		BmCatList: CatList
+		BmCatList: CatList,
+		BmTagList: TagList
 	},
 	computed: {
 		selectedGroup() {
