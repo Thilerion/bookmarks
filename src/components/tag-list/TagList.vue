@@ -2,9 +2,9 @@
 <div class="tag-list-wrapper">
 	<header class="menu-header">
 		<h2 class="menu-heading">Tags</h2>
-		<button class="tag-add button-light">
+		<!--<button class="tag-add button-light">
 			<BmSvgIcon icon="plus" />
-		</button>
+		</button>-->
 	</header>
 
 	<div class="tag-list">

@@ -7,7 +7,11 @@ let tagStore = {
 		allTags: (state, getters, rootState) => {
 			const bms = [...rootState.bookmarks.all] || [];
 			return bms.reduce((acc, bm) => {
-				acc.push(...bm.tags);
+				if (bm.tags.length < 1) {
+					acc.push("Untagged");
+				} else {
+					acc.push(...bm.tags);
+				}				
 				return acc;
 			}, []);
 		},

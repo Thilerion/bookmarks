@@ -206,7 +206,7 @@ header {
 
 .menu-block .menu-heading {	
 	text-transform: uppercase;
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	font-weight: normal;
 	color: inherit;
 	flex: 1 1 auto;
