@@ -18,7 +18,7 @@ let bookmarkView = {
 	},
 
 	getters: {
-		searchActive: state => state.searchTerm !== "" && state.searchTags.length > 0,
+		searchActive: state => state.searchTerm !== "" || state.searchTags.length > 0,
 		searchTerm: state => state.searchTerm,
 		searchTags: state => state.searchTags,
 

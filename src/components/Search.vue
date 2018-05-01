@@ -90,22 +90,27 @@ export default {
 				//if both are equal, add the tag
 				if (cursorPosition === targetCursorPosition) {
 					e.preventDefault();
-					this.tags.push(this.lastTagPresent[0]);
-					let newSearchTerm = this.searchTerm.split("");
-					newSearchTerm.splice(this.lastTagPresent.index, this.lastTagPresent[0].length);
-					this.searchTerm = newSearchTerm.join("");
+					this.addTag();
+					return;
 				}
-			} else if (this.tags.length > 0 && REMOVE_TAG_KEYS.includes(e.key) && this.searchTerm === "") {
+			} else if (this.tags.length > 0 && REMOVE_TAG_KEYS.includes(e.key) && e.target.selectionStart === 0) {
 				//if a remove key is pressed, and there are selected tags, remove the last tag
 				this.removeTag();
+				return;
 			}
-			//console.log(e.target.selectionStart);
-			console.log(this.lastTagPresent);
-			console.log(this.tagsPresent);
+
+			if (e.key === "Enter") {
+				this.editSearchInStore();
+			} else {
+				this.debouncedAdder();
+			}
 		},
 
-		addTag(e) {
-			
+		addTag() {
+			this.tags.push(this.lastTagPresent[0]);
+			let newSearchTerm = this.searchTerm.split("");
+			newSearchTerm.splice(this.lastTagPresent.index, this.lastTagPresent[0].length);
+			this.searchTerm = newSearchTerm.join("");
 		},
 
 		removeTag() {
@@ -116,7 +121,15 @@ export default {
 
 		removeSelectedTag(tagName) {
 			this.tags = this.tags.filter(tag => tag !== tagName);
+		},
+
+		editSearchInStore() {
+			this.$store.dispatch('editSearchFilter', {searchTerm: this.searchTerm + "", searchTags: [...this.tags]});
 		}
+
+	},
+	created() {
+		this.debouncedAdder = debounce(this.editSearchInStore, 750);
 	}
 }
 </script>
