@@ -124,7 +124,15 @@ let bookmarkView = {
 		},
 
 		pushTagToSearch(state, tagName) {
-			state.searchTags.push(tagName);
+			if (tagName === "untagged") {
+				console.log("Adding untagged");
+				state.searchTags = ["untagged"];
+			} else {
+				let tags = state.searchTags.filter(tag => tag !== "untagged");
+				tags.push(tagName);
+				state.searchTags = tags;
+			}
+			
 		},
 
 		removeTagFromSearch(state, tagToRemove) {
@@ -143,7 +151,7 @@ let bookmarkView = {
 				console.log("Tag is already in search");
 				return;
 			} else {
-				commit('changeSearchTags', [...state.searchTags, tagName]);
+				commit('pushTagToSearch', tagName);
 			}
 		},
 		toggleTagInSearch({ commit, state }, tagName) {
