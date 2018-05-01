@@ -36,7 +36,6 @@ const REMOVE_TAG_KEYS = ["Backspace"];
 export default {
 	data() {
 		return {
-			tags: [],
 			searchTerm: ""
 		}
 	},
@@ -44,8 +43,8 @@ export default {
 		currentSearch() {
 			return this.$store.getters.searchTerm;
 		},
-		currentTags() {
-			return this.$store.getters.searchTags;
+		tags() {
+			return this.$store.getters.searchTags;		
 		},
 		availableTags() {
 			return this.$store.getters.uniqueTags;
@@ -107,7 +106,7 @@ export default {
 		},
 
 		addTag() {
-			this.tags.push(this.lastTagPresent[0]);
+			this.$store.dispatch('addTagToSearch', this.lastTagPresent[0].slice(1));
 			let newSearchTerm = this.searchTerm.split("");
 			newSearchTerm.splice(this.lastTagPresent.index, this.lastTagPresent[0].length);
 			this.searchTerm = newSearchTerm.join("");
@@ -116,15 +115,14 @@ export default {
 
 		removeTag() {
 			if (this.tags && this.tags.length > 0) {
-				let tags = [...this.tags];
-				tags.pop();
-				this.tags = tags;
+				let tagToRemove = this.tags[this.tags.length - 1];
+				this.$store.commit('removeTagFromSearch', tagToRemove);
 			}
 			this.editSearchInStore();
 		},
 
 		removeSelectedTag(tagName) {
-			this.tags = this.tags.filter(tag => tag !== tagName);
+			this.$store.commit('removeTagFromSearch', tagName);
 			this.editSearchInStore();
 		},
 

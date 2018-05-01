@@ -121,6 +121,10 @@ let bookmarkView = {
 
 		pushTagToSearch(state, tagName) {
 			state.searchTags.push(tagName);
+		},
+
+		removeTagFromSearch(state, tagToRemove) {
+			state.searchTags = state.searchTags.filter(tag => tag !== tagToRemove);
 		}
 	},
 
