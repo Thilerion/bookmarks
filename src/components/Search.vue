@@ -116,13 +116,16 @@ export default {
 
 		removeTag() {
 			if (this.tags && this.tags.length > 0) {
-				this.tags.pop();
+				let tags = [...this.tags];
+				tags.pop();
+				this.tags = tags;
 			}
 			this.editSearchInStore();
 		},
 
 		removeSelectedTag(tagName) {
 			this.tags = this.tags.filter(tag => tag !== tagName);
+			this.editSearchInStore();
 		},
 
 		editSearchInStore() {
