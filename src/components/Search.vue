@@ -111,14 +111,14 @@ export default {
 			let newSearchTerm = this.searchTerm.split("");
 			newSearchTerm.splice(this.lastTagPresent.index, this.lastTagPresent[0].length);
 			this.searchTerm = newSearchTerm.join("");
-			this.debouncedAdder();
+			this.editSearchInStore();
 		},
 
 		removeTag() {
 			if (this.tags && this.tags.length > 0) {
 				this.tags.pop();
 			}
-			this.debouncedAdder();
+			this.editSearchInStore();
 		},
 
 		removeSelectedTag(tagName) {
@@ -132,6 +132,15 @@ export default {
 	},
 	created() {
 		this.debouncedAdder = debounce(this.editSearchInStore, 750);
+	},
+
+	watch: {
+		currentTags(newValue, oldValue) {
+			if (oldValue.length !== newValue.length) {
+				console.log("Tag watcher tag length is different");
+				this.tags = newValue;
+			}
+		}
 	}
 }
 </script>

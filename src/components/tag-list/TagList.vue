@@ -12,6 +12,7 @@
 			class="tag-item button-light has-text"
 			v-for="tag in tagAmounts"
 			:key="tag.name"
+			@click="addTagToSearch(tag.name)"
 		>{{tag.name}}<span class="tag-amount">{{tag.amount}}</span></button>
 	</div>
 
@@ -30,6 +31,11 @@ export default {
 	computed: {
 		tagAmounts() {
 			return this.$store.getters.sortedTagAmountsArray;
+		}
+	},
+	methods: {
+		addTagToSearch(tagName) {
+			this.$store.dispatch('addTagToSearch', "#" + tagName);
 		}
 	}
 }

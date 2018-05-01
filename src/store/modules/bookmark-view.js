@@ -117,6 +117,10 @@ let bookmarkView = {
 		selectCategory(state, id) {
 			state.currentBookmarkGroup = "Category";
 			state.currentCategory = id;
+		},
+
+		pushTagToSearch(state, tagName) {
+			state.searchTags.push(tagName);
 		}
 	},
 
@@ -124,6 +128,15 @@ let bookmarkView = {
 		editSearchFilter({ commit }, {searchTerm, searchTags}) {
 			commit('changeSearchTerm', searchTerm);
 			commit('changeSearchTags', searchTags);
+		},
+
+		addTagToSearch({ commit, state }, tagName) {
+			if (state.searchTags.includes(tagName)) {
+				console.log("Tag is already in search");
+				return;
+			} else {
+				commit('changeSearchTags', [...state.searchTags, tagName]);
+			}
 		}
 	}
 }
