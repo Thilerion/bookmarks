@@ -25,6 +25,11 @@
 		</select>
 	</div>
 
+	<div class="input-group">
+		<label for="bookmark-tags">Tags</label>
+		<BmTagPicker :initialTags="tags" />
+	</div>
+
 	<template slot="buttons">	
 	<button class="action-button-base" @click="validate">Edit bookmark</button>
 	</template>
@@ -34,16 +39,19 @@
 
 <script>
 import Modal from './Modal';
+import TagPicker from '../TagPicker';
 import {validateUrl} from '@/helpers/validators'
 
 export default {
 	components: {
-		BmModal: Modal
+		BmModal: Modal,
+		BmTagPicker: TagPicker
 	},
 	data() {
 		return {
 			url: "",
 			title: "",
+			tags: [],
 			category: "none",
 			id: null,
 			valid: true,
@@ -72,8 +80,10 @@ export default {
 				id: this.id,
 				title: this.title,
 				url: this.url,
-				category: this.category
+				category: this.category,
+				tags: this.$children[0].$children[0].$data.tags
 			};
+			console.log(bm);
 			this.$store.dispatch('saveEditedBookmark', bm);
 			this.toggleModalAddBookmark();					
 		},
@@ -114,6 +124,7 @@ export default {
 		this.id = bm.id;
 		this.title = bm.title;
 		this.category = bm.category;
+		this.tags = bm.tags || [];
 
 		if (this.category === null) this.category = "none";
 	}
@@ -121,25 +132,25 @@ export default {
 </script>
 
 <style scoped>
-.input-group input {
-	margin-bottom: 1em;
+.input-group >>> input {
 	transition: all .5s ease;
 }
 
-.input-group input, .input-group select {
+.input-group >>> input, .input-group >>> select {
 	padding: 0.5em;
 	border-radius: 5px;
 	border: 1px solid #ccc;
 	outline: none;
 	transition: all .2s ease;
 	width: 25em;
+	margin-bottom: 1em;
 }
 
-.input-group input:focus {
+.input-group >>> input:focus {
 	border: 1px solid #999;
 }
 
-.input-group label {
+.input-group >>> label {
 	margin-bottom: 0.25em;
 	display: block;
 }

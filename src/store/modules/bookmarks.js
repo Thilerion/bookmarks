@@ -54,6 +54,7 @@ let bookmarkStore = {
 			bookmark.title = title;
 			bookmark.url = url;
 			bookmark.category = category;
+			bookmark.tags = tags;
 		}
 	},
 
