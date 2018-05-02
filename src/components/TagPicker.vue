@@ -62,7 +62,7 @@ export default {
 		}
 	},
 	beforeMount() {
-		if (this.initialTags) this.tags = this.initialTags;
+		if (this.initialTags) this.tags = [...this.initialTags];
 	}
 }
 </script>
