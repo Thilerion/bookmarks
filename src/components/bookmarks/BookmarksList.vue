@@ -10,6 +10,10 @@
 			:key="triggerBookmarkTransition"
 		/>
 	</transition>
+	<div class="no-bookmarks" v-if="noBookmarksStored">
+		<p>No bookmarks have been found!</p>
+		<button class="button-light has-text" @click="loadDefaultStorage">Click here to load defaults</button>
+	</div>
 </div>
 </template>
 
@@ -25,6 +29,9 @@ export default {
 		BmBookmarksListGrid: BookmarksListGrid
 	},
 	computed: {
+		noBookmarksStored() {
+			return this.$store.getters.allBookmarkIds.length === 0;
+		},
 		bookmarksArray() {
 			return this.$store.getters.sortedBookmarksToShow;
 		},
@@ -41,11 +48,22 @@ export default {
 
 			return `${view}${group}${cat}${sort}${length}`;
 		}
+	},
+	methods: {
+		loadDefaultStorage() {
+			this.$store.dispatch('initalizeStorageFromApi', true);
+		}
 	}
 }
 </script>
 
 <style>
+.no-bookmarks {
+	text-align: center;
+	color: var(--font-dark-tertiary);
+	padding: 20vh 0;
+}
+
 /*
 ** === Bookmarks View Mode fading transition ===
 */

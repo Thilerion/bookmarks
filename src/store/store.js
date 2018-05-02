@@ -8,7 +8,7 @@ import userPrefs from './modules/prefs.js'
 import view from './modules/views.js'
 import tags from './modules/tags.js'
 
-import { initialize } from './api/api'
+import { initialize, initializeDefaults } from './api/api'
 
 Vue.use(Vuex);
 
@@ -50,13 +50,30 @@ let store = new Vuex.Store({
 
 	actions: {
 
-		initalizeStorageFromApi({dispatch}) {
-			let retrievedItems = initialize("bookmarks", "categories", "prefs")
+		initalizeStorageFromApi({dispatch}, forceDefaults = false) {
+			let fn = initialize;
+			if (forceDefaults === true) fn = initializeDefaults;
+			
+			let retrievedItems = fn("bookmarks", "categories", "prefs")
 				.then(retrieved => {
-					console.log(retrieved);
-					dispatch('initializeBookmarks', retrieved.bookmarks);
-					dispatch('initializeCategories', retrieved.categories);
-					dispatch('initializePrefs', retrieved.prefs);
+					let { bookmarks, categories, prefs } = retrieved;
+
+					if (bookmarks == null) {
+						console.warn("No bookmarks found in storage.");
+						dispatch('initializeBookmarks', []);
+					} else {
+						dispatch('initializeBookmarks', retrieved.bookmarks);
+					}
+					if (categories == null) {
+						console.warn("No categories found in storage.");
+					} else {
+						dispatch('initializeCategories', retrieved.categories);
+					}
+					if (prefs == null) {
+						console.warn("No prefs found in storage.");
+					} else {
+						dispatch('initializePrefs', retrieved.prefs);
+					}					
 				})
 		},
 

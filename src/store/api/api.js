@@ -1,6 +1,6 @@
 import defaultData from './default-data';
 
-const TEST_MODE = true;
+let TEST_MODE = false;
 
 function retrieve(item) {
 	if (TEST_MODE === true) return null;
@@ -38,4 +38,9 @@ function initialize(...items) {
 	})
 }
 
-export { initialize, save, retrieve };
+function initializeDefaults(...items) {
+	TEST_MODE = true;
+	return initialize(...items);
+}
+
+export { initialize, initializeDefaults, save, retrieve };
