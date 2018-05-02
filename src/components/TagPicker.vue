@@ -72,12 +72,16 @@ export default {
 	margin-bottom: 0.5em;
 	padding: 0.25em;
 	padding-left: 0;
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: -0.5em;
 }
 
 .tag-selected {
 	margin-right: 0.5em;
 	position: relative;
 	padding-right: 1em;
+	margin-bottom: 0.5em;
 }
 
 .search-input {

@@ -105,6 +105,7 @@ export default {
 	padding-bottom: 0;
 	display: grid;
 	grid-auto-flow: row;
+	width: 25em;
 }
 
 .modal-title {
