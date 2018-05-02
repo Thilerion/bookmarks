@@ -1,7 +1,5 @@
 <template>
-<span v-if="searchActive">
-	Found {{amount}} results (out of {{total}}).
-</span>
+<span v-if="searchActive">Found {{amount}} (out of {{total}}).</span>
 
 </template>
 
@@ -9,7 +7,9 @@
 export default {
 	computed: {
 		amount() {
-			return this.$store.getters.bookmarksToShowLength;
+			let results = this.$store.getters.bookmarksToShowLength;
+			if (results === 1) return "1 result";
+			else return `${results} results`;
 		},
 		total() {
 			return this.$store.getters.allBookmarkIds.length;
