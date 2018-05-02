@@ -8,7 +8,7 @@ import userPrefs from './modules/prefs.js'
 import view from './modules/views.js'
 import tags from './modules/tags.js'
 
-import { initialize, initializeDefaults } from './api/api'
+import { initialize, initializeDefaults, retrieve, save } from './api/api'
 
 Vue.use(Vuex);
 
@@ -29,18 +29,16 @@ let store = new Vuex.Store({
 
 	getters: {
 		categoryToSave: (state, getters) => {
-			return {
-				categories: state.categories.all,
-				categoryOrder: state.categories.categoryOrder
-			}
+			return [...state.categories.all];
+		},
+		categoryOrderToSave: (state, getters) => {
+			return [...state.categories.categoryOrder];
 		},
 		bookmarkToSave: (state, getters, rootState) => {
-			return {
-				bookmarks: rootState.bookmarks.all
-			}
+			return [...rootState.bookmarks.all];
 		},
-		allToSave: (state, getters) => {
-			return { ...getters.categoryToSave, ...getters.bookmarkToSave };
+		prefsToSave: (state, getters) => {
+			return { ...getters.userPrefs };
 		}
 	},
 
@@ -50,7 +48,7 @@ let store = new Vuex.Store({
 
 	actions: {
 
-		initalizeStorageFromApi({dispatch}, forceDefaults = false) {
+		initializeStorageFromApi({dispatch}, forceDefaults = false) {
 			let fn = initialize;
 			if (forceDefaults === true) fn = initializeDefaults;
 			
@@ -58,42 +56,61 @@ let store = new Vuex.Store({
 				.then(retrieved => {
 					let { bookmarks, categories, prefs } = retrieved;
 
+					if (categories == null) {
+						console.warn("No categories found in storage.");
+						dispatch('initializeCategories', {all: [], categoryOrder: []});
+					} else {
+						dispatch('initializeCategories', {all: categories.all, categoryOrder: categories.categoryOrder});
+					}
+					if (prefs == null) {
+						console.warn("No prefs found in storage.");
+					} else {
+						dispatch('initializePrefs', retrieved.prefs);
+					}	
+					
 					if (bookmarks == null) {
 						console.warn("No bookmarks found in storage.");
 						dispatch('initializeBookmarks', []);
 					} else {
 						dispatch('initializeBookmarks', retrieved.bookmarks);
 					}
-					if (categories == null) {
-						console.warn("No categories found in storage.");
-					} else {
-						dispatch('initializeCategories', retrieved.categories);
-					}
-					if (prefs == null) {
-						console.warn("No prefs found in storage.");
-					} else {
-						dispatch('initializePrefs', retrieved.prefs);
-					}					
 				})
 		},
 
-		retrieveFromStorageAllData({ commit, dispatch }) {
-			
+		saveToStorageCategories({getters}) {
+			save('categories', { all: getters.categoryToSave, categoryOrder: getters.categoryOrderToSave });
 		},
-		saveToStorageAllData({ getters }) {
 
+		saveToStorageBookmarks({getters}) {
+			save('bookmarks', getters.bookmarkToSave);
 		},
-		setAllSaved({ commit, dispatch }, allRetrieved) {
-			
+
+		saveToStoragePrefs({getters}) {
+			save('prefs', getters.prefsToSave);
 		}
 	}	
 });
 
 export default store;
 
-store.dispatch('initalizeStorageFromApi');
+store.dispatch('initializeStorageFromApi');
 
-store.watch((state, getters) => getters.allToSave, (oldVal, newVal) => {
-	console.log("Watched store values have changed. Now going to update localStorage...");
-	store.dispatch('saveToStorageAllData');
-});
+store.watch((state, getters) => getters.categoryToSave, (oldVal, newVal) => {
+	console.log("Watched category values have changed. Now going to update localStorage...");
+	store.dispatch('saveToStorageCategories');
+}, { deep: true });
+
+store.watch((state, getters) => getters.categoryOrderToSave, (oldVal, newVal) => {
+	console.log("Watched category order values have changed. Now going to update localStorage...");
+	store.dispatch('saveToStorageCategories');
+}, { deep: true });
+
+store.watch((state, getters) => getters.bookmarkToSave, (oldVal, newVal) => {
+	console.log("Watched bookmark values have changed. Now going to update localStorage...");
+	store.dispatch('saveToStorageBookmarks');
+}, { deep: true });
+
+store.watch((state, getters) => getters.prefsToSave, (oldVal, newVal) => {
+	console.log("Watched preferences have changed. Now going to update localStorage...");
+	store.dispatch('saveToStoragePrefs');
+}, { deep: true });

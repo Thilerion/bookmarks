@@ -1,5 +1,3 @@
-import {save, retrieve} from '../api/api'
-
 let userPrefs = {
 
 	state: {

@@ -33,6 +33,10 @@ function initialize(...items) {
 			for (let item of items) {
 				retrievedItems[item] = defaultData[item];
 			}
+		} else {
+			for (let item of items) {
+				retrievedItems[item] = retrieve(item);
+			}
 		}
 		resolve(retrievedItems);
 	})
@@ -40,7 +44,9 @@ function initialize(...items) {
 
 function initializeDefaults(...items) {
 	TEST_MODE = true;
-	return initialize(...items);
+	let defaults = initialize(...items);
+	TEST_MODE = false;
+	return defaults;
 }
 
 export { initialize, initializeDefaults, save, retrieve };

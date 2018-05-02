@@ -51,7 +51,7 @@ export default {
 	},
 	methods: {
 		loadDefaultStorage() {
-			this.$store.dispatch('initalizeStorageFromApi', true);
+			this.$store.dispatch('initializeStorageFromApi', true);
 		}
 	}
 }
