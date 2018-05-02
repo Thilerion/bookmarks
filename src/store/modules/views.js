@@ -7,7 +7,7 @@ let views = {
 			{ name: 'Grid', icon: "view-grid", component: "BmBookmarksListGrid" }
 		],
 		modalOptions: ['BmAddBookmark', 'BmAddCategory', 'BmEditBookmark'],
-		activeModal: null
+		activeModal: 0
 	},
 
 	getters: {
