@@ -14,6 +14,11 @@
 	</div>
 
 	<div class="input-group">
+		<label for="bookmark-description">Description</label>
+		<input type="text" id="bookmark-description" v-model="description">
+	</div>
+
+	<div class="input-group">
 		<label for="bookmark-category">Category</label>
 		<select v-model="category" id="bookmark-category">
 			<option value="none">Please select a category</option>
@@ -51,6 +56,7 @@ export default {
 		return {
 			url: "",
 			title: "",
+			description: "",
 			category: "none",
 			valid: true,
 			errorMessages: []
@@ -66,9 +72,6 @@ export default {
 		errors() {
 			if (this.valid === false) return this.errorMessages;
 			else return [];
-		},
-		initialCategory() {
-			
 		}
 	},
 	methods: {
@@ -80,7 +83,8 @@ export default {
 				title: this.title,
 				url: this.url,
 				category: this.category,
-				tags: this.$children[0].$children[0].$data.tags
+				tags: this.$children[0].$children[0].$data.tags,
+				description: String(this.description)
 			};
 			this.$store.dispatch('saveNewBookmark', bm);
 			this.toggleModalAddBookmark();					

@@ -49,12 +49,13 @@ let bookmarkStore = {
 			bm.favorite = !bm.favorite;
 		},
 
-		editBookmark(state, {id, title, url, category, tags}) {
+		editBookmark(state, {id, title, url, category, tags, description}) {
 			let bookmark = state.all.find(bm => bm.id === id);
 			bookmark.title = title;
 			bookmark.url = url;
 			bookmark.category = category;
 			bookmark.tags = tags;
+			bookmark.description = description;
 		}
 	},
 
