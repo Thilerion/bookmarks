@@ -55,12 +55,18 @@ export default {
 }
 
 .main-fixed {
-	flex: 0 0 3em;
-	max-height: 3em;
+	/*flex: 0 0 3em;
+	max-height: 3em;*/
+	flex: 0 0 auto;
+	padding: 0.5em 0;
 	border-bottom: 1px solid transparent;
 	transition: background-color .5s ease-out, border .3s ease;
 	display: flex;
 	align-items: center;
+}
+
+.scroll-wrap {
+	flex: 10 1 80vh;
 }
 
 .main-fixed > *:not(:last-child) {

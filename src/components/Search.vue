@@ -151,10 +151,11 @@ export default {
 
 <style scoped>
 .search-bar-wrapper {
+	width: 100%;
 	position: relative;
-	flex: 0 1 100%;
-	height: 2.1rem;
+	min-height: 2.1rem;
 	display: flex;
+	flex-wrap: wrap;
 	padding: 0.5rem 2em 0.5rem 0.5em;
 	font-size: 1.1rem;
 	line-height: 1.1rem;
@@ -162,13 +163,16 @@ export default {
 	border: 1px solid #ccc;
 	transition: border 125ms ease;
 	background: white;
+	cursor: text;
 	align-items: center;
-	cursor: text;	
+	padding-right: 5em;
 }
 
 .tags-selected {
-	flex: 1 0 auto;
+	flex: 0 0 auto;
 	white-space: nowrap;
+	height: 1.5em;
+
 }
 
 .tag-selected {
@@ -179,7 +183,8 @@ export default {
 	background: none;
 	border: none;
 	outline: none;
-	flex: 1 1 100%;
+	min-width: 30em;
+	flex: 0 0 auto;
 }
 
 .search-button {
@@ -191,7 +196,9 @@ export default {
 	position: absolute;
 	right: calc(12px);
 	top: calc(50% - 12px);
+	width: 7em;
 	display: flex;
+	justify-content: flex-end;
 	align-items: center;
 }
 
