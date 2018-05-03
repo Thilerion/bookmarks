@@ -9,7 +9,7 @@
 		<main class="main-content">
 			<BmBookmarksList />
 		</main>
-		<BmScrollTop v-if="showScrollToTopButton" @scrollToTop="scrollToTop"/>
+		<BmScrollTop v-show="showScrollToTopButton" @scrollToTop="scrollToTop"/>
 	</div>
 	
 </div>
