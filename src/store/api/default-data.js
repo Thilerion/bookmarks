@@ -10,7 +10,7 @@ const defaultBookmarks = [
 		id: 0,
 		category: 4,
 		added: 1525023000000,
-		tags: [],
+		tags: ["awesome", "alpha", "beta"],
 		favorite: true
 	},
 	{
@@ -20,7 +20,7 @@ const defaultBookmarks = [
 		id: 1,
 		category: 3,
 		added: 1525021200000,
-		tags: [],
+		tags: ['beta', "gamma", "delta", "epsilon"],
 		favorite: true
 	},
 	{
@@ -30,7 +30,7 @@ const defaultBookmarks = [
 		id: 3,
 		category: 4,
 		added: 1524952740000,
-		tags: [],
+		tags: ["awesome", "epsilon"],
 		favorite: true
 	},
 	{
@@ -40,7 +40,7 @@ const defaultBookmarks = [
 		id: 8,
 		category: 5,
 		added: 1524885000000,
-		tags: [],
+		tags: ["something", "something-else"],
 		favorite: false
 	},
 	{
@@ -50,7 +50,7 @@ const defaultBookmarks = [
 		id: 4,
 		category: 1,
 		added: 1524849000000,
-		tags: [],
+		tags: ["awesome", "something-else", "delta"],
 		favorite: false
 	},
 	{
@@ -70,7 +70,7 @@ const defaultBookmarks = [
 		id: 7,
 		category: 2,
 		added: 1520190667705,
-		tags: [],
+		tags: ["delta", "epsilon", "gooood"],
 		favorite: false
 	},
 	{
@@ -80,7 +80,7 @@ const defaultBookmarks = [
 		id: 6,
 		category: 1,
 		added: 1521690767705,
-		tags: ["Alpha", "Beta"],
+		tags: ["alpha", "beta"],
 		favorite: false
 	},
 	{
@@ -90,7 +90,7 @@ const defaultBookmarks = [
 		id: 5,
 		category: 0,
 		added: 1522590867705,
-		tags: ["Alpha", "Gamma"],
+		tags: ["alpha", "gamma"],
 		favorite: false
 	},
 	{
@@ -100,7 +100,7 @@ const defaultBookmarks = [
 		id: 9,
 		category: 3,
 		added: 1520090067706,
-		tags: ["Alpha", "Beta", "Gamma", "Delta"],
+		tags: ["alpha", "beta", "gamma", "delta"],
 		favorite: false
 	},
 	{
@@ -110,7 +110,7 @@ const defaultBookmarks = [
 		id: 10,
 		category: 0,
 		added: 1520890177705,
-		tags: [],
+		tags: ["gooood"],
 		favorite: false
 	},
 	{
@@ -120,7 +120,7 @@ const defaultBookmarks = [
 		id: 11,
 		category: 1,
 		added: 1520390367705,
-		tags: [],
+		tags: ["how", "you", "doing"],
 		favorite: false
 	},
 	{
@@ -130,7 +130,7 @@ const defaultBookmarks = [
 		id: 12,
 		category: 5,
 		added: 1522190361105,
-		tags: [],
+		tags: ["im", "great", "thanks"],
 		favorite: false
 	},
 	{
@@ -140,7 +140,7 @@ const defaultBookmarks = [
 		id: 13,
 		category: 5,
 		added: 1524831175551,
-		tags: [],
+		tags: ["alpha"],
 		favorite: false
 	},
 	{
@@ -150,7 +150,7 @@ const defaultBookmarks = [
 		id: 14,
 		category: null,
 		added: 1524821175551,
-		tags: [],
+		tags: ["gamma", "theta", "awesome"],
 		favorite: false
 	},
 	{
@@ -160,7 +160,7 @@ const defaultBookmarks = [
 		id: 15,
 		category: null,
 		added: 1524841175551,
-		tags: [],
+		tags: ["hey"],
 		favorite: false
 	},
 	{
@@ -201,7 +201,7 @@ const defaultBookmarks = [
 		id: 19,
 		category: 2,
 		added: 1522590267707,
-		tags: [],
+		tags: ["good", "goood", "gooood", "great", "terrific"],
 		favorite: false
 	},
 	{
@@ -210,7 +210,7 @@ const defaultBookmarks = [
 		category: 1,
 		id: 20,
 		added: 1525163723052,
-		tags: [],
+		tags: ["avii", "meweb", "wemeb", "awesome", "gamma"],
 		favorite: false,
 		description: ""
 	},
@@ -230,7 +230,7 @@ const defaultBookmarks = [
 		category: 0,
 		id: 22,
 		added: 1525156523052,
-		tags: [],
+		tags: ["how", "where", "when"],
 		favorite: false,
 		description: ""
 	},
@@ -240,7 +240,7 @@ const defaultBookmarks = [
 		category: 1,
 		id: 23,
 		added: 1525152923052,
-		tags: [],
+		tags: ["when", "why", "alpha"],
 		favorite: true,
 		description: ""
 	},
@@ -250,7 +250,7 @@ const defaultBookmarks = [
 		category: null,
 		id: 24,
 		added: 1525149323052,
-		tags: [],
+		tags: ["sure"],
 		favorite: false,
 		description: ""
 	},
@@ -260,7 +260,7 @@ const defaultBookmarks = [
 		category: 5,
 		id: 25,
 		added: 1525145723052,
-		tags: [],
+		tags: ["ok", "okay", "loz", "ma", "alpha"],
 		favorite: false,
 		description: "Acjo suroshe heivimin kac kasues fut gub leoji adiki. Vi wufif po nimsuzpif Juboguluf. Sig rarotlu seg kengebag Amabien!"
 	},
@@ -270,7 +270,7 @@ const defaultBookmarks = [
 		category: 3,
 		id: 26,
 		added: 1525142123052,
-		tags: [],
+		tags: ["beta", "gamma", "theta", "ok"],
 		favorite: false,
 		description: ""
 	},
@@ -280,7 +280,7 @@ const defaultBookmarks = [
 		category: null,
 		id: 27,
 		added: 1525138523052,
-		tags: [],
+		tags: ["ok", "theta"],
 		favorite: false,
 		description: ""
 	},
@@ -290,7 +290,7 @@ const defaultBookmarks = [
 		category: 1,
 		id: 28,
 		added: 1525134923052,
-		tags: [],
+		tags: ["where", "good", "ok"],
 		favorite: false,
 		description: ""
 	},
@@ -300,7 +300,7 @@ const defaultBookmarks = [
 		category: 2,
 		id: 29,
 		added: 1525131323052,
-		tags: [],
+		tags: ["some", "ok", "okay", "blurry"],
 		favorite: false,
 		description: ""
 	},
@@ -310,7 +310,7 @@ const defaultBookmarks = [
 		category: 0,
 		id: 30,
 		added: 1525127723052,
-		tags: [],
+		tags: ["inspiration", "webdesign", "webapps", "javascript"],
 		favorite: true,
 		description: "Pev hevulah top mojo zujhav sogujif."
 	},
@@ -320,7 +320,7 @@ const defaultBookmarks = [
 		category: 1,
 		id: 31,
 		added: 1525124123052,
-		tags: [],
+		tags: ["inspiration", "webdesign", "css"],
 		favorite: true,
 		description: "Ce zenacejiw apoih nebo fivinwa."
 	},
@@ -330,7 +330,7 @@ const defaultBookmarks = [
 		category: 2,
 		id: 32,
 		added: 1525120523052,
-		tags: [],
+		tags: ["inspiration", "css", "webdesign"],
 		favorite: false,
 		description: ""
 	},
@@ -350,7 +350,7 @@ const defaultBookmarks = [
 		category: 2,
 		id: 34,
 		added: 1525113323052,
-		tags: [],
+		tags: ["webapps", "inspiration", "awesome", "gooood"],
 		favorite: false,
 		description: ""
 	},
@@ -370,7 +370,7 @@ const defaultBookmarks = [
 		category: 3,
 		id: 36,
 		added: 1525106123052,
-		tags: [],
+		tags: ["nice", "tutorials"],
 		favorite: false,
 		description: ""
 	},
@@ -380,7 +380,7 @@ const defaultBookmarks = [
 		category: 2,
 		id: 37,
 		added: 1525102523052,
-		tags: [],
+		tags: ["tutorials", "webdesign", "inspiration"],
 		favorite: false,
 		description: ""
 	},
@@ -400,7 +400,7 @@ const defaultBookmarks = [
 		category: 1,
 		id: 39,
 		added: 1525095323052,
-		tags: [],
+		tags: ["where", "and", "when"],
 		favorite: false,
 		description: ""
 	},
@@ -410,7 +410,7 @@ const defaultBookmarks = [
 		category: 0,
 		id: 40,
 		added: 1525091723052,
-		tags: [],
+		tags: ["alpha", "gamma", "gooood", "ok"],
 		favorite: true,
 		description: ""
 	},
