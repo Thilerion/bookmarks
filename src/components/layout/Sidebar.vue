@@ -147,6 +147,7 @@ header {
 .sidebar-content {
 	flex: 1 1 auto;
 	font-size: 87.5%;
+	padding-bottom: 1em;
 }
 
 .scroll-wrap {
