@@ -145,6 +145,12 @@ button {
 	padding: 0.2em 0.5em;
 }
 
+.button-light.is-wide {
+	display: block;
+	text-align: center;
+	font-size: 1.1em;
+}
+
 p {
 	padding: 0;
 	margin: 0;

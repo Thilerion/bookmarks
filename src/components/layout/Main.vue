@@ -9,6 +9,7 @@
 		<main class="main-content">
 			<BmBookmarksList />
 		</main>
+		<BmScrollTop v-if="showScrollToTopButton" @scrollToTop="scrollToTop"/>
 	</div>
 	
 </div>
@@ -17,6 +18,7 @@
 <script>
 import BookmarksList from '../bookmarks/BookmarksList'
 import SearchBar from '@/components/Search'
+import ScrollTop from '@/components/ScrollTop'
 
 import BookmarksListOptions from '../bookmarks/BookmarksListOptions';
 
@@ -24,16 +26,28 @@ export default {
 	components: {
 		BmBookmarksList: BookmarksList,
 		BmSearchBar: SearchBar,
-		BmBookmarksListOptions: BookmarksListOptions
+		BmBookmarksListOptions: BookmarksListOptions,
+		BmScrollTop: ScrollTop
 	},
 	data() {
 		return {
-			applyTopBorder: false
+			scrollAmount: 0
+		}
+	},
+	computed: {
+		applyTopBorder() {
+			return this.scrollAmount > 4;
+		},
+		showScrollToTopButton() {
+			return this.scrollAmount > 100;
 		}
 	},
 	methods: {
 		contentScrolled(target, e) {
-			this.applyTopBorder = target.scrollTop >= 4;
+			this.scrollAmount = target.scrollTop;
+		},
+		scrollToTop() {
+			this.$refs.mainContent.scrollTo(0,0);
 		}
 	},
 	mounted() {
