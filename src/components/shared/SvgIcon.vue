@@ -18,7 +18,7 @@
     <path d="M0 0h24v24H0z" fill="none"/>
 </svg>
 
-<svg v-else-if="icon === 'view-grid'" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<svg v-else-if="icon === 'view-grid'" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="own-icon">
 	<path d="M3 3v4h4V3H3zM3 8v4h4V8H3zM3 13v4h4v-4H3zM8 3v4h4V3H8zM8 8v4h4V8H8zM8 13v4h4v-4H8zM13 3v4h4V3h-4zM13 8v4h4V8h-4zM13 13v4h4v-4h-4z"/>
 </svg>
 
@@ -27,7 +27,7 @@
     <path d="M0 0h24v24H0z" fill="none"/>
 </svg>
 
-<svg v-else-if="icon === 'view-list'" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<svg v-else-if="icon === 'view-list'" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="own-icon">
 	<path d="M3 7h3V4H3v3zm4-3v3h10V4H7zM3 11h3V8H3v3zm4-3v3h10V8H7zM3 15h3v-3H3v3zm4-3v3h10v-3H7z"/>
 </svg>
 
@@ -36,7 +36,7 @@
     <path d="M0 0h24v24H0z" fill="none"/>
 </svg>
 
-<svg v-else-if="icon === 'view-compact'" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<svg v-else-if="icon === 'view-compact'" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="own-icon">
 	<path d="M3 14v2h14v-2H3zM3 11v2h14v-2H3zM3 8v2h14V8H3zM3 5v2h14V5H3z"/>
 </svg>
 
@@ -66,7 +66,7 @@
     <path d="M0 0h24v24H0z" fill="none"/>
 </svg>
 
-<svg v-else-if="icon === 'sort-list'" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" >
+<svg v-else-if="icon === 'sort-list'" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"  class="own-icon">
 	<path d="M2 15h5.33333v-2H2v2zM2 5v2h16V5H2zm0 6h10.6667V9H2v2z" />
 </svg>
 
@@ -102,6 +102,9 @@ svg {
 	fill: currentColor;
 	position: relative;
 	vertical-align: middle;
+}
+
+.own-icon {
 	shape-rendering: crispEdges;
 }
 </style>
