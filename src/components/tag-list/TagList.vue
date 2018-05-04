@@ -5,12 +5,13 @@
 		<!--<button class="tag-add button-light">
 			<BmSvgIcon icon="plus" />
 		</button>-->
+		<div class="amount">{{tagsToShowAmount}}/{{amountOfTags}} tags</div>
 	</header>
 
 	<div class="tag-list">
 		<button
 			class="tag-item has-text"
-			v-for="tag in tagArrayMax"
+			v-for="tag in tagsToShow"
 			:key="tag.name"
 			@click="toggleTagInSearch(tag.name)"
 			:class="selectedClass(tag.name)"
@@ -18,7 +19,7 @@
 	
 	</div>
 	<div class="show-tags-button-wrapper">
-		<button class="btn-show-all button-light is-wide has-text" @click="showAllTags" v-if="showMoreButton">Show all</button>
+		<button class="btn-show-all button-light is-wide has-text" @click="showMoreTags" v-if="showMoreButton">Show more</button>
 		<button class="btn-show-all button-light is-wide has-text" @click="showLessTags" v-if="showLessButton">Show less</button>
 	</div>
 
@@ -34,25 +35,39 @@ export default {
 	},
 	data() {
 		return {
-			maxTagsVisible: 20,
-			defaultMaxTagsVisible: 20
+			moreTagsVisible: 40,
+			defaultMaxTagsVisible: 20,
+			showingMore: false
 		}
 	},
 	computed: {
-		tagBookmarkAmounts() {
+		tags() {
 			return this.$store.getters.sortedTagAmountsArray;
 		},
-		tagArrayMax() {
-			return this.tagBookmarkAmounts.slice(0, Math.min(this.maxTagsVisible, this.amountOfTags));
+		tagsToShow() {			
+			return this.tags.slice(0, this.tagsToShowAmount);		
+		},
+		tagsToShowMaxAmount() {
+			return Math.min(this.amountOfTags, this.moreTagsVisible);
+		},
+		tagsToShowDefaultAmount() {
+			return Math.min(this.amountOfTags, this.defaultMaxTagsVisible);
+		},
+		tagsToShowAmount() {
+			if (this.showingMore === true) {
+				return this.tagsToShowMaxAmount;
+			} else {
+				return this.tagsToShowDefaultAmount;
+			}
 		},
 		amountOfTags() {
 			return this.$store.getters.uniqueTags.length;
 		},
 		showMoreButton() {
-			return this.amountOfTags > this.maxTagsVisible;
+			return (this.amountOfTags > this.defaultMaxTagsVisible) && (this.showingMore === false);
 		},
 		showLessButton() {
-			return this.maxTagsVisible > this.defaultMaxTagsVisible;
+			return (this.amountOfTags > this.defaultMaxTagsVisible) && (this.showingMore === true);
 		}
 	},
 	methods: {
@@ -66,11 +81,11 @@ export default {
 				return "button-light";
 			}
 		},
-		showAllTags() {
-			this.maxTagsVisible = this.amountOfTags * 2;
+		showMoreTags() {
+			this.showingMore = true;
 		},
 		showLessTags() {
-			this.maxTagsVisible = this.defaultMaxTagsVisible;
+			this.showingMore = false;
 		}
 	}
 }
@@ -113,5 +128,9 @@ export default {
 	position: relative;
 	top: -3px;
 	right: -3px;
+}
+
+.amount {
+	font-size: 0.8em;
 }
 </style>
