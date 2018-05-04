@@ -125,6 +125,7 @@ h1.site-heading {
 
 .sidebar {	
 	display: flex;
+	height: 100%;
 	flex-direction: column;
 	background: var(--bg-light-alpha);
 }

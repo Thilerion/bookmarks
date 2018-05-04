@@ -1,7 +1,9 @@
 <template>
 <div id="app">	
 
-	<BmSidebar class="col-side" />
+	<BmResizable>
+		<BmSidebar class="col-side"/>
+	</BmResizable>
 
 	<BmMain class="col-main" />
 
@@ -15,6 +17,7 @@
 <script>
 import Sidebar from '@/components/layout/Sidebar'
 import Main from '@/components/layout/Main'
+import Resizable from '@/components/layout/Resizable'
 
 import AddBookmark from '@/components/modals/AddBookmark'
 import EditBookmark from '@/components/modals/EditBookmark'
@@ -26,7 +29,8 @@ export default {
 		BmSidebar: Sidebar,
 		BmAddBookmark: AddBookmark,
 		BmAddCategory: AddCategory,
-		BmEditBookmark: EditBookmark
+		BmEditBookmark: EditBookmark,
+		BmResizable: Resizable
 	},
 	computed: {
 		activeModal() {
@@ -100,6 +104,7 @@ h1.bold, h2.bold, h3.bold, h4.bold, .heading.bold {
 #app {
 	height: 100%;
 	display: flex;
+	background: var(--bg-light-beta);
 }
 
 .col-side {
