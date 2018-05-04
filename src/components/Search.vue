@@ -58,8 +58,6 @@ export default {
 			for (let i = 0; i < this.tagsPresent; i++) {
 				matches.push(re.exec(this.searchTerm));
 			}
-			console.log("All matches in input:");
-			console.log(matches);
 			return matches[matches.length - 1];
 		}
 	},
@@ -141,7 +139,6 @@ export default {
 	watch: {
 		currentTags(newValue, oldValue) {
 			if (oldValue.length !== newValue.length) {
-				console.log("Tag watcher tag length is different");
 				this.tags = newValue;
 			}
 		}

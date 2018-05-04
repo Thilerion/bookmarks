@@ -39,11 +39,9 @@ let tagStore = {
 			for (let tag in tagAmounts) {
 				arr.push({ name: tag, amount: tagAmounts[tag] });
 			}
-			console.log(JSON.stringify(arr));
 			arr.sort((a, b) => {
 				return b.amount - a.amount;
 			});
-			console.log(arr);
 			return arr;
 		}
 	},

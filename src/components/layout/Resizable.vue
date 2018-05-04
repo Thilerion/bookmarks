@@ -38,18 +38,15 @@ export default {
 
 			const resize = (clientX = this.initialX) => {
 				this.newWidth = clientX;
-				console.log(this.newWidth);
 			}
 
 			resize();
 
 			function mouseMove(e) {
-				console.log(e);
 				resize(e.clientX);
 			}
 
 			function mouseUp(e) {
-				console.log("Mouse UP");
 				removeEventListener('mouseup', mouseUp);
 				removeEventListener('mousemove', mouseMove);
 			}

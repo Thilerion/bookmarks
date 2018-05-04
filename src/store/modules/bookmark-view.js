@@ -127,7 +127,6 @@ let bookmarkView = {
 
 		pushTagToSearch(state, tagName) {
 			if (tagName === "untagged") {
-				console.log("Adding untagged");
 				state.searchTags = ["untagged"];
 			} else {
 				let tags = state.searchTags.filter(tag => tag !== "untagged");
@@ -150,7 +149,7 @@ let bookmarkView = {
 
 		addTagToSearch({ commit, state }, tagName) {
 			if (state.searchTags.includes(tagName)) {
-				console.log("Tag is already in search");
+				console.warn("Tag is already in search");
 				return;
 			} else {
 				commit('pushTagToSearch', tagName);

@@ -44,7 +44,6 @@ export default {
 			this.$refs.searchInput.focus();
 		},
 		updateField(e) {
-			console.log(e);
 			if (ADD_TAG_KEYS.includes(e.code)) {
 				e.preventDefault();
 				this.addTag(e);

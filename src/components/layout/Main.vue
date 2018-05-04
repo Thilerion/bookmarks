@@ -47,7 +47,6 @@ export default {
 		contentScrolled(target, e) {
 			this.scrollAmount = target.scrollTop;
 			this.maxScrollHeight = target.scrollHeight;
-			console.log(this.scrollAmount, this.maxScrollHeight);
 		},
 		scrollToTop() {
 			this.$refs.mainContent.scrollTo(0,0);
