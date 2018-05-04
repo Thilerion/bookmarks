@@ -1,10 +1,11 @@
 <template>
 <span class="sort-items" v-click-outside="hideMenu">
 	<button class="sort-button button-light has-text" @click="showMenu = !showMenu">
-		<svg class="sort-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+		<!--<svg class="sort-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 			<path d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/>
 			<path d="M0 0h24v24H0z" fill="none"/>
-		</svg>
+		</svg>-->
+		<BmSvgIcon icon="sort-list" class="sort-icon"/>
 		<span class="sort-string">{{currentSortModeString}}</span>
 	</button>
 	<BmDropdownMenu
@@ -23,7 +24,12 @@
 </template>
 
 <script>
+import SvgIcon from './shared/SvgIcon'
+
 export default {
+	components: {
+		BmSvgIcon: SvgIcon
+	},
 	data() {
 		return {
 			showMenu: false
