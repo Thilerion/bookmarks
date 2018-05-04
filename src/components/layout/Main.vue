@@ -63,7 +63,6 @@ export default {
 .main-wrapper {
 	display: flex;
 	flex-direction: column;
-	background: var(--bg-light-beta);
 }
 
 .main-wrapper .minimal-padding {

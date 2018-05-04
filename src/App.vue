@@ -1,7 +1,9 @@
 <template>
 <div id="app">	
 
-	<BmSidebar class="col-side" />
+	<BmResizable>
+		<BmSidebar class="col-side"/>
+	</BmResizable>
 
 	<BmMain class="col-main" />
 
@@ -15,6 +17,7 @@
 <script>
 import Sidebar from '@/components/layout/Sidebar'
 import Main from '@/components/layout/Main'
+import Resizable from '@/components/layout/Resizable'
 
 import AddBookmark from '@/components/modals/AddBookmark'
 import EditBookmark from '@/components/modals/EditBookmark'
@@ -26,7 +29,8 @@ export default {
 		BmSidebar: Sidebar,
 		BmAddBookmark: AddBookmark,
 		BmAddCategory: AddCategory,
-		BmEditBookmark: EditBookmark
+		BmEditBookmark: EditBookmark,
+		BmResizable: Resizable
 	},
 	computed: {
 		activeModal() {
@@ -59,6 +63,7 @@ export default {
 	--bg-dark-delta:				hsl(0, 0%, 30%);
 	--border-transparent-lighten:	hsla(0, 0%, 80%, 0.1);
 	--border-transparent-darken:	hsla(0, 0%, 20%, 0.1);
+	--border-transparent-darken1:	hsla(0, 0%, 20%, 0.25);
 	--border-transparent-darken2:	hsla(0, 0%, 20%, 0.5);
 	--border-main:					hsl(0, 0%, 80%);
 	--base-cat-colour: 				var(--bg-dark-gamma);
@@ -100,20 +105,26 @@ h1.bold, h2.bold, h3.bold, h4.bold, .heading.bold {
 #app {
 	height: 100%;
 	display: flex;
+	background: var(--bg-light-beta);
+}
+
+.resizable {
+	height: 100vh;
+	overflow: hidden;
+	width: 20em;
+	min-width: 270px;
+	max-width: 50vw;
+	flex: 0 0 auto;
 }
 
 .col-side {
-	height: 100vh;
-	overflow: hidden;
-	flex: 0 5 25vw;
-	min-width: 18em;
-	max-width: 22em;
+	width: 100%;
 }
 
 .col-main {
 	height: 100vh;
 	overflow: hidden;
-	flex: 3 1 75vw;
+	flex: 1 1 auto;
 }
 
 button {
