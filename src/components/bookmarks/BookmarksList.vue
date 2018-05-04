@@ -1,5 +1,5 @@
 <template>
-<div class="bookmarks">	
+<div class="bookmarks">
 	<transition
 		name="bookmark-list-mode"
 		mode="out-in"
@@ -8,7 +8,9 @@
 			:is="currentViewComponent"
 			:bookmarks="bookmarksArray"
 			:key="triggerBookmarkTransition"
-		/>
+		>
+			<BmBookmarksCurrentView slot="currentView"/>
+		</component>
 	</transition>
 	<div class="no-bookmarks" v-if="noBookmarksStored">
 		<p>No bookmarks have been found!</p>
@@ -21,12 +23,14 @@
 import BookmarksListCompact from './view/BookmarksListCompact'
 import BookmarksListNormal from './view/BookmarksListNormal'
 import BookmarksListGrid from './view/BookmarksListGrid'
+import BookmarksCurrentView from './BookmarksCurrentView'
 
 export default {
 	components: {
 		BmBookmarksListCompact: BookmarksListCompact,
 		BmBookmarksListNormal: BookmarksListNormal,
-		BmBookmarksListGrid: BookmarksListGrid
+		BmBookmarksListGrid: BookmarksListGrid,
+		BmBookmarksCurrentView: BookmarksCurrentView
 	},
 	computed: {
 		noBookmarksStored() {

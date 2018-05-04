@@ -1,12 +1,17 @@
 <template>
-	<div class="bm-wrapper grid">
-		<BmBookmarkGrid
-			v-for="bm in bookmarks"
-			:key="bm.title"
-			:bookmark="bm"
-			:showCategory="showCategory"
-			class="bm-item"/>
-	</div>
+	<span>
+		<slot name="currentView"/>
+		<div class="bm-wrapper grid">
+			
+			<BmBookmarkGrid
+				v-for="bm in bookmarks"
+				:key="bm.title"
+				:bookmark="bm"
+				:showCategory="showCategory"
+				class="bm-item"/>
+		</div>
+	</span>
+	
 </template>
 
 <script>

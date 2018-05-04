@@ -1,5 +1,6 @@
 <template>
 	<div class="bm-wrapper list normal">
+		<slot name="currentView"/>
 		<BmBookmarkNormal
 			v-for="bm in bookmarks"
 			:key="bm.title"

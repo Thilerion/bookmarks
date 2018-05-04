@@ -1,5 +1,6 @@
 <template>
 	<div class="bm-wrapper list compact">
+		<slot name="currentView"/>
 		<BmBookmarkCompact
 			v-for="bm in bookmarks"
 			:key="bm.title"
