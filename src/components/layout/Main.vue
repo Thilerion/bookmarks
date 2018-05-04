@@ -60,7 +60,6 @@ export default {
 .main-wrapper {
 	display: flex;
 	flex-direction: column;
-
 }
 
 .main-wrapper .minimal-padding {
