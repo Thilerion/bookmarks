@@ -1,19 +1,19 @@
 let categoryStore = {
 	state: {
-		all: [],
-		categoryOrder: [],
+		// all: [],
+		// categoryOrder: [],
 		uncategorizedCat: { name: "Uncategorized", colour: 'var(--base-cat-colour)', id: null, icon: null },
 		allBookmarksCat: { name: "All bookmarks", colour: 'var(--base-cat-colour)', id: 'all', icon: null }
 	},
 
 	getters: {
-		categories: state => state.all,
+		// categories: state => state.all,
 
 		// allCategoryIds: state => state.all.map(category => category._id),
 
 		// nextCategoryId: (state, getters) => Math.max(...getters.allCategoryIds) + 1,
 
-		allCategoryNames: state => state.all.map(c => c.name),
+		// allCategoryNames: state => state.all.map(c => c.name),
 
 		uncategorizedCategory: state => state.uncategorizedCat,
 
@@ -25,13 +25,13 @@ let categoryStore = {
 			else return state.uncategorizedCat;
 		},
 
-		categoryOrder: state => state.categoryOrder,
+		// categoryOrder: state => state.categoryOrder,
 
-		categoriesSortedByOrder: state => {
-			return state.categoryOrder.map(catId => {
-				return state.all.find(c => c._id === catId);
-			});
-		}
+		// categoriesSortedByOrder: state => {
+		// 	return state.categoryOrder.map(catId => {
+		// 		return state.all.find(c => c._id === catId);
+		// 	});
+		// }
 	},
 
 	mutations: {

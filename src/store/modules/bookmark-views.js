@@ -33,7 +33,7 @@ export default {
 
 		bookmarksLength: (state, getters, rootState) => rootState.bookmarks.length,
 
-		filters: (state, getters, rootState, rootGetters) => {
+		filters(state, getters, rootState, rootGetters) {
 			return {
 				favorites: rootGetters.selectedGroupName === "Favorites",
 				uncategorized: rootGetters.selectedGroupName === "Uncategorized",

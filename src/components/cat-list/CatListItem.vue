@@ -46,7 +46,7 @@ export default {
 			return this.category.name;
 		},
 		amount() {
-			return this.$store.getters.categoryAmounts[this.category._id] || 0;
+			return this.$store.getters.categoryBookmarkAmounts[this.category._id] || 0;
 		},
 		showIcon() {
 			return this.category.icon != null;
