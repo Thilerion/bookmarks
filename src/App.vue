@@ -59,6 +59,7 @@ export default {
 	--bg-dark-delta:				hsl(0, 0%, 30%);
 	--border-transparent-lighten:	hsla(0, 0%, 80%, 0.1);
 	--border-transparent-darken:	hsla(0, 0%, 20%, 0.1);
+	--border-transparent-darken2:	hsla(0, 0%, 20%, 0.5);
 	--border-main:					hsl(0, 0%, 80%);
 	--base-cat-colour: 				var(--bg-dark-gamma);
 }
@@ -145,12 +146,6 @@ button {
 	padding: 0.2em 0.5em;
 }
 
-.button-light.is-wide {
-	display: block;
-	text-align: center;
-	font-size: 1.1em;
-}
-
 p {
 	padding: 0;
 	margin: 0;
@@ -165,6 +160,25 @@ a {
 	line-height: 1.2;
 	color: var(--font-dark);
 	text-decoration: none;
+}
+
+.button-link {
+	letter-spacing: 0.1px;
+	word-spacing: 0.5px;
+	line-height: 0.97rem;
+	color: var(--font-dark-secondary);
+	position: relative;
+}
+
+.button-link:before {
+	content: "";
+	position: absolute;
+	bottom: 1px;
+	left: 0;
+	height: 1px;
+	width: 100%;
+	background: currentColor;
+	text-decoration: underline currentColor;
 }
 
 a:hover {

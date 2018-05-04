@@ -19,8 +19,9 @@
 	
 	</div>
 	<div class="show-tags-button-wrapper">
-		<button class="btn-show-all button-light is-wide has-text" @click="showMoreTags" v-if="showMoreButton">Show more</button>
-		<button class="btn-show-all button-light is-wide has-text" @click="showLessTags" v-if="showLessButton">Show less</button>
+		<button class="btn-show-tags button-link" @click="showAllTags" v-if="tagsToShowMaxAmount < amountOfTags">All tags</button>
+		<button class="btn-show-tags button-link" @click="showMoreTags" v-if="showMoreButton">Show more</button>
+		<button class="btn-show-tags button-link" @click="showLessTags" v-if="showLessButton">Show less</button>
 	</div>
 
 </div>
@@ -86,6 +87,9 @@ export default {
 		},
 		showLessTags() {
 			this.showingMore = false;
+		},
+		showAllTags() {
+			console.log("hoi");
 		}
 	}
 }
@@ -103,13 +107,15 @@ export default {
 }
 
 .show-tags-button-wrapper {
+	margin-top: 0.5em;
 	padding-left: 1em;
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: flex-end;
 }
 
-.btn-show-all {
-	display: block;
+.btn-show-tags + .btn-show-tags {
+	margin-left: 1em;
 }
 
 .tag-item {
