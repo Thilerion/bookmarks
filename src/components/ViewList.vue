@@ -39,7 +39,7 @@ export default {
 	},
 	computed: {
 		currentViewMode() {
-			return this.$store.getters.currentBookmarkListView;
+			return this.$store.getters.currentListView;
 		},
 		currentViewModeName() {
 			return this.currentViewMode.name;
@@ -48,7 +48,7 @@ export default {
 			return this.currentViewMode.icon;
 		},
 		viewModes() {
-			return this.$store.getters.bookmarkListViews;
+			return this.$store.getters.allListViews;
 		}
 	},
 	methods: {

@@ -28,6 +28,7 @@ export default {
 
 	getters: {
 		currentListView: state => state.listViews[state.currentListView],
+		allListViews: state => state.listViews,
 		currentSortMode: state => state.sortModes[state.currentSortMode],
 
 		bookmarksLength: (state, getters, rootState) => rootState.bookmarks.length,
@@ -49,6 +50,10 @@ export default {
 					categoryIds: rootGetters.categoryIds
 				}
 			}
+		},
+
+		standardBookmarksList(state, getters, rootState) {
+			return rootState.bookmarks;
 		}
 	},
 

@@ -24,7 +24,7 @@ let store = new Vuex.Store({
 	},
 
 	getters: {
-		allBookmarkIds: state => state.all.map(bm => bm.id).sort(),
+		allBookmarkIds: state => state.bookmarks.map(bm => bm.id).sort(),
 		nextBookmarkId: (state, getters) => Math.max(...getters.allBookmarkIds) + 1,
 		
 		allCategoryIds: state => state.categories.map(cat => cat._id),
@@ -142,6 +142,11 @@ let store = new Vuex.Store({
 
 export default store;
 
+import defaults from './api/default-data';
+
+store.dispatch('setCategoryOrder', defaults.categories.categoryOrder);
+store.dispatch('setAllCategories', defaults.categories.all);
+store.dispatch('setAllBookmarks', defaults.bookmarks);
 /*
 
 store.dispatch('initializeStorageFromApi');

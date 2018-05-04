@@ -69,7 +69,7 @@ export default {
 	},
 	computed: {
 		selectedGroup() {
-			return this.$store.getters.currentBookmarkGroup;
+			return this.$store.getters.selectedGroupName;
 		},
 		showAllBookmarks() {
 			return this.selectedGroup === "All";
@@ -81,16 +81,16 @@ export default {
 			return this.selectedGroup === "Favorites";
 		},
 		bookmarkGroupAmounts() {
-			return this.$store.getters.bookmarkGroupAmounts;
+			return //this.$store.getters.bookmarkGroupAmounts;
 		},
 		allBookmarksAmount() {
-			return this.bookmarkGroupAmounts["All"];
+			return //this.bookmarkGroupAmounts["All"];
 		},
 		favoriteBookmarksAmount() {
-			return this.bookmarkGroupAmounts["Favorites"];
+			return //this.bookmarkGroupAmounts["Favorites"];
 		},
 		uncategorizedBookmarksAmount() {
-			return this.bookmarkGroupAmounts["Uncategorized"];
+			return //this.bookmarkGroupAmounts["Uncategorized"];
 		}
 	},
 	methods: {

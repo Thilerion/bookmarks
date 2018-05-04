@@ -37,7 +37,7 @@ export default {
 			return this.$store.getters.allBookmarkIds.length === 0;
 		},
 		bookmarksArray() {
-			return this.$store.getters.sortedBookmarksToShow;
+			return this.$store.getters.standardBookmarksList;
 		},
 		currentViewComponent() {
 			return this.$store.getters.currentBookmarkListViewComp;

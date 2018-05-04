@@ -43,7 +43,7 @@ export default {
 	},
 	computed: {
 		tags() {
-			return this.$store.getters.sortedTagAmountsArray;
+			return this.$store.getters.sortedTagAmounts;
 		},
 		tagsToShow() {			
 			return this.tags.slice(0, this.tagsToShowAmount);		
@@ -62,7 +62,7 @@ export default {
 			}
 		},
 		amountOfTags() {
-			return this.$store.getters.uniqueTags.length;
+			return this.$store.getters.tagAmounts.length;
 		},
 		showMoreButton() {
 			return (this.amountOfTags > this.defaultMaxTagsVisible) && (this.showingMore === false);
@@ -76,7 +76,7 @@ export default {
 			this.$store.dispatch('toggleTagInSearch', tagName);
 		},
 		selectedClass(tagName) {
-			if (this.$store.getters.searchTags.includes(tagName)) {
+			if (this.$store.getters.selectedTags.includes(tagName)) {
 				return ["button-light", "selected"];
 			} else {
 				return "button-light";
