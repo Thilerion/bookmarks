@@ -57,6 +57,25 @@
 </template>
 
 <script>
+/* ALL ICONS *
+	plus
+	(minus)
+	dropdown-arrow
+	dropup-arrow
+	grid
+	list
+	compact list
+	board
+	options-more-horizontal
+	options-more-vertical
+	star-empty
+	star-full
+	search
+	sort
+	(different-sort-options?)
+
+*/
+
 export default {
 	props: ['icon']
 }
