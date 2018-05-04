@@ -46,13 +46,17 @@ let categoryStore = {
 			state.all.push(cat);
 			state.categoryOrder.push(catId);
 		},
-		removeCategoryFromOrder: (state, id) => {
-			const idIndex = state.categoryOrder.indexOf(id);
-			state.categoryOrder.splice(idIndex, 1);
-		},
 		removeCategory: (state, id) => {
-			const idIndex = state.all.findIndex(c => c._id === id);
-			state.all.splice(idIndex, 1);
+			let categories = state.all;
+			const idIndex = categories.findIndex(c => c._id === id);
+			categories.splice(idIndex, 1);
+
+			let categoryOrder = state.categoryOrder;
+			const idIndexOrder = categoryOrder.indexOf(id);
+			categoryOrder.splice(idIndexOrder, 1);
+
+			state.all = categories;
+			state.categoryOrder = categoryOrder;
 		}
 	},
 
@@ -62,9 +66,8 @@ let categoryStore = {
 			commit('pushNewCategory', newCat);
 		},
 		deleteCategory({ commit, getters }, catId) {
-			commit('removeCategoryFromOrder', catId);
-			commit('removeCategory', catId);
 			commit('removeCategoryFromBookmarks', catId);
+			commit('removeCategory', catId);
 		},
 		updateCategoryOrder({commit, getters}, cOrder) {
 			let catIds = getters.allCategoryIds;

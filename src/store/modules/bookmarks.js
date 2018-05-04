@@ -39,7 +39,7 @@ let bookmarkStore = {
 		removeCategoryFromBookmarks(state, categoryId) {
 			for (let bookmark of state.all) {
 				if (bookmark.category === categoryId) {
-					bookmark.category = "none";
+					bookmark.category = null;
 				}
 			}
 		},
