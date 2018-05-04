@@ -68,7 +68,8 @@ export default {
 <style scoped>
 .resizable {
 	position: relative;
-	padding-right: 6px;
+	padding-right: 4px;
+	margin-right: -4px;
 }
 
 .resize-handle-wrapper {
@@ -82,6 +83,7 @@ export default {
 
 .resizable.has-handle {
 	padding-right: 3px;
+	margin-right: 0;
 }
 
 .has-handle .resize-handle-wrapper {
