@@ -1,14 +1,11 @@
 <template>
-<div class="resizable" :style="{width: newWidthPx}" ref="resizable">
+<div class="resizable" :style="{width: newWidthPx}" ref="resizable" :class="{'has-handle': showHandle}">
 	<slot/>
 	<div
 		class="resize-handle-wrapper"
 		@mousedown="mouseDown"
 	>
-		<div class="resize-handle-point"></div>
-		<div class="resize-handle-point"></div>
-		<div class="resize-handle-point"></div>
-		<div class="resize-handle-point"></div>
+		<div class="resize-handle-point" v-for="n in 4" :key="n" v-if="showHandle"></div>
 	</div>
 </div>
 </template>
@@ -16,7 +13,10 @@
 <script>
 export default {
 	props: {
-		
+		showHandle: {
+			type: Boolean,
+			default: false
+		}
 	},
 	data() {
 		return {
@@ -68,16 +68,24 @@ export default {
 <style scoped>
 .resizable {
 	position: relative;
-	padding-right: 3px;
+	padding-right: 6px;
 }
 
 .resize-handle-wrapper {
 	position: absolute;
-	width: 3px;
+	width: 6px;
 	height: 100%;
 	top: 0; bottom: 0;
 	right: 0;
 	cursor: ew-resize;
+}
+
+.resizable.has-handle {
+	padding-right: 3px;
+}
+
+.has-handle .resize-handle-wrapper {
+	width: 3px;
 	border-right: 1px solid var(--border-main);
 	display: flex;
 	flex-direction: column;
