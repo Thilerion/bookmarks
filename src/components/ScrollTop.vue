@@ -1,11 +1,17 @@
 <template>
 <transition name="fade-btn">
-<button class="scroll-top-button" @click="scrollToTop" ref="scrollTopButton">Top</button>
+<button class="scroll-top-button" @click="scrollToTop" ref="scrollTopButton" v-if="showButton">Top</button>
 </transition>
 </template>
 
 <script>
 export default {
+	props: {
+		showButton: {
+			type: Boolean,
+			default: false
+		}
+	},
     methods: {
         scrollToTop() {
             //this.$emit('scrollToTop');
@@ -16,6 +22,22 @@ export default {
 </script>
 
 <style scoped>
+.scroll-top-button {
+    border-radius: 5px 5px 0 0;
+    transform-origin: 100% 100% 0;
+    transform: rotate(-90deg);
+    width: 5em;
+    height: 2em;
+    padding-bottom: 0.5em;
+    position: absolute;
+    background: var(--bg-dark-gamma);
+	font-family: 'Raleway', sans-serif;
+    color: white;
+    bottom: 7em;
+    right: 0em;
+	opacity: 0.75;
+}
+
 .fade-btn-enter-active, .fade-btn-leave-active {
     transition: opacity 200ms ease;
 }
@@ -24,18 +46,7 @@ export default {
     opacity: 0;
 }
 
-.scroll-top-button {
-    border-radius: 5px 5px 0 0;
-    transform-origin: 100% 100%;
-    transform: rotate(-90deg);
-    width: 5em;
-    height: 2em;
-    padding-bottom: 0.5em;
-    position: absolute;
-    background: var(--bg-dark-gamma);
-    color: white;
-    bottom: 7em;
-    right: 0em;
-    opacity: 0.75;
+.fade-btn-enter-to, .fade-btn-leave {
+	opacity: 0.75;
 }
 </style>

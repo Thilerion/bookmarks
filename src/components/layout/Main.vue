@@ -9,7 +9,7 @@
 		<main class="main-content">
 			<BmBookmarksList />
 		</main>
-		<BmScrollTop v-show="showScrollToTopButton" @scrollToTop="scrollToTop"/>
+		<BmScrollTop :showButton="showScrollToTopButton" @scrollToTop="scrollToTop"/>
 	</div>
 	
 </div>
@@ -31,7 +31,8 @@ export default {
 	},
 	data() {
 		return {
-			scrollAmount: 0
+			scrollAmount: 0,
+			maxScrollHeight: null
 		}
 	},
 	computed: {
@@ -39,12 +40,14 @@ export default {
 			return this.scrollAmount > 4;
 		},
 		showScrollToTopButton() {
-			return this.scrollAmount > 100;
+			return this.scrollAmount > 200 && this.maxScrollHeight > 2000;
 		}
 	},
 	methods: {
 		contentScrolled(target, e) {
 			this.scrollAmount = target.scrollTop;
+			this.maxScrollHeight = target.scrollHeight;
+			console.log(this.scrollAmount, this.maxScrollHeight);
 		},
 		scrollToTop() {
 			this.$refs.mainContent.scrollTo(0,0);
