@@ -1,24 +1,23 @@
-import { SORT_MODES, sortBookmarks } from '../../helpers/bookmark-sort'
-import { filterWithSearch, filterWithCategory } from '../../helpers/bookmark-filters'
 
-const BOOKMARK_GROUPS = ["All", "Favorites", "Category", "Uncategorized"];
+
+// const BOOKMARK_GROUPS = ["All", "Favorites", "Category", "Uncategorized"];
 
 let bookmarkView = {
 
 	state: {
-		searchTerm: "",
-		searchTags: [],
-		currentSortMode: 0,
+		// searchTerm: "",
+		// searchTags: [],
+		// currentSortMode: 0,
 
-		currentBookmarkGroup: "All",
-		currentCategory: null,
+		// currentBookmarkGroup: "All",
+		// currentCategory: null,
 
-		sortModes: SORT_MODES,
-		bookmarkGroups: BOOKMARK_GROUPS
+		// sortModes: SORT_MODES,
+		// bookmarkGroups: BOOKMARK_GROUPS
 	},
 
 	getters: {
-		searchActive: state => state.searchTerm !== "" || state.searchTags.length > 0,
+		// searchActive: state => state.searchTerm !== "" || state.searchTags.length > 0,
 		searchTerm: state => state.searchTerm,
 		searchTags: state => state.searchTags,
 
@@ -26,9 +25,9 @@ let bookmarkView = {
 		sortMode: state => state.sortModes[state.currentSortMode],
 		sortModes: state => state.sortModes,
 
-		currentBookmarkGroup: state => state.currentBookmarkGroup,
+		// currentBookmarkGroup: state => state.currentBookmarkGroup,
 
-		currentCategoryId: state => state.currentCategory,
+		// currentCategoryId: state => state.currentCategory,
 		currentCategoryName(state, getters, rootState) {
 			const id = state.currentCategory;
 			if (id === null) return null;
@@ -93,75 +92,75 @@ let bookmarkView = {
 
 	mutations: {
 
-		changeSearchTerm(state, searchTerm) {
-			state.searchTerm = searchTerm;
-		},
+		// changeSearchTerm(state, searchTerm) {
+		// 	state.searchTerm = searchTerm;
+		// },
 
-		changeSearchTags(state, searchTags) {
-			state.searchTags = searchTags;
-		},
+		// changeSearchTags(state, searchTags) {
+		// 	state.searchTags = searchTags;
+		// },
 
-		changeSortMode(state, sortModeId) {
-			state.currentSortMode = sortModeId;
-		},
+		// changeSortMode(state, sortModeId) {
+		// 	state.currentSortMode = sortModeId;
+		// },
 
-		selectFavoritesGroup(state) {
-			state.currentBookmarkGroup = "Favorites";
-			state.currentCategory = null;
-		},
+		// selectFavoritesGroup(state) {
+		// 	state.currentBookmarkGroup = "Favorites";
+		// 	state.currentCategory = null;
+		// },
 
-		selectAllBookmarksGroup(state) {
-			state.currentBookmarkGroup = "All";
-			state.currentCategory = null;
-		},
+		// selectAllBookmarksGroup(state) {
+		// 	state.currentBookmarkGroup = "All";
+		// 	state.currentCategory = null;
+		// },
 
-		selectUncategorizedGroup(state) {
-			state.currentBookmarkGroup = "Uncategorized";
-			state.currentCategory = null;
-		},
+		// selectUncategorizedGroup(state) {
+		// 	state.currentBookmarkGroup = "Uncategorized";
+		// 	state.currentCategory = null;
+		// },
 
-		selectCategory(state, id) {
-			state.currentBookmarkGroup = "Category";
-			state.currentCategory = id;
-		},
+		// selectCategory(state, id) {
+		// 	state.currentBookmarkGroup = "Category";
+		// 	state.currentCategory = id;
+		// },
 
-		pushTagToSearch(state, tagName) {
-			if (tagName === "untagged") {
-				state.searchTags = ["untagged"];
-			} else {
-				let tags = state.searchTags.filter(tag => tag !== "untagged");
-				tags.push(tagName);
-				state.searchTags = tags;
-			}
+		// pushTagToSearch(state, tagName) {
+		// 	if (tagName === "untagged") {
+		// 		state.searchTags = ["untagged"];
+		// 	} else {
+		// 		let tags = state.searchTags.filter(tag => tag !== "untagged");
+		// 		tags.push(tagName);
+		// 		state.searchTags = tags;
+		// 	}
 			
-		},
+		// },
 
-		removeTagFromSearch(state, tagToRemove) {
-			state.searchTags = state.searchTags.filter(tag => tag !== tagToRemove);
-		}
+		// removeTagFromSearch(state, tagToRemove) {
+		// 	state.searchTags = state.searchTags.filter(tag => tag !== tagToRemove);
+		// }
 	},
 
 	actions: {
-		editSearchFilter({ commit }, {searchTerm, searchTags}) {
-			commit('changeSearchTerm', searchTerm);
-			commit('changeSearchTags', searchTags);
-		},
+		// editSearchFilter({ commit }, {searchTerm, searchTags}) {
+		// 	commit('changeSearchTerm', searchTerm);
+		// 	commit('changeSearchTags', searchTags);
+		// },
 
-		addTagToSearch({ commit, state }, tagName) {
-			if (state.searchTags.includes(tagName)) {
-				console.warn("Tag is already in search");
-				return;
-			} else {
-				commit('pushTagToSearch', tagName);
-			}
-		},
-		toggleTagInSearch({ commit, state }, tagName) {
-			if (state.searchTags.includes(tagName)) {
-				commit('removeTagFromSearch', tagName);
-			} else {
-				commit('pushTagToSearch', tagName);
-			}
-		}
+		// addTagToSearch({ commit, state }, tagName) {
+		// 	if (state.searchTags.includes(tagName)) {
+		// 		console.warn("Tag is already in search");
+		// 		return;
+		// 	} else {
+		// 		commit('pushTagToSearch', tagName);
+		// 	}
+		// },
+		// toggleTagInSearch({ commit, state }, tagName) {
+		// 	if (state.searchTags.includes(tagName)) {
+		// 		commit('removeTagFromSearch', tagName);
+		// 	} else {
+		// 		commit('pushTagToSearch', tagName);
+		// 	}
+		// }
 	}
 }
 
