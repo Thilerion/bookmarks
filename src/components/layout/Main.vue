@@ -7,7 +7,7 @@
 	<div class="scroll-wrap vertical" @scroll="contentScrolled($event.target, $event)" ref="mainContent">
 		<BmBookmarksListOptions class="minimal-padding"/>
 		<main class="main-content">
-			<BmBookmarksList />
+			<router-view/>
 		</main>
 		<BmScrollTop :showButton="showScrollToTopButton" @scrollToTop="scrollToTop"/>
 	</div>
