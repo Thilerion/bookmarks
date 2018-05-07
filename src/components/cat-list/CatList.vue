@@ -35,7 +35,7 @@ export default {
 	},
 	computed: {
 		categoriesSortedByOrder() {
-			return this.$store.getters.categoriesSortedByOrder;
+			return this.$store.getters.sortedCategories;
 		},
 		categoryOrder: {
 			get() {
