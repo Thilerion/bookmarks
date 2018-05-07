@@ -22,6 +22,10 @@ export default {
 
 		sortedTagAmounts(state, getters) {
 			return getters.tagAmounts.sort((a, b) => b.amount - a.amount);
+		},
+
+		uniqueTags(state, getters) {
+			return getters.tagAmounts.map(tagAmountObj => tagAmountObj.name);
 		}
 	},
 

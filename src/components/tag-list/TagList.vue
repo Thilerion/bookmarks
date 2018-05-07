@@ -73,7 +73,7 @@ export default {
 	},
 	methods: {
 		toggleTagInSearch(tagName) {
-			this.$store.dispatch('toggleTagInSearch', tagName);
+			this.$store.dispatch('toggleSelectTag', tagName);
 		},
 		selectedClass(tagName) {
 			if (this.$store.getters.selectedTags.includes(tagName)) {

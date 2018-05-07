@@ -94,7 +94,7 @@ export default {
 			let bookmarks = [...rootGetters.bookmarks];
 			
 			if (rootGetters.searchActive) {
-				bookmarks = filterWithSearch(bookmarks, { searchTerm: rootGetters.searchTerm, tags: rootGetters.searchTags });
+				bookmarks = filterWithSearch(bookmarks, { searchTerm: rootGetters.searchTerm, tags: rootGetters.selectedTags });
 			}
 			return sortBookmarks(bookmarks, state.currentSortMode);
 		},

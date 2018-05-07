@@ -94,7 +94,7 @@ export default {
 		},
 
 		addTag() {
-			this.$store.dispatch('addTagToSearch', this.lastTagPresent[0].slice(1));
+			this.$store.dispatch('selectTag', this.lastTagPresent[0].slice(1));
 			let newSearchTerm = this.searchTerm.split("");
 			newSearchTerm.splice(this.lastTagPresent.index, this.lastTagPresent[0].length);
 			this.searchTerm = newSearchTerm.join("");
@@ -104,13 +104,13 @@ export default {
 		removeTag() {
 			if (this.tags && this.tags.length > 0) {
 				let tagToRemove = this.tags[this.tags.length - 1];
-				this.$store.commit('removeTagFromSearch', tagToRemove);
+				this.$store.dispatch('deselectTag', tagToRemove);
 			}
 			this.editSearchInStore();
 		},
 
 		removeSelectedTag(tagName) {
-			this.$store.commit('removeTagFromSearch', tagName);
+			this.$store.dispatch('deselectTag', tagName);
 			this.editSearchInStore();
 		},
 
