@@ -67,8 +67,8 @@ export default {
 			return getters.sortedAndFilteredBookmarks.length;
 		},
 
-		bookmarksPerCategory(state, getters, rootState, rootGetters) {
-			let bookmarks = [...rootGetters.bookmarks];
+		bookmarksPerCategoryToShow(state, getters, rootState, rootGetters) {
+			let bookmarks = [...getters.filteredAndSortedBookmarks];
 			let catIds = [...rootGetters.allCategoryIds];
 
 			let retBookmarks = {};
@@ -91,18 +91,27 @@ export default {
 			return retBookmarks;
 		},
 
-		bookmarksPerGroup(state, getters, rootState, rootGetters) {
+		bookmarksPerGroupToShow(state, getters, rootState, rootGetters) {
 			return {
-				favorites: rootGetters.bookmarks.filter(bm => bm.favorite),
-				uncategorized: rootGetters.bookmarks.filter(bm => bm.category == null)
+				favorites: getters.filteredAndSortedBookmarks.filter(bm => bm.favorite),
+				uncategorized: getters.filteredAndSortedBookmarks.filter(bm => bm.category == null)
 			}
+		},
+		
+		filteredAndSortedBookmarks(state, getters, rootState, rootGetters) {
+			let bookmarks = [...rootGetters.bookmarks];
+			
+			if (rootGetters.searchActive) {
+				bookmarks = filterWithSearch(bookmarks, { searchTerm: rootGetters.searchTerm, tags: rootGetters.searchTags });
+			}
+			return sortBookmarks(bookmarks, state.currentSortMode);
 		},
 
 		getBookmarksFromRoute: (state, getters, rootState) => (routeId) => {
-			if (routeId === "all") return [...rootState.bookmarks];
-			else if (routeId === "favorites") return getters.bookmarksPerGroup.favorites;
+			if (routeId === "all") return [...getters.filteredAndSortedBookmarks];
+			else if (routeId === "favorites") return getters.bookmarksPerGroupToShow.favorites;
 			else if (routeId === "uncategorized") return getters.bookmarksPerGroup.uncategorized;
-			else return getters.bookmarksPerCategory[routeId];
+			else return getters.bookmarksPerCategoryToShow[routeId];
 		}
 
 	},
