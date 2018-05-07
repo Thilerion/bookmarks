@@ -11,11 +11,11 @@
 		directionY="down"
 	>
 		<BmDropdownMenuItem
-			v-for="(mode, index) in viewModes"
+			v-for="mode in viewModes"
 			:key="mode.name"
 			:selected="mode.name === currentViewModeName"
 			has-icon
-			><button @click="setViewMode(index)">
+			><button @click="setViewMode(mode.name)">
 				<BmSvgIcon class="bm-view-icon" :icon="mode.icon" />
 				{{mode.name}}
 			</button>
@@ -57,7 +57,7 @@ export default {
 		},
 		setViewMode(modeId) {
 			this.hideMenu();
-			this.$store.dispatch('setViewMode', modeId);
+			this.$store.dispatch('setListView', modeId);
 		}
 	}
 }

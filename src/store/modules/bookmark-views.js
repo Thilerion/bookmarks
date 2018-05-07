@@ -8,13 +8,13 @@ export default {
 
 		listViews: [
 			{
-				name: "Compact",
+				name: "Compact List",
 				icon: "view-compact",
 				component: "BmBookmarksListCompact"
 			},
 			{
-				name: "Normal",
-				icon: "view-normal",
+				name: "List",
+				icon: "view-list",
 				component: "BmBookmarksListNormal"
 			},
 			{
@@ -30,6 +30,7 @@ export default {
 		currentListView: state => state.listViews[state.currentListView],
 		allListViews: state => state.listViews,
 		currentSortMode: state => state.sortModes[state.currentSortMode],
+		allSortModes: state => state.sortModes,
 
 		bookmarksLength: (state, getters, rootState) => rootState.bookmarks.length,
 

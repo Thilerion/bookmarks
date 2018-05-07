@@ -37,16 +37,16 @@ export default {
 	},
 	computed: {
 		currentSortModeString() {
-			return this.$store.getters.sortMode;
+			return this.$store.getters.currentSortMode;
 		},
 		sortModes() {
-			return this.$store.getters.sortModes;
+			return this.$store.getters.allSortModes;
 		}
 	},
 	methods: {
 		setSortMode(newSortIndex) {
 			this.hideMenu();
-			this.$store.commit('changeSortMode', newSortIndex);			
+			this.$store.dispatch('setSortMode', newSortIndex);			
 		},
 		hideMenu() {
 			this.showMenu = false;
