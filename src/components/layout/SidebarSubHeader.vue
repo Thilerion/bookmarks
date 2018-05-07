@@ -15,7 +15,7 @@ export default {
 	},
 	methods: {
 		toggleModalAddBookmark() {
-			this.$store.commit('enableModal', 0);
+			this.$store.dispatch('enableModal', 0);
 		}
 	}
 }

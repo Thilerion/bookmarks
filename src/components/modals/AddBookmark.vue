@@ -76,7 +76,7 @@ export default {
 	},
 	methods: {
 		toggleModalAddBookmark() {
-			this.$store.commit('disableModal');
+			this.$store.dispatch('disableModal');
 		},
 		saveBookmark() {			
 			let bm = {
@@ -86,7 +86,7 @@ export default {
 				tags: this.$children[0].$children[0].$data.tags,
 				description: String(this.description)
 			};
-			this.$store.dispatch('saveNewBookmark', bm);
+			this.$store.dispatch('addBookmark', bm);
 			this.toggleModalAddBookmark();					
 		},
 		validate() {
@@ -121,10 +121,10 @@ export default {
 	},
 	created() {
 		//get which category to be initial category
-		const group = this.$store.getters.currentBookmarkGroup;
-		const currentCatId = this.$store.getters.currentCategoryId;
-		if (group === "Category" && currentCatId !== null) {
-			this.category = currentCatId;
+		const currentCategory = this.$route.params.id;
+		console.log(currentCategory);
+		if (Number.isInteger(currentCategory)) {
+			this.category = currentCategory;
 		}
 	}
 }

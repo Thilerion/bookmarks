@@ -69,7 +69,7 @@ export default {
 	},
 	methods: {
 		toggleModalAddCategory() {
-			this.$store.commit('disableModal');
+			this.$store.dispatch('disableModal');
 		},
 		saveCategory() {
 			this.$store.dispatch('addNewCategory', {name: this.name, colour: this.colour, icon: null, _id: null});

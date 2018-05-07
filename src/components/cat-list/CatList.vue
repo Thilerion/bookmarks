@@ -54,7 +54,7 @@ export default {
 	},
 	methods: {
 		toggleModalAddCategory() {
-			this.$store.commit('enableModal', 1);
+			this.$store.dispatch('enableModal', 1);
 		}
 	}
 }
