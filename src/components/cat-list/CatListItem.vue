@@ -1,7 +1,9 @@
 <template>
-<li
+<router-link
 	class="list-item"
-	:class="{selected: isSelected}"
+	tag="li"
+	active-class="selected"
+	:to="routerPath"
 	@mouseover="showCatOptions = true"
 	@mouseout="showCatOptions = false" 
 >
@@ -20,7 +22,7 @@
 		<div class="amount">{{amount}}</div>
 	</div>
 	<BmCatListItemOptions :catId="catId"/>
-</li>
+</router-link>
 </template>
 
 <script>
@@ -66,6 +68,9 @@ export default {
 		},
 		isSelected() {
 			return this.$store.getters.currentCategoryId === this.catId;
+		},
+		routerPath() {
+			return '/bookmarks/' + this.catId;
 		}
 	},
 	methods: {

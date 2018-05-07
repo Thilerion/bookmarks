@@ -20,32 +20,35 @@
 		<div class="sidebar-content">
 			<div class="menu-block">
 
-				<div
+				<router-link
 					class="menu-item"
-					:class="{selected: showAllBookmarks}"
-					@click="selectAllBookmarksGroup"
+					active-class="selected"
+					to="/bookmarks/all"
+					tag="div"
 				>
 					<div class="title">All bookmarks</div>
 					<div class="amount">{{allBookmarksAmount}}</div>
-				</div>
+				</router-link>
 
-				<div
+				<router-link
 					class="menu-item"
-					:class="{selected: showUncategorizedBookmarks}"
-					@click="selectUncategorizedGroup"
+					active-class="selected"
+					to="/bookmarks/uncategorized"
+					tag="div"
 				>
 					<div class="title">Uncategorized</div>
 					<div class="amount">{{uncategorizedBookmarksAmount}}</div>
-				</div>
+				</router-link>
 
-				<div
+				<router-link
 					class="menu-item"
-					:class="{selected: showFavoriteBookmarks}"
-					@click="selectFavoritesGroup"
+					active-class="selected"
+					to="/bookmarks/favorites"
+					tag="div"
 				>
 					<div class="title">Favorites</div>
 					<div class="amount">{{favoriteBookmarksAmount}}</div>
-				</div>
+				</router-link>
 
 			</div>
 			<BmCatList class="menu-block"/>

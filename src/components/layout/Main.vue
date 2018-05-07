@@ -7,7 +7,12 @@
 	<div class="scroll-wrap vertical" @scroll="contentScrolled($event.target, $event)" ref="mainContent">
 		<BmBookmarksListOptions class="minimal-padding"/>
 		<main class="main-content">
-			<router-view/>
+			<transition
+				name="bookmark-list-mode"
+				mode="out-in"
+			>
+				<router-view :key="$route.path"/>
+			</transition>
 		</main>
 		<BmScrollTop :showButton="showScrollToTopButton" @scrollToTop="scrollToTop"/>
 	</div>
@@ -107,5 +112,21 @@ export default {
 
 .scroll-wrap {
 	--bg: var(--bg-light-beta);
+}
+
+.bookmark-list-mode-enter-active, .bookmark-list-mode-leave-active {
+	transition: all .15s ease-out;
+}
+
+.bookmark-list-mode-enter, .bookmark-list-mode-leave-to {
+	opacity: 0;
+}
+
+.bookmark-list-mode-enter {
+	transform: translateY(-10px);
+}
+
+.bookmark-list-mode-leave-to {
+	transform: translateY(10px);
 }
 </style>

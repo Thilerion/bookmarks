@@ -1,18 +1,13 @@
 <template>
 <div class="bookmarks">
 	<p>Bookmarks category {{$route.params.id}}</p>
-	<transition
-		name="bookmark-list-mode"
-		mode="out-in"
-	>	
-		<component
-			:is="currentViewComponent"
-			:bookmarks="bookmarks"
-			:key="triggerBookmarkTransition"
-		>
-			<BmBookmarksCurrentView slot="currentView"/>
-		</component>
-	</transition>
+	<component
+		:is="currentViewComponent"
+		:bookmarks="bookmarks"
+		:key="currentViewComponent"
+	>
+		<BmBookmarksCurrentView slot="currentView"/>
+	</component>
 	<div class="no-bookmarks" v-if="noBookmarksStored">
 		<p>No bookmarks have been found!</p>
 		<button class="button-light has-text" @click="loadDefaultStorage">Click here to load defaults</button>
@@ -44,16 +39,6 @@ export default {
 		},
 		currentViewComponent() {
 			return this.$store.getters.currentBookmarkListViewComp;
-		},
-		triggerBookmarkTransition() {
-			//used to trigger the transition when the view component OR the selected category change
-			let view = this.currentViewComponent;
-			let group = this.$store.getters.currentBookmarkGroup;
-			let cat = this.$store.getters.currentCategoryId;
-			let sort = this.$store.getters.sortModeId;
-			//let length = this.bookmarks.length;
-
-			return `${view}${group}${cat}${sort}`;
 		}
 	},
 	methods: {
@@ -87,13 +72,7 @@ export default {
 ** === Bookmarks View Mode fading transition ===
 */
 
-.bookmark-list-mode-enter-active, .bookmark-list-mode-leave-active {
-	transition: all .2s ease-in-out;
-}
 
-.bookmark-list-mode-enter, .bookmark-list-mode-leave-to {
-	opacity: 0.3;
-}
 
 /*
 ** === BookmarksList[VIEW_MODE] > Bookmark Item CSS ===
