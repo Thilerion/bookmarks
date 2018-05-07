@@ -28,6 +28,7 @@ let store = new Vuex.Store({
 		nextBookmarkId: (state, getters) => Math.max(...getters.allBookmarkIds) + 1,
 
 		bookmarks: state => state.bookmarks,
+		categories: state => state.categories,
 		
 		allCategoryIds: state => state.categories.map(cat => cat._id),
 		nextCategoryId: (state, getters) => Math.max(...getters.allCategoryIds) + 1

@@ -37,7 +37,7 @@ export default {
 			return this.$store.getters.allBookmarkIds.length === 0;
 		},
 		currentViewComponent() {
-			return this.$store.getters.currentBookmarkListViewComp;
+			return this.$store.getters.currentListView.component;
 		},
 		bookmarksFromRoute() {
 			return this.$store.getters.getBookmarksFromRoute(this.$route.params.id);

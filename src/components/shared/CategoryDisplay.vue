@@ -15,7 +15,7 @@ export default {
 	},
 	computed: {
 		category() {
-			return this.$store.getters.categoryById(this.catId);
+			return this.$store.getters.categories.find(cat => cat._id === this.catId);
 		},
 		catName() {
 			return this.category.name;
