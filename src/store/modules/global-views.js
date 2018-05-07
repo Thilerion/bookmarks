@@ -19,7 +19,9 @@ export default {
 		currentlyEditingBookmark: state => state.currentlyEditingBookmark,
 
 		searchTermActive: state => state.searchTerm !== "",
+		searchTerm: state => state.searchTerm,
 		selectedTagsActive: state => state.selectedTags.length > 0,
+		selectedTags: state => state.selectedTags,
 		searchActive: (state, getters) => getters.searchTermActive || getters.selectedTagsActive,
 
 		selectedTags: state => state.selectedTags,

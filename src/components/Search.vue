@@ -34,7 +34,7 @@ export default {
 			return this.$store.getters.searchTerm;
 		},
 		tags() {
-			return this.$store.getters.searchTags;		
+			return this.$store.getters.selectedTags;		
 		},
 		availableTags() {
 			return this.$store.getters.uniqueTags;
@@ -63,7 +63,7 @@ export default {
 	},
 	methods: {
 		setNewValue() {
-			this.$store.dispatch('editSearchFilter', {searchTags: this.tags, searchTerm: this.searchTerm});
+			this.$store.dispatch('setSearchTerm', this.searchTerm);
 		},
 
 		updateField(e) {
@@ -115,7 +115,7 @@ export default {
 		},
 
 		editSearchInStore() {
-			this.$store.dispatch('editSearchFilter', {searchTerm: this.searchTerm + "", searchTags: [...this.tags]});
+			this.$store.dispatch('setSearchTerm', this.searchTerm + "");
 		},
 
 		focusInput() {
