@@ -155,34 +155,10 @@ let store = new Vuex.Store({
 	}	
 });
 
-export default store;
-
 import defaults from './api/default-data';
 
 store.dispatch('setCategoryOrder', defaults.categories.categoryOrder);
 store.dispatch('setAllCategories', defaults.categories.all);
 store.dispatch('setAllBookmarks', defaults.bookmarks);
-/*
 
-store.dispatch('initializeStorageFromApi');
-
-store.watch((state, getters) => getters.categoryToSave, (oldVal, newVal) => {
-	console.log("Watched category values have changed. Now going to update localStorage...");
-	store.dispatch('saveToStorageCategories');
-}, { deep: true });
-
-store.watch((state, getters) => getters.categoryOrderToSave, (oldVal, newVal) => {
-	console.log("Watched category order values have changed. Now going to update localStorage...");
-	store.dispatch('saveToStorageCategories');
-}, { deep: true });
-
-store.watch((state, getters) => getters.bookmarkToSave, (oldVal, newVal) => {
-	console.log("Watched bookmark values have changed. Now going to update localStorage...");
-	store.dispatch('saveToStorageBookmarks');
-}, { deep: true });
-
-store.watch((state, getters) => getters.prefsToSave, (oldVal, newVal) => {
-	console.log("Watched preferences have changed. Now going to update localStorage...");
-	store.dispatch('saveToStoragePrefs');
-}, { deep: true });
-*/
+export default store;

@@ -61,14 +61,10 @@ export default {
 		this.fetchBookmarks();
 	},
 	watch: {
-		'$route' (to, from) {
-			//This does not get activated because of the :key value for router-view, which activates the transition.
-			//this.fetchBookmarks();
-		},
-		bookmarksFromRoute (to, from) {
-			console.log("Store bookmark value has changed (store has initialized?), so fetching bookmarks now.");
+		/*'$route' (to, from) {
+			This does not get activated because of the :key value for router-view, which activates the transition.
 			this.fetchBookmarks();
-		}
+		}*/
 	}
 }
 </script>
