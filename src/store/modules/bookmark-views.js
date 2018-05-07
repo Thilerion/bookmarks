@@ -52,7 +52,7 @@ export default {
 			}
 		},
 
-		filteredBookmarks(state, getters) {
+		filteredBookmarks(state, getters, rootState) {
 			//TODO
 			return rootState.bookmarks;
 		},
