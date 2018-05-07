@@ -28,6 +28,14 @@ export default {
 				}
 			}
 			return categories;
+		},
+
+		selectedCategoryNames(state, getters, rootState, rootGetters) {
+			const selectedCats = rootGetters.selectedCategoriesIds;
+			return selectedCats.map(catId => {
+				let cat = rootState.categories.find(cat => cat._id === catId);
+				return cat.name;
+			});
 		}
 	},
 

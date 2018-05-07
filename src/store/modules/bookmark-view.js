@@ -18,45 +18,45 @@ let bookmarkView = {
 
 	getters: {
 		// searchActive: state => state.searchTerm !== "" || state.searchTags.length > 0,
-		searchTerm: state => state.searchTerm,
-		searchTags: state => state.searchTags,
+		// searchTerm: state => state.searchTerm,
+		// searchTags: state => state.searchTags,
 
-		sortModeId: state => state.currentSortMode,
-		sortMode: state => state.sortModes[state.currentSortMode],
-		sortModes: state => state.sortModes,
+		// sortModeId: state => state.currentSortMode,
+		// sortMode: state => state.sortModes[state.currentSortMode],
+		// sortModes: state => state.sortModes,
 
 		// currentBookmarkGroup: state => state.currentBookmarkGroup,
 
 		// currentCategoryId: state => state.currentCategory,
-		currentCategoryName(state, getters, rootState) {
-			const id = state.currentCategory;
-			if (id === null) return null;
+		// currentCategoryName(state, getters, rootState) {
+		// 	const id = state.currentCategory;
+		// 	if (id === null) return null;
 			
-			return rootState.categories.all.find(cat => cat._id === id);
-		},
+		// 	return rootState.categories.all.find(cat => cat._id === id);
+		// },
 
-		bookmarksPerCategory(state, getters, rootState, rootGetters) {
-			let catIds = rootGetters.allCategoryIds;
-			let bookmarksPerCategory = {};
-			bookmarksPerCategory.category = {};
-			for (let catId of catIds) {
-				bookmarksPerCategory.category[catId] = [];
-			}
-			bookmarksPerCategory.uncategorized = [];
-			bookmarksPerCategory.favorites = [];
+		// bookmarksPerCategory(state, getters, rootState, rootGetters) {
+		// 	let catIds = rootGetters.allCategoryIds;
+		// 	let bookmarksPerCategory = {};
+		// 	bookmarksPerCategory.category = {};
+		// 	for (let catId of catIds) {
+		// 		bookmarksPerCategory.category[catId] = [];
+		// 	}
+		// 	bookmarksPerCategory.uncategorized = [];
+		// 	bookmarksPerCategory.favorites = [];
 
-			for (let bm of rootState.bookmarks.all) {
-				if (bm.category === null) {
-					bookmarksPerCategory.uncategorized.push(bm);
-				} else {
-					bookmarksPerCategory.category[bm.category].push(bm);
-				}
-				if (bm.favorite === true) {
-					bookmarksPerCategory.favorites.push(bm);
-				}
-			}
-			return bookmarksPerCategory;
-		},
+		// 	for (let bm of rootState.bookmarks.all) {
+		// 		if (bm.category === null) {
+		// 			bookmarksPerCategory.uncategorized.push(bm);
+		// 		} else {
+		// 			bookmarksPerCategory.category[bm.category].push(bm);
+		// 		}
+		// 		if (bm.favorite === true) {
+		// 			bookmarksPerCategory.favorites.push(bm);
+		// 		}
+		// 	}
+		// 	return bookmarksPerCategory;
+		// },
 
 		bookmarksToShow(state, getters, rootState) {
 			const search = getters.searchActive;
@@ -84,9 +84,9 @@ let bookmarkView = {
 		},
 
 		
-		bookmarksToShowLength(state, getters) {
-			return getters.bookmarksToShow.length;
-		}
+		// bookmarksToShowLength(state, getters) {
+		// 	return getters.bookmarksToShow.length;
+		// }
 		
 	},
 

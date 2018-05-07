@@ -19,11 +19,11 @@ let categoryStore = {
 
 		allBookmarksCategory: state => state.allBookmarksCat,
 
-		categoryById: (state, getters) => id => {
-			if (id === 'all') return state.allBookmarksCat;
-			else if (getters.allCategoryIds.includes(id)) return state.all.find(cat => cat._id === id);
-			else return state.uncategorizedCat;
-		},
+		// categoryById: (state, getters) => id => {
+		// 	if (id === 'all') return state.allBookmarksCat;
+		// 	else if (getters.allCategoryIds.includes(id)) return state.all.find(cat => cat._id === id);
+		// 	else return state.uncategorizedCat;
+		// },
 
 		// categoryOrder: state => state.categoryOrder,
 

@@ -52,9 +52,20 @@ export default {
 			}
 		},
 
-		standardBookmarksList(state, getters, rootState) {
+		filteredBookmarks(state, getters) {
+			//TODO
 			return rootState.bookmarks;
+		},
+
+		sortedAndFilteredBookmarks(state, getters) {
+			//TODO
+			return getters.filteredBookmarks;
+		},
+
+		currentlyShownBookmarksLength(state, getters) {
+			return getters.sortedAndFilteredBookmarks.length;
 		}
+
 	},
 
 	mutations: {

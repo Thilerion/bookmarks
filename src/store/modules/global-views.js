@@ -53,7 +53,7 @@ export default {
 		},
 
 		selectCategory(state, id) {
-			state.selectedCategories = [...id];
+			state.selectedCategories = [id];
 		}
 	},
 
