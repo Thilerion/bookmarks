@@ -1,5 +1,5 @@
 <template>
-<div class="current-view">
+<div class="current-view" v-if="false">
 	<p class="view-title">{{group.name}}</p>
 	<p class="view-subtitle" v-if="searchActive">{{viewAmount}} found (out of {{group.amount}} for this category)</p>
 	<p class="view-subtitle" v-else>{{viewAmount}}</p>
