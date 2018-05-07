@@ -1,5 +1,5 @@
 <template>
-<BmModal :errors="errors" @submitModalForm="validate" @closingModal="toggleModalAddBookmark">
+<BmModal :errors="errors" @submitModalForm="validate" @closingModal="toggleModalAddCategory">
 
 	<template slot="header">Add category</template>
 	
@@ -72,7 +72,7 @@ export default {
 			this.$store.dispatch('disableModal');
 		},
 		saveCategory() {
-			this.$store.dispatch('addNewCategory', {name: this.name, colour: this.colour, icon: null, _id: null});
+			this.$store.dispatch('addCategory', {name: this.name, colour: this.colour, icon: null, _id: null});
 			this.toggleModalAddCategory();			
 		},
 		validate() {
