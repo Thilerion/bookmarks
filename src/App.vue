@@ -34,7 +34,7 @@ export default {
 	},
 	computed: {
 		activeModal() {
-			return this.$store.getters.activeModal;
+			return this.$store.getters.activeModalComponent;
 		}
 	},
 	methods: {

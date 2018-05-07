@@ -65,9 +65,9 @@ let bookmarkStore = {
 		// 	commit("pushNewBookmark", bm);
 		// },
 
-		initializeBookmarks({ commit }, bookmarks) {
-			commit('setAllBookmarks', bookmarks);
-		},
+		// initializeBookmarks({ commit }, bookmarks) {
+		// 	commit('setAllBookmarks', bookmarks);
+		// },
 
 		startBookmarkEditing({ commit }, id) {
 			commit('setCurrentlyEditingBookmark', id);

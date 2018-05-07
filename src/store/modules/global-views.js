@@ -3,6 +3,8 @@ export default {
 		modals: ['BmAddBookmark', 'BmAddCategory', 'BmEditBookmark'],
 		activeModal: null,
 
+		currentlyEditingBookmark: null,
+
 		searchTerm: "",
 		selectedTags: [],
 		selectedCategories: [],
@@ -13,6 +15,8 @@ export default {
 
 	getters: {
 		activeModalComponent: state => state.modals[state.activeModal],
+
+		currentlyEditingBookmark: state => state.currentlyEditingBookmark,
 
 		searchTermActive: state => state.searchTerm !== "",
 		selectedTagsActive: state => state.selectedTags.length > 0,
@@ -54,6 +58,10 @@ export default {
 
 		selectCategory(state, id) {
 			state.selectedCategories = [id];
+		},
+
+		setCurrentlyEditingBookmark(state, id = null) {
+			state.currentlyEditingBookmark = id;
 		}
 	},
 

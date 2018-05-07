@@ -44,7 +44,7 @@ let tagStore = {
 	// 		});
 	// 		return arr;
 	// 	}
-	// },
+	},
 
 	mutations: {
 

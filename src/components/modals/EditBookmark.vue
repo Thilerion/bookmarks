@@ -78,8 +78,8 @@ export default {
 	},
 	methods: {
 		toggleModalAddBookmark() {
-			this.$store.dispatch('stopEditingBookmark');
-			this.$store.commit('disableModal');
+			this.$store.dispatch('stopBookmarkEditing');
+			this.$store.dispatch('disableModal');
 		},
 		finishBookmarkEdit() {			
 			let bm = {
@@ -125,7 +125,8 @@ export default {
 		}
 	},
 	created() {
-		const bm = this.$store.getters.getBookmarkById(this.$store.getters.currentlyEditingBookmark);
+		const editingBmId = this.$store.getters.currentlyEditingBookmark;
+		const bm = this.$store.getters.bookmarks.find(bm => bm.id === editingBmId);
 
 		this.url = bm.url;
 		this.id = bm.id;

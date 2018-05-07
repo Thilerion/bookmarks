@@ -111,6 +111,18 @@ let store = new Vuex.Store({
 			commit('deleteBookmark', id);
 		},
 
+		startBookmarkEditing({ commit, dispatch }, bmId) {
+			console.log("store.js/actions: start editing bookmark");
+			commit('setCurrentlyEditingBookmark', bmId);
+			dispatch('enableModal', 2);
+		},
+
+		stopBookmarkEditing({ commit, dispatch }) {
+			console.log("store.js/actions: stop editing bookmark");
+			dispatch('disableModal');
+			commit('setCurrentlyEditingBookmark');
+		},
+
 		saveEditedBookmark({ commit }, bm) {
 			console.log("store.js/actions: edit bookmark");
 			commit("editBookmark", bm);
