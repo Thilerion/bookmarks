@@ -64,6 +64,44 @@ export default {
 
 		currentlyShownBookmarksLength(state, getters) {
 			return getters.sortedAndFilteredBookmarks.length;
+		},
+
+		bookmarksPerCategory(state, getters, rootState, rootGetters) {
+			let bookmarks = [...rootGetters.bookmarks];
+			let catIds = [...rootGetters.allCategoryIds];
+
+			let retBookmarks = {};
+
+			for (let cId in catIds) {
+				retBookmarks[cId] = [];
+			}
+
+			for (let bm of bookmarks) {
+				let cat = bm.category;
+				if (cat != null) {
+					if (retBookmarks[cat]) {
+						retBookmarks[cat].push(bm);
+					} else {
+						retBookmarks[cat] = [];
+						retBookmarks[cat].push(bm);
+					}
+				}
+			}
+			return retBookmarks;
+		},
+
+		bookmarksPerGroup(state, getters, rootState, rootGetters) {
+			return {
+				favorites: rootGetters.bookmarks.filter(bm => bm.favorite),
+				uncategorized: rootGetters.bookmarks.filter(bm => bm.category == null)
+			}
+		},
+
+		getBookmarksFromRoute: (state, getters, rootState) => (routeId) => {
+			if (routeId === "all") return [...rootState.bookmarks];
+			else if (routeId === "favorites") return getters.bookmarksPerGroup.favorites;
+			else if (routeId === "uncategorized") return getters.bookmarksPerGroup.uncategorized;
+			else return getters.bookmarksPerCategory[routeId];
 		}
 
 	},
