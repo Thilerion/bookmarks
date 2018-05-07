@@ -1,6 +1,5 @@
 <template>
 <div class="bookmarks">
-	<p>Bookmarks category {{$route.params.id}}</p>
 	<component
 		:is="currentViewComponent"
 		:bookmarks="bookmarks"
@@ -39,12 +38,20 @@ export default {
 		},
 		currentViewComponent() {
 			return this.$store.getters.currentBookmarkListViewComp;
+		},
+		bookmarksFromRoute() {
+			return this.$store.getters.getBookmarksFromRoute(this.$route.params.id);
 		}
 	},
 	methods: {
 		fetchBookmarks() {
-			console.log(this.$route.params);
-			this.bookmarks = this.$store.getters.getBookmarksFromRoute(this.$route.params.id);
+			console.log(`Route id changed to ${this.$route.params.id}`);
+			const bookmarks = this.$store.getters.getBookmarksFromRoute(this.$route.params.id);
+			if (bookmarks != null) {
+				this.bookmarks = bookmarks;
+			} else {
+				this.bookmarks = [];
+			}
 		},
 		loadDefaultStorage() {
 			this.$store.dispatch('initializeStorageFromApi', true);
@@ -55,6 +62,11 @@ export default {
 	},
 	watch: {
 		'$route' (to, from) {
+			//This does not get activated because of the :key value for router-view, which activates the transition.
+			//this.fetchBookmarks();
+		},
+		bookmarksFromRoute (to, from) {
+			console.log("Store bookmark value has changed (store has initialized?), so fetching bookmarks now.");
 			this.fetchBookmarks();
 		}
 	}
