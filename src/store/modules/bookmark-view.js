@@ -66,7 +66,7 @@ let bookmarkView = {
 			let bookmarks = [];
 
 			if (group === "All") {
-				bookmarks = [...rootState.bookmarks.all];
+				bookmarks = [...rootState.bookmarks.all]
 			} else if (group === "Uncategorized") {
 				bookmarks = getters.bookmarksPerCategory.uncategorized;
 			} else if (group === "Favorites") {
@@ -75,9 +75,18 @@ let bookmarkView = {
 				bookmarks = getters.bookmarksPerCategory.category[category];
 			}
 
+
+
 			if (search === true) {
 				return filterWithSearch(bookmarks, { searchTerm: getters.searchTerm, tags: getters.searchTags });
 			} else return bookmarks;			
+		},
+
+		getBookmarksFromRoute: (state, getters, rootState) => (routeId) => {
+			if (routeId === "all") return [...rootState.bookmarks.all];
+			else if (routeId === "favorites") return getters.bookmarksPerCategory.favorites;
+			else if (routeId === "uncategorized") return getters.bookmarksPerCategory.uncategorized;
+			else return getters.bookmarksPerCategory.category[routeId];
 		},
 
 		sortedBookmarksToShow(state, getters) {

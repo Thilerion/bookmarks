@@ -1,12 +1,13 @@
 <template>
 <div class="bookmarks">
+	<p>Bookmarks category {{$route.params.id}}</p>
 	<transition
 		name="bookmark-list-mode"
 		mode="out-in"
 	>	
 		<component
 			:is="currentViewComponent"
-			:bookmarks="bookmarksArray"
+			:bookmarks="bookmarks"
 			:key="triggerBookmarkTransition"
 		>
 			<BmBookmarksCurrentView slot="currentView"/>
@@ -32,12 +33,14 @@ export default {
 		BmBookmarksListGrid: BookmarksListGrid,
 		BmBookmarksCurrentView: BookmarksCurrentView
 	},
+	data() {
+		return {
+			bookmarks: []
+		}
+	},
 	computed: {
 		noBookmarksStored() {
 			return this.$store.getters.allBookmarkIds.length === 0;
-		},
-		bookmarksArray() {
-			return this.$store.getters.sortedBookmarksToShow;
 		},
 		currentViewComponent() {
 			return this.$store.getters.currentBookmarkListViewComp;
@@ -48,14 +51,26 @@ export default {
 			let group = this.$store.getters.currentBookmarkGroup;
 			let cat = this.$store.getters.currentCategoryId;
 			let sort = this.$store.getters.sortModeId;
-			let length = this.bookmarksArray.length;
+			//let length = this.bookmarks.length;
 
-			return `${view}${group}${cat}${sort}${length}`;
+			return `${view}${group}${cat}${sort}`;
 		}
 	},
 	methods: {
+		fetchBookmarks() {
+			console.log(this.$route.params);
+			this.bookmarks = this.$store.getters.getBookmarksFromRoute(this.$route.params.id);
+		},
 		loadDefaultStorage() {
 			this.$store.dispatch('initializeStorageFromApi', true);
+		}
+	},
+	created() {
+		this.fetchBookmarks();
+	},
+	watch: {
+		'$route' (to, from) {
+			this.fetchBookmarks();
 		}
 	}
 }
