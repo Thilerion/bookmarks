@@ -83,17 +83,14 @@ export default {
 		showFavoriteBookmarks() {
 			return this.selectedGroup === "Favorites";
 		},
-		bookmarkGroupAmounts() {
-			return //this.$store.getters.bookmarkGroupAmounts;
-		},
 		allBookmarksAmount() {
-			return //this.bookmarkGroupAmounts["All"];
+			return this.$store.getters.bookmarksLength;
 		},
 		favoriteBookmarksAmount() {
-			return //this.bookmarkGroupAmounts["Favorites"];
+			return this.$store.getters.favoriteBookmarksLength;
 		},
 		uncategorizedBookmarksAmount() {
-			return //this.bookmarkGroupAmounts["Uncategorized"];
+			return this.$store.getters.uncategorizedBookmarksLength;
 		}
 	},
 	methods: {

@@ -33,6 +33,12 @@ export default {
 		allSortModes: state => state.sortModes,
 
 		bookmarksLength: (state, getters, rootState) => rootState.bookmarks.length,
+		uncategorizedBookmarksLength: (state, getters, rootState, rootGetters) => {
+			return rootGetters.bookmarks.filter(bm => bm.category == null).length;
+		},
+		favoriteBookmarksLength: (state, getters, rootState, rootGetters) => {
+			return rootGetters.bookmarks.filter(bm => bm.favorite).length;
+		},
 
 		filters(state, getters, rootState, rootGetters) {
 			return {
@@ -51,20 +57,6 @@ export default {
 					categoryIds: rootGetters.categoryIds
 				}
 			}
-		},
-
-		filteredBookmarks(state, getters, rootState) {
-			//TODO
-			return rootState.bookmarks;
-		},
-
-		sortedAndFilteredBookmarks(state, getters) {
-			//TODO
-			return getters.filteredBookmarks;
-		},
-
-		currentlyShownBookmarksLength(state, getters) {
-			return getters.sortedAndFilteredBookmarks.length;
 		},
 
 		bookmarksPerCategoryToShow(state, getters, rootState, rootGetters) {
@@ -110,7 +102,7 @@ export default {
 		getBookmarksFromRoute: (state, getters, rootState) => (routeId) => {
 			if (routeId === "all") return [...getters.filteredAndSortedBookmarks];
 			else if (routeId === "favorites") return getters.bookmarksPerGroupToShow.favorites;
-			else if (routeId === "uncategorized") return getters.bookmarksPerGroup.uncategorized;
+			else if (routeId === "uncategorized") return getters.bookmarksPerGroupToShow.uncategorized;
 			else return getters.bookmarksPerCategoryToShow[routeId];
 		}
 

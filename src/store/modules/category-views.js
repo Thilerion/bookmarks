@@ -20,13 +20,14 @@ export default {
 
 		categoryBookmarkAmounts(state, getters, rootState, rootGetters) {
 			let categories = {};
-			for (let bm in rootState.bookmarks) {
+			for (let bm of rootGetters.bookmarks) {
 				if (categories[bm.category]) {
 					categories[bm.category] += 1;
 				} else {
 					categories[bm.category] = 1;
 				}
 			}
+			console.log(categories);
 			return categories;
 		},
 
