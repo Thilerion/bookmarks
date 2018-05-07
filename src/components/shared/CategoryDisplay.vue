@@ -15,7 +15,11 @@ export default {
 	},
 	computed: {
 		category() {
-			return this.$store.getters.categories.find(cat => cat._id === this.catId);
+			const cat = this.$store.getters.categories.find(cat => cat._id === this.catId);
+
+			if (cat === null || cat === undefined) {
+				return {_id: null, colour: "#444", icon: null, name: "Uncategorized"};
+			} else return cat;
 		},
 		catName() {
 			return this.category.name;
